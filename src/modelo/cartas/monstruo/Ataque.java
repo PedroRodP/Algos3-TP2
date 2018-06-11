@@ -1,10 +1,10 @@
-package modelo.cartas;
+package modelo.cartas.monstruo;
 
-public class Defensa implements Posicion {
+public class Ataque implements Posicion {
 	
 	private double valor;
 	
-	public Defensa(double valor) {
+	public Ataque(double valor) {
 		
 		this.valor = valor;
 	}

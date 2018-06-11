@@ -1,4 +1,4 @@
-package modelo.cartas;
+package modelo.cartas.monstruo;
 
 public interface Posicion {
 

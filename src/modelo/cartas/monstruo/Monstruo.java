@@ -1,4 +1,6 @@
-package modelo.cartas;
+package modelo.cartas.monstruo;
+
+import modelo.cartas.Carta;
 
 public class Monstruo implements Carta {
 

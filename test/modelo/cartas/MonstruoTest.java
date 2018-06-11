@@ -3,6 +3,8 @@ package modelo.cartas;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
+import modelo.cartas.monstruo.Monstruo;
+
 public class MonstruoTest {
 	
 	private static final double DELTA = 1e-2;
