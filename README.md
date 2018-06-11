@@ -1,4 +1,4 @@
-# Algos3-TP2
+# Algos3-TP2 (AlGoOh!)
 
 [![Build Status](https://travis-ci.org/PedroRodP/Algos3-TP2.svg?branch=master)](https://travis-ci.org/PedroRodP/Algos3-TP2)
 
