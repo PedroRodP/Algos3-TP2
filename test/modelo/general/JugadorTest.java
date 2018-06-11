@@ -1,4 +1,4 @@
-package general;
+package modelo.general;
 
 public class JugadorTest {
 
