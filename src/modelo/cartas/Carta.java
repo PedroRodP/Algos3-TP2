@@ -1,5 +1,5 @@
 package modelo.cartas;
 
-public class Carta {
+public interface Carta {
 
 }
