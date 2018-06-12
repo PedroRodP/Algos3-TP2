@@ -1,5 +1,9 @@
 package modelo.cartas;
 
-public interface Carta {
+public abstract class Carta {
+	
+	public void agregarEnTablero() {
+		
+	}
 
 }

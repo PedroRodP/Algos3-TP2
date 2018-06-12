@@ -2,7 +2,7 @@ package modelo.cartas.monstruo;
 
 import modelo.cartas.Carta;
 
-public class Monstruo implements Carta {
+public class Monstruo extends Carta {
 
 	private double ataque;
 	private double defensa;
