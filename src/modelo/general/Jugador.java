@@ -1,7 +1,8 @@
 package modelo.general;
 
-import modelo.Tablero.Tablero;
+import modelo.cartas.Carta;
 import modelo.cartas.monstruo.Monstruo;
+import modelo.tablero.Tablero;
 
 public class Jugador {
 
@@ -41,5 +42,4 @@ public class Jugador {
 		Monstruo monstruo = tablero.obtenerMonstruo(posicionMonstruo);
 		monstruo.colocarEnDefensa();
 	}
-	
 }

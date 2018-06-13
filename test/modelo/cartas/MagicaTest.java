@@ -1,7 +1,8 @@
 package modelo.cartas;
 
-import modelo.Tablero.Tablero;
 import modelo.cartas.magica.Magica;
+import modelo.tablero.Tablero;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

@@ -1,7 +1,7 @@
 package modelo.cartas.monstruo;
 
-import modelo.Tablero.Tablero;
 import modelo.cartas.Carta;
+import modelo.tablero.Tablero;
 
 public class Monstruo extends Carta {
 

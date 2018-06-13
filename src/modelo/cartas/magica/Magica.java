@@ -1,7 +1,7 @@
 package modelo.cartas.magica;
 
-import modelo.Tablero.Tablero;
 import modelo.cartas.Carta;
+import modelo.tablero.Tablero;
 
 public class Magica extends Carta{
 

@@ -1,4 +1,4 @@
-package modelo.Tablero;
+package modelo.tablero;
 
 import java.util.LinkedList;
 
@@ -28,6 +28,10 @@ public class Tablero {
 	
 	public void mandarAlCementerio(Carta carta) {
 		cementerio.add(carta);
+	}
+	
+	public boolean estaEnCementerio(Carta carta) {
+		return cementerio.contains(carta);
 	}
 	
 	public Monstruo obtenerMonstruo(int posicionMonstruo) {

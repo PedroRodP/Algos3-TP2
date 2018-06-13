@@ -1,8 +1,8 @@
-package modelo.Tablero;
+package modelo.tablero;
 
 import org.junit.Test;
 
-public class CampoTest {
+public class TableroTest {
 
 	@Test
 	public void test01CuandoCartaEsDestruidaCampoEnviaCartaAlCementerio() {

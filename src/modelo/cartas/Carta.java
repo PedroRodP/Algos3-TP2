@@ -1,6 +1,6 @@
 package modelo.cartas;
 
-import modelo.Tablero.Tablero;
+import modelo.tablero.Tablero;
 
 public abstract class Carta {
 	protected final String nombre;
