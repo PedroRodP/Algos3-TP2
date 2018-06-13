@@ -8,12 +8,13 @@ import modelo.tablero.Tablero;
 public class Jugador {
 
 	private double vida;
-	private Tablero tablero = new Tablero();
+	private Tablero tablero;
 	private Jugador oponente;
 	
 	public Jugador() {
 		
 		this.vida = 8000;
+		this.tablero = new Tablero();
 	}
 	
 	public void establecerOponente(Jugador oponente) {
@@ -26,21 +27,9 @@ public class Jugador {
 
 	public void atacar(Monstruo monstruoAtacante, Monstruo monstruoRival) throws ExcepcionMonstruoNoPuedeAtacar {
 		
-		double diferenciaDeCombate = monstruoAtacante.diferenciaDeCombateCon(monstruoRival);
+		Batalla batalla = new Batalla(this, oponente);
 		
-		if (diferenciaDeCombate == 0) {
-			this.destruir(monstruoAtacante);
-			oponente.destruir(monstruoRival);
-			
-		} else if (diferenciaDeCombate < 0) {
-				monstruoAtacante.infligirDanioAJugador(this, diferenciaDeCombate);
-				this.destruir(monstruoAtacante);
-			
-			} else {
-				monstruoRival.infligirDanioAJugador(oponente, diferenciaDeCombate);
-				oponente.destruir(monstruoRival);
-			
-		}
+		batalla.atacarCon(monstruoAtacante, monstruoRival);
 	}
 	
 	public void destruir(Carta carta) {
