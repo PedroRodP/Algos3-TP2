@@ -1,4 +1,4 @@
-package modelo.campo;
+package modelo.Tablero;
 
 import org.junit.Test;
 

@@ -1,5 +1,6 @@
 package modelo.cartas.monstruo;
 
+import modelo.Tablero.Tablero;
 import modelo.cartas.Carta;
 
 public class Monstruo extends Carta {
@@ -8,8 +9,9 @@ public class Monstruo extends Carta {
 	private double defensa;
 	private Posicion posicion;
 	
-	public Monstruo(double ataque, double defensa) {
-		
+	public Monstruo(double ataque, double defensa,String unNombre) {
+		super(unNombre);
+
 		this.ataque = ataque;
 		this.defensa = defensa;
 	}
@@ -27,5 +29,10 @@ public class Monstruo extends Carta {
 	public double vida() {
 		
 		return posicion.valor();
+	}
+
+	@Override
+	public void agregarEn(Tablero unTablero) {
+		unTablero.agregarEnZonaDeCartasMonstruo(this);
 	}
 }

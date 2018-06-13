@@ -12,7 +12,7 @@ public class MonstruoTest {
 	@Test
 	public void test01ColocarUnMonstruoEnPosicionDeAtaqueUtilizaValorDeAtaque() {
 		
-		Monstruo monstruo = new Monstruo(1000, 500); //Ataque, defensa
+		Monstruo monstruo = new Monstruo(1000, 500, "dragon"); //Ataque, defensa
 		
 		monstruo.colocarEnAtaque();
 		
@@ -22,7 +22,7 @@ public class MonstruoTest {
 	@Test
 	public void test02ColocarUnMonstruoEnPosicionDeDefensaUtilizaValorDeDefensa() {
 		
-		Monstruo monstruo = new Monstruo(1000, 500);
+		Monstruo monstruo = new Monstruo(1000, 500,"dragon azul");
 		
 		monstruo.colocarEnDefensa();
 		
