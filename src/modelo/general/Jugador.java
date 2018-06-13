@@ -23,14 +23,18 @@ public class Jugador {
 		return this.vida;
 	}
 
-	public void atacar(int posicionMonstruoAtacante, int posicionMonstruoDefensor) {
-		Monstruo monstruoAtacante = tablero.obtenerMonstruo(posicionMonstruoAtacante);
-		oponente.recibirAtaque(monstruoAtacante, posicionMonstruoDefensor);
+	public void atacar(Monstruo monstruoAtacante, Monstruo monstruoRival) {
+		double diferenciaDeCombate = monstruoAtacante.atacar(monstruoRival);
+		if (diferenciaDeCombate < 0) {
+			this.inflingirDanio(diferenciaDeCombate);
+		}
+		else {
+			oponente.inflingirDanio(diferenciaDeCombate);
+		}
 	}
 	
-	public void recibirAtaque(Monstruo monstruoAtacante, int posicionMonstruoDefensor) {
-		Monstruo monstruoDefensor = tablero.obtenerMonstruo(posicionMonstruoDefensor);
-		monstruoAtacante.atacar(monstruoDefensor);
+	public void inflingirDanio(double danio) {
+		this.vida -= Math.abs(danio);
 	}
 	
 	public void colocarMonstruoEnModoAtaque(int posicionMonstruo) {

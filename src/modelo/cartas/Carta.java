@@ -3,6 +3,7 @@ package modelo.cartas;
 import modelo.tablero.Tablero;
 
 public abstract class Carta {
+	
 	protected final String nombre;
 
 	protected Carta(String unNombre) {

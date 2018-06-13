@@ -7,7 +7,7 @@ public class Monstruo extends Carta {
 
 	private double ataque;
 	private double defensa;
-	private Posicion posicion;
+	private Modo modo;
 	
 	public Monstruo(double ataque, double defensa,String unNombre) {
 		super(unNombre);
@@ -18,17 +18,21 @@ public class Monstruo extends Carta {
 	
 	public void colocarEnAtaque() {
 		
-		this.posicion = new Ataque(ataque);
+		this.modo = new Ataque(ataque);
 	}
 	
 	public void colocarEnDefensa() {
 		
-		this.posicion = new Defensa(defensa);
+		this.modo = new Defensa(defensa);
 	}
 	
 	public double vida() {
 		
-		return posicion.valor();
+		return modo.valor();
+	}
+	
+	public double atacar(Monstruo monstruo) {
+		return this.vida() - monstruo.vida(); 
 	}
 
 	@Override

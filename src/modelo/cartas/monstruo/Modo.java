@@ -1,6 +1,6 @@
 package modelo.cartas.monstruo;
 
-public interface Posicion {
+public interface Modo {
 
 	public double valor();
 	

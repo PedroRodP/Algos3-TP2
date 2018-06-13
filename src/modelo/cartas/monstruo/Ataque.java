@@ -1,6 +1,6 @@
 package modelo.cartas.monstruo;
 
-public class Ataque implements Posicion {
+public class Ataque implements Modo {
 	
 	private double valor;
 	
