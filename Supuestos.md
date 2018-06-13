@@ -1,0 +1,1 @@
+-Campo lo llamamos Tablero para evitar confusión con las cartas de campo.
