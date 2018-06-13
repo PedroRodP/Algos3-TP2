@@ -24,13 +24,25 @@ public class Jugador {
 	}
 
 	public void atacar(Monstruo monstruoAtacante, Monstruo monstruoRival) {
+		
 		double diferenciaDeCombate = monstruoAtacante.atacar(monstruoRival);
+		
 		if (diferenciaDeCombate < 0) {
 			this.inflingirDanio(diferenciaDeCombate);
+			this.destruir(monstruoAtacante);
 		}
-		else {
+		else if (diferenciaDeCombate > 0) {
 			oponente.inflingirDanio(diferenciaDeCombate);
+			oponente.destruir(monstruoRival);
 		}
+		else { //Caso de empate
+			this.destruir(monstruoAtacante);
+			oponente.destruir(monstruoRival);
+		}
+	}
+	
+	public void destruir(Carta carta) {
+		tablero.mandarAlCementerio(carta);
 	}
 	
 	public void inflingirDanio(double danio) {

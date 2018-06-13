@@ -11,7 +11,7 @@ public class Tablero {
 
 	private LinkedList<Monstruo> zonaMonstruos= new LinkedList<Monstruo>();
 	private LinkedList<Magica> zonaMagicas= new LinkedList<Magica>();
-	private LinkedList<Trampa> zonaTrampa = new LinkedList<Trampa>();
+	private LinkedList<Trampa> zonaTrampas = new LinkedList<Trampa>();
 	private LinkedList<Carta> cementerio = new LinkedList<Carta>();
 	
 	public void agregarEnZonaDeCartasMagicas(Magica cartaMagica) {
@@ -23,11 +23,34 @@ public class Tablero {
 	}
 
 	public void agregarEnZonaDeCartasTrampa(Trampa cartaTrampa) {
-		zonaTrampa.add(cartaTrampa);
+		zonaTrampas.add(cartaTrampa);
 	}
 	
 	public void mandarAlCementerio(Carta carta) {
+		this.removerDeZona(carta);
 		cementerio.add(carta);
+	}
+	
+	private void removerDeZona(Carta carta) {
+		
+		//Busca en todas las zonas y la remueve
+		for (Carta iterada : zonaMonstruos) {
+			if (iterada == carta) {
+				zonaMonstruos.remove(carta);
+			}
+		}
+		
+		for (Carta iterada : zonaMagicas) {
+			if (iterada == carta) {
+				zonaMagicas.remove(carta);
+			}
+		}
+		
+		for (Carta iterada : zonaTrampas) {
+			if (iterada == carta) {
+				zonaTrampas.remove(carta);
+			}
+		}
 	}
 	
 	public boolean estaEnCementerio(Carta carta) {
@@ -47,7 +70,7 @@ public class Tablero {
 	}
 
 	public Trampa obtenerCartaTrampa(String unNombre) {
-		for(Trampa unaCarta: zonaTrampa){
+		for(Trampa unaCarta: zonaTrampas){
 			if(unaCarta.tenesEsteNombre(unNombre)) return unaCarta;
 		}
 		return null;
