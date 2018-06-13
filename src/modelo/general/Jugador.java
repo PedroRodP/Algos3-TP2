@@ -40,4 +40,6 @@ public class Jugador {
 	public void colocarMonstruoEnModoDefensa(int posicionMonstruo) {
 		Monstruo monstruo = tablero.obtenerMonstruo(posicionMonstruo);
 		monstruo.colocarEnDefensa();
+	}
+	
 }
