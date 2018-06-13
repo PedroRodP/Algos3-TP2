@@ -83,7 +83,7 @@ public class MonstruoTest {
 		assertEquals(8000, oponente.vida(), DELTA);
 	}
 
-	/*@Test
+	@Test
 	public void test06MonstruoEnAtaqueAtacaAMonstruoConMenorDefensaYSeDestruyeSinInflingirDanio() throws ExcepcionMonstruoNoPuedeAtacar {
 		
 		Jugador atacante = new Jugador();
@@ -100,5 +100,5 @@ public class MonstruoTest {
 		atacante.atacar(monstruoAzul, monstruoVerde);
 		
 		assertEquals(8000, oponente.vida(), DELTA);
-	}*/
+	}
 }

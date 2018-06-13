@@ -1,6 +1,7 @@
 package modelo.cartas.monstruo;
 
 import modelo.excepciones.ExcepcionMonstruoNoPuedeAtacar;
+import modelo.general.Jugador;
 
 public class Defensa implements Modo {
 	
@@ -11,12 +12,18 @@ public class Defensa implements Modo {
 		this.valor = valor;
 	}
 	
+	@Override
 	public double valor() {
 		return this.valor;
 	}
 	
+	@Override
 	public double atacar(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar {
 		throw new ExcepcionMonstruoNoPuedeAtacar();
 	}
 
+	@Override
+	public void infligirDanioAJugador(Jugador jugador, double danio) {
+		//No inflige danio por estar en modo defensa
+	}
 }

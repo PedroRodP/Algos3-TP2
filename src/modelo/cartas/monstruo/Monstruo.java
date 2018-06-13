@@ -2,6 +2,7 @@ package modelo.cartas.monstruo;
 
 import modelo.cartas.Carta;
 import modelo.excepciones.ExcepcionMonstruoNoPuedeAtacar;
+import modelo.general.Jugador;
 import modelo.tablero.Tablero;
 
 public class Monstruo extends Carta {
@@ -15,6 +16,7 @@ public class Monstruo extends Carta {
 
 		this.ataque = ataque;
 		this.defensa = defensa;
+		this.colocarEnDefensa(); //Por default queda en modo defensa
 	}
 	
 	public void colocarEnAtaque() {
@@ -39,5 +41,9 @@ public class Monstruo extends Carta {
 	@Override
 	public void agregarEn(Tablero unTablero) {
 		unTablero.agregarEnZonaDeCartasMonstruo(this);
+	}
+	
+	public void infligirDanioAJugador(Jugador jugador, double danio) {
+		this.modo.infligirDanioAJugador(jugador, danio);
 	}
 }
