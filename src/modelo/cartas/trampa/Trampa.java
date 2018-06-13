@@ -5,7 +5,9 @@ import modelo.cartas.Carta;
 
 public class Trampa extends Carta{
 
-    protected Trampa(String unNombre) {
+
+
+    public  Trampa(String unNombre) {
         super(unNombre);
     }
 

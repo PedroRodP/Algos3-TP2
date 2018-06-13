@@ -8,24 +8,25 @@ import static org.junit.Assert.assertEquals;
 
 public class MagicaTest {
 
+    @Test
+    public void test01ColocarUnaCartaMagiaEnCampo() {
+    	
+        Magica unaCarta= new Magica("agujero negro");
+        Tablero unTablero= new Tablero();
+        
+        unaCarta.agregarEn(unTablero);
 
-        private static final double DELTA = 1e-2;
+        assertEquals(unaCarta,unTablero.obtenerCartaMagica("agujero negro"));
+    }
 
-        @Test
-        public void test01ColocarUnaCartaMagiaEnCampo() {
-            Magica unaCarta= new Magica("agujero negro");
-            Tablero unTablero= new Tablero();
-            unaCarta.agregarEn(unTablero);
+    @Test
 
-            assertEquals(unaCarta,unTablero.obtenerCartaMagica("agujero negro"));
-        }
-
-        @Test
-
-        public void test02EncuentroCartaMagica(){
-            Magica unaCarta= new Magica("agujero negro");
+    public void test02CartaMagicaSeCreaConNombreCorrectamente(){
+    	
+        Magica unaCarta= new Magica("agujero negro");
+        
         assertEquals(true,unaCarta.tenesEsteNombre("agujero negro"));
-        }
+    }
 }
 	
 
