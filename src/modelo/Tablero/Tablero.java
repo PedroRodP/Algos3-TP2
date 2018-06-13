@@ -1,7 +1,6 @@
 package modelo.Tablero;
 
 import java.util.LinkedList;
-
 import modelo.cartas.magica.Magica;
 import modelo.cartas.monstruo.Monstruo;
 import modelo.cartas.trampa.Trampa;
@@ -23,14 +22,16 @@ public class Tablero {
 	public void agregarEnZonaDeCartasTrampa(Trampa cartaTrampa) {
 		zonaTrampa.add(cartaTrampa);
 	}
+	
+	public Monstruo obtenerMonstruo(int posicionMonstruo) {
+		return zonaMonstruos.get(posicionMonstruo);
+	}
 
-	public Magica obtenerCartaMagica(String unNombreMagica) {
-
-		for (Magica unaCarta : zonaMagicas){
-
-			if(unaCarta.tenesEsteNombre(unNombreMagica)) return unaCarta;
+	//Habria q lanzar una excepcion si la carta no es encontrada!!
+	public Magica obtenerCartaMagica(String nombre) {
+		for (Magica carta : zonaMagicas) {
+			if(carta.tenesEsteNombre(nombre)) return carta;
 		}
-
 		return null;
 	}
 }
