@@ -33,4 +33,11 @@ public class Tablero {
 
 		return null;
 	}
+
+	public Trampa obtenerCartaTrampa(String unNombre) {
+		for(Trampa unaCarta: zonaTrampa){
+			if(unaCarta.tenesEsteNombre(unNombre)) return unaCarta;
+		}
+		return null;
+	}
 }
