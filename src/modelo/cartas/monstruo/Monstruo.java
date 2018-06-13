@@ -1,6 +1,7 @@
 package modelo.cartas.monstruo;
 
 import modelo.cartas.Carta;
+import modelo.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import modelo.tablero.Tablero;
 
 public class Monstruo extends Carta {
@@ -31,8 +32,8 @@ public class Monstruo extends Carta {
 		return modo.valor();
 	}
 	
-	public double atacar(Monstruo monstruo) {
-		return this.vida() - monstruo.vida(); 
+	public double atacar(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar {
+		return this.modo.atacar(monstruo); 
 	}
 
 	@Override

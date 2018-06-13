@@ -1,1 +1,2 @@
 -Campo lo llamamos Tablero para evitar confusión con las cartas de campo.
+-Consideramos que un Monstruo en Modo Defensa no puede realizar un ataque.

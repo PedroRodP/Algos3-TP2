@@ -12,5 +12,9 @@ public class Ataque implements Modo {
 	public double valor() {
 		return this.valor;
 	}
+	
+	public double atacar(Monstruo monstruo) {
+		return this.valor - monstruo.vida();
+	}
 
 }

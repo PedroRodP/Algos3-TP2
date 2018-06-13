@@ -2,6 +2,7 @@ package modelo.general;
 
 import modelo.cartas.Carta;
 import modelo.cartas.monstruo.Monstruo;
+import modelo.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import modelo.tablero.Tablero;
 
 public class Jugador {
@@ -23,16 +24,16 @@ public class Jugador {
 		return this.vida;
 	}
 
-	public void atacar(Monstruo monstruoAtacante, Monstruo monstruoRival) {
+	public void atacar(Monstruo monstruoAtacante, Monstruo monstruoRival) throws ExcepcionMonstruoNoPuedeAtacar {
 		
 		double diferenciaDeCombate = monstruoAtacante.atacar(monstruoRival);
 		
 		if (diferenciaDeCombate < 0) {
-			this.inflingirDanio(diferenciaDeCombate);
+			this.infligirDanio(diferenciaDeCombate);
 			this.destruir(monstruoAtacante);
 		}
 		else if (diferenciaDeCombate > 0) {
-			oponente.inflingirDanio(diferenciaDeCombate);
+			oponente.infligirDanio(diferenciaDeCombate);
 			oponente.destruir(monstruoRival);
 		}
 		else { //Caso de empate
@@ -45,7 +46,7 @@ public class Jugador {
 		tablero.mandarAlCementerio(carta);
 	}
 	
-	public void inflingirDanio(double danio) {
+	public void infligirDanio(double danio) {
 		this.vida -= Math.abs(danio);
 	}
 	
