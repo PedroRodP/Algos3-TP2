@@ -7,7 +7,7 @@ public interface Modo {
 
 	public double valor();
 	
-	public double atacar(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar;
+	public double diferenciaDeCombateCon(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar;
 	
 	public void infligirDanioAJugador(Jugador jugador, double danio);
 }

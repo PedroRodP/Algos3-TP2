@@ -17,7 +17,7 @@ public class Ataque implements Modo {
 	}
 	
 	@Override
-	public double atacar(Monstruo monstruo) {
+	public double diferenciaDeCombateCon(Monstruo monstruo) {
 		return this.valor - monstruo.vida();
 	}
 

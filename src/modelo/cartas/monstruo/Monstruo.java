@@ -34,8 +34,8 @@ public class Monstruo extends Carta {
 		return modo.valor();
 	}
 	
-	public double atacar(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar {
-		return this.modo.atacar(monstruo); 
+	public double diferenciaDeCombateCon(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar {
+		return this.modo.diferenciaDeCombateCon(monstruo); 
 	}
 
 	@Override

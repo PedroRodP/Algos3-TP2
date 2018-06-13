@@ -26,14 +26,20 @@ public class Jugador {
 
 	public void atacar(Monstruo monstruoAtacante, Monstruo monstruoRival) throws ExcepcionMonstruoNoPuedeAtacar {
 		
-		double diferenciaDeCombate = monstruoAtacante.atacar(monstruoRival);
+		double diferenciaDeCombate = monstruoAtacante.diferenciaDeCombateCon(monstruoRival);
 		
-		if (diferenciaDeCombate < 0) {
-			monstruoAtacante.infligirDanioAJugador(this, diferenciaDeCombate);
-		
-		} else {
-			monstruoRival.infligirDanioAJugador(oponente, diferenciaDeCombate);
-	
+		if (diferenciaDeCombate == 0) {
+			this.destruir(monstruoAtacante);
+			oponente.destruir(monstruoRival);
+			
+		} else if (diferenciaDeCombate < 0) {
+				monstruoAtacante.infligirDanioAJugador(this, diferenciaDeCombate);
+				this.destruir(monstruoAtacante);
+			
+			} else {
+				monstruoRival.infligirDanioAJugador(oponente, diferenciaDeCombate);
+				oponente.destruir(monstruoRival);
+			
 		}
 	}
 	

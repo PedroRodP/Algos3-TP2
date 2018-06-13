@@ -64,7 +64,7 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test05MonstruoEnAtaqueAtacaAMonstruoConIgualAtaqueYAmbosSeDestruyenPeroNoInflingenDanio() throws ExcepcionMonstruoNoPuedeAtacar {
+	public void test05MonstruoEnAtaqueAtacaAMonstruoConIgualAtaqueYAmbosSeDestruyenPeroNoInfligenDanio() throws ExcepcionMonstruoNoPuedeAtacar {
 		
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
@@ -84,13 +84,32 @@ public class MonstruoTest {
 	}
 
 	@Test
-	public void test06MonstruoEnAtaqueAtacaAMonstruoConMenorDefensaYSeDestruyeSinInflingirDanio() throws ExcepcionMonstruoNoPuedeAtacar {
+	public void test06MonstruoEnAtaqueAtacaAMonstruoConMenorDefensaYSeDestruyeSinInfligirDanio() throws ExcepcionMonstruoNoPuedeAtacar {
 		
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
 		
 		Monstruo monstruoAzul = new Monstruo(1000, 500, "dragon azul");
 		Monstruo monstruoVerde = new Monstruo(1000, 500, "dragon verde");
+		
+		atacante.establecerOponente(oponente);
+		
+		monstruoAzul.colocarEnAtaque();
+		monstruoVerde.colocarEnDefensa();
+		
+		atacante.atacar(monstruoAzul, monstruoVerde);
+		
+		assertEquals(8000, oponente.vida(), DELTA);
+	}
+	
+	@Test
+	public void test07MonstruoEnAtaqueAtacaAMonstruoConMayorDefensaYNoSeDestruyeNiInfligeDanio() throws ExcepcionMonstruoNoPuedeAtacar {
+		
+		Jugador atacante = new Jugador();
+		Jugador oponente = new Jugador();
+		
+		Monstruo monstruoAzul = new Monstruo(1000, 500, "dragon azul");
+		Monstruo monstruoVerde = new Monstruo(1000, 1500, "dragon verde");
 		
 		atacante.establecerOponente(oponente);
 		

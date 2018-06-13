@@ -18,7 +18,7 @@ public class Defensa implements Modo {
 	}
 	
 	@Override
-	public double atacar(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar {
+	public double diferenciaDeCombateCon(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar {
 		throw new ExcepcionMonstruoNoPuedeAtacar();
 	}
 
