@@ -43,6 +43,10 @@ public class Jugador {
 		cartaMonstruo.colocarBocaAbajo(tablero);
 	}
 	
+	public void jugarCartaMonstruoBocaArriba(Monstruo cartaMonstruo) {
+		cartaMonstruo.colocarBocaArriba(tablero);
+	}
+	
 	public void voltearCarta(Carta carta) {
 		carta.voltear();
 	}

@@ -44,6 +44,7 @@ public class MonstruoTest {
 		jugador.atacar(monstruoAzul,monstruoVerde);
 		
 		assertEquals(8000 - (1100-1000),jugador.vida(),DELTA);
+		assert (jugador.cartaFueDestruida(monstruoAzul));
 	}
 	
 	@Test
@@ -61,6 +62,7 @@ public class MonstruoTest {
 		jugadorA.atacar(monstruoVerde,monstruoAzul);
 		
 		assertEquals(8000 - (1100-1000),jugadorB.vida(),DELTA);
+		assert (jugadorB.cartaFueDestruida(monstruoAzul));
 	}
 	
 	@Test
@@ -81,6 +83,9 @@ public class MonstruoTest {
 		
 		assertEquals(8000, atacante.vida(), DELTA);
 		assertEquals(8000, oponente.vida(), DELTA);
+		
+		assert (atacante.cartaFueDestruida(monstruoAzul));
+		assert (oponente.cartaFueDestruida(monstruoVerde));
 	}
 
 	@Test
@@ -100,6 +105,7 @@ public class MonstruoTest {
 		atacante.atacar(monstruoAzul, monstruoVerde);
 		
 		assertEquals(8000, oponente.vida(), DELTA);
+		assert (oponente.cartaFueDestruida(monstruoVerde));
 	}
 	
 	@Test
@@ -119,30 +125,37 @@ public class MonstruoTest {
 		atacante.atacar(monstruoAzul, monstruoVerde);
 		
 		assertEquals(8000, oponente.vida(), DELTA);
+		assert (! oponente.cartaFueDestruida(monstruoVerde));
 	}
 	
 	@Test
 	public void test08InvocacionAMonstruoDe5EstrellasSacrificaAMonstruoEnTablero() {
+		
 		Jugador jugador = new Jugador();
 		Monstruo monstruoAzul = new Monstruo(1000, 500, 2, "dragon azul");
 		Monstruo monstruoRojo = new Monstruo(1000, 1500, 5, "dragon verde");
+		
 		jugador.jugarCartaMonstruoBocaAbajo(monstruoAzul);
 		jugador.jugarCartaMonstruoBocaAbajo(monstruoRojo);
-		assertEquals(true, jugador.cartaFueDestruida(monstruoAzul));
+		
+		assert (jugador.cartaFueDestruida(monstruoAzul));
 		
 	}
 	
 	@Test
 	public void test08InvocacionAMonstruoDe7EstrellasSacrificaAMonstruoEnTablero() {
+		
 		Jugador jugador = new Jugador();
 		Monstruo monstruoAzul = new Monstruo(1000, 500, 2, "dragon azul");
 		Monstruo monstruoVerde = new Monstruo(1000, 1500, 2, "dragon verde");
 		Monstruo monstruoRojo = new Monstruo(1000, 1500, 7, "dragon verde");
-		jugador.jugarCartaMonstruoBocaAbajo(monstruoAzul);
-		jugador.jugarCartaMonstruoBocaAbajo(monstruoVerde); //Falta hacer el metodo jugarCartMonstruoBocaArriba (es trivial)
-		jugador.jugarCartaMonstruoBocaAbajo(monstruoRojo);
-		assertEquals(true, jugador.cartaFueDestruida(monstruoAzul) && jugador.cartaFueDestruida(monstruoVerde));
 		
+		jugador.jugarCartaMonstruoBocaAbajo(monstruoAzul);
+		jugador.jugarCartaMonstruoBocaAbajo(monstruoVerde);
+		jugador.jugarCartaMonstruoBocaAbajo(monstruoRojo);
+		
+		assert (jugador.cartaFueDestruida(monstruoAzul));
+		assert (jugador.cartaFueDestruida(monstruoVerde));
 	}
 	
 	
