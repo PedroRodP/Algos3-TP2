@@ -5,7 +5,7 @@ import modelo.general.Jugador;
 
 public interface ModoDeCombate {
 
-	public double valor();
+	public double potencia();
 	
 	public double diferenciaDeCombateCon(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar;
 	

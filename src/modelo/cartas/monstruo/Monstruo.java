@@ -10,18 +10,24 @@ public class Monstruo extends Carta {
 	private double ataque;
 	private double defensa;
 	private ModoDeCombate modo;
+	private Clasificacion clasificacion;
 	
-	public Monstruo(double ataque, double defensa,String unNombre) {
+	public Monstruo(double ataque, double defensa, int cantidadDeEstrellas, String unNombre) {
 		super(unNombre);
 
 		this.ataque = ataque;
 		this.defensa = defensa;
 		this.colocarEnDefensa(); //Se inicializa en modo defensivo
+		this.clasificacion = new Clasificacion(cantidadDeEstrellas);
 	}
 	
 	public void colocarEnAtaque() {
 		
 		this.modo = new ModoAtaque(ataque);
+	}
+	
+	public int sacrificiosNecesariosPorInvocacion() {
+		return clasificacion.cantidadDeSacrificiosPorInvocacion();
 	}
 	
 	public void colocarEnDefensa() {
@@ -38,9 +44,9 @@ public class Monstruo extends Carta {
 		tablero.agregarCarta(this);
 	}
 	
-	public double vida() {
+	public double potenciaDeCombate() {
 		
-		return modo.valor();
+		return modo.potencia();
 	}
 	
 	public double diferenciaDeCombateCon(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar {

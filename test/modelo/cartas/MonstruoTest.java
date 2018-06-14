@@ -14,21 +14,21 @@ public class MonstruoTest {
 	@Test
 	public void test01ColocarUnMonstruoEnPosicionDeAtaqueUtilizaValorDeAtaque() {
 		
-		Monstruo monstruo = new Monstruo(1000, 500, "dragon"); //Ataque, defensa, nombre
+		Monstruo monstruo = new Monstruo(1000, 500, 1,  "dragon"); //Ataque, defensa, nombre
 		
 		monstruo.colocarEnAtaque();
 		
-		assertEquals(1000, monstruo.vida(), DELTA);
+		assertEquals(1000, monstruo.potenciaDeCombate(), DELTA);
 	}
 	
 	@Test
 	public void test02ColocarUnMonstruoEnPosicionDeDefensaUtilizaValorDeDefensa() {
 		
-		Monstruo monstruo = new Monstruo(1000, 500,"dragon azul");
+		Monstruo monstruo = new Monstruo(1000, 500, 1, "dragon azul");
 		
 		monstruo.colocarEnDefensa();
 		
-		assertEquals(500, monstruo.vida(), DELTA);
+		assertEquals(500, monstruo.potenciaDeCombate(), DELTA);
 	}
 	
 	@Test
@@ -36,9 +36,9 @@ public class MonstruoTest {
 		
 		Jugador jugador = new Jugador();
 		
-		Monstruo monstruoAzul = new Monstruo(1000,500,"dragon azul");
+		Monstruo monstruoAzul = new Monstruo(1000,500, 2,"dragon azul");
 		monstruoAzul.colocarEnAtaque();
-		Monstruo monstruoVerde = new Monstruo(1100,500, "dragon verde");
+		Monstruo monstruoVerde = new Monstruo(1100,500, 2, "dragon verde");
 		monstruoVerde.colocarEnAtaque();
 		
 		jugador.atacar(monstruoAzul,monstruoVerde);
@@ -53,9 +53,9 @@ public class MonstruoTest {
 		Jugador jugadorB = new Jugador();
 		jugadorA.establecerOponente(jugadorB);
 		
-		Monstruo monstruoAzul = new Monstruo(1000,500,"dragon azul");
+		Monstruo monstruoAzul = new Monstruo(1000,500, 2 ,"dragon azul");
 		monstruoAzul.colocarEnAtaque();
-		Monstruo monstruoVerde = new Monstruo(1100,500, "dragon verde");
+		Monstruo monstruoVerde = new Monstruo(1100,500, 2, "dragon verde");
 		monstruoVerde.colocarEnAtaque();
 		
 		jugadorA.atacar(monstruoVerde,monstruoAzul);
@@ -69,8 +69,8 @@ public class MonstruoTest {
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
 		
-		Monstruo monstruoAzul = new Monstruo(1000,500,"dragon azul");
-		Monstruo monstruoVerde = new Monstruo(1000,500, "dragon verde");
+		Monstruo monstruoAzul = new Monstruo(1000,500, 2,"dragon azul");
+		Monstruo monstruoVerde = new Monstruo(1000,500, 2, "dragon verde");
 		
 		atacante.establecerOponente(oponente);
 		
@@ -89,8 +89,8 @@ public class MonstruoTest {
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
 		
-		Monstruo monstruoAzul = new Monstruo(1000, 500, "dragon azul");
-		Monstruo monstruoVerde = new Monstruo(1000, 500, "dragon verde");
+		Monstruo monstruoAzul = new Monstruo(1000, 500, 2 , "dragon azul");
+		Monstruo monstruoVerde = new Monstruo(1000, 500, 2,  "dragon verde");
 		
 		atacante.establecerOponente(oponente);
 		
@@ -108,8 +108,8 @@ public class MonstruoTest {
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
 		
-		Monstruo monstruoAzul = new Monstruo(1000, 500, "dragon azul");
-		Monstruo monstruoVerde = new Monstruo(1000, 1500, "dragon verde");
+		Monstruo monstruoAzul = new Monstruo(1000, 500, 2, "dragon azul");
+		Monstruo monstruoVerde = new Monstruo(1000, 1500, 2, "dragon verde");
 		
 		atacante.establecerOponente(oponente);
 		
@@ -120,4 +120,11 @@ public class MonstruoTest {
 		
 		assertEquals(8000, oponente.vida(), DELTA);
 	}
+	
+	@Test
+	public void test08InvocacionAMonstruoDe5EstrellasSacrificaAMonstruoEnTablero() {
+		//Logica ya hecha solo falta hacer el test
+	}
+	
+	
 }

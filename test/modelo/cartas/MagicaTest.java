@@ -22,11 +22,12 @@ public class MagicaTest {
 
     @Test
 
-    public void test02CartaMagicaSeCreaConNombreCorrectamente(){
+    public void test02CartaMagicaJugadaBocaAbajoEstaBocaArribaEsFalse(){
     	
+    	Tablero tablero = new Tablero();
         Magica carta= new Magica("agujero negro");
-        
-        assertEquals(true,carta.tenesEsteNombre("agujero negro"));
+        carta.colocarBocaAbajo(tablero);
+        assertEquals(false,carta.estaBocaArriba());
     }
 }
 	

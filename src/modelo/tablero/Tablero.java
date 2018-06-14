@@ -19,6 +19,10 @@ public class Tablero {
 	}
 	
 	public void agregarCarta(Monstruo cartaMonstruo) {
+		int i = 0;
+		while (i < cartaMonstruo.sacrificiosNecesariosPorInvocacion()) {
+			this.destruirCarta(zonaMonstruos.get(i)); //En realidad el jugador debería elegir que cartas sacrificar!!
+		}
 		zonaMonstruos.add(cartaMonstruo);
 	}
 	

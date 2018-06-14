@@ -5,16 +5,16 @@ import modelo.general.Jugador;
 
 public class ModoDefensa implements ModoDeCombate {
 	
-	private double valor;
+	private double puntajeDefensa;
 	
-	public ModoDefensa(double valor) {
+	public ModoDefensa(double puntajeDefensa) {
 		
-		this.valor = valor;
+		this.puntajeDefensa = puntajeDefensa;
 	}
 	
 	@Override
-	public double valor() {
-		return this.valor;
+	public double potencia() {
+		return puntajeDefensa;
 	}
 	
 	@Override
@@ -24,6 +24,6 @@ public class ModoDefensa implements ModoDeCombate {
 
 	@Override
 	public void infligirDanioAJugador(Jugador jugador, double danio) {
-		//No inflige danio por estar en modo defensa
+		return; //No inflige danio por estar en modo defensa
 	}
 }

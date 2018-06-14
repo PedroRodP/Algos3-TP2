@@ -4,21 +4,21 @@ import modelo.general.Jugador;
 
 public class ModoAtaque implements ModoDeCombate {
 	
-	private double valor;
+	private double puntajeAtaque;
 	
-	public ModoAtaque(double valor) {
+	public ModoAtaque(double puntajeAtaque) {
 		
-		this.valor = valor;
+		this.puntajeAtaque = puntajeAtaque;
 	}
 	
 	@Override
-	public double valor() {
-		return this.valor;
+	public double potencia() {
+		return this.puntajeAtaque;
 	}
 	
 	@Override
 	public double diferenciaDeCombateCon(Monstruo monstruo) {
-		return this.valor - monstruo.vida();
+		return puntajeAtaque - monstruo.potenciaDeCombate();
 	}
 
 	@Override
