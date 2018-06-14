@@ -139,7 +139,7 @@ public class MonstruoTest {
 		Monstruo monstruoVerde = new Monstruo(1000, 1500, 2, "dragon verde");
 		Monstruo monstruoRojo = new Monstruo(1000, 1500, 7, "dragon verde");
 		jugador.jugarCartaMonstruoBocaAbajo(monstruoAzul);
-		jugador.jugarCartaMonstruoBocaAbajo(monstruoVerde); //Falta hacer el método jugarCartMonstruoBocaArriba (es trivial)
+		jugador.jugarCartaMonstruoBocaAbajo(monstruoVerde); //Falta hacer el metodo jugarCartMonstruoBocaArriba (es trivial)
 		jugador.jugarCartaMonstruoBocaAbajo(monstruoRojo);
 		assertEquals(true, jugador.cartaFueDestruida(monstruoAzul) && jugador.cartaFueDestruida(monstruoVerde));
 		
