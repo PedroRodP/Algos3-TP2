@@ -10,7 +10,7 @@ public class TableroTest {
 	public void test01MandarCartaAlCementerioPoneCartaEnCementerio() {
 		
 		Tablero tablero = new Tablero();
-		Monstruo monstruo = new Monstruo(1000, 500, "dragon");
+		Monstruo monstruo = new Monstruo(1000, 500,2, "dragon");
 		
 		tablero.agregarCarta(monstruo);
 		tablero.destruirCarta(monstruo);

@@ -39,8 +39,16 @@ public class Jugador {
 		cartaTrampa.colocarBocaArriba(tablero);
 	}
 	
+	public void jugarCartaMonstruoBocaAbajo(Monstruo cartaMonstruo) {
+		cartaMonstruo.colocarBocaAbajo(tablero);
+	}
+	
 	public void voltearCarta(Carta carta) {
 		carta.voltear();
+	}
+	
+	public boolean cartaFueDestruida(Carta carta) {
+		return tablero.estaEnCementerio(carta);
 	}
 	
 	public void destruirMonstruo(Monstruo monstruo) {

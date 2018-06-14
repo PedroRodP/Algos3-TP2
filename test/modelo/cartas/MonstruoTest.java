@@ -123,8 +123,28 @@ public class MonstruoTest {
 	
 	@Test
 	public void test08InvocacionAMonstruoDe5EstrellasSacrificaAMonstruoEnTablero() {
-		//Logica ya hecha solo falta hacer el test
+		Jugador jugador = new Jugador();
+		Monstruo monstruoAzul = new Monstruo(1000, 500, 2, "dragon azul");
+		Monstruo monstruoRojo = new Monstruo(1000, 1500, 5, "dragon verde");
+		jugador.jugarCartaMonstruoBocaAbajo(monstruoAzul);
+		jugador.jugarCartaMonstruoBocaAbajo(monstruoRojo);
+		assertEquals(true, jugador.cartaFueDestruida(monstruoAzul));
+		
 	}
+	
+	@Test
+	public void test08InvocacionAMonstruoDe7EstrellasSacrificaAMonstruoEnTablero() {
+		Jugador jugador = new Jugador();
+		Monstruo monstruoAzul = new Monstruo(1000, 500, 2, "dragon azul");
+		Monstruo monstruoVerde = new Monstruo(1000, 1500, 2, "dragon verde");
+		Monstruo monstruoRojo = new Monstruo(1000, 1500, 7, "dragon verde");
+		jugador.jugarCartaMonstruoBocaAbajo(monstruoAzul);
+		jugador.jugarCartaMonstruoBocaAbajo(monstruoVerde); //Falta hacer el método jugarCartMonstruoBocaArriba (es trivial)
+		jugador.jugarCartaMonstruoBocaAbajo(monstruoRojo);
+		assertEquals(true, jugador.cartaFueDestruida(monstruoAzul) && jugador.cartaFueDestruida(monstruoVerde));
+		
+	}
+	
 	
 	
 }

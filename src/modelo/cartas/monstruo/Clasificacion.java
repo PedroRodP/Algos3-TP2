@@ -12,7 +12,7 @@ public class Clasificacion {
 		if (cantidadDeEstrellas < 4) {
 			return 0;
 		}
-		else if (cantidadDeEstrellas > 4 && cantidadDeEstrellas <6) {
+		else if (cantidadDeEstrellas >= 4 && cantidadDeEstrellas < 6) {
 			return 1;
 		}
 		else {
