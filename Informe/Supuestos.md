@@ -2,3 +2,4 @@
 -Consideramos que un Monstruo en Modo Defensa no puede realizar un ataque.
 -Por default, los monstruos se inicializan en Modo Defensa. Puede cambiarse apenas se crea llamando al método colocarEnModoAtaque().
 -Tomamos como supuesto que si un Monstruo ataca a otro Monstruo que se encuentre en Modo Defensa, éste no infligirá daño a su Jugador pero sí puede infligir daño al Jugador atacante (por estar en Modo Ataque).
+-Utilizamos los patrones Strategy, State y Double Dispatch.
