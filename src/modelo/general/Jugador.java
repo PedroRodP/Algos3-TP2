@@ -1,7 +1,9 @@
 package modelo.general;
 
 import modelo.cartas.Carta;
+import modelo.cartas.magica.Magica;
 import modelo.cartas.monstruo.Monstruo;
+import modelo.cartas.trampa.Trampa;
 import modelo.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import modelo.tablero.Tablero;
 
@@ -22,7 +24,23 @@ public class Jugador {
 	}
 	
 	public double vida() {
-		return this.vida;
+		return vida;
+	}
+	
+	public void jugarCartaMagicaBocaAbajo(Magica cartaMagica){
+		cartaMagica.colocarBocaAbajo(tablero);
+	}
+	
+	public void jugarCartaTrampaBocaAbajo(Trampa cartaTrampa) {
+		cartaTrampa.colocarBocaArriba(tablero);
+	}
+	
+	public void jugarCartaTrampaBocaArriba(Trampa cartaTrampa) {
+		cartaTrampa.colocarBocaArriba(tablero);
+	}
+	
+	public void voltearCarta(Carta carta) {
+		carta.voltear();
 	}
 	
 	public void destruirMonstruo(Monstruo monstruo) {
@@ -35,10 +53,6 @@ public class Jugador {
 		
 		batalla.atacarCon(monstruoAtacante, monstruoRival);
 	}
-	
-	//public void destruir(Carta carta) {   EL TABLERO SE ENCARGARA DE DESTRUIR CARTAS CUANDO CORRESPONDA!
-		//tablero.destruirCarta(carta);
-	//}
 	
 	public void infligirDanio(double danio) {
 		this.vida -= Math.abs(danio);

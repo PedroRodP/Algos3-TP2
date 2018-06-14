@@ -3,11 +3,11 @@ package modelo.cartas.monstruo;
 import modelo.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import modelo.general.Jugador;
 
-public class Defensa implements Modo {
+public class ModoDefensa implements ModoDeCombate {
 	
 	private double valor;
 	
-	public Defensa(double valor) {
+	public ModoDefensa(double valor) {
 		
 		this.valor = valor;
 	}

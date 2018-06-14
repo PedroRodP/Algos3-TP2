@@ -2,11 +2,11 @@ package modelo.cartas.monstruo;
 
 import modelo.general.Jugador;
 
-public class Ataque implements Modo {
+public class ModoAtaque implements ModoDeCombate {
 	
 	private double valor;
 	
-	public Ataque(double valor) {
+	public ModoAtaque(double valor) {
 		
 		this.valor = valor;
 	}

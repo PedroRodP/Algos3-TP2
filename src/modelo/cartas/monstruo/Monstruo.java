@@ -9,24 +9,24 @@ public class Monstruo extends Carta {
 
 	private double ataque;
 	private double defensa;
-	private Modo modo;
+	private ModoDeCombate modo;
 	
 	public Monstruo(double ataque, double defensa,String unNombre) {
 		super(unNombre);
 
 		this.ataque = ataque;
 		this.defensa = defensa;
-		this.colocarEnDefensa(); //Por default queda en modo defensa
+		this.colocarEnDefensa(); //Se inicializa en modo defensivo
 	}
 	
 	public void colocarEnAtaque() {
 		
-		this.modo = new Ataque(ataque);
+		this.modo = new ModoAtaque(ataque);
 	}
 	
 	public void colocarEnDefensa() {
 		
-		this.modo = new Defensa(defensa);
+		this.modo = new ModoDefensa(defensa);
 	}
 	
 	public void colocarBocaArriba(Tablero tablero) {

@@ -3,7 +3,7 @@ package modelo.cartas.monstruo;
 import modelo.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import modelo.general.Jugador;
 
-public interface Modo {
+public interface ModoDeCombate {
 
 	public double valor();
 	
