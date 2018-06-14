@@ -22,7 +22,7 @@ public class Tablero {
 		int i = 0;
 		while (i < cartaMonstruo.sacrificiosNecesariosPorInvocacion()) {
 			this.destruirCarta(zonaMonstruos.getFirst()); 
-					/*En realidad el jugador debería elegir que cartas sacrificar!!
+					/*En realidad el jugador deberia elegir que cartas sacrificar!!
             		 *Se podria usar un Iterator ... (Preguntar como hacer q el jugador elija) */
 			i++;     
 		}
