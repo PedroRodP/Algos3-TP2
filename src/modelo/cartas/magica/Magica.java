@@ -5,19 +5,15 @@ import modelo.tablero.Tablero;
 
 public class Magica extends Carta{
 
-
-
 	public Magica(String unNombre) {
 		super(unNombre);
 	}
-
-	public void agregarEnCampo(Tablero tablero) {
-		tablero.agregarEnZonaDeCartasMagicas(this);
+	
+	public void colocarBocaAbajo(Tablero tablero) {
+		tablero.agregarCarta(this);
 	}
-
-	@Override
-	public void agregarEn(Tablero unTablero) {
-		unTablero.agregarEnZonaDeCartasMagicas(this);
+	
+	public void colocarBocaArriba(Tablero tablero) {
+		tablero.agregarCarta(this);
 	}
-
 }

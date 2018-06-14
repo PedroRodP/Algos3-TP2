@@ -19,16 +19,16 @@ public class Batalla {
 		double diferenciaDeCombate = monstruoAtacante.diferenciaDeCombateCon(monstruoRival);
 		
 		if (diferenciaDeCombate == 0) {
-			atacante.destruir(monstruoAtacante);
-			oponente.destruir(monstruoRival);
+			atacante.destruirMonstruo(monstruoAtacante);
+			oponente.destruirMonstruo(monstruoRival);
 			
 		} else if (diferenciaDeCombate < 0) {
 				monstruoAtacante.infligirDanioAJugador(atacante, diferenciaDeCombate);
-				atacante.destruir(monstruoAtacante);
+				atacante.destruirMonstruo(monstruoAtacante);
 			
 			} else {
 				monstruoRival.infligirDanioAJugador(oponente, diferenciaDeCombate);
-				oponente.destruir(monstruoRival);
+				oponente.destruirMonstruo(monstruoRival);
 			
 		}
 	}

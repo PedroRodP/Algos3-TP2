@@ -12,8 +12,8 @@ public class TableroTest {
 		Tablero tablero = new Tablero();
 		Monstruo monstruo = new Monstruo(1000, 500, "dragon");
 		
-		tablero.agregarEnZonaDeCartasMonstruo(monstruo);
-		tablero.mandarAlCementerio(monstruo);
+		tablero.agregarCarta(monstruo);
+		tablero.destruirCarta(monstruo);
 		
 		assert (tablero.estaEnCementerio(monstruo));
 	}

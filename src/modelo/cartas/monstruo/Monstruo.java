@@ -29,6 +29,15 @@ public class Monstruo extends Carta {
 		this.modo = new Defensa(defensa);
 	}
 	
+	public void colocarBocaArriba(Tablero tablero) {
+		this.voltear();
+		tablero.agregarCarta(this);
+	}
+	
+	public void colocarBocaAbajo(Tablero tablero) {
+		tablero.agregarCarta(this);
+	}
+	
 	public double vida() {
 		
 		return modo.valor();
@@ -36,11 +45,6 @@ public class Monstruo extends Carta {
 	
 	public double diferenciaDeCombateCon(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar {
 		return this.modo.diferenciaDeCombateCon(monstruo); 
-	}
-
-	@Override
-	public void agregarEn(Tablero unTablero) {
-		unTablero.agregarEnZonaDeCartasMonstruo(this);
 	}
 	
 	public void infligirDanioAJugador(Jugador jugador, double danio) {

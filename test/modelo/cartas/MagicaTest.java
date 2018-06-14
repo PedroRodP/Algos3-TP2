@@ -12,21 +12,21 @@ public class MagicaTest {
     @Test
     public void test01ColocarUnaCartaMagiaEnCampo() {
     	
-        Magica unaCarta= new Magica("agujero negro");
-        Tablero unTablero= new Tablero();
+        Magica cartaMagica = new Magica("agujero negro");
+        Tablero tablero= new Tablero();
         
-        unaCarta.agregarEn(unTablero);
+        tablero.agregarCarta(cartaMagica);
 
-        assertEquals(unaCarta,unTablero.obtenerCartaMagica("agujero negro"));
+        assertEquals(cartaMagica , tablero.obtenerCartaMagica("agujero negro"));
     }
 
     @Test
 
     public void test02CartaMagicaSeCreaConNombreCorrectamente(){
     	
-        Magica unaCarta= new Magica("agujero negro");
+        Magica carta= new Magica("agujero negro");
         
-        assertEquals(true,unaCarta.tenesEsteNombre("agujero negro"));
+        assertEquals(true,carta.tenesEsteNombre("agujero negro"));
     }
 }
 	

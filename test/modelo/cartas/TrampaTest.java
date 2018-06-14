@@ -1,6 +1,5 @@
 package modelo.cartas;
 
-import modelo.cartas.magica.Magica;
 import modelo.cartas.trampa.Trampa;
 import modelo.tablero.Tablero;
 
@@ -13,11 +12,11 @@ public class TrampaTest {
 
     @Test
     public void test01ColocarUnaCartaTrampaEnCampo() {
-        Trampa unaCarta= new Trampa("Cilindro Magico");
-        Tablero unTablero= new Tablero();
-        unaCarta.agregarEn(unTablero);
+        Trampa carta = new Trampa("Cilindro Magico");
+        Tablero tablero = new Tablero();
+        tablero.agregarCarta(carta);
 
-        assertEquals(unaCarta,unTablero.obtenerCartaTrampa("Cilindro Magico"));
+        assertEquals(carta,tablero.obtenerCartaTrampa("Cilindro Magico"));
     }
 
 }

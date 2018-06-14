@@ -24,6 +24,10 @@ public class Jugador {
 	public double vida() {
 		return this.vida;
 	}
+	
+	public void destruirMonstruo(Monstruo monstruo) {
+		tablero.destruirCarta(monstruo);
+	}
 
 	public void atacar(Monstruo monstruoAtacante, Monstruo monstruoRival) throws ExcepcionMonstruoNoPuedeAtacar {
 		
@@ -32,21 +36,11 @@ public class Jugador {
 		batalla.atacarCon(monstruoAtacante, monstruoRival);
 	}
 	
-	public void destruir(Carta carta) {
-		tablero.mandarAlCementerio(carta);
-	}
+	//public void destruir(Carta carta) {   EL TABLERO SE ENCARGARA DE DESTRUIR CARTAS CUANDO CORRESPONDA!
+		//tablero.destruirCarta(carta);
+	//}
 	
 	public void infligirDanio(double danio) {
 		this.vida -= Math.abs(danio);
-	}
-	
-	public void colocarMonstruoEnModoAtaque(int posicionMonstruo) {
-		Monstruo monstruo = tablero.obtenerMonstruo(posicionMonstruo);
-		monstruo.colocarEnAtaque();
-	}
-	
-	public void colocarMonstruoEnModoDefensa(int posicionMonstruo) {
-		Monstruo monstruo = tablero.obtenerMonstruo(posicionMonstruo);
-		monstruo.colocarEnDefensa();
 	}
 }

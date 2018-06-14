@@ -14,53 +14,40 @@ public class Tablero {
 	private LinkedList<Trampa> zonaTrampas = new LinkedList<Trampa>();
 	private LinkedList<Carta> cementerio = new LinkedList<Carta>();
 	
-	public void agregarEnZonaDeCartasMagicas(Magica cartaMagica) {
+	public void agregarCarta(Magica cartaMagica) {
 		zonaMagicas.add(cartaMagica);
 	}
 	
-	public void agregarEnZonaDeCartasMonstruo(Monstruo cartaMonstruo) {
+	public void agregarCarta(Monstruo cartaMonstruo) {
 		zonaMonstruos.add(cartaMonstruo);
 	}
-
-	public void agregarEnZonaDeCartasTrampa(Trampa cartaTrampa) {
+	
+	public void agregarCarta(Trampa cartaTrampa) {
 		zonaTrampas.add(cartaTrampa);
 	}
 	
-	public void mandarAlCementerio(Carta carta) {
-		this.removerDeZona(carta);
-		cementerio.add(carta);
+	public void destruirCarta(Magica cartaMagica) { //Excepcion si no la encuentra...
+		cementerio.add(cartaMagica);
+		zonaMagicas.remove(cartaMagica);
+		
 	}
 	
-	private void removerDeZona(Carta carta) {
+	public void destruirCarta(Trampa cartaTrampa) {
+		cementerio.add(cartaTrampa);
+		zonaTrampas.remove(cartaTrampa);
 		
-		//Busca en todas las zonas y la remueve
-		for (Carta iterada : zonaMonstruos) {
-			if (iterada == carta) {
-				zonaMonstruos.remove(carta);
-			}
-		}
+	}
+	
+	public void destruirCarta(Monstruo cartaMonstruo) {
+		cementerio.add(cartaMonstruo);
+		zonaMonstruos.remove(cartaMonstruo);
 		
-		for (Carta iterada : zonaMagicas) {
-			if (iterada == carta) {
-				zonaMagicas.remove(carta);
-			}
-		}
-		
-		for (Carta iterada : zonaTrampas) {
-			if (iterada == carta) {
-				zonaTrampas.remove(carta);
-			}
-		}
 	}
 	
 	public boolean estaEnCementerio(Carta carta) {
 		return cementerio.contains(carta);
 	}
 	
-	public Monstruo obtenerMonstruo(int posicionMonstruo) {
-		return zonaMonstruos.get(posicionMonstruo);
-	}
-
 	//Habria q lanzar una excepcion si la carta no es encontrada!!
 	public Magica obtenerCartaMagica(String nombre) {
 		for (Magica carta : zonaMagicas) {
