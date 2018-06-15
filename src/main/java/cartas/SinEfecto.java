@@ -1,11 +1,9 @@
 package main.java.cartas;
 
-import main.java.general.Jugador;
-
-public class SinEfecto implements Efecto {
+public class SinEfecto extends Efecto {
 	
     @Override
-    public void aplicar(Jugador atacante, Jugador oponente){
+    public void aplicar(){
     	//No debe aplicar ningun efecto
     }
 }

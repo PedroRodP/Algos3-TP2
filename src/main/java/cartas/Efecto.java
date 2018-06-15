@@ -1,8 +1,6 @@
 package main.java.cartas;
 
-import main.java.general.Jugador;
+public abstract class Efecto {
 
-public interface Efecto {
-
-    public void aplicar(Jugador atacante, Jugador oponente);
+    public abstract void aplicar();
 }
