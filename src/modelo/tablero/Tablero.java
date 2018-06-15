@@ -26,6 +26,7 @@ public class Tablero {
             		 *Se podria usar un Iterator ... (Preguntar como hacer q el jugador elija) */
 			i++;     
 		}
+		//HAY QUE LANZAR EXCEPCION SI SE INTENTA INVOCAR MONSTRUO DE >5 ESTRELLAS Y NO HAY PARA SACRIFICAR
 		zonaMonstruos.add(cartaMonstruo);
 	}
 	
