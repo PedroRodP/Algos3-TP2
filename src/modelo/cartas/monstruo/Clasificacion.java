@@ -9,10 +9,10 @@ public class Clasificacion {
 	}
 	
 	public int cantidadDeSacrificiosPorInvocacion() {
-		if (cantidadDeEstrellas < 4) {
+		if (cantidadDeEstrellas < 5) {
 			return 0;
 		}
-		else if (cantidadDeEstrellas >= 4 && cantidadDeEstrellas < 6) {
+		else if (cantidadDeEstrellas == 5) {
 			return 1;
 		}
 		else {

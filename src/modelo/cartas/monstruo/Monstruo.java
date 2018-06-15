@@ -5,7 +5,7 @@ import modelo.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import modelo.general.Jugador;
 import modelo.tablero.Tablero;
 
-public class Monstruo extends Carta {
+public abstract class Monstruo extends Carta {
 
 	private double ataque;
 	private double defensa;
