@@ -1,5 +1,6 @@
 package modelo.cartas;
 
+import modelo.cartas.magica.magicas.AgujeroNegro;
 import modelo.cartas.magica.Magica;
 import modelo.cartas.monstruo.Monstruo;
 import modelo.cartas.monstruo.monstruos.AgresorOscuro;
@@ -17,36 +18,40 @@ public class MagicaTest {
     @Test
     public void test01ColocarUnaCartaMagiaEnCampo() {
     	
-        Magica cartaMagica = new Magica("agujero negro");
+        Magica cartaMagica = new AgujeroNegro();
         Tablero tablero= new Tablero();
         
         tablero.agregarCarta(cartaMagica);
 
-        assertEquals(cartaMagica , tablero.obtenerCartaMagica("agujero negro"));
+        assertEquals(cartaMagica , tablero.obtenerCartaMagica("Agujero negro"));
     }
 
     @Test
 
-    public void test02CartaMagicaJugadaBocaAbajoEstaBocaArribaEsFalse(){
+    public void test02CartaMagicaJugadaBocaAbajoNoActivaEfecto(){
     	
-    	Tablero tablero = new Tablero();
-        Magica carta= new Magica("agujero negro");
-        carta.colocarBocaAbajo(tablero);
-        assertEquals(false,carta.estaBocaArriba());
+    	Jugador atacante = new Jugador();
+        Magica magica = new AgujeroNegro();
+        Monstruo monstruo = new AgresorOscuro();
+        
+        atacante.jugarCartaBocaAbajo(monstruo);
+        atacante.jugarCartaBocaAbajo(magica);
+        
+        assert (! atacante.cartaFueDestruida(monstruo));
     }
 
     @Test
 
     public void test03CartaAgujeroNegroDestruyeTodosLosMonstruosYNadieEsDaniado(){
     	
-        Efecto efecto= new Efecto();
-        Magica cartaMagica= new Magica("agujero negro",efecto);
+        Magica cartaMagica = new AgujeroNegro();
         Jugador jugador= new Jugador();
         Jugador oponente= new Jugador();
-        Juego yugioh=Juego.obtenerJuego(jugador,oponente);
         Monstruo monstruoAzul = new AgresorOscuro();
         Monstruo monstruoVerde = new AgresorOscuro();
         Monstruo monstruoRojo = new AgresorOscuro();
+        
+        jugador.establecerOponente(oponente);
 
         jugador.jugarCartaBocaAbajo(monstruoAzul);
         jugador.jugarCartaBocaAbajo(monstruoVerde);

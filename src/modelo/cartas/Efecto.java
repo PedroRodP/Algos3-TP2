@@ -1,10 +1,8 @@
 package modelo.cartas;
 
-public class Efecto {
+import modelo.general.Jugador;
 
-    public void aplicarEfecto(){
+public interface Efecto {
 
-        Juego juego= Juego.obtenerJuego();
-        juego.DestruirTodosLosMonostruos();
-    }
+    public void aplicar(Jugador atacante, Jugador oponente);
 }

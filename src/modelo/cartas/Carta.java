@@ -1,33 +1,34 @@
 package modelo.cartas;
 
+import modelo.excepciones.ExcepcionCartaBocaAbajo;
+import modelo.general.Jugador;
 import modelo.tablero.Tablero;
 
 public abstract class Carta {
-	private Efecto efecto;
-	private Posicion posicion = new BocaAbajo();
+	
+	protected Efecto efecto;
 	protected final String nombre;
+	protected Posicion posicion;
 
 	protected Carta(String unNombre) {
-		this.nombre=unNombre;
-		this.efecto =new NoEfecto();
-	}
-
-	public Carta( String nombre,Efecto efecto) {
-		this.efecto = efecto;
-		this.nombre = nombre;
+		this.nombre = unNombre;
+		this.posicion = new BocaAbajo();
+		this.efecto = new SinEfecto();
 	}
 
 	public abstract void colocarBocaAbajo(Tablero tablero);
     
-    public abstract void colocarBocaArriba(Tablero tablero);
+    public abstract void colocarBocaArriba(Tablero tablero, Jugador atacante, Jugador oponente);
     
-    public void voltear() {
-    	posicion = new BocaArriba();
-    	this.efecto.aplicarEfecto();
-    }
-    
-    public boolean estaBocaArriba() {
-    	return posicion.estaBocaArriba();
+    public void activarEfecto(Jugador atacante, Jugador oponente) {
+    	
+    	try {
+    		this.posicion = new BocaArriba();
+    		this.posicion.aplicarEfecto(efecto, atacante, oponente);
+    		
+    	} catch (ExcepcionCartaBocaAbajo e) {
+    		//BocaArriba nunca podria arrojar ExcepcionCartaBocaAbajo
+    	}
     }
 
 	public boolean tenesEsteNombre(String unNombreCarta){

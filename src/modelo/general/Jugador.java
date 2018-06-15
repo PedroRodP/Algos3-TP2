@@ -1,9 +1,7 @@
 package modelo.general;
 
 import modelo.cartas.Carta;
-import modelo.cartas.magica.Magica;
 import modelo.cartas.monstruo.Monstruo;
-import modelo.cartas.trampa.Trampa;
 import modelo.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import modelo.tablero.Tablero;
 
@@ -32,13 +30,13 @@ public class Jugador {
 	}
 	
 	public void jugarCartaBocaArriba(Carta carta) {
-		carta.colocarBocaArriba(tablero);
+		carta.colocarBocaArriba(tablero, this, oponente);
 	}
 	
 
 	
 	public void voltearCarta(Carta carta) {
-		carta.voltear();
+		carta.activarEfecto(this, oponente);
 	}
 	
 	public boolean cartaFueDestruida(Carta carta) {
@@ -59,9 +57,6 @@ public class Jugador {
 	public void infligirDanio(double danio) {
 		this.vida -= Math.abs(danio);
 	}
-
-
-
 
 	public void destruirTodosTusMonstruos() {
 		this.tablero.destruirMonstruos();

@@ -72,6 +72,10 @@ public class Tablero {
 	}
 
 	public void destruirMonstruos() {
-		while (!zonaMonstruos.isEmpty()) this.destruirCarta(zonaMonstruos.getFirst());
+		
+		while (!zonaMonstruos.isEmpty()) {
+			
+			this.destruirCarta(zonaMonstruos.getFirst());
+		}
 	}
 }

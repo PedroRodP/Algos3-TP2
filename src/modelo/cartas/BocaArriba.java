@@ -1,8 +1,10 @@
 package modelo.cartas;
 
+import modelo.general.Jugador;
+
 public class BocaArriba implements Posicion {
 
-	public boolean estaBocaArriba() {
-		return true;
+	public void aplicarEfecto(Efecto efecto, Jugador atacante, Jugador oponente) {
+		efecto.aplicar(atacante, oponente);
 	}
 }
