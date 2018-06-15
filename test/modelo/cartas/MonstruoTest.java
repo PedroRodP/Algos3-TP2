@@ -138,8 +138,8 @@ public class MonstruoTest {
 		Monstruo monstruoAzul = new AgresorOscuro();
 		Monstruo monstruoRojo = new Aitsu();
 		
-		jugador.jugarCartaMonstruoBocaAbajo(monstruoAzul);
-		jugador.jugarCartaMonstruoBocaAbajo(monstruoRojo);
+		jugador.jugarCartaBocaAbajo(monstruoAzul);
+		jugador.jugarCartaBocaAbajo(monstruoRojo);
 		
 		assert (jugador.cartaFueDestruida(monstruoAzul));
 		
@@ -152,10 +152,10 @@ public class MonstruoTest {
 		Monstruo monstruoVerde = new AgresorOscuro();
 		Monstruo monstruoRojo = new AgresorOscuro();
 		Monstruo monstruoAzul = new DragonBlancoDeOjosAzules();
-		
-		jugador.jugarCartaMonstruoBocaAbajo(monstruoRojo);
-		jugador.jugarCartaMonstruoBocaAbajo(monstruoVerde);
-		jugador.jugarCartaMonstruoBocaAbajo(monstruoAzul);
+
+		jugador.jugarCartaBocaAbajo(monstruoAzul);
+		jugador.jugarCartaBocaAbajo(monstruoVerde);
+		jugador.jugarCartaBocaAbajo(monstruoRojo);
 		
 		assert (jugador.cartaFueDestruida(monstruoRojo));
 		assert (jugador.cartaFueDestruida(monstruoVerde));

@@ -70,4 +70,8 @@ public class Tablero {
 		}
 		return null;
 	}
+
+	public void destruirMonstruos() {
+		while (!zonaMonstruos.isEmpty()) this.destruirCarta(zonaMonstruos.getFirst());
+	}
 }

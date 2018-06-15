@@ -27,25 +27,15 @@ public class Jugador {
 		return vida;
 	}
 	
-	public void jugarCartaMagicaBocaAbajo(Magica cartaMagica){
-		cartaMagica.colocarBocaAbajo(tablero);
+	public void jugarCartaBocaAbajo(Carta carta){
+		carta.colocarBocaAbajo(tablero);
 	}
 	
-	public void jugarCartaTrampaBocaAbajo(Trampa cartaTrampa) {
-		cartaTrampa.colocarBocaArriba(tablero);
+	public void jugarCartaBocaArriba(Carta carta) {
+		carta.colocarBocaArriba(tablero);
 	}
 	
-	public void jugarCartaTrampaBocaArriba(Trampa cartaTrampa) {
-		cartaTrampa.colocarBocaArriba(tablero);
-	}
-	
-	public void jugarCartaMonstruoBocaAbajo(Monstruo cartaMonstruo) {
-		cartaMonstruo.colocarBocaAbajo(tablero);
-	}
-	
-	public void jugarCartaMonstruoBocaArriba(Monstruo cartaMonstruo) {
-		cartaMonstruo.colocarBocaArriba(tablero);
-	}
+
 	
 	public void voltearCarta(Carta carta) {
 		carta.voltear();
@@ -68,5 +58,12 @@ public class Jugador {
 	
 	public void infligirDanio(double danio) {
 		this.vida -= Math.abs(danio);
+	}
+
+
+
+
+	public void destruirTodosTusMonstruos() {
+		this.tablero.destruirMonstruos();
 	}
 }
