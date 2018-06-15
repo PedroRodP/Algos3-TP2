@@ -2,6 +2,7 @@ package modelo.cartas;
 
 import modelo.cartas.magica.Magica;
 import modelo.cartas.monstruo.Monstruo;
+import modelo.cartas.monstruo.monstruos.AgresorOscuro;
 import modelo.general.Jugador;
 import modelo.tablero.Tablero;
 
@@ -37,14 +38,15 @@ public class MagicaTest {
     @Test
 
     public void test03CartaAgujeroNegroDestruyeTodosLosMonstruosYNadieEsDaniado(){
+    	
         Efecto efecto= new Efecto();
         Magica cartaMagica= new Magica("agujero negro",efecto);
         Jugador jugador= new Jugador();
         Jugador oponente= new Jugador();
         Juego yugioh=Juego.obtenerJuego(jugador,oponente);
-        Monstruo monstruoAzul = new Monstruo(1000, 500, 2, "dragon azul");
-        Monstruo monstruoVerde = new Monstruo(1000, 1500, 2, "dragon verde");
-        Monstruo monstruoRojo = new Monstruo(1000, 1500, 2, "dragon verde");
+        Monstruo monstruoAzul = new AgresorOscuro();
+        Monstruo monstruoVerde = new AgresorOscuro();
+        Monstruo monstruoRojo = new AgresorOscuro();
 
         jugador.jugarCartaBocaAbajo(monstruoAzul);
         jugador.jugarCartaBocaAbajo(monstruoVerde);

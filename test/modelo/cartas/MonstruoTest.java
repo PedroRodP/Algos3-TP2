@@ -153,9 +153,9 @@ public class MonstruoTest {
 		Monstruo monstruoRojo = new AgresorOscuro();
 		Monstruo monstruoAzul = new DragonBlancoDeOjosAzules();
 
-		jugador.jugarCartaBocaAbajo(monstruoAzul);
-		jugador.jugarCartaBocaAbajo(monstruoVerde);
 		jugador.jugarCartaBocaAbajo(monstruoRojo);
+		jugador.jugarCartaBocaAbajo(monstruoVerde);
+		jugador.jugarCartaBocaAbajo(monstruoAzul);
 		
 		assert (jugador.cartaFueDestruida(monstruoRojo));
 		assert (jugador.cartaFueDestruida(monstruoVerde));
