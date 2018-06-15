@@ -1,6 +1,9 @@
 package modelo.general;
 
 import org.junit.Test;
+
+import main.java.general.Jugador;
+
 import static org.junit.Assert.assertEquals;
 
 public class JugadorTest {

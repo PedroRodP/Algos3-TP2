@@ -2,8 +2,9 @@ package modelo.tablero;
 
 import org.junit.Test;
 
-import modelo.cartas.monstruo.Monstruo;
-import modelo.cartas.monstruo.monstruos.AgresorOscuro;
+import main.java.cartas.monstruo.Monstruo;
+import main.java.cartas.monstruo.monstruos.AgresorOscuro;
+import main.java.tablero.Tablero;
 
 public class TableroTest {
 

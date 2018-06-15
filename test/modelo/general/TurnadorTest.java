@@ -3,8 +3,8 @@ package modelo.general;
 import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
 
-import modelo.general.Jugador;
-import modelo.general.Turnador;
+import main.java.general.Jugador;
+import main.java.general.Turnador;
 
 import java.util.ArrayList;
 

@@ -1,9 +1,9 @@
 package modelo.cartas;
 
-import modelo.cartas.trampa.Trampa;
-import modelo.tablero.Tablero;
-
 import org.junit.Test;
+
+import main.java.cartas.trampa.Trampa;
+import main.java.tablero.Tablero;
 
 import static org.junit.Assert.assertEquals;
 

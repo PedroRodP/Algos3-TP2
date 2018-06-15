@@ -3,12 +3,12 @@ package modelo.cartas;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
-import modelo.cartas.monstruo.Monstruo;
-import modelo.cartas.monstruo.monstruos.AgresorOscuro;
-import modelo.cartas.monstruo.monstruos.Aitsu;
-import modelo.cartas.monstruo.monstruos.DragonBlancoDeOjosAzules;
-import modelo.excepciones.ExcepcionMonstruoNoPuedeAtacar;
-import modelo.general.Jugador;
+import main.java.cartas.monstruo.Monstruo;
+import main.java.cartas.monstruo.monstruos.AgresorOscuro;
+import main.java.cartas.monstruo.monstruos.Aitsu;
+import main.java.cartas.monstruo.monstruos.DragonBlancoDeOjosAzules;
+import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
+import main.java.general.Jugador;
 
 public class MonstruoTest {
 	

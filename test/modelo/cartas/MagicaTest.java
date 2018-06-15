@@ -1,13 +1,13 @@
 package modelo.cartas;
 
-import modelo.cartas.magica.magicas.AgujeroNegro;
-import modelo.cartas.magica.Magica;
-import modelo.cartas.monstruo.Monstruo;
-import modelo.cartas.monstruo.monstruos.AgresorOscuro;
-import modelo.general.Jugador;
-import modelo.tablero.Tablero;
-
 import org.junit.Test;
+
+import main.java.cartas.magica.magicas.AgujeroNegro;
+import main.java.cartas.monstruo.Monstruo;
+import main.java.cartas.monstruo.monstruos.AgresorOscuro;
+import main.java.general.Jugador;
+import main.java.magica.Magica;
+import main.java.tablero.Tablero;
 
 import static org.junit.Assert.assertEquals;
 
