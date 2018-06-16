@@ -6,13 +6,9 @@ import main.java.tablero.Tablero;
 
 public class Trampa extends Carta{
 
-    public  Trampa(String unNombre) {
-        super(unNombre);
-    }
-
-    public void colocarBocaArriba(Tablero tablero, Jugador atacante, Jugador oponente) {
+    public void colocarBocaArriba(Tablero tablero) {
     	tablero.agregarCarta(this);
-    	this.activarEfecto(atacante, oponente);
+    	this.voltearCarta();
     }
     
     public void colocarBocaAbajo(Tablero tablero) {

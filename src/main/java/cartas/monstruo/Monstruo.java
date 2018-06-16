@@ -12,9 +12,7 @@ public abstract class Monstruo extends Carta {
 	private ModoDeCombate modo;
 	private Clasificacion clasificacion;
 	
-	public Monstruo(double ataque, double defensa, int cantidadDeEstrellas, String unNombre) {
-		super(unNombre);
-
+	public Monstruo(double ataque, double defensa, int cantidadDeEstrellas) {
 		this.ataque = ataque;
 		this.defensa = defensa;
 		this.colocarEnDefensa(); //Se inicializa en modo defensivo
@@ -34,10 +32,10 @@ public abstract class Monstruo extends Carta {
 		
 		this.modo = new ModoDefensa(defensa);
 	}
-	
-	public void colocarBocaArriba(Tablero tablero, Jugador atacante, Jugador oponente) {
+
+	public void colocarBocaArriba(Tablero tablero) {
 		tablero.agregarCarta(this);
-		this.activarEfecto(atacante, oponente);
+		this.voltearCarta();
 	}
 	
 	public void colocarBocaAbajo(Tablero tablero) {

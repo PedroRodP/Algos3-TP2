@@ -6,7 +6,7 @@ import main.java.general.Jugador;
 public class BocaAbajo implements Posicion {
 	
 	@Override
-	public void aplicarEfecto(Efecto efecto, Jugador atacante, Jugador oponente) throws ExcepcionCartaBocaAbajo {
+	public void aplicarEfecto(Efecto efecto) throws ExcepcionCartaBocaAbajo {
 		//No aplica efecto estando boca abajo
 		throw new ExcepcionCartaBocaAbajo();
 	}

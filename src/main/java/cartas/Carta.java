@@ -1,20 +1,17 @@
 package main.java.cartas;
 
-import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.general.Cementerio;
-import main.java.general.Jugador;
 import main.java.general.NoCementerio;
 import main.java.tablero.Tablero;
 
 public abstract class Carta {
 	
 	protected Efecto efecto;
-	protected final String nombre;
+	protected String NOMBRE;
 	protected Posicion posicion;
 	protected Cementerio cementerio;
 
-	protected Carta(String unNombre) {
-		this.nombre = unNombre;
+	protected Carta() {
 		this.posicion = new BocaAbajo();
 		this.efecto = new SinEfecto();
 		this.cementerio = new NoCementerio();
@@ -23,20 +20,20 @@ public abstract class Carta {
 
 	public abstract void colocarBocaAbajo(Tablero tablero);
     
-    public abstract void colocarBocaArriba(Tablero tablero, Jugador atacante, Jugador oponente);
+    public abstract void colocarBocaArriba(Tablero tablero);
     
-    public void activarEfecto() {
+    protected void activarEfecto() {
     	efecto.aplicar();
     }
     
-    public void voltearCarta() {
+    protected void voltearCarta() {
     	posicion = new BocaArriba();
     	this.activarEfecto();
     }
 
 	public boolean tenesEsteNombre(String unNombreCarta){
-		return (this.nombre==unNombreCarta);
-	};
+		return this.NOMBRE.equals(unNombreCarta);
+	}
 	
 	public void mandarAlCementerio() {
 		cementerio = new Cementerio();

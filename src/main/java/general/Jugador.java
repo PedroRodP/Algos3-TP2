@@ -30,13 +30,7 @@ public class Jugador {
 	}
 	
 	public void jugarCartaBocaArriba(Carta carta) {
-		carta.colocarBocaArriba(tablero, this, oponente);
-	}
-	
-
-	
-	public void voltearCarta(Carta carta) {
-		carta.activarEfecto(this, oponente);
+		carta.colocarBocaArriba(tablero);
 	}
 	
 	public boolean cartaFueDestruida(Carta carta) {

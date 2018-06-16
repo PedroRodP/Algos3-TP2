@@ -4,10 +4,9 @@ import main.java.efectos.EfectoAgujeroNegro;
 import main.java.magica.Magica;
 
 public class AgujeroNegro extends Magica {
-	
+
 	public AgujeroNegro() {
-		
-		super("Agujero negro");
+		NOMBRE = "Agujero Negro";
 		this.efecto = new EfectoAgujeroNegro();
 	}
 

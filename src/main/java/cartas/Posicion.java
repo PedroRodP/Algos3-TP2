@@ -5,5 +5,5 @@ import main.java.general.Jugador;
 
 public interface Posicion {
 
-	public void aplicarEfecto(Efecto efecto, Jugador atacante, Jugador oponente) throws ExcepcionCartaBocaAbajo;
+	public void aplicarEfecto(Efecto efecto) throws ExcepcionCartaBocaAbajo;
 }

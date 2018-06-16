@@ -1,5 +1,6 @@
 package modelo.cartas;
 
+import main.java.cartas.trampa.trampas.CilindroMagico;
 import org.junit.Test;
 
 import main.java.cartas.trampa.Trampa;
@@ -12,7 +13,7 @@ public class TrampaTest {
 
     @Test
     public void test01ColocarUnaCartaTrampaEnTablero() {
-        Trampa carta = new Trampa("Cilindro Magico");
+        Trampa carta = new CilindroMagico();
         Tablero tablero = new Tablero();
         tablero.agregarCarta(carta);
 

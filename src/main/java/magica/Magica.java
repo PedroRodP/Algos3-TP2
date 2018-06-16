@@ -6,13 +6,8 @@ import main.java.tablero.Tablero;
 
 public abstract class Magica extends Carta{
 
-	public Magica(String unNombre) {
-		super(unNombre);
-	}
-	
-	public void colocarBocaArriba(Tablero tablero, Jugador atacante, Jugador oponente) {
+	public void colocarBocaArriba(Tablero tablero) {
 		this.colocarBocaAbajo(tablero);
-		this.activarEfecto(atacante, oponente);
 	}
 	
 	public void colocarBocaAbajo(Tablero tablero) {

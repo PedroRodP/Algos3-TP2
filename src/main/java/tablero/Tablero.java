@@ -56,7 +56,7 @@ public class Tablero {
 		return cementerio.contains(carta);
 	}
 	
-	//Habria q lanzar una excepcion si la carta no es encontrada!!
+	//todo Habria q lanzar una excepcion si la carta no es encontrada!!
 	public Magica obtenerCartaMagica(String nombre) {
 		for (Magica carta : zonaMagicas) {
 			if(carta.tenesEsteNombre(nombre)) return carta;
