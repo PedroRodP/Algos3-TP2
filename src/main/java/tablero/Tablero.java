@@ -3,9 +3,9 @@ package main.java.tablero;
 import java.util.LinkedList;
 
 import main.java.cartas.Carta;
+import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.trampa.Trampa;
-import main.java.magica.Magica;
 
 public class Tablero {
 

@@ -1,4 +1,4 @@
-package main.java.magica;
+package main.java.cartas.magica;
 
 import main.java.cartas.Carta;
 import main.java.general.Jugador;
