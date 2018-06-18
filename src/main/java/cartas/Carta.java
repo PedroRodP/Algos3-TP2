@@ -26,7 +26,7 @@ public abstract class Carta {
     	efecto.aplicar();
     }
     
-    protected void voltearCarta() {
+    protected void voltear() {
     	posicion = new BocaArriba();
     	this.activarEfecto();
     }

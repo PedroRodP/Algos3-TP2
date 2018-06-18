@@ -47,7 +47,7 @@ public class MonstruoTest {
 		jugador.atacar(monstruoAzul,monstruoVerde);
 		
 		assertEquals(8000 - 1800,jugador.vida(),DELTA);
-		assert (jugador.cartaFueDestruida(monstruoAzul));
+		assert (monstruoAzul.estaEnCementerio());
 	}
 	
 	@Test
@@ -65,7 +65,7 @@ public class MonstruoTest {
 		jugadorA.atacar(monstruoAzul, monstruoVerde);
 		
 		assertEquals(8000 - 1800,jugadorB.vida(),DELTA);
-		assert (jugadorB.cartaFueDestruida(monstruoVerde));
+		assert (monstruoVerde.estaEnCementerio());
 	}
 	
 	@Test
@@ -87,8 +87,8 @@ public class MonstruoTest {
 		assertEquals(8000, atacante.vida(), DELTA);
 		assertEquals(8000, oponente.vida(), DELTA);
 		
-		assert (atacante.cartaFueDestruida(monstruoAzul));
-		assert (oponente.cartaFueDestruida(monstruoVerde));
+		assert (monstruoAzul.estaEnCementerio());
+		assert (monstruoVerde.estaEnCementerio());
 	}
 
 	@Test
@@ -108,7 +108,7 @@ public class MonstruoTest {
 		atacante.atacar(monstruoAzul, monstruoVerde);
 		
 		assertEquals(8000, oponente.vida(), DELTA);
-		assert (oponente.cartaFueDestruida(monstruoVerde));
+		assert (monstruoVerde.estaEnCementerio());
 	}
 	
 	@Test
@@ -128,7 +128,7 @@ public class MonstruoTest {
 		atacante.atacar(monstruoAzul, monstruoVerde);
 		
 		assertEquals(8000, oponente.vida(), DELTA);
-		assert (! oponente.cartaFueDestruida(monstruoVerde));
+		assert (!monstruoVerde.estaEnCementerio());
 	}
 	
 	@Test
@@ -141,7 +141,7 @@ public class MonstruoTest {
 		jugador.jugarCartaBocaAbajo(monstruoAzul);
 		jugador.jugarCartaBocaAbajo(monstruoRojo);
 		
-		assert (jugador.cartaFueDestruida(monstruoAzul));
+		assert (monstruoAzul.estaEnCementerio());
 		
 	}
 	
@@ -157,8 +157,8 @@ public class MonstruoTest {
 		jugador.jugarCartaBocaAbajo(monstruoVerde);
 		jugador.jugarCartaBocaAbajo(monstruoAzul);
 		
-		assert (jugador.cartaFueDestruida(monstruoRojo));
-		assert (jugador.cartaFueDestruida(monstruoVerde));
+		assert (monstruoRojo.estaEnCementerio());
+		assert (monstruoVerde.estaEnCementerio());
 	}
 	
 	

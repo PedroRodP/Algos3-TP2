@@ -1,5 +1,7 @@
 package main.java.general;
 
+import java.util.LinkedList;
+
 import main.java.cartas.Carta;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
@@ -21,6 +23,10 @@ public class Jugador {
 		this.oponente = oponente;
 	}
 	
+	public LinkedList<Monstruo> obtenerMonstruos() {
+		return tablero.obtenerMonstruos();
+	}
+	
 	public double vida() {
 		return vida;
 	}
@@ -31,10 +37,6 @@ public class Jugador {
 	
 	public void jugarCartaBocaArriba(Carta carta) {
 		carta.colocarBocaArriba(tablero);
-	}
-	
-	public boolean cartaFueDestruida(Carta carta) {
-		return tablero.estaEnCementerio(carta);
 	}
 	
 	public void destruirMonstruo(Monstruo monstruo) {
@@ -51,8 +53,5 @@ public class Jugador {
 	public void infligirDanio(double danio) {
 		this.vida -= Math.abs(danio);
 	}
-
-	public void destruirTodosTusMonstruos() {
-		this.tablero.destruirMonstruos();
-	}
+	
 }

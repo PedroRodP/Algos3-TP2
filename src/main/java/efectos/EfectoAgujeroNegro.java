@@ -4,22 +4,24 @@ import java.util.LinkedList;
 
 import main.java.cartas.Efecto;
 import main.java.cartas.monstruo.Monstruo;
+import main.java.general.Jugador;
 
 public class EfectoAgujeroNegro extends Efecto {
 	
-	private LinkedList<Monstruo> monstruos;
+	Jugador poseedor;
+	Jugador oponente;
 	
-	public EfectoAgujeroNegro() {}
-
-	public void afectaA(LinkedList<Monstruo> monstruos){
-		this.monstruos = monstruos;
+	public EfectoAgujeroNegro(Jugador poseedor, Jugador oponente) {
+		this.poseedor = poseedor;
+		this.oponente = oponente;
 	}
 	
 	@Override
 	public void aplicar() {
-		for (Monstruo m: monstruos) {
-			m.mandarAlCementerio();
-		}
+		LinkedList<Monstruo> monstruosPoseedor = poseedor.obtenerMonstruos();
+		LinkedList<Monstruo> monstruosOponente = oponente.obtenerMonstruos();
+		for (Monstruo m: monstruosPoseedor) poseedor.destruirMonstruo(m);
+		for (Monstruo m: monstruosOponente) oponente.destruirMonstruo(m);
 	}
 	
 }

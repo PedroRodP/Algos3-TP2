@@ -9,16 +9,6 @@ import main.java.tablero.Tablero;
 import static org.junit.Assert.assertEquals;
 
 public class TrampaTest {
-
-
-    @Test
-    public void test01ColocarUnaCartaTrampaEnTablero() {
-        Trampa carta = new CilindroMagico();
-        Tablero tablero = new Tablero();
-        tablero.agregarCarta(carta);
-
-        assertEquals(carta,tablero.obtenerCartaTrampa("Cilindro Magico"));
-    }
     
 /*    @Test
     public void test02SiColocarUnaCartaTrampaBocaAbajoEnTableroEstaBocaArribaEsFalse() {

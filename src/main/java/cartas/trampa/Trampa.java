@@ -8,7 +8,7 @@ public class Trampa extends Carta{
 
     public void colocarBocaArriba(Tablero tablero) {
     	tablero.agregarCarta(this);
-    	this.voltearCarta();
+    	this.voltear();
     }
     
     public void colocarBocaAbajo(Tablero tablero) {
