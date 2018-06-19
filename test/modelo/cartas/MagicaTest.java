@@ -5,6 +5,7 @@ import org.junit.Test;
 import main.java.cartas.Carta;
 import main.java.cartas.magica.Magica;
 import main.java.cartas.magica.magicas.AgujeroNegro;
+import main.java.cartas.magica.magicas.Fisura;
 import main.java.cartas.magica.magicas.OllaDeLaCodicia;
 //import main.java.cartas.magica.magicas.Wasteland;
 import main.java.cartas.monstruo.Monstruo;
@@ -80,6 +81,26 @@ public class MagicaTest {
     	olla.aplicarEfectoA(jugador);
     	
     	assertEquals (2, jugador.cantidadDeCartasEnMano());
+    }
+    
+    @Test
+    public void test04CuandoActivarEfectoDeCartaMagicaFisuraSeDestruyeElMonstruoOponenteConMenorAtaque() {
+
+    	Jugador oponente = new Jugador();
+    	
+    	Fisura fisura = new Fisura();
+    	fisura.afectaA(oponente);
+    
+    	Monstruo agresorOscuro = new AgresorOscuro();
+    	Monstruo aitsu = new Aitsu();
+    	
+    	oponente.jugarCartaBocaArriba(agresorOscuro);
+    	oponente.jugarCartaBocaArriba(aitsu);
+    	
+    	fisura.aplicarEfecto();
+    	
+    	assert(oponente.cartaFueDestruida(aitsu) && !oponente.cartaFueDestruida(agresorOscuro));
+    	
     }
 }
 	

@@ -64,14 +64,6 @@ public abstract class Monstruo extends Carta {
 		}
 		//Por default los monstruos no tienen efecto
 	}
-
-	protected void atacarDirectoAJugador(Jugador jugador) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
-		if (posicion.estaBocaArriba()) {
-			this.modo.atacarDirectoAJugador(jugador);
-		} else {
-			throw new ExcepcionCartaBocaAbajo();
-		}
-}
 	
 	public void alterarAtaque(double puntos) {
 		this.modo.actualizarPotencialDeAtaque(puntos);
@@ -81,6 +73,10 @@ public abstract class Monstruo extends Carta {
 	public void alterarDefensa(double puntos) {
 		this.modo.actualizarPotencialDeDefensa(puntos);
 		this.defensa += puntos;
+	}
+	
+	public double obtenerAtaque() {
+		return this.ataque;
 	}
 	
 }

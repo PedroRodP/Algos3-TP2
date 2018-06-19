@@ -171,19 +171,22 @@ public class MonstruoTest {
 
 	@Test
 	public void testo10ActivoEfectoJinzoYAtacoALosPuntosDeVidaDirectamente() throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
+		Jugador jugador = new Jugador();
 		Jugador rival = new Jugador();
-		Jugador jugador =new Jugador();
 		rival.establecerOponente(jugador);
 		jugador.establecerOponente(rival);
 
-		Monstruo monstruoVerde = new AgresorOscuro();
-		Jinzo7 monstruoAzul = new Jinzo7();
+		Monstruo monstruo = new AgresorOscuro();
+		
+		Jinzo7 jinzo7 = new Jinzo7();
+		jinzo7.afectaA(rival);
 
-		rival.jugarCartaBocaAbajo(monstruoVerde);
-		jugador.jugarCartaBocaArriba(monstruoAzul);
-		monstruoAzul.colocarEnAtaque();
-		monstruoAzul.activarEfectoA(rival);
-
+		rival.jugarCartaBocaAbajo(monstruo);
+		jugador.jugarCartaBocaArriba(jinzo7);
+		jinzo7.colocarEnAtaque();
+		
+		jinzo7.aplicarEfecto();
+		
 		assertEquals(7500,rival.vida(),DELTA);
 	}
 	
