@@ -25,4 +25,9 @@ public class ModoAtaque implements ModoDeCombate {
 	public void infligirDanioAJugador(Jugador jugador, double danio) {
 		jugador.infligirDanio(danio);
 	}
+
+	@Override
+	public void atacarDirectoAJugador(Jugador jugador) {
+		jugador.infligirDanio(puntajeAtaque);
+	}
 }

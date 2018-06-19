@@ -10,4 +10,6 @@ public interface ModoDeCombate {
 	public double diferenciaDeCombateCon(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar;
 	
 	public void infligirDanioAJugador(Jugador jugador, double danio);
+
+    void atacarDirectoAJugador(Jugador jugador) throws ExcepcionMonstruoNoPuedeAtacar;
 }

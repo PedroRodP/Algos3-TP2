@@ -26,4 +26,9 @@ public class ModoDefensa implements ModoDeCombate {
 	public void infligirDanioAJugador(Jugador jugador, double danio) {
 		return; //No inflige danio por estar en modo defensa
 	}
+
+	@Override
+	public void atacarDirectoAJugador(Jugador jugador) throws ExcepcionMonstruoNoPuedeAtacar {
+		throw new ExcepcionMonstruoNoPuedeAtacar();
+	}
 }

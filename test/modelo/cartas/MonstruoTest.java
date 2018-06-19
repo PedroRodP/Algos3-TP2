@@ -1,6 +1,8 @@
 package modelo.cartas;
 
 import static org.junit.Assert.assertEquals;
+
+import main.java.cartas.monstruo.monstruos.Jinzo7;
 import org.junit.Test;
 
 import main.java.cartas.monstruo.Monstruo;
@@ -166,7 +168,23 @@ public class MonstruoTest {
 		assert (jugador.cartaFueDestruida(monstruoRojo));
 		assert (jugador.cartaFueDestruida(monstruoVerde));
 	}
-	
-	
+
+	@Test
+	public void testo10ActivoEfectoJinzoYAtacoALosPuntosDeVidaDirectamente() throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
+		Jugador rival = new Jugador();
+		Jugador jugador =new Jugador();
+		rival.establecerOponente(jugador);
+		jugador.establecerOponente(rival);
+
+		Monstruo monstruoVerde = new AgresorOscuro();
+		Jinzo7 monstruoAzul = new Jinzo7();
+
+		rival.jugarCartaBocaAbajo(monstruoVerde);
+		jugador.jugarCartaBocaArriba(monstruoAzul);
+		monstruoAzul.colocarEnAtaque();
+		monstruoAzul.activarEfectoA(rival);
+
+		assertEquals(7500,rival.vida(),DELTA);
+	}
 	
 }

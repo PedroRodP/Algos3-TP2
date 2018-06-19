@@ -64,4 +64,13 @@ public abstract class Monstruo extends Carta {
 		}
 		//Por default los monstruos no tienen efecto
 	}
+
+	protected void atacarDirectoAJugador(Jugador jugador) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
+		if (posicion.estaBocaArriba()) {
+			this.modo.atacarDirectoAJugador(jugador);
+
+		} else {
+			throw new ExcepcionCartaBocaAbajo();
+		}
+		}
 }
