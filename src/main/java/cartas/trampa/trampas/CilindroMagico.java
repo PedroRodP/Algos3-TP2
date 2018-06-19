@@ -1,5 +1,6 @@
 package main.java.cartas.trampa.trampas;
 
+import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.trampa.Trampa;
 import main.java.general.Jugador;
 
@@ -9,13 +10,10 @@ public class CilindroMagico  extends Trampa {
         nombre = "Cilindro Magico";
     }
     
-    public void aplicarEfectoA(Jugador jugador) {
+ /*   public void aplicarA(Monstruo atacante, Jugador oponente) {
     	
-    	//Monstruo atacante
-        Jugador oponente = jugador.getOponente();
-        //Double ataque = atacante.potenciaDeCombate();
+        Double ataque = atacante.potenciaDeCombate();
         
-        //oponente.infligirDanio(ataque);
-    }
-
+        oponente.infligirDanio(ataque);
+    }*/
 }

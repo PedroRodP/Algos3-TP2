@@ -49,4 +49,8 @@ public abstract class Monstruo extends Carta {
 	public void infligirDanioAJugador(Jugador jugador, double danio) {
 		this.modo.infligirDanioAJugador(jugador, danio);
 	}
+	
+	public void aplicarEfectoA(Jugador jugador) {
+		//Monstruo no tiene efecto por default.
+	}
 }

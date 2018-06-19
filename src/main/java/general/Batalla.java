@@ -1,6 +1,7 @@
 package main.java.general;
 
 import main.java.cartas.monstruo.Monstruo;
+import main.java.cartas.trampa.Trampa;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 
 public class Batalla {

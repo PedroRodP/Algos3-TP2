@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import main.java.cartas.Carta;
 import main.java.cartas.monstruo.Monstruo;
+import main.java.cartas.trampa.Trampa;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.tablero.Tablero;
 
@@ -71,4 +72,12 @@ public class Jugador {
 		return tablero.cartaEstaEnCementerio(carta);
 	}
 	
+	
+	public void ponerEnAtaque(Monstruo monstruo) {
+		monstruo.colocarEnAtaque();
+	}
+	
+	public void ponerEnDefensa(Monstruo monstruo) {
+		monstruo.colocarEnDefensa();
+	}
 }
