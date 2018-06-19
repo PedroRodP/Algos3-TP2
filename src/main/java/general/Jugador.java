@@ -3,12 +3,11 @@ package main.java.general;
 import java.util.LinkedList;
 
 import main.java.cartas.Carta;
+import main.java.cartas.monstruo.Batalla;
 import main.java.cartas.monstruo.Monstruo;
-import main.java.cartas.trampa.Trampa;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionMazoVacio;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
-import main.java.tablero.Tablero;
 
 public class Jugador {
 
@@ -42,30 +41,18 @@ public class Jugador {
 	}
 	
 	public void jugarCartaBocaAbajo(Carta carta){
-		carta.colocarEn(tablero);
+		carta.colocarEnTablero(tablero);
 		carta.setBocaAbajo();
 	}
 	
 	public void jugarCartaBocaArriba(Carta carta) {
-		carta.colocarEn(tablero);
+		carta.colocarEnTablero(tablero);
 		carta.setBocaArriba();
 	}
 	
 	public void voltearCarta(Carta carta) {
 		carta.setBocaArriba();
 	}
-	
-	public void aplicarEfectoDe(Monstruo monstruo) {
-		//monstruo.aplicarEfecto();
-	}
-	
-	public void aplicarEfectoDe(Trampa trampa) {
-		//trampa.aplicarEfecto();
-	}
-	
-	/*public void aplicarEfectoDe(Campo campo) {
-		campo.aplicarEfecto();
-	}*/
 	
 	public void destruirMonstruo(Monstruo monstruo) {
 		tablero.destruirCarta(monstruo);

@@ -3,6 +3,7 @@ package modelo.cartas;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
+import main.java.cartas.monstruo.Jinzo7;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
 import main.java.cartas.monstruo.monstruos.Aitsu;
@@ -167,6 +168,37 @@ public class MonstruoTest {
 		assert (jugador.cartaFueDestruida(monstruoVerde));
 	}
 	
+	 @Test
+	 public void testo10ActivoEfectoJinzoYAtacoALosPuntosDeVidaDirectamente() throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
+		 
+		Jugador rival = new Jugador();
+		Jugador jugador =new Jugador();
+		
+		rival.establecerOponente(jugador);
+		jugador.establecerOponente(rival);
+
+		Monstruo monstruoVerde = new AgresorOscuro();
+		Jinzo7 monstruoAzul = new Jinzo7();
+
+		rival.jugarCartaBocaAbajo(monstruoVerde);
+		jugador.jugarCartaBocaArriba(monstruoAzul);
+		monstruoAzul.colocarEnAtaque();
+		monstruoAzul.activarEfectoA(rival);
+
+		assertEquals(7500,rival.vida(),DELTA);
+	}
 	
-	
+	@Test
+	public void test12CuandoAlterarAtaqueCon200PuntosAMonstruoEsteIncrementaSuPotencialEn200Puntos() {
+    
+		Monstruo monstruoA = new AgresorOscuro();
+    
+		double ataqueMonstruoA = monstruoA.potenciaDeCombate();
+    
+		monstruoA.colocarEnAtaque();
+		monstruoA.alterarAtaque(200);
+    
+		assertEquals(ataqueMonstruoA + 200, monstruoA.potenciaDeCombate(), DELTA);	
+   
+	}
 }

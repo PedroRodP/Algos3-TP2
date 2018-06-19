@@ -1,13 +1,13 @@
 package main.java.cartas;
 
-import main.java.tablero.Tablero;
+import main.java.general.Tablero;
 
 public abstract class Carta {
 
 	protected String nombre;
 	protected Posicion posicion;
 	
-	public abstract void colocarEn(Tablero tablero);
+	public abstract void colocarEnTablero(Tablero tablero);
 
 	public boolean tenesEsteNombre(String unNombreCarta){
 		return this.nombre.equals(unNombreCarta);

@@ -4,12 +4,12 @@ import org.junit.Test;
 
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
-import main.java.tablero.Tablero;
+import main.java.general.Tablero;
 
 public class TableroTest {
 
 	@Test
-	public void test01MandarCartaAlCementerioPoneCartaEnCementerio() {
+	public void test01MandarCartaAlCementerioPoneCartaEnCementerio(){
 		
 		Tablero tablero = new Tablero();
 		Monstruo monstruo = new AgresorOscuro();

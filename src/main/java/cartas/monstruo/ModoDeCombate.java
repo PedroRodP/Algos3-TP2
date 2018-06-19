@@ -3,11 +3,21 @@ package main.java.cartas.monstruo;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.general.Jugador;
 
-public interface ModoDeCombate {
+public abstract class ModoDeCombate {
 
-	public double potencia();
+	protected double puntaje;
 	
-	public double diferenciaDeCombateCon(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar;
+	public double potencia() {
+		return puntaje;
+	}
 	
-	public void infligirDanioAJugador(Jugador jugador, double danio);
+	public abstract double diferenciaDeCombateCon(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar;
+	
+	public abstract void infligirDanioAJugador(Jugador jugador, double danio);
+	
+	public abstract void actualizarPotencialDeAtaque(double puntos);
+	
+	public abstract void actualizarPotencialDeDefensa(double puntos);
+	
+	public abstract void atacarDirectoAJugador(Jugador jugador) throws ExcepcionMonstruoNoPuedeAtacar;
 }

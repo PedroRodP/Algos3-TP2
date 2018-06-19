@@ -3,18 +3,11 @@ package main.java.cartas.monstruo;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.general.Jugador;
 
-public class ModoDefensa implements ModoDeCombate {
-	
-	private double puntajeDefensa;
+public class ModoDefensa extends ModoDeCombate {
 	
 	public ModoDefensa(double puntajeDefensa) {
 		
-		this.puntajeDefensa = puntajeDefensa;
-	}
-	
-	@Override
-	public double potencia() {
-		return puntajeDefensa;
+		this.puntaje = puntajeDefensa;
 	}
 	
 	@Override
@@ -26,4 +19,17 @@ public class ModoDefensa implements ModoDeCombate {
 	public void infligirDanioAJugador(Jugador jugador, double danio) {
 		return; //No inflige danio por estar en modo defensa
 	}
+	
+	public void actualizarPotencialDeDefensa(double puntos) {
+		puntaje += puntos;
+	}
+	
+	public void actualizarPotencialDeAtaque(double puntos) {
+		
+	}
+	
+	@Override
+	public void atacarDirectoAJugador(Jugador jugador) throws ExcepcionMonstruoNoPuedeAtacar{
+		throw new ExcepcionMonstruoNoPuedeAtacar();
+}
 }

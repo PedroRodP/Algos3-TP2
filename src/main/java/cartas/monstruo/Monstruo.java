@@ -4,7 +4,7 @@ import main.java.cartas.Carta;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.general.Jugador;
-import main.java.tablero.Tablero;
+import main.java.general.Tablero;
 
 public abstract class Monstruo extends Carta {
 
@@ -34,7 +34,7 @@ public abstract class Monstruo extends Carta {
 		this.modo = new ModoDefensa(defensa);
 	}
 
-	public void colocarEn(Tablero tablero) {
+	public void colocarEnTablero(Tablero tablero) {
 		tablero.agregarCarta(this);
 	}
 	
@@ -63,5 +63,24 @@ public abstract class Monstruo extends Carta {
 			throw new ExcepcionCartaBocaAbajo();
 		}
 		//Por default los monstruos no tienen efecto
+	}
+
+	protected void atacarDirectoAJugador(Jugador jugador) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
+		if (posicion.estaBocaArriba()) {
+			this.modo.atacarDirectoAJugador(jugador);
+			
+		} else {
+			throw new ExcepcionCartaBocaAbajo();
+		}
+}
+	
+	public void alterarAtaque(double puntos) {
+		this.modo.actualizarPotencialDeAtaque(puntos);
+		this.ataque += puntos;
+	}
+	
+	public void alterarDefensa(double puntos) {
+		this.modo.actualizarPotencialDeDefensa(puntos);
+		this.defensa += puntos;
 	}
 }

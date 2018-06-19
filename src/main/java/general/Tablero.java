@@ -1,9 +1,11 @@
-package main.java.tablero;
+package main.java.general;
 
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
 import main.java.cartas.Carta;
+import main.java.cartas.campo.Campo;
+import main.java.cartas.campo.NoCampo;
 import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.trampa.Trampa;
@@ -14,13 +16,26 @@ public class Tablero {
 	private LinkedList<Magica> zonaMagicas= new LinkedList<Magica>();
 	private LinkedList<Trampa> zonaTrampas = new LinkedList<Trampa>();
 	private LinkedList<Carta> cementerio = new LinkedList<Carta>();
+	private Campo cartaDeCampo = new NoCampo();
 	
 	public void agregarCarta(Magica cartaMagica) {
 		zonaMagicas.add(cartaMagica);
 	}
 	
-	public void agregarCarta(Monstruo cartaMonstruo) {
-		
+	public void agregarCarta(Campo cartaCampo) {
+		this.desactivarEfectoDeCampo();
+		cartaDeCampo = cartaCampo;
+		cartaDeCampo.aplicarEfecto();
+	}
+	
+	public void desactivarEfectoDeCampo() {
+		cartaDeCampo.desactivarEfecto();
+	}
+	
+	public void agregarCarta(Monstruo cartaMonstruo){
+		/*todo podriamos pasar como segundo argumento una lista con los monstruos a sacrificar (el controlador la pedira al usuario
+		que vaya seleccionando los monstruos a sacrificar mediante una ventana y cuando se llene la lista le deje hacer OK*/
+		//todo if zonaMonstruos.size() < cantidadDeSacrifNecesarios lanzar la excepcion sacrificiosinsuficientes.
 		int i = 0;
 		while (i < cartaMonstruo.sacrificiosNecesariosPorInvocacion()) {
 			
@@ -30,11 +45,9 @@ public class Tablero {
 				i++;
 			
 			} catch (NoSuchElementException e) {
-				//Se sacrifica la mayor cantidad posible de monstruos necesaria
 				break;
 			}
 		}
-		
 		zonaMonstruos.add(cartaMonstruo);
 	}
 	
