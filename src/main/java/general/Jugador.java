@@ -3,10 +3,10 @@ package main.java.general;
 import java.util.LinkedList;
 
 import main.java.cartas.Carta;
-import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.trampa.Trampa;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
+import main.java.excepciones.ExcepcionMazoVacio;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.tablero.Tablero;
 
@@ -15,11 +15,14 @@ public class Jugador {
 	private double vida;
 	private Tablero tablero;
 	private Jugador oponente;
+	private Mano mano;
+	private Mazo mazo;
 	
 	public Jugador() {
 		
 		this.vida = 8000;
 		this.tablero = new Tablero();
+		this.mano = new Mano();
 	}
 	
 	public void establecerOponente(Jugador oponente) {
@@ -54,10 +57,6 @@ public class Jugador {
 	
 	public void aplicarEfectoDe(Monstruo monstruo) {
 		//monstruo.aplicarEfecto();
-	}
-	
-	public void aplicarEfectoDe(Magica magica) {
-		magica.aplicarEfectoA(this);
 	}
 	
 	public void aplicarEfectoDe(Trampa trampa) {
@@ -98,5 +97,18 @@ public class Jugador {
 	
 	public void ponerEnDefensa(Monstruo monstruo) {
 		monstruo.colocarEnDefensa();
+	}
+	
+	public int cantidadDeCartasEnMano() {
+		return this.mano.cantidadDeCartas();
+	}
+	
+	public void tomarCartaDelMazo() throws ExcepcionMazoVacio {
+		Carta carta = mazo.tomarCarta();
+		this.mano.agregar(carta);
+	}
+	
+	public void asignarMazo(Mazo mazo) {
+		this.mazo = mazo;
 	}
 }

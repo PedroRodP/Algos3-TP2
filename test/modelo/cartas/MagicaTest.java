@@ -2,14 +2,21 @@ package modelo.cartas;
 
 import org.junit.Test;
 
+import main.java.cartas.Carta;
 import main.java.cartas.magica.Magica;
 import main.java.cartas.magica.magicas.AgujeroNegro;
+import main.java.cartas.magica.magicas.OllaDeLaCodicia;
 //import main.java.cartas.magica.magicas.Wasteland;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
+import main.java.cartas.monstruo.monstruos.Aitsu;
+import main.java.excepciones.ExcepcionMazoVacio;
 import main.java.general.Jugador;
+import main.java.general.Mazo;
 
 import static org.junit.Assert.assertEquals;
+
+import java.util.LinkedList;
 
 public class MagicaTest {
 
@@ -45,7 +52,7 @@ public class MagicaTest {
         jugadorA.jugarCartaBocaAbajo(monstruoB);
         jugadorB.jugarCartaBocaAbajo(monstruoC);
         jugadorA.jugarCartaBocaArriba(agujeroNegro);
-        jugadorA.aplicarEfectoDe(agujeroNegro);
+        agujeroNegro.aplicarEfectoA(jugadorA);
 
         assert(jugadorA.cartaFueDestruida(monstruoA));
         assert(jugadorA.cartaFueDestruida(monstruoB));
@@ -53,6 +60,26 @@ public class MagicaTest {
         assertEquals(8000,jugadorA.vida(),DELTA);
         assertEquals(8000,jugadorB.vida(),DELTA);
 
+    }
+    
+    @Test
+    public void test03ActivarOllaDeLaCodiciaTomaDosCartasDelMazo() throws ExcepcionMazoVacio {
+    	
+    	OllaDeLaCodicia olla = new OllaDeLaCodicia();
+    	Jugador jugador = new Jugador();
+    	Monstruo monstruo1 = new Aitsu();
+    	Monstruo monstruo2 = new Aitsu();
+    	
+    	LinkedList<Carta> cartas = new LinkedList<Carta>();
+    	cartas.add(monstruo1);
+    	cartas.add(monstruo2);
+    	Mazo mazo = new Mazo(cartas);
+    	
+    	jugador.asignarMazo(mazo);
+    	jugador.jugarCartaBocaArriba(olla);
+    	olla.aplicarEfectoA(jugador);
+    	
+    	assertEquals (2, jugador.cantidadDeCartasEnMano());
     }
 }
 	

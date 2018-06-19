@@ -9,7 +9,6 @@ public class AgujeroNegro extends Magica {
 		nombre = "Agujero Negro";
 	}
 
-	@Override
 	public void aplicarEfectoA(Jugador jugador) {
 		
 		jugador.destruirTodosLosMonstruos();
