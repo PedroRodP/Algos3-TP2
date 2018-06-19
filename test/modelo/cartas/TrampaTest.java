@@ -1,7 +1,6 @@
 package modelo.cartas;
 
 import main.java.cartas.trampa.trampas.CilindroMagico;
-import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.general.Jugador;
 
 import org.junit.Test;
