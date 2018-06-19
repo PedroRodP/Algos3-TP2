@@ -1,6 +1,7 @@
 package main.java.tablero;
 
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 import main.java.cartas.Carta;
 import main.java.cartas.magica.Magica;
@@ -19,13 +20,21 @@ public class Tablero {
 	}
 	
 	public void agregarCarta(Monstruo cartaMonstruo) {
+		
 		int i = 0;
 		while (i < cartaMonstruo.sacrificiosNecesariosPorInvocacion()) {
-			//todo deberiamos seleccionar un elemento random entre 0 y zonaMonstruos.size()-1 y destruirlo.
-			this.destruirCarta(zonaMonstruos.getFirst()); 
-			i++;     
+			
+			try {
+				Monstruo sacrificado = zonaMonstruos.getFirst();
+				this.destruirCarta(sacrificado); 
+				i++;
+			
+			} catch (NoSuchElementException e) {
+				//Se sacrifica la mayor cantidad posible de monstruos necesaria
+				break;
+			}
 		}
-		//todo HAY QUE LANZAR EXCEPCION SI SE INTENTA INVOCAR MONSTRUO DE >5 ESTRELLAS Y NO HAY PARA SACRIFICAR
+		
 		zonaMonstruos.add(cartaMonstruo);
 	}
 	

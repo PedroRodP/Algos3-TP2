@@ -1,6 +1,7 @@
 package main.java.cartas.monstruo;
 
 import main.java.cartas.Carta;
+import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.general.Jugador;
 import main.java.tablero.Tablero;
@@ -42,15 +43,25 @@ public abstract class Monstruo extends Carta {
 		return modo.potencia();
 	}
 	
-	public double diferenciaDeCombateCon(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar {
-		return this.modo.diferenciaDeCombateCon(monstruo); 
+	public double diferenciaDeCombateCon(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+		
+		if (posicion.estaBocaArriba()) {
+			return this.modo.diferenciaDeCombateCon(monstruo);
+		
+		} else {
+			throw new ExcepcionCartaBocaAbajo();
+		}
 	}
 	
 	public void infligirDanioAJugador(Jugador jugador, double danio) {
 		this.modo.infligirDanioAJugador(jugador, danio);
 	}
 	
-	public void aplicarEfectoA(Jugador jugador) {
-		//Monstruo no tiene efecto por default.
+	public void aplicarEfecto() throws ExcepcionCartaBocaAbajo {
+		
+		if (posicion.estaBocaAbajo()) {
+			throw new ExcepcionCartaBocaAbajo();
+		}
+		//Por default los monstruos no tienen efecto
 	}
 }

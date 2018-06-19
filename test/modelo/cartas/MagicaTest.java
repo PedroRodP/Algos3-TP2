@@ -45,6 +45,7 @@ public class MagicaTest {
         jugadorA.jugarCartaBocaAbajo(monstruoB);
         jugadorB.jugarCartaBocaAbajo(monstruoC);
         jugadorA.jugarCartaBocaArriba(agujeroNegro);
+        jugadorA.aplicarEfectoDe(agujeroNegro);
 
         assert(jugadorA.cartaFueDestruida(monstruoA));
         assert(jugadorA.cartaFueDestruida(monstruoB));
@@ -53,25 +54,6 @@ public class MagicaTest {
         assertEquals(8000,jugadorB.vida(),DELTA);
 
     }
-    
-    /*@Test
-    public void test03ActivarCartaMagicaWastelandAgrega200AlAtacanteY300AlDefensor() throws ExcepcionMonstruoNoPuedeAtacar {
-    	
-    	jugadorA atacante = new jugadorA();
-    	jugadorA defensor = new jugadorA();
-    	Monstruo monstruoAtacante = new AgresorOscuro();
-    	Monstruo monstruoDefensor = new AgresorOscuro();
-    	Magica wasteland = new Wasteland();
-    	
-    	atacante.establecerOponente(defensor);
-    	atacante.jugarCartaBocaArriba(monstruoAtacante);
-    	defensor.jugarCartaBocaArriba(monstruoDefensor);
-    	monstruoAtacante.colocarEnAtaque();
-    	monstruoDefensor.colocarEnAtaque();
-    	
-    	atacante.atacar(monstruoAtacante, monstruoDefensor);
-    	atacante.jugarCartaBocaArriba(wasteland);
-    }*/
 }
 	
 

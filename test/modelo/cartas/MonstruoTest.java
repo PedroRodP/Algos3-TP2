@@ -7,6 +7,7 @@ import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
 import main.java.cartas.monstruo.monstruos.Aitsu;
 import main.java.cartas.monstruo.monstruos.DragonBlancoDeOjosAzules;
+import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.general.Jugador;
 
@@ -35,7 +36,7 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test03MonstruoEnAtaqueMuereSiAtacaAMonstruoConMayorAtaqueEnModoAtaque() throws ExcepcionMonstruoNoPuedeAtacar {
+	public void test03MonstruoEnAtaqueMuereSiAtacaAMonstruoConMayorAtaqueEnModoAtaque() throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
 		
 		Jugador jugador = new Jugador();
 		
@@ -44,6 +45,7 @@ public class MonstruoTest {
 		Monstruo monstruoVerde = new DragonBlancoDeOjosAzules();
 		monstruoVerde.colocarEnAtaque();
 		
+		jugador.jugarCartaBocaArriba(monstruoAzul);
 		jugador.atacar(monstruoAzul,monstruoVerde);
 		
 		assertEquals(8000 - 1800,jugador.vida(),DELTA);
@@ -51,7 +53,7 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test04MonstruoEnAtaqueAtacaAMonstruoConMenorAtaqueYEsteMuere() throws ExcepcionMonstruoNoPuedeAtacar {
+	public void test04MonstruoEnAtaqueAtacaAMonstruoConMenorAtaqueYEsteMuere() throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
 		
 		Jugador jugadorA = new Jugador();
 		Jugador jugadorB = new Jugador();
@@ -62,6 +64,7 @@ public class MonstruoTest {
 		Monstruo monstruoVerde = new AgresorOscuro();
 		monstruoVerde.colocarEnAtaque();
 		
+		jugadorA.jugarCartaBocaArriba(monstruoAzul);
 		jugadorA.atacar(monstruoAzul, monstruoVerde);
 		
 		assertEquals(8000 - 1800,jugadorB.vida(),DELTA);
@@ -69,7 +72,7 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test05MonstruoEnAtaqueAtacaAMonstruoConIgualAtaqueYAmbosSeDestruyenPeroNoInfligenDanio() throws ExcepcionMonstruoNoPuedeAtacar {
+	public void test05MonstruoEnAtaqueAtacaAMonstruoConIgualAtaqueYAmbosSeDestruyenPeroNoInfligenDanio() throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
 		
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
@@ -78,6 +81,7 @@ public class MonstruoTest {
 		Monstruo monstruoVerde = new DragonBlancoDeOjosAzules();
 		
 		atacante.establecerOponente(oponente);
+		atacante.jugarCartaBocaArriba(monstruoAzul);
 		
 		monstruoAzul.colocarEnAtaque();
 		monstruoVerde.colocarEnAtaque();
@@ -92,7 +96,7 @@ public class MonstruoTest {
 	}
 
 	@Test
-	public void test06MonstruoEnAtaqueAtacaAMonstruoConMenorDefensaYSeDestruyeSinInfligirDanio() throws ExcepcionMonstruoNoPuedeAtacar {
+	public void test06MonstruoEnAtaqueAtacaAMonstruoConMenorDefensaYSeDestruyeSinInfligirDanio() throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
 		
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
@@ -101,6 +105,7 @@ public class MonstruoTest {
 		Monstruo monstruoVerde = new AgresorOscuro();
 		
 		atacante.establecerOponente(oponente);
+		atacante.jugarCartaBocaArriba(monstruoAzul);
 		
 		monstruoAzul.colocarEnAtaque();
 		monstruoVerde.colocarEnDefensa();
@@ -112,7 +117,7 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test07MonstruoEnAtaqueAtacaAMonstruoConMayorDefensaYNoSeDestruyeNiInfligeDanio() throws ExcepcionMonstruoNoPuedeAtacar {
+	public void test07MonstruoEnAtaqueAtacaAMonstruoConMayorDefensaYNoSeDestruyeNiInfligeDanio() throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
 		
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
@@ -121,6 +126,7 @@ public class MonstruoTest {
 		Monstruo monstruoVerde = new DragonBlancoDeOjosAzules();
 		
 		atacante.establecerOponente(oponente);
+		atacante.jugarCartaBocaArriba(monstruoAzul);
 		
 		monstruoAzul.colocarEnAtaque();
 		monstruoVerde.colocarEnDefensa();

@@ -1,7 +1,7 @@
 package main.java.general;
 
 import main.java.cartas.monstruo.Monstruo;
-import main.java.cartas.trampa.Trampa;
+import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 
 public class Batalla {
@@ -15,7 +15,7 @@ public class Batalla {
 		this.oponente = oponente;
 	}
 	
-	public void atacarCon(Monstruo monstruoAtacante, Monstruo monstruoRival) throws ExcepcionMonstruoNoPuedeAtacar {
+	public void atacarCon(Monstruo monstruoAtacante, Monstruo monstruoRival) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
 
 		double diferenciaDeCombate = monstruoAtacante.diferenciaDeCombateCon(monstruoRival);
 		
