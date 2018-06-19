@@ -23,6 +23,10 @@ public class Jugador {
 		this.oponente = oponente;
 	}
 	
+	public Jugador getOponente() {
+		return this.oponente;
+	}
+	
 	public LinkedList<Monstruo> obtenerMonstruos() {
 		return tablero.obtenerMonstruos();
 	}
@@ -32,15 +36,24 @@ public class Jugador {
 	}
 	
 	public void jugarCartaBocaAbajo(Carta carta){
-		carta.colocarBocaAbajo(tablero);
+		carta.colocarEn(tablero);
 	}
 	
 	public void jugarCartaBocaArriba(Carta carta) {
-		carta.colocarBocaArriba(tablero);
+		carta.colocarEn(tablero);
+		this.voltear(carta);
+	}
+	
+	public void voltear(Carta carta) {
+		carta.aplicarEfectoA(this);
 	}
 	
 	public void destruirMonstruo(Monstruo monstruo) {
 		tablero.destruirCarta(monstruo);
+	}
+	
+	public void destruirTodosLosMonstruos() {
+		tablero.destruirTodosLosMonstruos();
 	}
 
 	public void atacar(Monstruo monstruoAtacante, Monstruo monstruoRival) throws ExcepcionMonstruoNoPuedeAtacar {
@@ -52,6 +65,10 @@ public class Jugador {
 	
 	public void infligirDanio(double danio) {
 		this.vida -= Math.abs(danio);
+	}
+
+	public boolean cartaFueDestruida(Carta carta) {
+		return tablero.cartaEstaEnCementerio(carta);
 	}
 	
 }

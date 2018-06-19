@@ -2,6 +2,7 @@ package main.java.tablero;
 
 import java.util.LinkedList;
 
+import main.java.cartas.Carta;
 import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.trampa.Trampa;
@@ -11,6 +12,7 @@ public class Tablero {
 	private LinkedList<Monstruo> zonaMonstruos= new LinkedList<Monstruo>();
 	private LinkedList<Magica> zonaMagicas= new LinkedList<Magica>();
 	private LinkedList<Trampa> zonaTrampas = new LinkedList<Trampa>();
+	private LinkedList<Carta> cementerio = new LinkedList<Carta>();
 	
 	public void agregarCarta(Magica cartaMagica) {
 		zonaMagicas.add(cartaMagica);
@@ -32,15 +34,20 @@ public class Tablero {
 	}
 	
 	public void destruirCarta(Magica cartaMagica) { //Excepcion si no la encuentra...
-		cartaMagica.mandarAlCementerio();
+		cementerio.add(cartaMagica);
 		zonaMagicas.remove(cartaMagica);
 		
 	}
 	
 	public void destruirCarta(Trampa cartaTrampa) {
-		cartaTrampa.mandarAlCementerio();
+		cementerio.add(cartaTrampa);
 		zonaTrampas.remove(cartaTrampa);
 		
+	}
+	
+	public void destruirTodosLosMonstruos() {
+		cementerio.addAll(zonaMonstruos);
+		zonaMonstruos.clear();
 	}
 	
 	public LinkedList<Monstruo> obtenerMonstruos(){
@@ -48,9 +55,13 @@ public class Tablero {
 	}
 	
 	public void destruirCarta(Monstruo cartaMonstruo) {
-		cartaMonstruo.mandarAlCementerio();
+		cementerio.add(cartaMonstruo);
 		zonaMonstruos.remove(cartaMonstruo);
 		
+	}
+
+	public boolean cartaEstaEnCementerio(Carta carta) {
+		return cementerio.contains(carta);
 	}
 	
 }

@@ -16,27 +16,25 @@ public class MagicaTest {
     private static final double DELTA = 1e-2;
 
     @Test
-
-    public void test02CartaMagicaJugadaBocaAbajoNoActivaEfecto(){
+    public void test01CartaMagicaJugadaBocaAbajoNoActivaEfecto(){
     	
     	Jugador jugadorA = new Jugador();
-    	Jugador jugadorB = new Jugador();
-        Magica magica = new AgujeroNegro(jugadorA,jugadorB);
+        Magica magica = new AgujeroNegro();
         Monstruo monstruo = new AgresorOscuro();
         
         jugadorA.jugarCartaBocaAbajo(monstruo);
         jugadorA.jugarCartaBocaAbajo(magica);
         
-        assert (!monstruo.estaEnCementerio());
+        assert (! jugadorA.cartaFueDestruida(monstruo));
     }
 
     @Test
-
-    public void test03CartaAgujeroNegroDestruyeTodosLosMonstruosYNadieEsDaniado(){
+    public void test02CartaAgujeroNegroDestruyeTodosLosMonstruosYNadieEsDaniado(){
     	
         Jugador jugadorA= new Jugador();
         Jugador jugadorB= new Jugador();
-        AgujeroNegro agujeroNegro = new AgujeroNegro(jugadorA, jugadorB);
+        AgujeroNegro agujeroNegro = new AgujeroNegro();
+        
         Monstruo monstruoA = new AgresorOscuro();
         Monstruo monstruoB = new AgresorOscuro();
         Monstruo monstruoC = new AgresorOscuro();
@@ -48,16 +46,16 @@ public class MagicaTest {
         jugadorB.jugarCartaBocaAbajo(monstruoC);
         jugadorA.jugarCartaBocaArriba(agujeroNegro);
 
-        assert(monstruoA.estaEnCementerio());
-        assert(monstruoB.estaEnCementerio());
-        assert (monstruoC.estaEnCementerio());
+        assert(jugadorA.cartaFueDestruida(monstruoA));
+        assert(jugadorA.cartaFueDestruida(monstruoB));
+        assert (jugadorB.cartaFueDestruida(monstruoC));
         assertEquals(8000,jugadorA.vida(),DELTA);
         assertEquals(8000,jugadorB.vida(),DELTA);
 
     }
     
     /*@Test
-    public void test04ActivarCartaMagicaWastelandAgrega200AlAtacanteY300AlDefensor() throws ExcepcionMonstruoNoPuedeAtacar {
+    public void test03ActivarCartaMagicaWastelandAgrega200AlAtacanteY300AlDefensor() throws ExcepcionMonstruoNoPuedeAtacar {
     	
     	jugadorA atacante = new jugadorA();
     	jugadorA defensor = new jugadorA();

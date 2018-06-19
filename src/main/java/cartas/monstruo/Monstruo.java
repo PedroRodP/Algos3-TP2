@@ -33,12 +33,7 @@ public abstract class Monstruo extends Carta {
 		this.modo = new ModoDefensa(defensa);
 	}
 
-	public void colocarBocaArriba(Tablero tablero) {
-		tablero.agregarCarta(this);
-		this.voltear();
-	}
-	
-	public void colocarBocaAbajo(Tablero tablero) {
+	public void colocarEn(Tablero tablero) {
 		tablero.agregarCarta(this);
 	}
 	

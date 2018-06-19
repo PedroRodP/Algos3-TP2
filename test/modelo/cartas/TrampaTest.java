@@ -1,24 +1,34 @@
 package modelo.cartas;
 
 import main.java.cartas.trampa.trampas.CilindroMagico;
+import main.java.general.Jugador;
+
 import org.junit.Test;
 
+import main.java.cartas.monstruo.Monstruo;
+import main.java.cartas.monstruo.monstruos.AgresorOscuro;
 import main.java.cartas.trampa.Trampa;
-import main.java.tablero.Tablero;
 
 import static org.junit.Assert.assertEquals;
 
 public class TrampaTest {
     
-/*    @Test
-    public void test02SiColocarUnaCartaTrampaBocaAbajoEnTableroEstaBocaArribaEsFalse() {
-        Trampa carta = new Trampa("Cilindro Magico");
-        Tablero tablero = new Tablero();
-        tablero.agregarCarta(carta);
+    @Test
+    public void test02SiColocaUnaCartaTrampaBocaAbajoEnTableroNoSeActivaEfecto() {
+    	
+    	Monstruo monstruo = new AgresorOscuro();
+        Trampa trampa = new CilindroMagico();
+        Jugador jugador = new Jugador();
+        Jugador oponente = new Jugador();
+        
+        jugador.establecerOponente(oponente);
+        
+        oponente.jugarCartaBocaAbajo(monstruo);
+        jugador.jugarCartaBocaAbajo(trampa);
 
-        assertEquals(false,carta.estaBocaArriba());
+        assert (! oponente.cartaFueDestruida(monstruo));
     }
-    */
+    
     
 
 }

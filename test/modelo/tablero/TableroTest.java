@@ -17,6 +17,6 @@ public class TableroTest {
 		tablero.agregarCarta(monstruo);
 		tablero.destruirCarta(monstruo);
 		
-		assert (monstruo.estaEnCementerio());
+		assert (tablero.cartaEstaEnCementerio(monstruo));
 	}
 }
