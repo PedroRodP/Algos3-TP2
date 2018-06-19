@@ -1,9 +1,10 @@
 package modelo.cartas;
 
 import static org.junit.Assert.assertEquals;
+
+import main.java.cartas.monstruo.monstruos.Jinzo7;
 import org.junit.Test;
 
-import main.java.cartas.monstruo.Jinzo7;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
 import main.java.cartas.monstruo.monstruos.Aitsu;
@@ -167,13 +168,11 @@ public class MonstruoTest {
 		assert (jugador.cartaFueDestruida(monstruoRojo));
 		assert (jugador.cartaFueDestruida(monstruoVerde));
 	}
-	
-	 @Test
-	 public void testo10ActivoEfectoJinzoYAtacoALosPuntosDeVidaDirectamente() throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
-		 
+
+	@Test
+	public void testo10ActivoEfectoJinzoYAtacoALosPuntosDeVidaDirectamente() throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
 		Jugador rival = new Jugador();
 		Jugador jugador =new Jugador();
-		
 		rival.establecerOponente(jugador);
 		jugador.establecerOponente(rival);
 

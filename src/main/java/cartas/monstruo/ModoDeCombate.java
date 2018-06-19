@@ -15,9 +15,11 @@ public abstract class ModoDeCombate {
 	
 	public abstract void infligirDanioAJugador(Jugador jugador, double danio);
 	
+	public abstract void atacarDirectoAJugador(Jugador jugador) throws ExcepcionMonstruoNoPuedeAtacar;
+	
 	public abstract void actualizarPotencialDeAtaque(double puntos);
 	
 	public abstract void actualizarPotencialDeDefensa(double puntos);
 	
-	public abstract void atacarDirectoAJugador(Jugador jugador) throws ExcepcionMonstruoNoPuedeAtacar;
+
 }

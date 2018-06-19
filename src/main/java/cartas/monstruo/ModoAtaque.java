@@ -18,7 +18,12 @@ public class ModoAtaque extends ModoDeCombate {
 	public void infligirDanioAJugador(Jugador jugador, double danio) {
 		jugador.infligirDanio(danio);
 	}
-		
+	
+	@Override
+	public void atacarDirectoAJugador(Jugador jugador) {
+		jugador.infligirDanio(puntaje);
+	}
+	
 	public void actualizarPotencialDeAtaque(double puntos) {
 		puntaje += puntos;
 	}
@@ -26,8 +31,4 @@ public class ModoAtaque extends ModoDeCombate {
 	public void actualizarPotencialDeDefensa(double puntos) {	
 		return;
 	}
-	
-	public void atacarDirectoAJugador(Jugador jugador) {
-		jugador.infligirDanio(puntaje);
-}
 }

@@ -20,6 +20,11 @@ public class ModoDefensa extends ModoDeCombate {
 		return; //No inflige danio por estar en modo defensa
 	}
 	
+	@Override
+	public void atacarDirectoAJugador(Jugador jugador) throws ExcepcionMonstruoNoPuedeAtacar{
+		throw new ExcepcionMonstruoNoPuedeAtacar();
+	}
+	
 	public void actualizarPotencialDeDefensa(double puntos) {
 		puntaje += puntos;
 	}
@@ -27,9 +32,5 @@ public class ModoDefensa extends ModoDeCombate {
 	public void actualizarPotencialDeAtaque(double puntos) {
 		
 	}
-	
-	@Override
-	public void atacarDirectoAJugador(Jugador jugador) throws ExcepcionMonstruoNoPuedeAtacar{
-		throw new ExcepcionMonstruoNoPuedeAtacar();
-}
+
 }
