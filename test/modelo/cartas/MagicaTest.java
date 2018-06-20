@@ -9,7 +9,7 @@ import main.java.cartas.magica.magicas.OllaDeLaCodicia;
 //import main.java.cartas.magica.magicas.Wasteland;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
-import main.java.cartas.monstruo.monstruos.Aitsu;
+import main.java.cartas.monstruo.monstruos.AmanteFeliz;
 import main.java.excepciones.ExcepcionMazoVacio;
 import main.java.general.Jugador;
 import main.java.general.Mazo;
@@ -84,15 +84,15 @@ public class MagicaTest {
     	Fisura fisura = new Fisura();
     
     	Monstruo agresorOscuro = new AgresorOscuro();
-    	Monstruo aitsu = new Aitsu();
+    	Monstruo amanteFeliz = new AmanteFeliz();
     	
     	oponente.jugarCartaBocaArriba(agresorOscuro);
-    	oponente.jugarCartaBocaArriba(aitsu);
+    	oponente.jugarCartaBocaArriba(amanteFeliz);
     	
     	fisura.afectaA(oponente);
     	fisura.aplicarEfecto();
     	
-    	assert(oponente.cartaFueDestruida(aitsu));
+    	assert(oponente.cartaFueDestruida(amanteFeliz));
     	assert(! oponente.cartaFueDestruida(agresorOscuro));
     	
     }

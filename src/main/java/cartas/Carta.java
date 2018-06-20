@@ -9,10 +9,6 @@ public abstract class Carta {
 	
 	public abstract void colocarEnTablero(Tablero tablero);
 
-	public boolean tenesEsteNombre(String unNombreCarta){
-		return this.nombre.equals(unNombreCarta);
-	}
-
 	public void setBocaArriba() {
 		this.posicion = new BocaArriba();
 	}

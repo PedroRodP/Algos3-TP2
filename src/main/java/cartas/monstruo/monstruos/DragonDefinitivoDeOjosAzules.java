@@ -8,6 +8,7 @@ public class DragonDefinitivoDeOjosAzules extends Monstruo {
     public DragonDefinitivoDeOjosAzules() {
 
         super(4500, 3800, 12);
+        nombre = "Dragon definitivo de ojos azules";
     }
 
     @Override

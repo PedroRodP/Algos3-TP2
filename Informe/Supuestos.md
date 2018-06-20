@@ -7,3 +7,4 @@
 2da entrega:
 
 -BocaArriba y BocaAbajo funcionan con booleanos para evitar generalizaciones. No todas las cartas hacen lo mismo al estar BocaArriba.
+-Utilizamos Factory Method para la creación de cartas y las tomamos aleatoriamente para generar un Mazo.
