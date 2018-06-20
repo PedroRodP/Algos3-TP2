@@ -47,7 +47,7 @@ public class FabricaDeCartas {
 		cartas.add(i++, new DragonBlancoDeOjosAzules());
 		//cartas.add(i++, new DragonDefinitivoDeOjosAzules());
 		cartas.add(i++, new Jinzo7());
-		//cartas.add(i++, new InsectoComeHombres()); 
+		//cartas.add(i++, new InsectoComeHombres());
 		cartas.add(i++, new BrazoDerechoExodia());
 		cartas.add(i++, new BrazoIzquierdoExodia());
 		cartas.add(i++, new CabezaExodia());
@@ -68,7 +68,8 @@ public class FabricaDeCartas {
 		
 		i = 0;
 		
-		cartas.add(i++, new CilindroMagico());
+		cartas.add(i++, new CilindroMagico()); //Arreglar cilindro
+		//cartas.add(i++, new Reinforcements());
 	}
 	
 	public void generarCampos() {

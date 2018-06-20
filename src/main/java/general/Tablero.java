@@ -1,7 +1,6 @@
 package main.java.general;
 
 import java.util.LinkedList;
-import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 import main.java.cartas.Carta;
@@ -9,8 +8,6 @@ import main.java.cartas.campo.Campo;
 import main.java.cartas.campo.NoCampo;
 import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Monstruo;
-import main.java.cartas.monstruo.monstruos.DragonBlancoDeOjosAzules;
-import main.java.cartas.monstruo.monstruos.DragonDefinitivoDeOjosAzules;
 import main.java.cartas.trampa.Trampa;
 
 public class Tablero {
@@ -34,7 +31,7 @@ public class Tablero {
 	public void desactivarEfectoDeCampo() {
 		cartaDeCampo.desactivarEfecto();
 	}
-	
+		
 	public void agregarCarta(Monstruo cartaMonstruo){
 		/*todo podriamos pasar como segundo argumento una lista con los monstruos a sacrificar (el controlador la pedira al usuario
 		que vaya seleccionando los monstruos a sacrificar mediante una ventana y cuando se llene la lista le deje hacer OK*/
@@ -43,7 +40,7 @@ public class Tablero {
 		while (i < cartaMonstruo.sacrificiosNecesariosPorInvocacion()) {
 			
 			try {
-				Monstruo sacrificado = zonaMonstruos.getFirst();
+				Monstruo sacrificado = zonaMonstruos.getLast();
 				this.destruirCarta(sacrificado); 
 				i++;
 			
@@ -84,30 +81,15 @@ public class Tablero {
 		zonaMonstruos.remove(cartaMonstruo);
 		
 	}
+	
+	public void destruirCartas(LinkedList<Monstruo> monstruos) {
+		
+		for (Monstruo m : monstruos) {
+			this.destruirCarta(m);
+		}
+	}
 
 	public boolean cartaEstaEnCementerio(Carta carta) {
 		return cementerio.contains(carta);
-	}
-
-	public void agregarMonstruoDefinitivo(DragonDefinitivoDeOjosAzules dragon) {
-		int i = 0;
-		LinkedList<Monstruo> dragonesSacrificados = new LinkedList<Monstruo>();
-		ListIterator<Monstruo> it= zonaMonstruos.listIterator();
-		while  ((i < 3)&&(it.hasNext())){
-			Monstruo monstruo = it.next();
-			if(monstruo instanceof DragonBlancoDeOjosAzules) {
-				i++;
-				dragonesSacrificados.add(monstruo);
-			}
-
-
-		}
-		if (i==3){
-			for (Monstruo sacrificio: dragonesSacrificados){
-				this.destruirCarta(sacrificio);
-			}
-			zonaMonstruos.add(dragon);
-		}
-
 	}
 }

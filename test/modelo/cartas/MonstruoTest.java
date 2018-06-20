@@ -205,35 +205,30 @@ public class MonstruoTest {
 	public void test13invocacionDragonDefinitivoDeOjosAzulesSacrifica3DragonesDeOjosAzules(){
 
 		Jugador jugador = new Jugador();
-		Monstruo monstruoVerde = new AgresorOscuro();
-		Monstruo monstruoRojo = new AgresorOscuro();
-		Monstruo monstruoVioleta = new AgresorOscuro();
-		Monstruo monstruoAzul = new AgresorOscuro();
-		Monstruo monstruoRosa = new AgresorOscuro();
-		Monstruo monstruoAmarillo = new AgresorOscuro();
-
-		jugador.jugarCartaBocaAbajo(monstruoAmarillo);
-		jugador.jugarCartaBocaAbajo(monstruoAzul);
-		jugador.jugarCartaBocaAbajo(monstruoRojo);
-		jugador.jugarCartaBocaAbajo(monstruoRosa);
-		jugador.jugarCartaBocaAbajo(monstruoVerde);
-		jugador.jugarCartaBocaAbajo(monstruoVioleta);
-
+		
+		Monstruo aux = new AgresorOscuro(); //Se requieren monstruos para sacrificar para colocar Dragones
+		
 		Monstruo dragon1 = new DragonBlancoDeOjosAzules();
 		Monstruo dragon2 = new DragonBlancoDeOjosAzules();
 		Monstruo dragon3 = new DragonBlancoDeOjosAzules();
-
+		Monstruo definitivo = new DragonDefinitivoDeOjosAzules();
+		
+		jugador.jugarCartaBocaAbajo(aux);
+		jugador.jugarCartaBocaAbajo(aux);
 		jugador.jugarCartaBocaAbajo(dragon1);
+		
+		jugador.jugarCartaBocaAbajo(aux);
+		jugador.jugarCartaBocaAbajo(aux);
 		jugador.jugarCartaBocaAbajo(dragon2);
+		
+		jugador.jugarCartaBocaAbajo(aux);
+		jugador.jugarCartaBocaAbajo(aux);
 		jugador.jugarCartaBocaAbajo(dragon3);
 
-		Monstruo dragonDefinitivo = new DragonDefinitivoDeOjosAzules();
-
-		jugador.jugarCartaBocaAbajo(dragonDefinitivo);
+		jugador.jugarCartaBocaAbajo(definitivo);
 
 		assert (jugador.cartaFueDestruida(dragon1));
 		assert (jugador.cartaFueDestruida(dragon2));
 		assert (jugador.cartaFueDestruida(dragon3));
-
 	}
 }

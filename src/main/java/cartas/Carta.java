@@ -9,6 +9,10 @@ public abstract class Carta {
 	
 	public abstract void colocarEnTablero(Tablero tablero);
 
+	public String nombre() {
+		return nombre;
+	}
+	
 	public void setBocaArriba() {
 		this.posicion = new BocaArriba();
 	}
