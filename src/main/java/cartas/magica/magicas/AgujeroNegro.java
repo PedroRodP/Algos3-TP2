@@ -5,14 +5,16 @@ import main.java.general.Jugador;
 
 public class AgujeroNegro extends Magica {
 
-	public AgujeroNegro() {
-		nombre = "Agujero Negro";
+	private Jugador afectado;
+	
+	public void afectaA(Jugador jugador) {
+		this.afectado = jugador;
 	}
 
-	public void aplicarEfectoA(Jugador jugador) {
+	public void aplicarEfecto() {
 		
-		jugador.destruirTodosLosMonstruos();
-		Jugador oponente = jugador.getOponente();
+		afectado.destruirTodosLosMonstruos();
+		Jugador oponente = afectado.getOponente();
 		oponente.destruirTodosLosMonstruos();
 	}
 }

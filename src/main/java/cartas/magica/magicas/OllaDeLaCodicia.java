@@ -6,10 +6,16 @@ import main.java.general.Jugador;
 
 public class OllaDeLaCodicia extends Magica {
 
-	public void aplicarEfectoA(Jugador jugador) throws ExcepcionMazoVacio {
+	private Jugador afectado;
+	
+	public void afectaA(Jugador jugador) {
+		this.afectado = jugador;
+	}
+	
+	public void aplicarEfecto() throws ExcepcionMazoVacio {
 		
-		jugador.tomarCartaDelMazo();
-		jugador.tomarCartaDelMazo();
+		afectado.tomarCartaDelMazo();
+		afectado.tomarCartaDelMazo();
 	}
 
 }

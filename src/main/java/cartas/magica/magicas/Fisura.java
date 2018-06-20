@@ -8,15 +8,15 @@ import main.java.general.Jugador;
 
 public class Fisura extends Magica {
 
-	private Jugador oponente;
+	private Jugador afectado;
 
-	public void afectaA(Jugador oponente) {
-		this.oponente = oponente;
+	public void afectaA(Jugador jugador) {
+		this.afectado = jugador;
 	}
 	
 	public void aplicarEfecto() {
 		
-		LinkedList<Monstruo> monstruos = oponente.obtenerMonstruos();
+		LinkedList<Monstruo> monstruos = afectado.obtenerMonstruos();
 		if (monstruos.isEmpty()) return;
 		
 		Monstruo monstruoConMenorAtaque = monstruos.getFirst();
@@ -26,6 +26,6 @@ public class Fisura extends Magica {
 			}
 		}
 		
-		oponente.destruirMonstruo(monstruoConMenorAtaque);
+		afectado.destruirMonstruo(monstruoConMenorAtaque);
 	}
 }

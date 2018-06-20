@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/PedroRodP/Algos3-TP2.svg?branch=master)](https://travis-ci.org/PedroRodP/Algos3-TP2)
 
-## Grupo
+## Grupo n2
 
 | Padrón | Nombre y Apellido               |
 |--------|---------------------------------|

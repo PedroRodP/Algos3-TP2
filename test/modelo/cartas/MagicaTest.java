@@ -50,7 +50,8 @@ public class MagicaTest {
         jugadorA.jugarCartaBocaAbajo(monstruoB);
         jugadorB.jugarCartaBocaAbajo(monstruoC);
         jugadorA.jugarCartaBocaArriba(agujeroNegro);
-        agujeroNegro.aplicarEfectoA(jugadorA);
+        agujeroNegro.afectaA(jugadorA);
+        agujeroNegro.aplicarEfecto();
 
         assert(jugadorA.cartaFueDestruida(monstruoA));
         assert(jugadorA.cartaFueDestruida(monstruoB));
@@ -69,7 +70,8 @@ public class MagicaTest {
     	
     	jugador.asignarMazo(mazo);
     	jugador.jugarCartaBocaArriba(olla);
-    	olla.aplicarEfectoA(jugador);
+    	olla.afectaA(jugador);
+    	olla.aplicarEfecto();
     	
     	assertEquals (2, jugador.cantidadDeCartasEnMano());
     }
