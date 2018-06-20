@@ -4,7 +4,7 @@ public class BrazoIzquierdoExodia extends Exodia {
 
     public BrazoIzquierdoExodia(){
         super(200,300,1);
-        nombre = "Brazo Izquierdo del Prohibido";
+        nombre = "Brazo izquierdo del prohibido";
     }
 
     @Override
