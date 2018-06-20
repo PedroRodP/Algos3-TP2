@@ -1,0 +1,14 @@
+package main.java.cartas.monstruo.monstruos.exodia;
+
+public class CabezaExodia extends Exodia {
+
+    public CabezaExodia(){
+        super(1000,1000,3);
+        nombre = "Exodia, el Prohibido";
+    }
+
+    @Override
+    public boolean esCabezaDeExodia() {
+        return true;
+    }
+}
