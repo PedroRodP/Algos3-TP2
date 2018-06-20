@@ -2,13 +2,10 @@ package modelo.cartas;
 
 import static org.junit.Assert.assertEquals;
 
-import main.java.cartas.monstruo.monstruos.Jinzo7;
+import main.java.cartas.monstruo.monstruos.*;
 import org.junit.Test;
 
 import main.java.cartas.monstruo.Monstruo;
-import main.java.cartas.monstruo.monstruos.AgresorOscuro;
-import main.java.cartas.monstruo.monstruos.Aitsu;
-import main.java.cartas.monstruo.monstruos.DragonBlancoDeOjosAzules;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.general.Jugador;
@@ -202,5 +199,41 @@ public class MonstruoTest {
     
 		assertEquals(ataqueMonstruoA + 200, monstruoA.potenciaDeCombate(), DELTA);	
    
+	}
+
+	@Test
+	public void test13Invoco3DragonesDeOjosAzulesYDragonDefinitivoDeOjosAzulesSacrificando3Dragones(){
+
+		Jugador jugador = new Jugador();
+		Monstruo monstruoVerde = new AgresorOscuro();
+		Monstruo monstruoRojo = new AgresorOscuro();
+		Monstruo monstruoVioleta = new AgresorOscuro();
+		Monstruo monstruoAzul = new AgresorOscuro();
+		Monstruo monstruoRosa = new AgresorOscuro();
+		Monstruo monstruoAmarillo = new AgresorOscuro();
+
+		jugador.jugarCartaBocaAbajo(monstruoAmarillo);
+		jugador.jugarCartaBocaAbajo(monstruoAzul);
+		jugador.jugarCartaBocaAbajo(monstruoRojo);
+		jugador.jugarCartaBocaAbajo(monstruoRosa);
+		jugador.jugarCartaBocaAbajo(monstruoVerde);
+		jugador.jugarCartaBocaAbajo(monstruoVioleta);
+
+		Monstruo dragon1 = new DragonBlancoDeOjosAzules();
+		Monstruo dragon2 = new DragonBlancoDeOjosAzules();
+		Monstruo dragon3 = new DragonBlancoDeOjosAzules();
+
+		jugador.jugarCartaBocaAbajo(dragon1);
+		jugador.jugarCartaBocaAbajo(dragon2);
+		jugador.jugarCartaBocaAbajo(dragon3);
+
+		Monstruo dragonDefinitivo = new DragonDefinitivoDeOjosAzules();
+
+		jugador.jugarCartaBocaAbajo(dragonDefinitivo);
+
+		assert (jugador.cartaFueDestruida(dragon1));
+		assert (jugador.cartaFueDestruida(dragon2));
+		assert (jugador.cartaFueDestruida(dragon3));
+
 	}
 }

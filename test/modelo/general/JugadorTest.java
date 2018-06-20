@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import main.java.general.Jugador;
 
+
 import static org.junit.Assert.assertEquals;
 
 public class JugadorTest {
@@ -14,7 +15,7 @@ public class JugadorTest {
 	public void test01CrearJugadorDevuelveJugadorCon8000PuntosDeVida() {
 		
 		Jugador jugador = new Jugador();
-		
+
 		assertEquals(8000, jugador.vida(), DELTA);
 	}
 
