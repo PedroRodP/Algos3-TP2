@@ -202,7 +202,7 @@ public class MonstruoTest {
 	}
 
 	@Test
-	public void test13Invoco3DragonesDeOjosAzulesYDragonDefinitivoDeOjosAzulesSacrificando3Dragones(){
+	public void test13invocacionDragonDefinitivoDeOjosAzulesSacrifica3DragonesDeOjosAzules(){
 
 		Jugador jugador = new Jugador();
 		Monstruo monstruoVerde = new AgresorOscuro();
