@@ -15,14 +15,17 @@ public class Fisura extends Magica {
 	}
 	
 	public void aplicarEfecto() {
+		
 		LinkedList<Monstruo> monstruos = oponente.obtenerMonstruos();
 		if (monstruos.isEmpty()) return;
+		
 		Monstruo monstruoConMenorAtaque = monstruos.getFirst();
 		for (Monstruo m: monstruos) {
 			if (m.obtenerAtaque() < monstruoConMenorAtaque.obtenerAtaque()) {
 				monstruoConMenorAtaque = m;
 			}
 		}
+		
 		oponente.destruirMonstruo(monstruoConMenorAtaque);
 	}
 }

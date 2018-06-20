@@ -2,7 +2,6 @@ package modelo.cartas;
 
 import org.junit.Test;
 
-import main.java.cartas.Carta;
 import main.java.cartas.magica.Magica;
 import main.java.cartas.magica.magicas.AgujeroNegro;
 import main.java.cartas.magica.magicas.Fisura;
@@ -16,8 +15,6 @@ import main.java.general.Jugador;
 import main.java.general.Mazo;
 
 import static org.junit.Assert.assertEquals;
-
-import java.util.LinkedList;
 
 public class MagicaTest {
 
@@ -68,13 +65,7 @@ public class MagicaTest {
     	
     	OllaDeLaCodicia olla = new OllaDeLaCodicia();
     	Jugador jugador = new Jugador();
-    	Monstruo monstruo1 = new Aitsu();
-    	Monstruo monstruo2 = new Aitsu();
-    	
-    	LinkedList<Carta> cartas = new LinkedList<Carta>();
-    	cartas.add(monstruo1);
-    	cartas.add(monstruo2);
-    	Mazo mazo = new Mazo(cartas);
+    	Mazo mazo = new Mazo();
     	
     	jugador.asignarMazo(mazo);
     	jugador.jugarCartaBocaArriba(olla);
@@ -89,7 +80,6 @@ public class MagicaTest {
     	Jugador oponente = new Jugador();
     	
     	Fisura fisura = new Fisura();
-    	fisura.afectaA(oponente);
     
     	Monstruo agresorOscuro = new AgresorOscuro();
     	Monstruo aitsu = new Aitsu();
@@ -97,9 +87,11 @@ public class MagicaTest {
     	oponente.jugarCartaBocaArriba(agresorOscuro);
     	oponente.jugarCartaBocaArriba(aitsu);
     	
+    	fisura.afectaA(oponente);
     	fisura.aplicarEfecto();
     	
-    	assert(oponente.cartaFueDestruida(aitsu) && !oponente.cartaFueDestruida(agresorOscuro));
+    	assert(oponente.cartaFueDestruida(aitsu));
+    	assert(! oponente.cartaFueDestruida(agresorOscuro));
     	
     }
 }
