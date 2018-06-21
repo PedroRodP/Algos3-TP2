@@ -46,14 +46,24 @@ public class Jugador {
 		return vida;
 	}
 	
-	public void jugarMonstruoBocaAbajo(Monstruo monstruo) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void jugarMonstruoBocaAbajo(Monstruo monstruo) throws ExcepcionZonaCompleta {
 		monstruo.setBocaAbajo();
-		monstruo.colocarEnTablero(tablero);
+		tablero.agregarCarta(monstruo);
 	}
 	
-	public void jugarMonstruoBocaArriba(Monstruo monstruo) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void jugarMonstruoBocaArriba(Monstruo monstruo) throws ExcepcionZonaCompleta {
 		monstruo.setBocaArriba();
-		monstruo.colocarEnTablero(tablero);
+		tablero.agregarCarta(monstruo);
+	}
+	
+	public void jugarMonstruoBocaAbajoSacrificando(Monstruo monstruo, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+		monstruo.setBocaAbajo();
+		monstruo.colocarEnTablero(tablero, sacrificados);
+	}
+	
+	public void jugarMonstruoBocaArribaSacrificando(Monstruo monstruo, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+		monstruo.setBocaArriba();
+		monstruo.colocarEnTablero(tablero, sacrificados);
 	}
 	
 	public void jugarMagicaBocaAbajo(Magica magica) throws ExcepcionZonaCompleta {
@@ -76,12 +86,7 @@ public class Jugador {
 		tablero.agregarCarta(trampa);
 	}
 	
-	public void jugarCampoBocaAbajo(Campo campo) {
-		campo.setBocaAbajo();
-		tablero.agregarCarta(campo);
-	}
-	
-	public void jugarCampoBocaArriba(Campo campo) {
+	public void jugarCampo(Campo campo) { //Los campos se activan directamente
 		campo.setBocaArriba();
 		tablero.agregarCarta(campo);
 	}

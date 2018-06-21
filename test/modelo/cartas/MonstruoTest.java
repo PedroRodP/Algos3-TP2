@@ -2,6 +2,8 @@ package modelo.cartas;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.LinkedList;
+
 import main.java.cartas.monstruo.monstruos.*;
 import org.junit.Test;
 
@@ -144,9 +146,12 @@ public class MonstruoTest {
 		Jugador jugador = new Jugador();
 		Monstruo monstruoAzul = new AgresorOscuro();
 		Monstruo monstruoRojo = new Aitsu();
+		LinkedList<Monstruo> aSacrificar = new LinkedList<>();
+		
+		aSacrificar.add(monstruoAzul);
 		
 		jugador.jugarMonstruoBocaAbajo(monstruoAzul);
-		jugador.jugarMonstruoBocaAbajo(monstruoRojo);
+		jugador.jugarMonstruoBocaAbajoSacrificando(monstruoRojo, aSacrificar);
 		
 		assert (jugador.cartaFueDestruida(monstruoAzul));
 		
@@ -159,10 +164,14 @@ public class MonstruoTest {
 		Monstruo monstruoVerde = new AgresorOscuro();
 		Monstruo monstruoRojo = new AgresorOscuro();
 		Monstruo monstruoAzul = new DragonBlancoDeOjosAzules();
+		LinkedList<Monstruo> aSacrificar = new LinkedList<>();
+		
+		aSacrificar.add(monstruoRojo);
+		aSacrificar.add(monstruoVerde);
 
 		jugador.jugarMonstruoBocaAbajo(monstruoRojo);
 		jugador.jugarMonstruoBocaAbajo(monstruoVerde);
-		jugador.jugarMonstruoBocaAbajo(monstruoAzul);
+		jugador.jugarMonstruoBocaAbajoSacrificando(monstruoAzul, aSacrificar);
 		
 		assert (jugador.cartaFueDestruida(monstruoRojo));
 		assert (jugador.cartaFueDestruida(monstruoVerde));
@@ -209,25 +218,33 @@ public class MonstruoTest {
 		Jugador jugador = new Jugador();
 		
 		Monstruo aux = new AgresorOscuro(); //Se requieren monstruos para sacrificar para colocar Dragones
+		LinkedList<Monstruo> aSacrificar = new LinkedList<>();
+		LinkedList<Monstruo> dragones = new LinkedList<>();
 		
 		Monstruo dragon1 = new DragonBlancoDeOjosAzules();
 		Monstruo dragon2 = new DragonBlancoDeOjosAzules();
 		Monstruo dragon3 = new DragonBlancoDeOjosAzules();
 		Monstruo definitivo = new DragonDefinitivoDeOjosAzules();
 		
-		jugador.jugarMonstruoBocaAbajo(aux);
-		jugador.jugarMonstruoBocaAbajo(aux);
-		jugador.jugarMonstruoBocaAbajo(dragon1);
+		aSacrificar.add(aux);
+		aSacrificar.add(aux);
+		dragones.add(dragon1);
+		dragones.add(dragon2);
+		dragones.add(dragon3);
 		
 		jugador.jugarMonstruoBocaAbajo(aux);
 		jugador.jugarMonstruoBocaAbajo(aux);
-		jugador.jugarMonstruoBocaAbajo(dragon2);
+		jugador.jugarMonstruoBocaAbajoSacrificando(dragon1, aSacrificar);
 		
 		jugador.jugarMonstruoBocaAbajo(aux);
 		jugador.jugarMonstruoBocaAbajo(aux);
-		jugador.jugarMonstruoBocaAbajo(dragon3);
+		jugador.jugarMonstruoBocaAbajoSacrificando(dragon2, aSacrificar);
+		
+		jugador.jugarMonstruoBocaAbajo(aux);
+		jugador.jugarMonstruoBocaAbajo(aux);
+		jugador.jugarMonstruoBocaAbajoSacrificando(dragon3, aSacrificar);
 
-		jugador.jugarMonstruoBocaAbajo(definitivo);
+		jugador.jugarMonstruoBocaAbajoSacrificando(definitivo, dragones);
 
 		assert (jugador.cartaFueDestruida(dragon1));
 		assert (jugador.cartaFueDestruida(dragon2));

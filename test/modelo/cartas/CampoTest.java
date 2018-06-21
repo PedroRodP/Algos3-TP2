@@ -37,7 +37,7 @@ public class CampoTest {
         Wasteland wasteland = new Wasteland();
         wasteland.afectaA(jugador.obtenerMonstruos(), oponente.obtenerMonstruos());
         
-        jugador.jugarCampoBocaArriba(wasteland);
+        jugador.jugarCampo(wasteland);
         
         assertEquals(ataqueMonstruoA + 200, monstruoA.potenciaDeCombate(), DELTA);
         assertEquals(defensaMonstruoB + 300, monstruoB.potenciaDeCombate(), DELTA);
@@ -64,7 +64,7 @@ public class CampoTest {
         Sogen sogen = new Sogen();
         sogen.afectaA(jugador.obtenerMonstruos(), oponente.obtenerMonstruos());
         
-        jugador.jugarCampoBocaArriba(sogen);
+        jugador.jugarCampo(sogen);
         
         assertEquals(defensaMonstruoA + 500, monstruoA.potenciaDeCombate(), DELTA);
         assertEquals(ataqueMonstruoB + 200, monstruoB.potenciaDeCombate(), DELTA);

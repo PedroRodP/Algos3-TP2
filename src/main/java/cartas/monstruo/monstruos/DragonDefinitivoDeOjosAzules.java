@@ -1,6 +1,5 @@
 package main.java.cartas.monstruo.monstruos;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import main.java.cartas.monstruo.Monstruo;
@@ -17,23 +16,17 @@ public class DragonDefinitivoDeOjosAzules extends Monstruo {
     }
 
     @Override
-    public void colocarEnTablero(Tablero tablero) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
-    	
-    	LinkedList<Monstruo> zonaMonstruos = tablero.obtenerMonstruos();
-    	Iterator<Monstruo> monstruos = zonaMonstruos.iterator();
+    public void colocarEnTablero(Tablero tablero, LinkedList<Monstruo> sacrificados) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
+    	    	
     	int dragones = 0;
-    	LinkedList<Monstruo> sacrificados = new LinkedList<Monstruo>();
-    			
-    	while (monstruos.hasNext() && dragones < 3) {
+    	for (Monstruo monstruo : sacrificados) {
     		
-    		Monstruo monstruo = monstruos.next();
     		if (monstruo.nombre() == "Dragon blanco de ojos azules") {
-    			sacrificados.add(monstruo);
     			dragones++;
     		}
     	}
     	
-    	if (sacrificados.size() < 3) {
+    	if (dragones < 3) {
     		throw new ExcepcionSacrificiosInsuficientes();	
     	}
     	

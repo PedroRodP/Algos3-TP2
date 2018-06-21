@@ -1,7 +1,6 @@
 package main.java.cartas.monstruo;
 
 import java.util.LinkedList;
-import java.util.NoSuchElementException;
 
 import main.java.cartas.Carta;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
@@ -39,23 +38,13 @@ public abstract class Monstruo extends Carta {
 		this.modo = new ModoDefensa(defensa);
 	}
 
-	public void colocarEnTablero(Tablero tablero) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void colocarEnTablero(Tablero tablero, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
 		
-		LinkedList<Monstruo> zona = tablero.obtenerMonstruos();
-		
-		int i = 0;
-		while (i < sacrificiosNecesariosPorInvocacion()) {
-			
-			try {
-				Monstruo sacrificado = zona.getLast();
-				tablero.destruirCarta(sacrificado); 
-				i++;
-			
-			} catch (NoSuchElementException e) {
-				throw new ExcepcionSacrificiosInsuficientes();
-			}
+		if (sacrificados.size() < sacrificiosNecesariosPorInvocacion()) {
+			throw new ExcepcionSacrificiosInsuficientes();
 		}
 		
+		tablero.destruirCartas(sacrificados); 
 		tablero.agregarCarta(this);
 	}
 	
