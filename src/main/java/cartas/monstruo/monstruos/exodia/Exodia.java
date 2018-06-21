@@ -5,9 +5,9 @@ import main.java.cartas.monstruo.Monstruo;
 
 import java.util.LinkedList;
 
-abstract class Exodia extends Monstruo {
+public abstract class Exodia extends Monstruo {
 
-    public static boolean tieneAExodia(LinkedList<Carta> cartas){
+    public static boolean estaCompleto(LinkedList<Carta> cartas){
         boolean tieneCabeza = false,tieneBrazoIzq = false,tieneBrazoDer = false,tienePiernaIzq = false,tienePiernaDer = false;
         for (Carta carta : cartas){
             if (carta instanceof Exodia){

@@ -14,7 +14,7 @@ public class AgujeroNegro extends Magica {
 	public void aplicarEfecto() {
 		
 		afectado.destruirTodosLosMonstruos();
-		Jugador oponente = afectado.getOponente();
+		Jugador oponente = afectado.obtenerOponente();
 		oponente.destruirTodosLosMonstruos();
 	}
 }

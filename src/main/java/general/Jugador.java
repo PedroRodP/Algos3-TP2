@@ -16,6 +16,7 @@ public class Jugador {
 	private Jugador oponente;
 	private Mano mano;
 	private Mazo mazo;
+	private boolean mazoVacio;
 	
 	public Jugador() {
 		
@@ -28,7 +29,7 @@ public class Jugador {
 		this.oponente = oponente;
 	}
 	
-	public Jugador getOponente() {
+	public Jugador obtenerOponente() {
 		return this.oponente;
 	}
 	
@@ -69,7 +70,7 @@ public class Jugador {
 		batalla.atacarCon(monstruoAtacante, monstruoRival);
 	}
 	
-	public void infligirDanio(double danio) {
+	public void infligirDanio(double danio){
 		this.vida -= Math.abs(danio);
 	}
 
@@ -85,17 +86,39 @@ public class Jugador {
 	public void ponerEnDefensa(Monstruo monstruo) {
 		monstruo.colocarEnDefensa();
 	}
-	
-	public int cantidadDeCartasEnMano() {
-		return this.mano.cantidadDeCartas();
+		
+	public void tomarCartaDelMazo(){
+		
+		try {
+			
+			Carta carta = mazo.tomarCarta();
+			this.mano.agregar(carta);
+			
+		}catch (ExcepcionMazoVacio e){
+			
+			mazoVacio = true;
+			
+		}
 	}
 	
-	public void tomarCartaDelMazo() throws ExcepcionMazoVacio {
-		Carta carta = mazo.tomarCarta();
-		this.mano.agregar(carta);
+	public int cantidadDeCartasEnMano() {
+		return mano.cantidadDeCartas();
+	}
+	
+	public boolean seQuedoSinCartas() {
+		return mazoVacio;
 	}
 	
 	public void asignarMazo(Mazo mazo) {
 		this.mazo = mazo;
+		this.mazoVacio = false;
+	}
+	
+	public boolean completoExodia() {
+		return mano.completoExodia();
+	}
+	
+	public boolean estaMuerto() {
+		return vida <= 0;
 	}
 }

@@ -22,29 +22,31 @@ public class JugadorTest {
 	}
 
 	@Test
-	(expected = ExcepcionMazoVacio.class)
-	public void test02JugadorPuedeTomarHasta40CartasDelMazo() throws ExcepcionMazoVacio {
+	public void test02JugadorPuedeTomarHasta40CartasDelMazo(){
 		
 		Jugador jugador = new Jugador();
 		Mazo mazo = new Mazo();
 		
 		jugador.asignarMazo(mazo);
-		for (int i = 0; i <= 40; i++) { //Iterara 41 veces
+		
+		for (int i = 0; i <= 20; i++) { //Iterara 41 veces
 			jugador.tomarCartaDelMazo();
 		}
+		
+		assert(!jugador.seQuedoSinCartas());
 	}
 	
 	@Test
-	public void test02BISJugadorPuedeTomarHasta40CartasDelMazo() throws ExcepcionMazoVacio {
+	public void test02BISJugadorPuedeTomarHasta40CartasDelMazo(){
 		
 		Jugador jugador = new Jugador();
 		Mazo mazo = new Mazo();
 		
 		jugador.asignarMazo(mazo);
-		for (int i = 0; i < 40; i++) { //Iterara 40 veces
+		for (int i = 0; i < 50; i++) { 
 			jugador.tomarCartaDelMazo();
 		}
 		
-		assertEquals(40, jugador.cantidadDeCartasEnMano());
+		assert(jugador.seQuedoSinCartas());
 	}
 }
