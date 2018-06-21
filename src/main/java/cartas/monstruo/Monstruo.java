@@ -7,6 +7,7 @@ import main.java.cartas.Carta;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
+import main.java.excepciones.ExcepcionZonaCompleta;
 import main.java.general.Jugador;
 import main.java.general.Tablero;
 
@@ -38,7 +39,7 @@ public abstract class Monstruo extends Carta {
 		this.modo = new ModoDefensa(defensa);
 	}
 
-	public void colocarEnTablero(Tablero tablero) throws ExcepcionSacrificiosInsuficientes {
+	public void colocarEnTablero(Tablero tablero) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
 		
 		LinkedList<Monstruo> zona = tablero.obtenerMonstruos();
 		

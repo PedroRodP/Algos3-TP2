@@ -2,6 +2,7 @@ package modelo.cartas;
 
 import main.java.cartas.trampa.trampas.CilindroMagico;
 import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
+import main.java.excepciones.ExcepcionZonaCompleta;
 import main.java.general.Jugador;
 
 import org.junit.Test;
@@ -17,7 +18,7 @@ public class TrampaTest {
 	private final static double DELTA = 1e-2;
 	
     @Test
-    public void test01SiColocaUnaCartaTrampaBocaAbajoEnTableroNoSeActivaEfecto() throws ExcepcionSacrificiosInsuficientes {
+    public void test01SiColocaUnaCartaTrampaBocaAbajoEnTableroNoSeActivaEfecto() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
     	
     	Monstruo monstruo = new AgresorOscuro();
         Trampa trampa = new CilindroMagico();
@@ -26,8 +27,8 @@ public class TrampaTest {
         
         jugador.establecerOponente(oponente);
         
-        oponente.jugarCartaBocaAbajo(monstruo);
-        jugador.jugarCartaBocaAbajo(trampa);
+        oponente.jugarMonstruoBocaAbajo(monstruo);
+        jugador.jugarTrampaBocaAbajo(trampa);
 
         assert (! oponente.cartaFueDestruida(monstruo));
     }

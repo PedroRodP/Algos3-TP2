@@ -10,8 +10,10 @@ import main.java.cartas.magica.magicas.OllaDeLaCodicia;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
 import main.java.cartas.monstruo.monstruos.AmanteFeliz;
+import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionMazoVacio;
 import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
+import main.java.excepciones.ExcepcionZonaCompleta;
 import main.java.general.Jugador;
 import main.java.general.Mazo;
 
@@ -22,20 +24,20 @@ public class MagicaTest {
     private static final double DELTA = 1e-2;
 
     @Test
-    public void test01CartaMagicaJugadaBocaAbajoNoActivaEfecto() throws ExcepcionSacrificiosInsuficientes{
+    public void test01CartaMagicaJugadaBocaAbajoNoActivaEfecto() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta{
     	
     	Jugador jugadorA = new Jugador();
         Magica magica = new AgujeroNegro();
         Monstruo monstruo = new AgresorOscuro();
         
-        jugadorA.jugarCartaBocaAbajo(monstruo);
-        jugadorA.jugarCartaBocaAbajo(magica);
+        jugadorA.jugarMonstruoBocaAbajo(monstruo);
+        jugadorA.jugarMagicaBocaAbajo(magica);
         
         assert (! jugadorA.cartaFueDestruida(monstruo));
     }
 
     @Test
-    public void test02CartaAgujeroNegroDestruyeTodosLosMonstruosYNadieEsDaniado() throws ExcepcionSacrificiosInsuficientes{
+    public void test02CartaAgujeroNegroDestruyeTodosLosMonstruosYNadieEsDaniado() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaBocaAbajo{
     	
         Jugador jugadorA= new Jugador();
         Jugador jugadorB= new Jugador();
@@ -47,10 +49,10 @@ public class MagicaTest {
         
         jugadorA.establecerOponente(jugadorB);
 
-        jugadorA.jugarCartaBocaAbajo(monstruoA);
-        jugadorA.jugarCartaBocaAbajo(monstruoB);
-        jugadorB.jugarCartaBocaAbajo(monstruoC);
-        jugadorA.jugarCartaBocaArriba(agujeroNegro);
+        jugadorA.jugarMonstruoBocaAbajo(monstruoA);
+        jugadorA.jugarMonstruoBocaAbajo(monstruoB);
+        jugadorB.jugarMonstruoBocaAbajo(monstruoC);
+        jugadorA.jugarMagicaBocaArriba(agujeroNegro);
         agujeroNegro.afectaA(jugadorA);
         agujeroNegro.aplicarEfecto();
 
@@ -63,14 +65,14 @@ public class MagicaTest {
     }
     
     @Test
-    public void test03ActivarOllaDeLaCodiciaTomaDosCartasDelMazo() throws ExcepcionMazoVacio, ExcepcionSacrificiosInsuficientes {
+    public void test03ActivarOllaDeLaCodiciaTomaDosCartasDelMazo() throws ExcepcionMazoVacio, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaBocaAbajo {
     	
     	OllaDeLaCodicia olla = new OllaDeLaCodicia();
     	Jugador jugador = new Jugador();
     	Mazo mazo = new Mazo();
     	
     	jugador.asignarMazo(mazo);
-    	jugador.jugarCartaBocaArriba(olla);
+    	jugador.jugarMagicaBocaArriba(olla);
     	olla.afectaA(jugador);
     	olla.aplicarEfecto();
     	
@@ -78,8 +80,9 @@ public class MagicaTest {
     }
     
     @Test
-    public void test04CuandoActivarEfectoDeCartaMagicaFisuraSeDestruyeElMonstruoOponenteConMenorAtaque() throws ExcepcionSacrificiosInsuficientes {
+    public void test04CuandoActivarEfectoDeCartaMagicaFisuraSeDestruyeElMonstruoOponenteConMenorAtaque() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaBocaAbajo {
 
+    	Jugador jugador = new Jugador();
     	Jugador oponente = new Jugador();
     	
     	Fisura fisura = new Fisura();
@@ -87,9 +90,11 @@ public class MagicaTest {
     	Monstruo agresorOscuro = new AgresorOscuro();
     	Monstruo amanteFeliz = new AmanteFeliz();
     	
-    	oponente.jugarCartaBocaArriba(agresorOscuro);
-    	oponente.jugarCartaBocaArriba(amanteFeliz);
+    	jugador.establecerOponente(oponente);
     	
+    	oponente.jugarMonstruoBocaArriba(agresorOscuro);
+    	oponente.jugarMonstruoBocaArriba(amanteFeliz);
+    	jugador.jugarMagicaBocaArriba(fisura);
     	fisura.afectaA(oponente);
     	fisura.aplicarEfecto();
     	
@@ -97,6 +102,45 @@ public class MagicaTest {
     	assert(! oponente.cartaFueDestruida(agresorOscuro));
     	
     }
+    
+    @Test
+    (expected = ExcepcionCartaBocaAbajo.class)
+    public void test05ActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionZonaCompleta, ExcepcionCartaBocaAbajo {
+    	
+    	Jugador jugador = new Jugador();
+    	AgujeroNegro magica = new AgujeroNegro();
+    	
+    	jugador.jugarMagicaBocaAbajo(magica);
+    	
+    	magica.afectaA(jugador);
+    	magica.aplicarEfecto();
+    }
+    
+   @Test
+   (expected = ExcepcionCartaBocaAbajo.class)
+   public void test05BISActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionZonaCompleta, ExcepcionCartaBocaAbajo, ExcepcionMazoVacio {
+   	
+   		Jugador jugador = new Jugador();
+   		OllaDeLaCodicia magica = new OllaDeLaCodicia();
+   	
+   		jugador.jugarMagicaBocaAbajo(magica);
+   	
+   		magica.afectaA(jugador);
+   		magica.aplicarEfecto();
+   }
+   
+   @Test
+   (expected = ExcepcionCartaBocaAbajo.class)
+   public void test05BISBISActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionZonaCompleta, ExcepcionCartaBocaAbajo {
+   	
+   		Jugador jugador = new Jugador();
+   		Fisura magica = new Fisura();
+   	
+   		jugador.jugarMagicaBocaAbajo(magica);
+   	
+   		magica.afectaA(jugador);
+   		magica.aplicarEfecto();
+   }
 }
 	
 

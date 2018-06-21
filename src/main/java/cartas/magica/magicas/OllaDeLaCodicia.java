@@ -1,6 +1,7 @@
 package main.java.cartas.magica.magicas;
 
 import main.java.cartas.magica.Magica;
+import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionMazoVacio;
 import main.java.general.Jugador;
 
@@ -16,7 +17,9 @@ public class OllaDeLaCodicia extends Magica {
 		this.afectado = jugador;
 	}
 	
-	public void aplicarEfecto() throws ExcepcionMazoVacio {
+	public void aplicarEfecto() throws ExcepcionMazoVacio, ExcepcionCartaBocaAbajo {
+		
+		if (posicion.estaBocaAbajo()) { throw new ExcepcionCartaBocaAbajo(); }
 		
 		afectado.tomarCartaDelMazo();
 		afectado.tomarCartaDelMazo();

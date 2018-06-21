@@ -8,6 +8,7 @@ import main.java.cartas.campo.NoCampo;
 import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.trampa.Trampa;
+import main.java.excepciones.ExcepcionZonaCompleta;
 
 public class Tablero {
 
@@ -17,29 +18,37 @@ public class Tablero {
 	private LinkedList<Carta> cementerio = new LinkedList<Carta>();
 	private Campo cartaDeCampo = new NoCampo();
 	
-	public void agregarCarta(Magica cartaMagica) {
-		zonaMagicas.add(cartaMagica);
-	}
-	
 	public void agregarCarta(Campo cartaCampo) {
-		this.desactivarEfectoDeCampo();
+		cartaDeCampo.desactivarEfecto();
 		cartaDeCampo = cartaCampo;
 		cartaDeCampo.aplicarEfecto();
 	}
-	
-	public void desactivarEfectoDeCampo() {
-		cartaDeCampo.desactivarEfecto();
-	}
 
-	public void agregarCarta(Monstruo cartaMonstruo){
-		zonaMonstruos.add(cartaMonstruo);
+	public void agregarCarta(Monstruo cartaMonstruo) throws ExcepcionZonaCompleta{
+		
+		if (zonaMonstruos.size() == 5) {
+			throw new ExcepcionZonaCompleta();
+		}
+			zonaMonstruos.add(cartaMonstruo);
 	}
 	
-	public void agregarCarta(Trampa cartaTrampa) {
+	public void agregarCarta(Magica cartaMagica) throws ExcepcionZonaCompleta {
+		
+		if (zonaMagicas.size() + zonaTrampas.size() == 5) {
+			throw new ExcepcionZonaCompleta();
+		}
+		zonaMagicas.add(cartaMagica);
+	}
+	
+	public void agregarCarta(Trampa cartaTrampa) throws ExcepcionZonaCompleta {
+		
+		if (zonaMagicas.size() + zonaTrampas.size() == 5) {
+			throw new ExcepcionZonaCompleta();
+		}
 		zonaTrampas.add(cartaTrampa);
 	}
 	
-	public void destruirCarta(Magica cartaMagica) { //Excepcion si no la encuentra...
+	public void destruirCarta(Magica cartaMagica) {
 		cementerio.add(cartaMagica);
 		zonaMagicas.remove(cartaMagica);
 		
@@ -48,10 +57,6 @@ public class Tablero {
 	public void destruirCarta(Trampa cartaTrampa) {
 		cementerio.add(cartaTrampa);
 		zonaTrampas.remove(cartaTrampa);
-	}
-	
-	public LinkedList<Monstruo> obtenerMonstruos(){
-		return zonaMonstruos;
 	}
 	
 	public void destruirCarta(Monstruo cartaMonstruo) {
@@ -63,6 +68,10 @@ public class Tablero {
 		
 		cementerio.addAll(monstruos);
 		zonaMonstruos.removeAll(monstruos);
+	}
+	
+	public LinkedList<Monstruo> obtenerMonstruos(){
+		return zonaMonstruos;
 	}
 
 	public boolean cartaEstaEnCementerio(Carta carta) {

@@ -9,6 +9,7 @@ import main.java.cartas.campo.campos.Wasteland;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
 import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
+import main.java.excepciones.ExcepcionZonaCompleta;
 import main.java.general.Jugador;
 
 public class CampoTest {
@@ -16,7 +17,7 @@ public class CampoTest {
 	private static final double DELTA = 1e-2;
 	
 	@Test
-	public void testWastelandIncrementaElAtaqueEn200PuntosDeMonstruosPropiosY300LaDefensaDeMonstruosRivales() throws ExcepcionSacrificiosInsuficientes {
+	public void testWastelandIncrementaElAtaqueEn200PuntosDeMonstruosPropiosY300LaDefensaDeMonstruosRivales() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
 
    	 	Jugador jugador= new Jugador();
         Jugador oponente= new Jugador();
@@ -24,8 +25,8 @@ public class CampoTest {
         Monstruo monstruoA = new AgresorOscuro();
         Monstruo monstruoB = new AgresorOscuro();
        
-        jugador.jugarCartaBocaArriba(monstruoA);
-        oponente.jugarCartaBocaArriba(monstruoB);
+        jugador.jugarMonstruoBocaArriba(monstruoA);
+        oponente.jugarMonstruoBocaArriba(monstruoB);
         
         monstruoA.colocarEnAtaque();
         monstruoB.colocarEnDefensa();
@@ -36,14 +37,14 @@ public class CampoTest {
         Wasteland wasteland = new Wasteland();
         wasteland.afectaA(jugador.obtenerMonstruos(), oponente.obtenerMonstruos());
         
-        jugador.jugarCartaBocaArriba(wasteland);
+        jugador.jugarCampoBocaArriba(wasteland);
         
         assertEquals(ataqueMonstruoA + 200, monstruoA.potenciaDeCombate(), DELTA);
         assertEquals(defensaMonstruoB + 300, monstruoB.potenciaDeCombate(), DELTA);
 	}
 	
 	@Test
-	public void testSogenIncrementaElAtaqueDeLosMonstruosPropiosEn500PuntosY200ElAtaqueDeMonstruosRivales() throws ExcepcionSacrificiosInsuficientes {
+	public void testSogenIncrementaElAtaqueDeLosMonstruosPropiosEn500PuntosY200ElAtaqueDeMonstruosRivales() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
 
    	 	Jugador jugador = new Jugador();
         Jugador oponente = new Jugador();
@@ -53,9 +54,9 @@ public class CampoTest {
         Monstruo monstruoB = new AgresorOscuro();
         monstruoB.colocarEnAtaque();
        
-        jugador.jugarCartaBocaArriba(monstruoA);
+        jugador.jugarMonstruoBocaArriba(monstruoA);
         
-        oponente.jugarCartaBocaArriba(monstruoB);
+        oponente.jugarMonstruoBocaArriba(monstruoB);
         
         double defensaMonstruoA = monstruoA.potenciaDeCombate();
         double ataqueMonstruoB = monstruoB.potenciaDeCombate();
@@ -63,7 +64,7 @@ public class CampoTest {
         Sogen sogen = new Sogen();
         sogen.afectaA(jugador.obtenerMonstruos(), oponente.obtenerMonstruos());
         
-        jugador.jugarCartaBocaArriba(sogen);
+        jugador.jugarCampoBocaArriba(sogen);
         
         assertEquals(defensaMonstruoA + 500, monstruoA.potenciaDeCombate(), DELTA);
         assertEquals(ataqueMonstruoB + 200, monstruoB.potenciaDeCombate(), DELTA);

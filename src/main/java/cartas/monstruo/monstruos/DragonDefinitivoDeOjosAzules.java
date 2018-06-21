@@ -4,6 +4,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import main.java.cartas.monstruo.Monstruo;
+import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
+import main.java.excepciones.ExcepcionZonaCompleta;
 import main.java.general.Tablero;
 
 public class DragonDefinitivoDeOjosAzules extends Monstruo {
@@ -15,7 +17,7 @@ public class DragonDefinitivoDeOjosAzules extends Monstruo {
     }
 
     @Override
-    public void colocarEnTablero(Tablero tablero) {
+    public void colocarEnTablero(Tablero tablero) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
     	
     	LinkedList<Monstruo> zonaMonstruos = tablero.obtenerMonstruos();
     	Iterator<Monstruo> monstruos = zonaMonstruos.iterator();
@@ -31,11 +33,12 @@ public class DragonDefinitivoDeOjosAzules extends Monstruo {
     		}
     	}
     	
-    	//TODO Lanzar excepcion de alguna forma si no alcanzan los sacrificados
-    	if (sacrificados.size() == 3) {
-    	
-			tablero.destruirCartas(sacrificados);
-			tablero.agregarCarta(this);
+    	if (sacrificados.size() < 3) {
+    		throw new ExcepcionSacrificiosInsuficientes();	
     	}
+    	
+		tablero.destruirCartas(sacrificados);
+		tablero.agregarCarta(this);
+    	
     }
 }

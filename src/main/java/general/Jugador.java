@@ -3,12 +3,16 @@ package main.java.general;
 import java.util.LinkedList;
 
 import main.java.cartas.Carta;
+import main.java.cartas.campo.Campo;
+import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Batalla;
 import main.java.cartas.monstruo.Monstruo;
+import main.java.cartas.trampa.Trampa;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionMazoVacio;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
+import main.java.excepciones.ExcepcionZonaCompleta;
 
 public class Jugador {
 
@@ -42,14 +46,44 @@ public class Jugador {
 		return vida;
 	}
 	
-	public void jugarCartaBocaAbajo(Carta carta) throws ExcepcionSacrificiosInsuficientes{
-		carta.colocarEnTablero(tablero);
-		carta.setBocaAbajo();
+	public void jugarMonstruoBocaAbajo(Monstruo monstruo) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+		monstruo.setBocaAbajo();
+		monstruo.colocarEnTablero(tablero);
 	}
 	
-	public void jugarCartaBocaArriba(Carta carta) throws ExcepcionSacrificiosInsuficientes {
-		carta.colocarEnTablero(tablero);
-		carta.setBocaArriba();
+	public void jugarMonstruoBocaArriba(Monstruo monstruo) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+		monstruo.setBocaArriba();
+		monstruo.colocarEnTablero(tablero);
+	}
+	
+	public void jugarMagicaBocaAbajo(Magica magica) throws ExcepcionZonaCompleta {
+		magica.setBocaAbajo();
+		tablero.agregarCarta(magica);
+	}
+	
+	public void jugarMagicaBocaArriba(Magica magica) throws ExcepcionZonaCompleta {
+		magica.setBocaArriba();
+		tablero.agregarCarta(magica);
+	}
+	
+	public void jugarTrampaBocaAbajo(Trampa trampa) throws ExcepcionZonaCompleta {
+		trampa.setBocaAbajo();
+		tablero.agregarCarta(trampa);
+	}
+	
+	public void jugarTrampaBocaArriba(Trampa trampa) throws ExcepcionZonaCompleta {
+		trampa.setBocaArriba();
+		tablero.agregarCarta(trampa);
+	}
+	
+	public void jugarCampoBocaAbajo(Campo campo) {
+		campo.setBocaAbajo();
+		tablero.agregarCarta(campo);
+	}
+	
+	public void jugarCampoBocaArriba(Campo campo) {
+		campo.setBocaArriba();
+		tablero.agregarCarta(campo);
 	}
 	
 	public void voltearCarta(Carta carta) {

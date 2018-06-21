@@ -1,8 +1,5 @@
 package main.java.cartas;
 
-import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
-import main.java.general.Tablero;
-
 public abstract class Carta {
 
 	protected String nombre;
@@ -11,8 +8,6 @@ public abstract class Carta {
 	public String nombre() {
 		return nombre;
 	}
-	
-	public abstract void colocarEnTablero(Tablero tablero) throws ExcepcionSacrificiosInsuficientes;
 	
 	public void setBocaArriba() {
 		this.posicion = new BocaArriba();
