@@ -8,6 +8,7 @@ import main.java.cartas.campo.campos.Sogen;
 import main.java.cartas.campo.campos.Wasteland;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
+import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
 import main.java.general.Jugador;
 
 public class CampoTest {
@@ -15,7 +16,7 @@ public class CampoTest {
 	private static final double DELTA = 1e-2;
 	
 	@Test
-	public void testWastelandIncrementaElAtaqueEn200PuntosDeMonstruosPropiosY300LaDefensaDeMonstruosRivales() {
+	public void testWastelandIncrementaElAtaqueEn200PuntosDeMonstruosPropiosY300LaDefensaDeMonstruosRivales() throws ExcepcionSacrificiosInsuficientes {
 
    	 	Jugador jugador= new Jugador();
         Jugador oponente= new Jugador();
@@ -42,7 +43,7 @@ public class CampoTest {
 	}
 	
 	@Test
-	public void testSogenIncrementaElAtaqueDeLosMonstruosPropiosEn500PuntosY200ElAtaqueDeMonstruosRivales() {
+	public void testSogenIncrementaElAtaqueDeLosMonstruosPropiosEn500PuntosY200ElAtaqueDeMonstruosRivales() throws ExcepcionSacrificiosInsuficientes {
 
    	 	Jugador jugador = new Jugador();
         Jugador oponente = new Jugador();

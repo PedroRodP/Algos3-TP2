@@ -8,6 +8,7 @@ import main.java.cartas.monstruo.Monstruo;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionMazoVacio;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
+import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
 
 public class Jugador {
 
@@ -41,12 +42,12 @@ public class Jugador {
 		return vida;
 	}
 	
-	public void jugarCartaBocaAbajo(Carta carta){
+	public void jugarCartaBocaAbajo(Carta carta) throws ExcepcionSacrificiosInsuficientes{
 		carta.colocarEnTablero(tablero);
 		carta.setBocaAbajo();
 	}
 	
-	public void jugarCartaBocaArriba(Carta carta) {
+	public void jugarCartaBocaArriba(Carta carta) throws ExcepcionSacrificiosInsuficientes {
 		carta.colocarEnTablero(tablero);
 		carta.setBocaArriba();
 	}

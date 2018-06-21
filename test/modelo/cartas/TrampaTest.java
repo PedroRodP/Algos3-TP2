@@ -1,6 +1,7 @@
 package modelo.cartas;
 
 import main.java.cartas.trampa.trampas.CilindroMagico;
+import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
 import main.java.general.Jugador;
 
 import org.junit.Test;
@@ -16,7 +17,7 @@ public class TrampaTest {
 	private final static double DELTA = 1e-2;
 	
     @Test
-    public void test01SiColocaUnaCartaTrampaBocaAbajoEnTableroNoSeActivaEfecto() {
+    public void test01SiColocaUnaCartaTrampaBocaAbajoEnTableroNoSeActivaEfecto() throws ExcepcionSacrificiosInsuficientes {
     	
     	Monstruo monstruo = new AgresorOscuro();
         Trampa trampa = new CilindroMagico();

@@ -11,6 +11,7 @@ import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
 import main.java.cartas.monstruo.monstruos.AmanteFeliz;
 import main.java.excepciones.ExcepcionMazoVacio;
+import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
 import main.java.general.Jugador;
 import main.java.general.Mazo;
 
@@ -21,7 +22,7 @@ public class MagicaTest {
     private static final double DELTA = 1e-2;
 
     @Test
-    public void test01CartaMagicaJugadaBocaAbajoNoActivaEfecto(){
+    public void test01CartaMagicaJugadaBocaAbajoNoActivaEfecto() throws ExcepcionSacrificiosInsuficientes{
     	
     	Jugador jugadorA = new Jugador();
         Magica magica = new AgujeroNegro();
@@ -34,7 +35,7 @@ public class MagicaTest {
     }
 
     @Test
-    public void test02CartaAgujeroNegroDestruyeTodosLosMonstruosYNadieEsDaniado(){
+    public void test02CartaAgujeroNegroDestruyeTodosLosMonstruosYNadieEsDaniado() throws ExcepcionSacrificiosInsuficientes{
     	
         Jugador jugadorA= new Jugador();
         Jugador jugadorB= new Jugador();
@@ -62,7 +63,7 @@ public class MagicaTest {
     }
     
     @Test
-    public void test03ActivarOllaDeLaCodiciaTomaDosCartasDelMazo() throws ExcepcionMazoVacio {
+    public void test03ActivarOllaDeLaCodiciaTomaDosCartasDelMazo() throws ExcepcionMazoVacio, ExcepcionSacrificiosInsuficientes {
     	
     	OllaDeLaCodicia olla = new OllaDeLaCodicia();
     	Jugador jugador = new Jugador();
@@ -77,7 +78,7 @@ public class MagicaTest {
     }
     
     @Test
-    public void test04CuandoActivarEfectoDeCartaMagicaFisuraSeDestruyeElMonstruoOponenteConMenorAtaque() {
+    public void test04CuandoActivarEfectoDeCartaMagicaFisuraSeDestruyeElMonstruoOponenteConMenorAtaque() throws ExcepcionSacrificiosInsuficientes {
 
     	Jugador oponente = new Jugador();
     	

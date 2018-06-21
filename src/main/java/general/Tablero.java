@@ -1,7 +1,6 @@
 package main.java.general;
 
 import java.util.LinkedList;
-import java.util.NoSuchElementException;
 
 import main.java.cartas.Carta;
 import main.java.cartas.campo.Campo;
@@ -31,17 +30,7 @@ public class Tablero {
 	public void desactivarEfectoDeCampo() {
 		cartaDeCampo.desactivarEfecto();
 	}
-	
-	//AgregarCarta() IDEAL
-	/*public void agregarCarta(Monstruo monstruo, LinkedList<Monstruo> monstruos) {
-		this.destruirCartas(monstruos);
-		this.agregarCarta(monstruo);
-	}
-	
-	public void agregarCarta(Monstruo monstruo) {
-		zonaMonstruos.add(monstruo);
-	}*/
-	
+
 	public void agregarCarta(Monstruo cartaMonstruo){
 		zonaMonstruos.add(cartaMonstruo);
 	}

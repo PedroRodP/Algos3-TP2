@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 import main.java.cartas.Carta;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
+import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
 import main.java.general.Jugador;
 import main.java.general.Tablero;
 
@@ -37,7 +38,7 @@ public abstract class Monstruo extends Carta {
 		this.modo = new ModoDefensa(defensa);
 	}
 
-	public void colocarEnTablero(Tablero tablero) {
+	public void colocarEnTablero(Tablero tablero) throws ExcepcionSacrificiosInsuficientes {
 		
 		LinkedList<Monstruo> zona = tablero.obtenerMonstruos();
 		
@@ -50,7 +51,7 @@ public abstract class Monstruo extends Carta {
 				i++;
 			
 			} catch (NoSuchElementException e) {
-				break;
+				throw new ExcepcionSacrificiosInsuficientes();
 			}
 		}
 		
