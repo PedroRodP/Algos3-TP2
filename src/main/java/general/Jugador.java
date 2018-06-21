@@ -46,12 +46,22 @@ public class Jugador {
 		return vida;
 	}
 	
-	public void jugarMonstruoBocaAbajo(Monstruo monstruo) throws ExcepcionZonaCompleta {
+	public void jugarMonstruoBocaAbajo(Monstruo monstruo) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
+		
+		if (monstruo.sacrificiosNecesariosPorInvocacion() != 0) {
+			throw new ExcepcionSacrificiosInsuficientes();
+		}
+		
 		monstruo.setBocaAbajo();
 		tablero.agregarCarta(monstruo);
 	}
 	
-	public void jugarMonstruoBocaArriba(Monstruo monstruo) throws ExcepcionZonaCompleta {
+	public void jugarMonstruoBocaArriba(Monstruo monstruo) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
+		
+		if (monstruo.sacrificiosNecesariosPorInvocacion() != 0) {
+			throw new ExcepcionSacrificiosInsuficientes();
+		}
+		
 		monstruo.setBocaArriba();
 		tablero.agregarCarta(monstruo);
 	}
