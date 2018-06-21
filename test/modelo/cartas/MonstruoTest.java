@@ -250,4 +250,76 @@ public class MonstruoTest {
 		assert (jugador.cartaFueDestruida(dragon2));
 		assert (jugador.cartaFueDestruida(dragon3));
 	}
+	
+	@Test
+	(expected = ExcepcionSacrificiosInsuficientes.class)
+	public void test14InvocarDragonDefinitivoSinTenerDragonesBlancosLanzaExcepcion() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+		
+		Jugador jugador = new Jugador();
+		
+		Monstruo aux = new AgresorOscuro();
+		LinkedList<Monstruo> aSacrificar = new LinkedList<>(); //3 monstruos que no son dragones
+		Monstruo definitivo = new DragonDefinitivoDeOjosAzules();
+		
+		aSacrificar.add(aux);
+		aSacrificar.add(aux);
+		aSacrificar.add(aux);
+		
+		jugador.jugarMonstruoBocaAbajo(aux);
+		jugador.jugarMonstruoBocaAbajo(aux);
+		jugador.jugarMonstruoBocaAbajo(aux);
+		jugador.jugarMonstruoBocaAbajoSacrificando(definitivo, aSacrificar);
+	}
+	
+	@Test
+	(expected = ExcepcionSacrificiosInsuficientes.class)
+	public void test15InvocarDragonDefinitivoConMenosDe3DragonesBlancosLanzaExcepcion() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+		
+		Jugador jugador = new Jugador();
+		
+		Monstruo aux = new AgresorOscuro();
+		Monstruo dragon = new DragonBlancoDeOjosAzules();
+		LinkedList<Monstruo> aSacrificar = new LinkedList<>(); //2 monstruos para agregar un dragon blanco
+		LinkedList<Monstruo> dragones = new LinkedList<>(); //Menos de 3 dragones
+		Monstruo definitivo = new DragonDefinitivoDeOjosAzules();
+		
+		aSacrificar.add(aux);
+		aSacrificar.add(aux);
+		dragones.add(dragon);
+		dragones.add(dragon);
+		
+		jugador.jugarMonstruoBocaAbajo(aux);
+		jugador.jugarMonstruoBocaAbajo(aux);
+		jugador.jugarMonstruoBocaAbajoSacrificando(dragon, aSacrificar);
+		
+		jugador.jugarMonstruoBocaAbajo(aux);
+		jugador.jugarMonstruoBocaAbajo(aux);
+		jugador.jugarMonstruoBocaAbajoSacrificando(dragon, aSacrificar);
+		
+		jugador.jugarMonstruoBocaAbajoSacrificando(definitivo, aSacrificar);
+	}
+	
+	@Test
+	public void test16SiSeSeleccionanMasMonstruosQueLosNecesariosSeSacrificaranLosNecesariosYSeDestruiranLosDemas() 
+			throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+
+		Jugador jugador = new Jugador();
+		Monstruo dragon = new DragonBlancoDeOjosAzules();
+		Monstruo monstruito1 = new AgresorOscuro();
+		Monstruo monstruito2 = new AgresorOscuro();
+		Monstruo monstruito3 = new AgresorOscuro();
+		
+		jugador.jugarMonstruoBocaAbajo(monstruito1);
+		jugador.jugarMonstruoBocaAbajo(monstruito2);
+		jugador.jugarMonstruoBocaAbajo(monstruito3);
+		
+		LinkedList<Monstruo> todos = jugador.obtenerMonstruos();
+		
+		jugador.jugarMonstruoBocaAbajoSacrificando(dragon, todos);
+		
+		assert (jugador.cartaFueDestruida(monstruito1));
+		assert (jugador.cartaFueDestruida(monstruito2));
+		assert (jugador.cartaFueDestruida(monstruito3));
+	}
+	
 }

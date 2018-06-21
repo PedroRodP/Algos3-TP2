@@ -2,7 +2,6 @@ package modelo.general;
 
 import org.junit.Test;
 
-import main.java.excepciones.ExcepcionMazoVacio;
 import main.java.general.Jugador;
 import main.java.general.Mazo;
 
@@ -29,7 +28,7 @@ public class JugadorTest {
 		
 		jugador.asignarMazo(mazo);
 		
-		for (int i = 0; i <= 20; i++) { //Iterara 41 veces
+		for (int i = 0; i < 40; i++) { //Iterara 40 veces
 			jugador.tomarCartaDelMazo();
 		}
 		
