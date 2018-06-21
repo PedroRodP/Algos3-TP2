@@ -10,6 +10,10 @@ public class Fisura extends Magica {
 
 	private Jugador afectado;
 
+	public Fisura() {
+		nombre = "Fisura";
+	}
+	
 	public void afectaA(Jugador jugador) {
 		this.afectado = jugador;
 	}

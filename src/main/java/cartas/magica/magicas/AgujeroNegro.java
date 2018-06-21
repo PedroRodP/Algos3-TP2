@@ -7,6 +7,10 @@ public class AgujeroNegro extends Magica {
 
 	private Jugador afectado;
 	
+	public AgujeroNegro() {
+		nombre = "Agujero negro";
+	}
+	
 	public void afectaA(Jugador jugador) {
 		this.afectado = jugador;
 	}

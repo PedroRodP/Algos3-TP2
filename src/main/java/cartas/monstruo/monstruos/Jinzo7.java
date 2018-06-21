@@ -9,6 +9,7 @@ public class Jinzo7 extends Monstruo {
 	
     public Jinzo7() {
         super(500, 400, 2);
+        nombre = "Jinzo 7";
     }
     
     public void afectaA(Jugador oponente) {

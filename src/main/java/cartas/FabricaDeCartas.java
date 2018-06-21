@@ -45,7 +45,7 @@ public class FabricaDeCartas {
 		cartas.add(i++, new BestiaDeTalwar());
 		cartas.add(i++, new BrujaOscura());
 		cartas.add(i++, new DragonBlancoDeOjosAzules());
-		//cartas.add(i++, new DragonDefinitivoDeOjosAzules());
+		cartas.add(i++, new DragonDefinitivoDeOjosAzules());
 		cartas.add(i++, new Jinzo7());
 		//cartas.add(i++, new InsectoComeHombres());
 		cartas.add(i++, new BrazoDerechoExodia());

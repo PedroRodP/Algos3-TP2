@@ -19,15 +19,15 @@ public class DragonDefinitivoDeOjosAzules extends Monstruo {
     	
     	LinkedList<Monstruo> zonaMonstruos = tablero.obtenerMonstruos();
     	Iterator<Monstruo> monstruos = zonaMonstruos.iterator();
-    	int contador = 0;
+    	int dragones = 0;
     	LinkedList<Monstruo> sacrificados = new LinkedList<Monstruo>();
     			
-    	while (monstruos.hasNext() && contador < 3) {
+    	while (monstruos.hasNext() && dragones < 3) {
     		
     		Monstruo monstruo = monstruos.next();
     		if (monstruo.nombre() == "Dragon blanco de ojos azules") {
     			sacrificados.add(monstruo);
-    			contador++;
+    			dragones++;
     		}
     	}
     	

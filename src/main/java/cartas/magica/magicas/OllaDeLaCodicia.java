@@ -8,6 +8,10 @@ public class OllaDeLaCodicia extends Magica {
 
 	private Jugador afectado;
 	
+	public OllaDeLaCodicia() {
+		nombre = "Olla de la codicia";
+	}
+	
 	public void afectaA(Jugador jugador) {
 		this.afectado = jugador;
 	}

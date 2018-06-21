@@ -2,9 +2,7 @@ package main.java.general;
 
 import java.util.ArrayList;
 
-import main.java.cartas.monstruo.Monstruo;
 import main.java.excepciones.ExcepcionJuegoNoTermino;
-import main.java.excepciones.ExcepcionMazoVacio;
 
 public class AlGoOh {
 	
@@ -24,7 +22,6 @@ public class AlGoOh {
 		asignarMazos();
 		crearTurnador();
 		establecerOponentes();
-		
 		
 	}
 	

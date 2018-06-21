@@ -12,10 +12,10 @@ public class Mazo {
 
 	private LinkedList<Carta> cartas;
 	private final int MAX_CARTAS = 40;
-	private final int MAX_MONSTRUOS = (int) (0.5 * MAX_CARTAS); //50 por ciento
-	private final int MAX_MAGICAS = (int) (0.2 * MAX_CARTAS); //20 por ciento
-	private final int MAX_TRAMPAS = (int) (0.2 * MAX_CARTAS); //20 por ciento
-	private final int MAX_CAMPOS = (int) (0.1 * MAX_CARTAS); //10 por ciento
+	private final int MAX_MONSTRUOS = (int) (0.60 * MAX_CARTAS); //60 por ciento. 24 cartas
+	private final int MAX_MAGICAS = (int) (0.25 * MAX_CARTAS); //25 por ciento. 10 cartas
+	private final int MAX_TRAMPAS = (int) (0.10 * MAX_CARTAS); //10 por ciento. 4 cartas
+	private final int MAX_CAMPOS = (int) (0.05 * MAX_CARTAS); //5 por ciento. 2 cartas
 	
 	public Mazo() {
 		

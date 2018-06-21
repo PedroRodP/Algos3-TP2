@@ -5,6 +5,10 @@ import main.java.cartas.monstruo.Monstruo;
 
 public class Sogen extends Campo {
 	
+	public Sogen() {
+		nombre = "Sogen";
+	}
+	
 	public void aplicarEfecto() {
 		for (Monstruo m: monstruosPropios) m.alterarDefensa(500);
 		for (Monstruo m: monstruosRivales) m.alterarAtaque(200);
