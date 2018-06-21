@@ -55,7 +55,7 @@ public class MagicaTest {
 
         assert(jugadorA.cartaFueDestruida(monstruoA));
         assert(jugadorA.cartaFueDestruida(monstruoB));
-        assert (jugadorB.cartaFueDestruida(monstruoC));
+        assert(jugadorB.cartaFueDestruida(monstruoC));
         assertEquals(8000,jugadorA.vida(),DELTA);
         assertEquals(8000,jugadorB.vida(),DELTA);
 
