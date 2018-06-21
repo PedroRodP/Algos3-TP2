@@ -16,7 +16,7 @@ public class Batalla {
 	}
 	
 	public void atacarCon(Monstruo monstruoAtacante, Monstruo monstruoRival) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
-
+		
 		double diferenciaDeCombate = monstruoAtacante.diferenciaDeCombateCon(monstruoRival);
 		
 		if (diferenciaDeCombate == 0) {
@@ -28,9 +28,8 @@ public class Batalla {
 				atacante.destruirMonstruo(monstruoAtacante);
 			
 			} else {
-				monstruoRival.infligirDanioAJugador(oponente, diferenciaDeCombate);
-				oponente.destruirMonstruo(monstruoRival);
-			
+				monstruoRival.infligirDanioAJugador(oponente, diferenciaDeCombate); //TODO no contempla el caso en q este en modo defensa 
+				oponente.destruirMonstruo(monstruoRival); 
 		}
 	}
 }

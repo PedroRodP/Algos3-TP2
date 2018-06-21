@@ -39,7 +39,8 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test03MonstruoEnAtaqueMuereSiAtacaAMonstruoConMayorAtaqueEnModoAtaque() throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void test03MonstruoEnAtaqueMuereSiAtacaAMonstruoConMayorAtaqueEnModoAtaque()
+			throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
 		
 		Jugador jugador = new Jugador();
 		
@@ -56,7 +57,8 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test04MonstruoEnAtaqueAtacaAMonstruoConMenorAtaqueYEsteMuere() throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void test04MonstruoEnAtaqueAtacaAMonstruoConMenorAtaqueYEsteMuere()
+			throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
 		
 		Jugador jugadorA = new Jugador();
 		Jugador jugadorB = new Jugador();
@@ -75,31 +77,33 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test05MonstruoEnAtaqueAtacaAMonstruoConIgualAtaqueYAmbosSeDestruyenPeroNoInfligenDanio() throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void test05MonstruoEnAtaqueAtacaAMonstruoConIgualAtaqueYAmbosSeDestruyenPeroNoInfligenDanio()
+			throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
 		
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
 		
-		Monstruo monstruoAzul = new AmanteFeliz();
-		Monstruo monstruoVerde = new AmanteFeliz();
+		Monstruo monstruoA = new AmanteFeliz();
+		Monstruo monstruoB = new AmanteFeliz();
 		
 		atacante.establecerOponente(oponente);
-		atacante.jugarMonstruoBocaArriba(monstruoAzul);
+		atacante.jugarMonstruoBocaArriba(monstruoA);
 		
-		monstruoAzul.colocarEnAtaque();
-		monstruoVerde.colocarEnAtaque();
+		monstruoA.colocarEnAtaque();
+		monstruoB.colocarEnAtaque();
 		
-		atacante.atacar(monstruoAzul,monstruoVerde);
+		atacante.atacar(monstruoA,monstruoB);
 		
 		assertEquals(8000, atacante.vida(), DELTA);
 		assertEquals(8000, oponente.vida(), DELTA);
 		
-		assert (atacante.cartaFueDestruida(monstruoAzul));
-		assert (oponente.cartaFueDestruida(monstruoVerde));
+		assert (atacante.cartaFueDestruida(monstruoA));
+		assert (oponente.cartaFueDestruida(monstruoB));
 	}
 
 	@Test
-	public void test06MonstruoEnAtaqueAtacaAMonstruoConMenorDefensaYSeDestruyeSinInfligirDanio() throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void test06MonstruoEnAtaqueAtacaAMonstruoConMenorDefensaYSeDestruyeSinInfligirDanio()
+			throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
 		
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
@@ -120,7 +124,8 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test07MonstruoEnAtaqueAtacaAMonstruoConMayorDefensaYNoSeDestruyeNiInfligeDanio() throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void test07MonstruoEnAtaqueAtacaAMonstruoConMayorDefensaYNoSeDestruyeNiInfligeDanio()
+			throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
 		
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
@@ -141,7 +146,8 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test08InvocacionAMonstruoDe5EstrellasSacrificaAMonstruoEnTablero() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void test08InvocacionAMonstruoDe5EstrellasSacrificaAMonstruoEnTablero()
+			throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
 		
 		Jugador jugador = new Jugador();
 		Monstruo monstruoAzul = new AgresorOscuro();
@@ -158,7 +164,8 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test09InvocacionAMonstruoDe8EstrellasSacrificaAMonstruoEnTablero() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void test09InvocacionAMonstruoDe8EstrellasSacrificaAMonstruoEnTablero()
+			throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
 		
 		Jugador jugador = new Jugador();
 		Monstruo monstruoVerde = new AgresorOscuro();
@@ -178,7 +185,8 @@ public class MonstruoTest {
 	}
 
 	@Test
-	public void testo10ActivoEfectoJinzoYAtacoALosPuntosDeVidaDirectamente() throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void testo10ActivoEfectoJinzoYAtacoALosPuntosDeVidaDirectamente()
+			throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
 		Jugador jugador = new Jugador();
 		Jugador rival = new Jugador();
 		rival.establecerOponente(jugador);
@@ -213,7 +221,8 @@ public class MonstruoTest {
 	}
 
 	@Test
-	public void test13invocacionDragonDefinitivoDeOjosAzulesSacrifica3DragonesDeOjosAzules() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta{
+	public void test13invocacionDragonDefinitivoDeOjosAzulesSacrifica3DragonesDeOjosAzules()
+			throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta{
 		
 		Jugador jugador = new Jugador();
 		
@@ -253,7 +262,8 @@ public class MonstruoTest {
 	
 	@Test
 	(expected = ExcepcionSacrificiosInsuficientes.class)
-	public void test14InvocarDragonDefinitivoSinTenerDragonesBlancosLanzaExcepcion() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void test14InvocarDragonDefinitivoSinTenerDragonesBlancosLanzaExcepcion()
+			throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
 		
 		Jugador jugador = new Jugador();
 		
@@ -305,21 +315,45 @@ public class MonstruoTest {
 
 		Jugador jugador = new Jugador();
 		Monstruo dragon = new DragonBlancoDeOjosAzules();
-		Monstruo monstruito1 = new AgresorOscuro();
-		Monstruo monstruito2 = new AgresorOscuro();
-		Monstruo monstruito3 = new AgresorOscuro();
+		Monstruo monstruoA = new AgresorOscuro();
+		Monstruo monstruoB = new AgresorOscuro();
+		Monstruo monstruoC = new AgresorOscuro();
 		
-		jugador.jugarMonstruoBocaAbajo(monstruito1);
-		jugador.jugarMonstruoBocaAbajo(monstruito2);
-		jugador.jugarMonstruoBocaAbajo(monstruito3);
+		jugador.jugarMonstruoBocaAbajo(monstruoA);
+		jugador.jugarMonstruoBocaAbajo(monstruoB);
+		jugador.jugarMonstruoBocaAbajo(monstruoC);
 		
 		LinkedList<Monstruo> todos = jugador.obtenerMonstruos();
 		
 		jugador.jugarMonstruoBocaAbajoSacrificando(dragon, todos);
 		
-		assert (jugador.cartaFueDestruida(monstruito1));
-		assert (jugador.cartaFueDestruida(monstruito2));
-		assert (jugador.cartaFueDestruida(monstruito3));
+		assert(jugador.cartaFueDestruida(monstruoA));
+		assert(jugador.cartaFueDestruida(monstruoB));
+		assert(jugador.cartaFueDestruida(monstruoC));
+	}
+	
+	@Test
+	public void test17InsectoComeHombresRecibeAtaqueEstandoBocaAbajoActivaEfectoDeVolteoSenialandoAtacanteLoDestruyeYNadiePierdeVida()
+			throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+		
+		Jugador jugadorA = new Jugador();
+		Jugador jugadorB = new Jugador();
+		
+		AgresorOscuro monstruoAtacante = new AgresorOscuro();
+		jugadorA.ponerEnAtaque(monstruoAtacante);
+		jugadorA.jugarMonstruoBocaArriba(monstruoAtacante);
+		
+		InsectoComeHombres insecto = new InsectoComeHombres();
+		jugadorB.jugarMonstruoBocaAbajo(insecto);
+		
+		jugadorA.atacar(monstruoAtacante, insecto);
+		
+		insecto.afectaA(jugadorA, monstruoAtacante);
+		insecto.aplicarEfecto();
+		
+		assert (jugadorB.cartaFueDestruida(monstruoAtacante));
+		assertEquals(8000, jugadorA.vida(), DELTA);
+		assertEquals(8000, jugadorB.vida(), DELTA);
 	}
 	
 }

@@ -9,7 +9,7 @@ public class BocaAbajo implements Posicion {
 	
 	@Override
 	public boolean estaBocaAbajo() {
-		return ! estaBocaArriba();
+		return true;
 	}
 
 }

@@ -16,4 +16,8 @@ public abstract class Carta {
 	public void setBocaAbajo() {
 		this.posicion = new BocaAbajo();
 	}
+	
+	public boolean estaBocaArriba() {
+		return posicion.estaBocaArriba();
+	}
 }
