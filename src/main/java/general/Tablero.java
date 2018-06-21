@@ -43,21 +43,6 @@ public class Tablero {
 	}*/
 	
 	public void agregarCarta(Monstruo cartaMonstruo){
-		/*todo podriamos pasar como segundo argumento una lista con los monstruos a sacrificar (el controlador la pedira al usuario
-		que vaya seleccionando los monstruos a sacrificar mediante una ventana y cuando se llene la lista le deje hacer OK*/
-		//todo if zonaMonstruos.size() < cantidadDeSacrifNecesarios lanzar la excepcion sacrificiosinsuficientes.
-		int i = 0;
-		while (i < cartaMonstruo.sacrificiosNecesariosPorInvocacion()) {
-			
-			try {
-				Monstruo sacrificado = zonaMonstruos.getLast();
-				this.destruirCarta(sacrificado); 
-				i++;
-			
-			} catch (NoSuchElementException e) {
-				break;
-			}
-		}
 		zonaMonstruos.add(cartaMonstruo);
 	}
 	

@@ -1,5 +1,8 @@
 package main.java.cartas.monstruo;
 
+import java.util.LinkedList;
+import java.util.NoSuchElementException;
+
 import main.java.cartas.Carta;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
@@ -35,6 +38,22 @@ public abstract class Monstruo extends Carta {
 	}
 
 	public void colocarEnTablero(Tablero tablero) {
+		
+		LinkedList<Monstruo> zona = tablero.obtenerMonstruos();
+		
+		int i = 0;
+		while (i < sacrificiosNecesariosPorInvocacion()) {
+			
+			try {
+				Monstruo sacrificado = zona.getLast();
+				tablero.destruirCarta(sacrificado); 
+				i++;
+			
+			} catch (NoSuchElementException e) {
+				break;
+			}
+		}
+		
 		tablero.agregarCarta(this);
 	}
 	
