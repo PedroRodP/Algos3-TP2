@@ -59,7 +59,7 @@ public class Jugador {
 	}
 	
 	public void destruirTodosLosMonstruos() {
-		tablero.destruirTodosLosMonstruos();
+		tablero.destruirCartas(tablero.obtenerMonstruos());
 	}
 
 	public void atacar(Monstruo monstruoAtacante, Monstruo monstruoRival) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {

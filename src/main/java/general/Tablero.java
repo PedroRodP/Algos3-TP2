@@ -31,7 +31,17 @@ public class Tablero {
 	public void desactivarEfectoDeCampo() {
 		cartaDeCampo.desactivarEfecto();
 	}
-		
+	
+	//AgregarCarta() IDEAL
+	/*public void agregarCarta(Monstruo monstruo, LinkedList<Monstruo> monstruos) {
+		this.destruirCartas(monstruos);
+		this.agregarCarta(monstruo);
+	}
+	
+	public void agregarCarta(Monstruo monstruo) {
+		zonaMonstruos.add(monstruo);
+	}*/
+	
 	public void agregarCarta(Monstruo cartaMonstruo){
 		/*todo podriamos pasar como segundo argumento una lista con los monstruos a sacrificar (el controlador la pedira al usuario
 		que vaya seleccionando los monstruos a sacrificar mediante una ventana y cuando se llene la lista le deje hacer OK*/
@@ -64,12 +74,6 @@ public class Tablero {
 	public void destruirCarta(Trampa cartaTrampa) {
 		cementerio.add(cartaTrampa);
 		zonaTrampas.remove(cartaTrampa);
-		
-	}
-	
-	public void destruirTodosLosMonstruos() {
-		cementerio.addAll(zonaMonstruos);
-		zonaMonstruos.clear();
 	}
 	
 	public LinkedList<Monstruo> obtenerMonstruos(){
@@ -79,14 +83,12 @@ public class Tablero {
 	public void destruirCarta(Monstruo cartaMonstruo) {
 		cementerio.add(cartaMonstruo);
 		zonaMonstruos.remove(cartaMonstruo);
-		
 	}
 	
 	public void destruirCartas(LinkedList<Monstruo> monstruos) {
 		
-		for (Monstruo m : monstruos) {
-			this.destruirCarta(m);
-		}
+		cementerio.addAll(monstruos);
+		zonaMonstruos.removeAll(monstruos);
 	}
 
 	public boolean cartaEstaEnCementerio(Carta carta) {
