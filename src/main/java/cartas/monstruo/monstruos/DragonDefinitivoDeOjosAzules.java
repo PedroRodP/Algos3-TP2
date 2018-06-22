@@ -2,10 +2,10 @@ package main.java.cartas.monstruo.monstruos;
 
 import java.util.LinkedList;
 
+import main.java.cartas.ZonaMonstruos;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
 import main.java.excepciones.ExcepcionZonaCompleta;
-import main.java.general.Tablero;
 
 public class DragonDefinitivoDeOjosAzules extends Monstruo {
 
@@ -16,7 +16,7 @@ public class DragonDefinitivoDeOjosAzules extends Monstruo {
     }
 
     @Override
-    public void colocarEnTablero(Tablero tablero, LinkedList<Monstruo> sacrificados) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
+    public void agregarseSacrificando(ZonaMonstruos zona, LinkedList<Monstruo> sacrificados) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
     	    	
     	int dragones = 0;
     	for (Monstruo monstruo : sacrificados) {
@@ -30,8 +30,8 @@ public class DragonDefinitivoDeOjosAzules extends Monstruo {
     		throw new ExcepcionSacrificiosInsuficientes();	
     	}
     	
-		tablero.destruirCartas(sacrificados);
-		tablero.agregarCarta(this);
+		zona.destruir(sacrificados);
+		super.agregarseEn(zona);
     	
     }
 }

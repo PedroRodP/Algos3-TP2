@@ -3,6 +3,7 @@ package main.java.cartas.campo;
 import java.util.LinkedList;
 
 import main.java.cartas.Carta;
+import main.java.cartas.ZonaCampo;
 import main.java.cartas.monstruo.Monstruo;
 
 public abstract class Campo extends Carta {
@@ -19,4 +20,8 @@ public abstract class Campo extends Carta {
 	
 	public abstract void desactivarEfecto();
 	
+	public void agregarseEn(ZonaCampo zona) {
+		this.lugar = zona;
+		zona.agregar(this);
+	}
 }

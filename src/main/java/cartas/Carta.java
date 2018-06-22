@@ -4,6 +4,7 @@ public abstract class Carta {
 
 	protected String nombre;
 	protected Posicion posicion;
+	protected Lugar lugar;
 
 	public String nombre() {
 		return nombre;

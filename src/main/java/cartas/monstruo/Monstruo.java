@@ -3,12 +3,12 @@ package main.java.cartas.monstruo;
 import java.util.LinkedList;
 
 import main.java.cartas.Carta;
+import main.java.cartas.ZonaMonstruos;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
 import main.java.excepciones.ExcepcionZonaCompleta;
 import main.java.general.Jugador;
-import main.java.general.Tablero;
 
 public abstract class Monstruo extends Carta {
 
@@ -38,14 +38,19 @@ public abstract class Monstruo extends Carta {
 		this.modo = new ModoDefensa(defensa);
 	}
 
-	public void colocarEnTablero(Tablero tablero, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void agregarseSacrificando(ZonaMonstruos zona, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
 		
 		if (sacrificados.size() < sacrificiosNecesariosPorInvocacion()) {
 			throw new ExcepcionSacrificiosInsuficientes();
 		}
 		
-		tablero.destruirCartas(sacrificados); 
-		tablero.agregarCarta(this);
+		zona.destruir(sacrificados);
+		this.agregarseEn(zona);
+	}
+	
+	public void agregarseEn(ZonaMonstruos zona) {
+		this.lugar = zona;
+		zona.agregar(this);
 	}
 	
 	public double potenciaDeCombate() {
@@ -55,12 +60,10 @@ public abstract class Monstruo extends Carta {
 	
 	public double diferenciaDeCombateCon(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
 		
-		if (posicion.estaBocaArriba()) {
-			return this.modo.diferenciaDeCombateCon(monstruo);
-		
-		} else {
+		if (posicion.estaBocaAbajo()) {
 			throw new ExcepcionCartaBocaAbajo();
 		}
+		return this.modo.diferenciaDeCombateCon(monstruo);
 	}
 	
 	public void infligirDanioAJugador(Jugador jugador, double danio) {

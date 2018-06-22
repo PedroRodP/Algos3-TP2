@@ -3,6 +3,10 @@ package main.java.general;
 import java.util.LinkedList;
 
 import main.java.cartas.Carta;
+import main.java.cartas.Cementerio;
+import main.java.cartas.ZonaCampo;
+import main.java.cartas.ZonaMagicasYTrampas;
+import main.java.cartas.ZonaMonstruos;
 import main.java.cartas.campo.Campo;
 import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Batalla;
@@ -17,7 +21,10 @@ import main.java.excepciones.ExcepcionZonaCompleta;
 public class Jugador {
 
 	private double vida;
-	private Tablero tablero;
+	private ZonaMonstruos zonaMonstruos;
+	private ZonaMagicasYTrampas zonaMagicasYTrampas;
+	private ZonaCampo zonaCampo;
+	private Cementerio cementerio;
 	private Jugador oponente;
 	private Mano mano;
 	private Mazo mazo;
@@ -26,7 +33,10 @@ public class Jugador {
 	public Jugador() {
 		
 		this.vida = 8000;
-		this.tablero = new Tablero();
+		this.cementerio = new Cementerio();
+		this.zonaMonstruos = new ZonaMonstruos(cementerio);
+		this.zonaMagicasYTrampas = new ZonaMagicasYTrampas(cementerio);
+		this.zonaCampo = new ZonaCampo(cementerio);
 		this.mano = new Mano();
 	}
 	
@@ -39,7 +49,7 @@ public class Jugador {
 	}
 	
 	public LinkedList<Monstruo> obtenerMonstruos() {
-		return tablero.obtenerMonstruos();
+		return zonaMonstruos.obtenerMonstruos();
 	}
 	
 	public double vida() {
@@ -53,7 +63,7 @@ public class Jugador {
 		}
 		
 		monstruo.setBocaAbajo();
-		tablero.agregarCarta(monstruo);
+		monstruo.agregarseEn(zonaMonstruos);
 	}
 	
 	public void jugarMonstruoBocaArriba(Monstruo monstruo) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
@@ -63,54 +73,56 @@ public class Jugador {
 		}
 		
 		monstruo.setBocaArriba();
-		tablero.agregarCarta(monstruo);
+		monstruo.agregarseEn(zonaMonstruos);
 	}
 	
 	public void jugarMonstruoBocaAbajoSacrificando(Monstruo monstruo, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
 		monstruo.setBocaAbajo();
-		monstruo.colocarEnTablero(tablero, sacrificados);
+		monstruo.agregarseSacrificando(zonaMonstruos, sacrificados);
 	}
 	
 	public void jugarMonstruoBocaArribaSacrificando(Monstruo monstruo, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
 		monstruo.setBocaArriba();
-		monstruo.colocarEnTablero(tablero, sacrificados);
+		monstruo.agregarseSacrificando(zonaMonstruos, sacrificados);
 	}
 	
 	public void jugarMagicaBocaAbajo(Magica magica) throws ExcepcionZonaCompleta {
 		magica.setBocaAbajo();
-		tablero.agregarCarta(magica);
+		magica.agregarseEn(zonaMagicasYTrampas);
 	}
 	
 	public void jugarMagicaBocaArriba(Magica magica) throws ExcepcionZonaCompleta {
 		magica.setBocaArriba();
-		tablero.agregarCarta(magica);
+		magica.agregarseEn(zonaMagicasYTrampas);
 	}
 	
 	public void jugarTrampaBocaAbajo(Trampa trampa) throws ExcepcionZonaCompleta {
 		trampa.setBocaAbajo();
-		tablero.agregarCarta(trampa);
+		trampa.agregarseEn(zonaMagicasYTrampas);
 	}
 	
 	public void jugarTrampaBocaArriba(Trampa trampa) throws ExcepcionZonaCompleta {
 		trampa.setBocaArriba();
-		tablero.agregarCarta(trampa);
+		trampa.agregarseEn(zonaMagicasYTrampas);
 	}
 	
 	public void jugarCampo(Campo campo) { //Los campos se activan directamente
 		campo.setBocaArriba();
-		tablero.agregarCarta(campo);
+		campo.agregarseEn(zonaCampo);
 	}
 	
 	public void voltearCarta(Carta carta) {
 		carta.setBocaArriba();
+		//carta.aplicarEfecto();
 	}
 	
 	public void destruirMonstruo(Monstruo monstruo) {
-		tablero.destruirCarta(monstruo);
+		zonaMonstruos.destruir(monstruo);
 	}
 	
 	public void destruirTodosLosMonstruos() {
-		tablero.destruirCartas(tablero.obtenerMonstruos());
+		LinkedList<Monstruo> monstruos = zonaMonstruos.obtenerMonstruos();
+		zonaMonstruos.destruir(monstruos);
 	}
 
 	public void atacar(Monstruo monstruoAtacante, Monstruo monstruoRival) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
@@ -125,7 +137,7 @@ public class Jugador {
 	}
 
 	public boolean cartaFueDestruida(Carta carta) {
-		return tablero.cartaEstaEnCementerio(carta);
+		return cementerio.contiene(carta);
 	}
 	
 	
