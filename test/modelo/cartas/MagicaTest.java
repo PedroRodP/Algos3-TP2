@@ -1,5 +1,6 @@
 package modelo.cartas;
 
+import main.java.cartas.ZonaMonstruos;
 import org.junit.Test;
 
 import main.java.cartas.magica.Magica;
@@ -63,7 +64,6 @@ public class MagicaTest {
         assertEquals(8000,jugadorB.vida(),DELTA);
 
     }
-    
     @Test
     public void test03ActivarOllaDeLaCodiciaTomaDosCartasDelMazo() throws ExcepcionMazoVacio, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaBocaAbajo {
     	

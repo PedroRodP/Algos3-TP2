@@ -40,8 +40,9 @@ public class ZonaMonstruos implements Lugar {
 	}
 	
 	public void destruir(LinkedList<Monstruo> cartas) {
-		monstruos.removeAll(cartas);
 		cementerio.agregar(cartas);
+		monstruos.removeAll(cartas);
+
 	}
 
 	public LinkedList<Monstruo> obtenerMonstruos() {
