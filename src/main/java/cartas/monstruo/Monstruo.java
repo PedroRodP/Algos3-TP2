@@ -35,7 +35,7 @@ public abstract class Monstruo extends Carta {
 		this.modo = new ModoDefensa(defensa);
 	}
 
-	public void atacar(Monstruo rival, Vida propia, Vida oponente) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
+	public void atacar(Monstruo rival, Vida vidaPropia, Vida vidaOponente) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
 		double diferenciaDeCombate = diferenciaDeCombateCon(rival);
 
 		if (diferenciaDeCombate == 0) {
@@ -44,17 +44,17 @@ public abstract class Monstruo extends Carta {
 			return;
 		}
 		if (diferenciaDeCombate < 0) {
-			modo.quitarVida(propia, diferenciaDeCombate);
+			quitarVida(vidaPropia, diferenciaDeCombate);
 			mandarAlCementerio();
 		} else {
-			modo.quitarVida(oponente, diferenciaDeCombate);
+			rival.quitarVida(vidaOponente, diferenciaDeCombate);
 			rival.mandarAlCementerio();
 		}
 	}
-
-	/*private void quitarVida(Vida vida, double danio){
+	
+	public void quitarVida(Vida vida, double danio) {
 		modo.quitarVida(vida, danio);
-	}*/
+	}
 
 	public void agregarseSacrificando(ZonaMonstruos zona, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
 		if (sacrificados.size() < sacrificiosNecesariosPorInvocacion()) {

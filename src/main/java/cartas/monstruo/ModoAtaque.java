@@ -1,6 +1,5 @@
 package main.java.cartas.monstruo;
 
-import main.java.general.Jugador;
 import main.java.general.Vida;
 
 public class ModoAtaque extends ModoDeCombate {

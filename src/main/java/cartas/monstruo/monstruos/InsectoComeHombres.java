@@ -2,7 +2,6 @@ package main.java.cartas.monstruo.monstruos;
 
 import main.java.cartas.monstruo.Monstruo;
 import main.java.excepciones.ExcepcionEfectoSoloAplicableEnVolteo;
-import main.java.general.Jugador;
 
 public class InsectoComeHombres extends Monstruo {
 	
