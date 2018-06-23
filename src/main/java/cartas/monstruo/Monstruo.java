@@ -4,11 +4,8 @@ import java.util.LinkedList;
 
 import main.java.cartas.Carta;
 import main.java.cartas.ZonaMonstruos;
-import main.java.excepciones.ExcepcionCartaBocaAbajo;
-import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
-import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
-import main.java.excepciones.ExcepcionZonaCompleta;
-import main.java.general.Jugador;
+import main.java.excepciones.*;
+import main.java.general.Vida;
 
 public abstract class Monstruo extends Carta {
 
@@ -38,13 +35,33 @@ public abstract class Monstruo extends Carta {
 		this.modo = new ModoDefensa(defensa);
 	}
 
+	public void atacar(Monstruo rival, Vida propia, Vida oponente) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
+		double diferenciaDeCombate = diferenciaDeCombateCon(rival);
+
+		if (diferenciaDeCombate == 0) {
+			mandarAlCementerio();
+			rival.mandarAlCementerio();
+			return;
+		}
+		if (diferenciaDeCombate < 0) {
+			modo.quitarVida(propia, diferenciaDeCombate);
+			mandarAlCementerio();
+		} else {
+			modo.quitarVida(oponente, diferenciaDeCombate);
+			rival.mandarAlCementerio();
+		}
+	}
+
+	/*private void quitarVida(Vida vida, double danio){
+		modo.quitarVida(vida, danio);
+	}*/
+
 	public void agregarseSacrificando(ZonaMonstruos zona, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
-		
 		if (sacrificados.size() < sacrificiosNecesariosPorInvocacion()) {
 			throw new ExcepcionSacrificiosInsuficientes();
 		}
-		
-		zona.destruir(sacrificados);
+
+		for (Monstruo m : sacrificados) m.mandarAlCementerio();
 		this.agregarseEn(zona);
 	}
 	
@@ -65,18 +82,14 @@ public abstract class Monstruo extends Carta {
 		}
 		return this.modo.diferenciaDeCombateCon(monstruo);
 	}
-	
-	public void infligirDanioAJugador(Jugador jugador, double danio) {
-		this.modo.infligirDanioAJugador(jugador, danio);
-	}
-	
-	public void aplicarEfecto() throws ExcepcionCartaBocaAbajo {
+
+	/*public void aplicarEfecto() throws ExcepcionCartaBocaAbajo {
 		
 		if (posicion.estaBocaAbajo()) {
 			throw new ExcepcionCartaBocaAbajo();
 		}
 		//Por default los monstruos no tienen efecto
-	}
+	}*/
 	
 	public void alterarAtaque(double puntos) {
 		this.modo.actualizarPotencialDeAtaque(puntos);
@@ -91,5 +104,13 @@ public abstract class Monstruo extends Carta {
 	public double obtenerAtaque() {
 		return this.ataque;
 	}
-	
+
+	public void mandarAlCementerio(){
+		try {
+			lugar = lugar.quitarYAgregarAlCementerio(this);
+		} catch (ExcepcionZonaIncorrecta excepcionZonaIncorrecta) {
+			excepcionZonaIncorrecta.printStackTrace();
+		}
+	}
+
 }

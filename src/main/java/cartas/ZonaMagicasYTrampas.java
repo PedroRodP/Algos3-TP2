@@ -20,7 +20,7 @@ public class ZonaMagicasYTrampas implements Lugar {
 		this.trampas = new LinkedList<>();
 		this.cementerio = cementerio; 
 	}
-	
+
 	public void agregar(Monstruo monstruo) throws ExcepcionZonaIncorrecta {
 		throw new ExcepcionZonaIncorrecta();
 	}
@@ -36,21 +36,36 @@ public class ZonaMagicasYTrampas implements Lugar {
 		magicas.add(carta);
 	}
 
-	public void destruir(Magica carta) {
-		magicas.remove(carta);
-		cementerio.agregar(carta);
-	}
-	
 	public void agregar(Trampa carta) throws ExcepcionZonaCompleta {
 		if (magicas.size() + trampas.size() == 5) {
 			throw new ExcepcionZonaCompleta();
 		}
 		trampas.add(carta);
 	}
-	
-	public void destruir(Trampa carta) {
-		trampas.remove(carta);
-		cementerio.agregar(carta);
+
+	@Override
+	public boolean esUnCementerio() {
+		return false;
 	}
 
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Campo campo) throws ExcepcionZonaIncorrecta {
+		throw new ExcepcionZonaIncorrecta();
+	}
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Monstruo monstruo) throws ExcepcionZonaIncorrecta {
+		throw new ExcepcionZonaIncorrecta();
+	}
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Magica magica) throws ExcepcionZonaIncorrecta {
+		magicas.remove(magica);
+		cementerio.agregar(magica);
+		return cementerio;
+	}
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Trampa trampa) throws ExcepcionZonaIncorrecta {
+		trampas.remove(trampa);
+		cementerio.agregar(trampa);
+		return cementerio;
+	}
 }

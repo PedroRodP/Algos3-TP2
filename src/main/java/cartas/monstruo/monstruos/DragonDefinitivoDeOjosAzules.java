@@ -10,18 +10,16 @@ import main.java.excepciones.ExcepcionZonaCompleta;
 public class DragonDefinitivoDeOjosAzules extends Monstruo {
 
     public DragonDefinitivoDeOjosAzules() {
-
         super(4500, 3800, 12);
         nombre = "Dragon definitivo de ojos azules";
     }
 
     @Override
     public void agregarseSacrificando(ZonaMonstruos zona, LinkedList<Monstruo> sacrificados) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
-    	    	
+
     	int dragones = 0;
     	for (Monstruo monstruo : sacrificados) {
-    		
-    		if (monstruo.nombre() == "Dragon blanco de ojos azules") {
+    		if (monstruo.nombre().equals("Dragon blanco de ojos azules")) {
     			dragones++;
     		}
     	}
@@ -29,9 +27,9 @@ public class DragonDefinitivoDeOjosAzules extends Monstruo {
     	if (dragones < 3) {
     		throw new ExcepcionSacrificiosInsuficientes();	
     	}
-    	
-		zona.destruir(sacrificados);
+
+    	//TODO validar que solo reciba 3 dragones (y no cuatro o otras cosas)
+		for (Monstruo m : sacrificados) m.mandarAlCementerio();
 		super.agregarseEn(zona);
-    	
     }
 }

@@ -9,21 +9,13 @@ import main.java.general.Jugador;
 
 public class Fisura extends Magica {
 
-	private Jugador afectado;
-
 	public Fisura() {
 		nombre = "Fisura";
 	}
-	
-	public void afectaA(Jugador jugador) {
-		this.afectado = jugador;
-	}
-	
-	public void aplicarEfecto() throws ExcepcionCartaBocaAbajo {
+
+	public void aplicarEfecto(LinkedList<Monstruo> monstruos) throws ExcepcionCartaBocaAbajo {
 		
 		if (posicion.estaBocaAbajo()) { throw new ExcepcionCartaBocaAbajo(); }
-		
-		LinkedList<Monstruo> monstruos = afectado.obtenerMonstruos();
 		if (monstruos.isEmpty()) return;
 		
 		Monstruo monstruoConMenorAtaque = monstruos.getFirst();
@@ -32,7 +24,6 @@ public class Fisura extends Magica {
 				monstruoConMenorAtaque = m;
 			}
 		}
-		
-		afectado.destruirMonstruo(monstruoConMenorAtaque);
+		monstruoConMenorAtaque.mandarAlCementerio();
 	}
 }

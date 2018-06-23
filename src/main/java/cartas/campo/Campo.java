@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import main.java.cartas.Carta;
 import main.java.cartas.ZonaCampo;
 import main.java.cartas.monstruo.Monstruo;
+import main.java.excepciones.ExcepcionZonaIncorrecta;
 
 public abstract class Campo extends Carta {
 	
@@ -23,5 +24,13 @@ public abstract class Campo extends Carta {
 	public void agregarseEn(ZonaCampo zona) {
 		this.lugar = zona;
 		zona.agregar(this);
+	}
+
+	public void mandarAlCementerio(){
+		try {
+			lugar = lugar.quitarYAgregarAlCementerio(this);
+		} catch (ExcepcionZonaIncorrecta excepcionZonaIncorrecta) {
+			excepcionZonaIncorrecta.printStackTrace();
+		}
 	}
 }

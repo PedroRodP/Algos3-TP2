@@ -17,7 +17,7 @@ public class JugadorTest {
 		
 		Jugador jugador = new Jugador();
 
-		assertEquals(8000, jugador.vida(), DELTA);
+		assertEquals(8000, jugador.obtenerPuntosDeVida(), DELTA);
 	}
 
 	@Test

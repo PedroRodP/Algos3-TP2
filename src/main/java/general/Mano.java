@@ -3,12 +3,14 @@ package main.java.general;
 import java.util.LinkedList;
 
 import main.java.cartas.Carta;
+import main.java.cartas.Cementerio;
 import main.java.cartas.Lugar;
 import main.java.cartas.campo.Campo;
 import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.exodia.Exodia;
 import main.java.cartas.trampa.Trampa;
+import main.java.excepciones.ExcepcionZonaIncorrecta;
 
 public class Mano implements Lugar {
 	
@@ -57,4 +59,25 @@ public class Mano implements Lugar {
 		return this.cantidad;
 	}
 
+	@Override
+	public boolean esUnCementerio() {
+		return false;
+	}
+
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Campo campo) throws ExcepcionZonaIncorrecta {
+		throw new ExcepcionZonaIncorrecta();
+	}
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Monstruo monstruo) throws ExcepcionZonaIncorrecta {
+		throw new ExcepcionZonaIncorrecta();
+	}
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Magica magica) throws ExcepcionZonaIncorrecta {
+		throw new ExcepcionZonaIncorrecta();
+	}
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Trampa trampa) throws ExcepcionZonaIncorrecta {
+		throw new ExcepcionZonaIncorrecta();
+	}
 }

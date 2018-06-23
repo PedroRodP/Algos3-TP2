@@ -9,7 +9,6 @@ import main.java.cartas.ZonaMagicasYTrampas;
 import main.java.cartas.ZonaMonstruos;
 import main.java.cartas.campo.Campo;
 import main.java.cartas.magica.Magica;
-import main.java.cartas.monstruo.Batalla;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.trampa.Trampa;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
@@ -20,7 +19,7 @@ import main.java.excepciones.ExcepcionZonaCompleta;
 
 public class Jugador {
 
-	private double vida;
+	private Vida vida;
 	private ZonaMonstruos zonaMonstruos;
 	private ZonaMagicasYTrampas zonaMagicasYTrampas;
 	private ZonaCampo zonaCampo;
@@ -31,13 +30,16 @@ public class Jugador {
 	private boolean mazoVacio;
 	
 	public Jugador() {
-		
-		this.vida = 8000;
+		this.vida = new Vida(8000);
 		this.cementerio = new Cementerio();
 		this.zonaMonstruos = new ZonaMonstruos(cementerio);
 		this.zonaMagicasYTrampas = new ZonaMagicasYTrampas(cementerio);
 		this.zonaCampo = new ZonaCampo(cementerio);
 		this.mano = new Mano();
+	}
+
+	public double obtenerPuntosDeVida(){
+		return vida.getVida();
 	}
 	
 	public void establecerOponente(Jugador oponente) {
@@ -49,10 +51,10 @@ public class Jugador {
 	}
 	
 	public LinkedList<Monstruo> obtenerMonstruos() {
-		return zonaMonstruos.obtenerMonstruos();
+		return (LinkedList<Monstruo>) zonaMonstruos.obtenerMonstruos().clone();
 	}
 	
-	public double vida() {
+	public Vida getVida() {
 		return vida;
 	}
 	
@@ -113,33 +115,11 @@ public class Jugador {
 	
 	public void voltearCarta(Carta carta) {
 		carta.setBocaArriba();
-		//carta.aplicarEfecto();
-	}
-	
-	public void destruirMonstruo(Monstruo monstruo) {
-		zonaMonstruos.destruir(monstruo);
-	}
-	
-	public void destruirTodosLosMonstruos() {
-		LinkedList<Monstruo> monstruos = zonaMonstruos.obtenerMonstruos();
-		zonaMonstruos.destruir(monstruos);
 	}
 
-	public void atacar(Monstruo monstruoAtacante, Monstruo monstruoRival) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
-		
-		Batalla batalla = new Batalla(this, oponente);
-		
-		batalla.atacarCon(monstruoAtacante, monstruoRival);
+	public void atacar(Monstruo atacante, Monstruo rival) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+		atacante.atacar(rival,vida,oponente.getVida());
 	}
-	
-	public void infligirDanio(double danio){
-		this.vida -= Math.abs(danio);
-	}
-
-	public boolean cartaFueDestruida(Carta carta) {
-		return cementerio.contiene(carta);
-	}
-	
 	
 	public void ponerEnAtaque(Monstruo monstruo) {
 		monstruo.colocarEnAtaque();
@@ -181,6 +161,6 @@ public class Jugador {
 	}
 	
 	public boolean estaMuerto() {
-		return vida <= 0;
+		return vida.estaMuerto();
 	}
 }

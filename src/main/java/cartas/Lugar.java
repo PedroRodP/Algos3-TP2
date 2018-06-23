@@ -16,5 +16,15 @@ public interface Lugar {
 	public void agregar(Trampa trampa) throws ExcepcionZonaCompleta, ExcepcionZonaIncorrecta;
 	
 	public void agregar(Campo campo) throws ExcepcionZonaCompleta, ExcepcionZonaIncorrecta;
-	
+
+	public Cementerio quitarYAgregarAlCementerio(Monstruo monstruo) throws ExcepcionZonaIncorrecta;
+
+	public Cementerio quitarYAgregarAlCementerio(Magica magica) throws ExcepcionZonaIncorrecta;
+
+	public Cementerio quitarYAgregarAlCementerio(Trampa trampa) throws ExcepcionZonaIncorrecta;
+
+	public Cementerio quitarYAgregarAlCementerio(Campo campo) throws ExcepcionZonaIncorrecta;
+
+	public boolean esUnCementerio();
+
 }

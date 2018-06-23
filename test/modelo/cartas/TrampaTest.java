@@ -30,7 +30,7 @@ public class TrampaTest {
         oponente.jugarMonstruoBocaAbajo(monstruo);
         jugador.jugarTrampaBocaAbajo(trampa);
 
-        assert (! oponente.cartaFueDestruida(monstruo));
+        assert (! monstruo.estaEnElCementerio());
     }
     
 /*    @Test

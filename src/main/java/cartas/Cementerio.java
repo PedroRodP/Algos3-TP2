@@ -6,6 +6,7 @@ import main.java.cartas.campo.Campo;
 import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.trampa.Trampa;
+import main.java.excepciones.ExcepcionZonaIncorrecta;
 
 public class Cementerio implements Lugar {
 	
@@ -39,4 +40,25 @@ public class Cementerio implements Lugar {
 		cementerio.addAll(cartas);
 	}
 
+	@Override
+	public boolean esUnCementerio() {
+		return true;
+	}
+
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Campo campo) throws ExcepcionZonaIncorrecta {
+		throw new ExcepcionZonaIncorrecta();
+	}
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Monstruo monstruo) throws ExcepcionZonaIncorrecta {
+		throw new ExcepcionZonaIncorrecta();
+	}
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Magica magica) throws ExcepcionZonaIncorrecta {
+		throw new ExcepcionZonaIncorrecta();
+	}
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Trampa trampa) throws ExcepcionZonaIncorrecta {
+		throw new ExcepcionZonaIncorrecta();
+	}
 }

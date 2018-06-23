@@ -21,4 +21,10 @@ public abstract class Carta {
 	public boolean estaBocaArriba() {
 		return posicion.estaBocaArriba();
 	}
+
+    public abstract void mandarAlCementerio();
+
+	public boolean estaEnElCementerio(){
+	    return lugar.esUnCementerio();
+    }
 }

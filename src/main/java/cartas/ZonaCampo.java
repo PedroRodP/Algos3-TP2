@@ -35,4 +35,28 @@ public class ZonaCampo implements Lugar{
 		this.campo = campo;
 		this.campo.aplicarEfecto();
 	}
+
+	@Override
+	public boolean esUnCementerio() {
+		return false;
+	}
+
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Campo campo) throws ExcepcionZonaIncorrecta {
+		cementerio.agregar(campo);
+		campo = new NoCampo();
+		return cementerio;
+	}
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Monstruo monstruo) throws ExcepcionZonaIncorrecta {
+		throw new ExcepcionZonaIncorrecta();
+	}
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Magica magica) throws ExcepcionZonaIncorrecta {
+		throw new ExcepcionZonaIncorrecta();
+	}
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Trampa trampa) throws ExcepcionZonaIncorrecta {
+		throw new ExcepcionZonaIncorrecta();
+	}
 }

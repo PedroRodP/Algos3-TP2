@@ -43,17 +43,18 @@ public class MonstruoTest {
 			throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
 		
 		Jugador jugador = new Jugador();
+		jugador.establecerOponente(new Jugador());
 		
-		Monstruo monstruoAzul = new AgresorOscuro();
-		monstruoAzul.colocarEnAtaque();
-		Monstruo monstruoVerde = new DragonBlancoDeOjosAzules();
-		monstruoVerde.colocarEnAtaque();
+		Monstruo agresorOscuro = new AgresorOscuro();
+		agresorOscuro.colocarEnAtaque();
+		Monstruo dragonBlancoDeOjosAzules = new DragonBlancoDeOjosAzules();
+		dragonBlancoDeOjosAzules.colocarEnAtaque();
 		
-		jugador.jugarMonstruoBocaArriba(monstruoAzul);
-		jugador.atacar(monstruoAzul,monstruoVerde);
+		jugador.jugarMonstruoBocaArriba(agresorOscuro);
+		jugador.atacar(agresorOscuro,dragonBlancoDeOjosAzules);
 		
-		assertEquals(8000 - 1800,jugador.vida(),DELTA);
-		assert (jugador.cartaFueDestruida(monstruoAzul));
+		assertEquals(8000 - 1800,jugador.obtenerPuntosDeVida(),DELTA);
+		assert (agresorOscuro.estaEnElCementerio());
 	}
 	
 	@Test
@@ -68,12 +69,13 @@ public class MonstruoTest {
 		monstruoAzul.colocarEnAtaque();
 		Monstruo monstruoVerde = new AmanteFeliz();
 		monstruoVerde.colocarEnAtaque();
-		
+
+		jugadorB.jugarMonstruoBocaAbajo(monstruoVerde);
 		jugadorA.jugarMonstruoBocaArriba(monstruoAzul);
 		jugadorA.atacar(monstruoAzul, monstruoVerde);
 		
-		assertEquals(8000 - 400,jugadorB.vida(),DELTA);
-		assert (jugadorB.cartaFueDestruida(monstruoVerde));
+		assertEquals(8000 - 400,jugadorB.obtenerPuntosDeVida(),DELTA);
+		assert (monstruoVerde.estaEnElCementerio());
 	}
 	
 	@Test
@@ -85,7 +87,8 @@ public class MonstruoTest {
 		
 		Monstruo monstruoA = new AmanteFeliz();
 		Monstruo monstruoB = new AmanteFeliz();
-		
+
+		oponente.jugarMonstruoBocaAbajo(monstruoB);
 		atacante.establecerOponente(oponente);
 		atacante.jugarMonstruoBocaArriba(monstruoA);
 		
@@ -94,11 +97,11 @@ public class MonstruoTest {
 		
 		atacante.atacar(monstruoA,monstruoB);
 		
-		assertEquals(8000, atacante.vida(), DELTA);
-		assertEquals(8000, oponente.vida(), DELTA);
+		assertEquals(8000, atacante.obtenerPuntosDeVida(), DELTA);
+		assertEquals(8000, oponente.obtenerPuntosDeVida(), DELTA);
 		
-		assert (atacante.cartaFueDestruida(monstruoA));
-		assert (oponente.cartaFueDestruida(monstruoB));
+		assert (monstruoA.estaEnElCementerio());
+		assert (monstruoB.estaEnElCementerio());
 	}
 
 	@Test
@@ -113,14 +116,15 @@ public class MonstruoTest {
 		
 		atacante.establecerOponente(oponente);
 		atacante.jugarMonstruoBocaArriba(monstruoAzul);
-		
+		atacante.jugarMonstruoBocaArriba(monstruoVerde);
+
 		monstruoAzul.colocarEnAtaque();
 		monstruoVerde.colocarEnDefensa();
 		
 		atacante.atacar(monstruoAzul, monstruoVerde);
 		
-		assertEquals(8000, oponente.vida(), DELTA);
-		assert (oponente.cartaFueDestruida(monstruoVerde));
+		assertEquals(8000, oponente.obtenerPuntosDeVida(), DELTA);
+		assert (monstruoVerde.estaEnElCementerio());
 	}
 	
 	@Test
@@ -129,10 +133,11 @@ public class MonstruoTest {
 		
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
-		
+		double vidaPreviaOponente = oponente.obtenerPuntosDeVida();
 		Monstruo monstruoAzul = new AgresorOscuro();
-		Monstruo monstruoVerde = new DragonBlancoDeOjosAzules();
-		
+		Monstruo monstruoVerde = new AbismoReluciente();
+
+		oponente.jugarMonstruoBocaAbajo(monstruoVerde);
 		atacante.establecerOponente(oponente);
 		atacante.jugarMonstruoBocaArriba(monstruoAzul);
 		
@@ -141,8 +146,8 @@ public class MonstruoTest {
 		
 		atacante.atacar(monstruoAzul, monstruoVerde);
 		
-		assertEquals(8000, oponente.vida(), DELTA);
-		assert (! oponente.cartaFueDestruida(monstruoVerde));
+		assertEquals(vidaPreviaOponente, oponente.obtenerPuntosDeVida(), DELTA);
+		assert ! monstruoVerde.estaEnElCementerio();
 	}
 	
 	@Test
@@ -159,7 +164,7 @@ public class MonstruoTest {
 		jugador.jugarMonstruoBocaAbajo(monstruoAzul);
 		jugador.jugarMonstruoBocaAbajoSacrificando(monstruoRojo, aSacrificar);
 		
-		assert (jugador.cartaFueDestruida(monstruoAzul));
+		assert monstruoAzul.estaEnElCementerio();
 		
 	}
 	
@@ -180,8 +185,8 @@ public class MonstruoTest {
 		jugador.jugarMonstruoBocaAbajo(monstruoVerde);
 		jugador.jugarMonstruoBocaAbajoSacrificando(monstruoAzul, aSacrificar);
 		
-		assert (jugador.cartaFueDestruida(monstruoRojo));
-		assert (jugador.cartaFueDestruida(monstruoVerde));
+		assert monstruoRojo.estaEnElCementerio();
+		assert monstruoVerde.estaEnElCementerio();
 	}
 
 	@Test
@@ -195,15 +200,14 @@ public class MonstruoTest {
 		Monstruo monstruo = new AgresorOscuro();
 		
 		Jinzo7 jinzo7 = new Jinzo7();
-		jinzo7.afectaA(rival);
 
 		rival.jugarMonstruoBocaAbajo(monstruo);
 		jugador.jugarMonstruoBocaArriba(jinzo7);
 		jinzo7.colocarEnAtaque();
 		
-		jinzo7.aplicarEfecto();
+		jinzo7.aplicarEfecto(rival.getVida());
 		
-		assertEquals(7500,rival.vida(),DELTA);
+		assertEquals(7500,rival.obtenerPuntosDeVida(),DELTA);
 	}
 	
 	@Test
@@ -255,9 +259,9 @@ public class MonstruoTest {
 
 		jugador.jugarMonstruoBocaAbajoSacrificando(definitivo, dragones);
 
-		assert (jugador.cartaFueDestruida(dragon1));
-		assert (jugador.cartaFueDestruida(dragon2));
-		assert (jugador.cartaFueDestruida(dragon3));
+		assert dragon1.estaEnElCementerio();
+		assert dragon2.estaEnElCementerio();
+		assert dragon3.estaEnElCementerio();
 	}
 	
 	@Test
@@ -284,7 +288,8 @@ public class MonstruoTest {
 	@Test
 	(expected = ExcepcionSacrificiosInsuficientes.class)
 	public void test15InvocarDragonDefinitivoConMenosDe3DragonesBlancosLanzaExcepcion() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
-		
+		//TODO REHACER
+		/*
 		Jugador jugador = new Jugador();
 		
 		Monstruo aux = new AgresorOscuro();
@@ -306,7 +311,7 @@ public class MonstruoTest {
 		jugador.jugarMonstruoBocaAbajo(aux);
 		jugador.jugarMonstruoBocaAbajoSacrificando(dragon, aSacrificar);
 		
-		jugador.jugarMonstruoBocaAbajoSacrificando(definitivo, aSacrificar);
+		jugador.jugarMonstruoBocaAbajoSacrificando(definitivo, aSacrificar);*/
 	}
 	
 	@Test
@@ -318,7 +323,7 @@ public class MonstruoTest {
 		Monstruo monstruoA = new AgresorOscuro();
 		Monstruo monstruoB = new AgresorOscuro();
 		Monstruo monstruoC = new AgresorOscuro();
-		
+
 		jugador.jugarMonstruoBocaAbajo(monstruoA);
 		jugador.jugarMonstruoBocaAbajo(monstruoB);
 		jugador.jugarMonstruoBocaAbajo(monstruoC);
@@ -327,9 +332,9 @@ public class MonstruoTest {
 		
 		jugador.jugarMonstruoBocaAbajoSacrificando(dragon, todos);
 		
-		assert(jugador.cartaFueDestruida(monstruoA));
-		assert(jugador.cartaFueDestruida(monstruoB));
-		assert(jugador.cartaFueDestruida(monstruoC));
+		assert monstruoA.estaEnElCementerio();
+		assert monstruoB.estaEnElCementerio();
+		assert monstruoC.estaEnElCementerio();
 	}
 	
 	@Test
@@ -345,15 +350,12 @@ public class MonstruoTest {
 		
 		InsectoComeHombres insecto = new InsectoComeHombres();
 		jugadorB.jugarMonstruoBocaAbajo(insecto);
+
+		insecto.aplicarEfecto(monstruoAtacante);
 		
-		//jugadorA.atacar(monstruoAtacante, insecto); TODO falla esta linea
-		
-		insecto.afectaA(jugadorA, monstruoAtacante);
-		insecto.aplicarEfecto();
-		
-		assert (jugadorA.cartaFueDestruida(monstruoAtacante));
-		assertEquals(8000, jugadorA.vida(), DELTA);
-		assertEquals(8000, jugadorB.vida(), DELTA);
+		assert monstruoAtacante.estaEnElCementerio();
+		assertEquals(8000, jugadorA.obtenerPuntosDeVida(), DELTA);
+		assertEquals(8000, jugadorB.obtenerPuntosDeVida(), DELTA);
 	}
 	
 }

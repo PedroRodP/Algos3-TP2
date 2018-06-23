@@ -34,15 +34,28 @@ public class ZonaMonstruos implements Lugar {
 		monstruos.add(carta);
 	}
 
-	public void destruir(Monstruo carta) {
-		monstruos.remove(carta);
-		cementerio.agregar(carta);
+	@Override
+	public boolean esUnCementerio() {
+		return false;
 	}
-	
-	public void destruir(LinkedList<Monstruo> cartas) {
-		cementerio.agregar(cartas);
-		monstruos.removeAll(cartas);
 
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Campo campo) throws ExcepcionZonaIncorrecta {
+		throw new ExcepcionZonaIncorrecta();
+	}
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Monstruo monstruo) throws ExcepcionZonaIncorrecta {
+		monstruos.remove(monstruo);
+		cementerio.agregar(monstruo);
+		return cementerio;
+	}
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Magica magica) throws ExcepcionZonaIncorrecta {
+		throw new ExcepcionZonaIncorrecta();
+	}
+	@Override
+	public Cementerio quitarYAgregarAlCementerio(Trampa trampa) throws ExcepcionZonaIncorrecta {
+		throw new ExcepcionZonaIncorrecta();
 	}
 
 	public LinkedList<Monstruo> obtenerMonstruos() {
