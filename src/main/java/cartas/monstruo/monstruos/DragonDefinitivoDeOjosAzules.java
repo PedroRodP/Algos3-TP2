@@ -28,8 +28,7 @@ public class DragonDefinitivoDeOjosAzules extends Monstruo {
     		throw new ExcepcionSacrificiosInsuficientes();	
     	}
 
-    	//TODO validar que solo reciba 3 dragones (y no cuatro o otras cosas)
-		for (Monstruo m : sacrificados) m.mandarAlCementerio();
+		for (Monstruo monstruo : sacrificados) monstruo.mandarAlCementerio();
 		super.agregarseEn(zona);
     }
 }

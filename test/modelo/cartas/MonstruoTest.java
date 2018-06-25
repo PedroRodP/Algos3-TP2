@@ -285,47 +285,56 @@ public class MonstruoTest {
 		
 		Jugador jugador = new Jugador();
 		
-		Monstruo aux = new AgresorOscuro();
+		Monstruo aux1 = new AgresorOscuro(); //Se requieren monstruos para sacrificar para colocar Dragones
+		Monstruo aux2 = new AgresorOscuro();
+		Monstruo aux3 = new AgresorOscuro();
+		
 		LinkedList<Monstruo> aSacrificar = new LinkedList<>(); //3 monstruos que no son dragones
 		Monstruo definitivo = new DragonDefinitivoDeOjosAzules();
 		
-		aSacrificar.add(aux);
-		aSacrificar.add(aux);
-		aSacrificar.add(aux);
+		aSacrificar.add(aux1);
+		aSacrificar.add(aux2);
+		aSacrificar.add(aux3);
 		
-		jugador.jugarMonstruoBocaAbajo(aux);
-		jugador.jugarMonstruoBocaAbajo(aux);
-		jugador.jugarMonstruoBocaAbajo(aux);
+		jugador.jugarMonstruoBocaAbajo(aux1);
+		jugador.jugarMonstruoBocaAbajo(aux2);
+		jugador.jugarMonstruoBocaAbajo(aux3);
 		jugador.jugarMonstruoBocaAbajoSacrificando(definitivo, aSacrificar);
 	}
 	
 	@Test
-	//(expected = ExcepcionSacrificiosInsuficientes.class)
+	(expected = ExcepcionSacrificiosInsuficientes.class)
 	public void test15InvocarDragonDefinitivoConMenosDe3DragonesBlancosLanzaExcepcion() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
-		//TODO REHACER
-		/*
+		
 		Jugador jugador = new Jugador();
 		
-		Monstruo aux = new AgresorOscuro();
-		Monstruo dragon = new DragonBlancoDeOjosAzules();
+		Monstruo aux1 = new AgresorOscuro();
+		Monstruo aux2 = new AgresorOscuro();
+		Monstruo aux3 = new AgresorOscuro();
+		Monstruo aux4 = new AgresorOscuro();
+ 		Monstruo dragon = new DragonBlancoDeOjosAzules();
 		LinkedList<Monstruo> aSacrificar = new LinkedList<>(); //2 monstruos para agregar un dragon blanco
 		LinkedList<Monstruo> dragones = new LinkedList<>(); //Menos de 3 dragones
 		Monstruo definitivo = new DragonDefinitivoDeOjosAzules();
 		
-		aSacrificar.add(aux);
-		aSacrificar.add(aux);
+		
 		dragones.add(dragon);
 		dragones.add(dragon);
-		
-		jugador.jugarMonstruoBocaAbajo(aux);
-		jugador.jugarMonstruoBocaAbajo(aux);
+	
+		aSacrificar.add(aux1);
+		aSacrificar.add(aux2);
+		jugador.jugarMonstruoBocaAbajo(aux1);
+		jugador.jugarMonstruoBocaAbajo(aux2);
 		jugador.jugarMonstruoBocaAbajoSacrificando(dragon, aSacrificar);
 		
-		jugador.jugarMonstruoBocaAbajo(aux);
-		jugador.jugarMonstruoBocaAbajo(aux);
+		aSacrificar.clear();
+		aSacrificar.add(aux3);
+		aSacrificar.add(aux4);
+		jugador.jugarMonstruoBocaAbajo(aux3);
+		jugador.jugarMonstruoBocaAbajo(aux4);
 		jugador.jugarMonstruoBocaAbajoSacrificando(dragon, aSacrificar);
 		
-		jugador.jugarMonstruoBocaAbajoSacrificando(definitivo, aSacrificar);*/
+		jugador.jugarMonstruoBocaAbajoSacrificando(definitivo, aSacrificar);
 	}
 	
 	@Test
