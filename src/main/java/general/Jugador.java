@@ -19,7 +19,8 @@ import main.java.excepciones.ExcepcionZonaCompleta;
 
 public class Jugador {
 
-	private Vida vida;
+	private EstadoDeJuego estadoJuego;
+	private int vida;
 	private ZonaMonstruos zonaMonstruos;
 	private ZonaMagicasYTrampas zonaMagicasYTrampas;
 	private ZonaCampo zonaCampo;
@@ -27,19 +28,18 @@ public class Jugador {
 	private Jugador oponente;
 	private Mano mano;
 	private Mazo mazo;
-	private boolean mazoVacio;
 	
 	public Jugador() {
-		this.vida = new Vida(8000);
+		this.vida = 8000;
 		this.cementerio = new Cementerio();
 		this.zonaMonstruos = new ZonaMonstruos(cementerio);
 		this.zonaMagicasYTrampas = new ZonaMagicasYTrampas(cementerio);
 		this.zonaCampo = new ZonaCampo(cementerio);
 		this.mano = new Mano();
 	}
-
-	public double obtenerPuntosDeVida(){
-		return vida.getVida();
+	
+	public void asignarEstadoDeJuego(EstadoDeJuego estado) {
+		this.estadoJuego = estado;
 	}
 	
 	public void establecerOponente(Jugador oponente) {
@@ -50,12 +50,18 @@ public class Jugador {
 		return this.oponente;
 	}
 	
-	public LinkedList<Monstruo> obtenerMonstruos() {
-		return (LinkedList<Monstruo>) zonaMonstruos.obtenerMonstruos().clone();
+	public int obtenerPuntosDeVida() {
+		return vida;
 	}
 	
-	public Vida getVida() {
-		return vida;
+	public void quitarVida(double danio) {
+		vida -= (int) danio;
+		if (vida <= 0) estadoJuego.terminarConGanador(oponente);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public LinkedList<Monstruo> obtenerMonstruos() {
+		return (LinkedList<Monstruo>) zonaMonstruos.obtenerMonstruos().clone();
 	}
 	
 	public void jugarMonstruoBocaAbajo(Monstruo monstruo) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
@@ -117,8 +123,8 @@ public class Jugador {
 		carta.setBocaArriba();
 	}
 
-	public void atacar(Monstruo atacante, Monstruo rival) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
-		atacante.atacar(rival,vida,oponente.getVida());
+	public void atacar(Monstruo monstruoAtacante, Monstruo monstruoRival) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+		monstruoAtacante.atacar(monstruoRival, this, oponente);
 	}
 	
 	public void ponerEnAtaque(Monstruo monstruo) {
@@ -136,9 +142,11 @@ public class Jugador {
 			Carta carta = mazo.tomarCarta();
 			this.mano.agregar(carta);
 			
+			if (completoExodia()) estadoJuego.terminarConGanador(this);
+			
 		}catch (ExcepcionMazoVacio e){
 			
-			mazoVacio = true;
+			estadoJuego.terminarConGanador(oponente);
 			
 		}
 	}
@@ -147,20 +155,11 @@ public class Jugador {
 		return mano.cantidadDeCartas();
 	}
 	
-	public boolean seQuedoSinCartas() {
-		return mazoVacio;
-	}
-	
 	public void asignarMazo(Mazo mazo) {
 		this.mazo = mazo;
-		this.mazoVacio = false;
 	}
 	
 	public boolean completoExodia() {
 		return mano.completoExodia();
-	}
-	
-	public boolean estaMuerto() {
-		return vida.estaMuerto();
 	}
 }

@@ -1,7 +1,7 @@
 package main.java.cartas.monstruo;
 
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
-import main.java.general.Vida;
+import main.java.general.Jugador;
 
 public abstract class ModoDeCombate {
 
@@ -13,7 +13,7 @@ public abstract class ModoDeCombate {
 	
 	public abstract double diferenciaDeCombateCon(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar;
 	
-	public abstract void quitarVida(Vida vida, double danio);
+	public abstract void quitarVida(Jugador jugador, double danio);
 	
 	public abstract void actualizarPotencialDeAtaque(double puntos);
 	

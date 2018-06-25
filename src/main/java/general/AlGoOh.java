@@ -3,6 +3,8 @@ package main.java.general;
 import java.util.ArrayList;
 
 import main.java.excepciones.ExcepcionJuegoNoTermino;
+import main.java.excepciones.ExcepcionJuegoTerminado;
+import main.java.excepciones.ExcepcionTurnoFinalizo;
 
 public class AlGoOh {
 	
@@ -14,15 +16,20 @@ public class AlGoOh {
 	
 	public AlGoOh() {
 		
-		estado = new EnProceso();
-		
 		jugadorA = new Jugador();
 		jugadorB = new Jugador();
+		estado = new EstadoDeJuego();
 		
+		asignarEstadoDeJuego();
 		asignarMazos();
 		crearTurnador();
 		establecerOponentes();
 		
+	}
+	
+	private void asignarEstadoDeJuego() {
+		jugadorA.asignarEstadoDeJuego(estado);
+		jugadorB.asignarEstadoDeJuego(estado);;
 	}
 	
 	private void asignarMazos() {
@@ -49,63 +56,15 @@ public class AlGoOh {
 	
 	public Jugador siguienteTurno() {
 		jugadorActual = turnador.siguienteTurno();
+		estado.nuevoTurno();
 		return jugadorActual;
 	}
 	
-	public boolean estaEnProceso() {
-		return estado.juegoEnProceso();
-	}
+	//Se llama al metodo jugar() 4 veces (FaseTomarCarta, FasePreparacion, FaseAtaque, FaseMagicas)
+	//La ultima lanzara ExcepcionTurnoFinalizo para dar aviso de llamar al metodo siguienteTurno()
 	
-	public void jugar() {
-		//TODO tiene q estar en controlador
-		/*while (estaEnProceso()) {  //Mientras el juego esta en proceso
-			
-			try {
-				
-			faseTomarCarta();
-			fasePreparacion(); 
-			faseAtaqueYTrampas(); //jugador puede morir
-			faseMagicas(); //puede lanzar excepcion mazo vacio (Olla de la codicia)
-			
-			}catch (ExcepcionJuegoTerminado e) {
-				estado = new Terminado();
-			}
-		}*/
-	}
-	
-	public void faseTomarCarta(){
-		jugadorActual.tomarCartaDelMazo();
-		revisarEstadoDeJuego();
-	}
-	
-	public void fasePreparacion() {
-		
-	}
-	
-	public void faseAtaqueYTrampas() {
-		//jugadorActual.atacar(atacante, oponente);
-		revisarEstadoDeJuego();
-		
-	}
-	
-	public void faseMagicas() {
-		revisarEstadoDeJuego();
-	}
-	
-	private void revisarEstadoDeJuego() { 
-		Jugador oponente = jugadorActual.obtenerOponente();
-		if (jugadorActual.seQuedoSinCartas() || jugadorActual.estaMuerto()) {
-			this.finalizarConGanador(oponente);
-			return;
-		}
-		if (jugadorActual.completoExodia() || oponente.estaMuerto()) {
-			this.finalizarConGanador(jugadorActual);
-			return;
-		}
-	}
-	
-	public void finalizarConGanador(Jugador ganador) {
-		estado = new Terminado(ganador);
+	public void jugar() throws ExcepcionJuegoTerminado, ExcepcionTurnoFinalizo {
+		estado.ejecutarFase(jugadorActual);
 	}
 	
 	public Jugador ganador() throws ExcepcionJuegoNoTermino {

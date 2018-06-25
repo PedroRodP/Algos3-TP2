@@ -2,7 +2,6 @@ package main.java.cartas.monstruo.monstruos;
 
 import main.java.cartas.monstruo.Monstruo;
 import main.java.general.Jugador;
-import main.java.general.Vida;
 
 public class Jinzo7 extends Monstruo {
 	
@@ -13,8 +12,8 @@ public class Jinzo7 extends Monstruo {
         nombre = "Jinzo 7";
     }
 
-    public void aplicarEfecto(Vida vidaOponente){
-    	//todo si la carta esta boca abajo lanza excepcion..
-        vidaOponente.quitar(potenciaDeCombate());
+    public void aplicarEfecto(Jugador oponente){
+    	//TODO Si la carta esta boca abajo lanza excepcion..
+        oponente.quitarVida(potenciaDeCombate());
     }
 }

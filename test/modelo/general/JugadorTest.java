@@ -3,7 +3,6 @@ package modelo.general;
 import org.junit.Test;
 
 import main.java.general.Jugador;
-import main.java.general.Mazo;
 
 
 import static org.junit.Assert.assertEquals;
@@ -20,32 +19,4 @@ public class JugadorTest {
 		assertEquals(8000, jugador.obtenerPuntosDeVida(), DELTA);
 	}
 
-	@Test
-	public void test02JugadorPuedeTomarHasta40CartasDelMazo(){
-		
-		Jugador jugador = new Jugador();
-		Mazo mazo = new Mazo();
-		
-		jugador.asignarMazo(mazo);
-		
-		for (int i = 0; i < 40; i++) { //Iterara 40 veces
-			jugador.tomarCartaDelMazo();
-		}
-		
-		assert(!jugador.seQuedoSinCartas());
-	}
-	
-	@Test
-	public void test02BISJugadorPuedeTomarHasta40CartasDelMazo(){
-		
-		Jugador jugador = new Jugador();
-		Mazo mazo = new Mazo();
-		
-		jugador.asignarMazo(mazo);
-		for (int i = 0; i < 50; i++) { 
-			jugador.tomarCartaDelMazo();
-		}
-		
-		assert(jugador.seQuedoSinCartas());
-	}
 }

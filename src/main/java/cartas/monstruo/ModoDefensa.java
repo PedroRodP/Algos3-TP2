@@ -1,7 +1,7 @@
 package main.java.cartas.monstruo;
 
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
-import main.java.general.Vida;
+import main.java.general.Jugador;
 
 public class ModoDefensa extends ModoDeCombate {
 	
@@ -16,7 +16,7 @@ public class ModoDefensa extends ModoDeCombate {
 	}
 
 	@Override
-	public void quitarVida(Vida vida, double danio) {
+	public void quitarVida(Jugador jugador, double danio) {
 		//No inflige danio por estar en modo defensa
 	}
 

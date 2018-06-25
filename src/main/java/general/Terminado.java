@@ -1,19 +1,29 @@
 package main.java.general;
 
-public class Terminado implements EstadoDeJuego {
+import main.java.excepciones.ExcepcionJuegoTerminado;
+
+public class Terminado implements Fase {
 	
 	Jugador ganador;
 	
 	public Terminado(Jugador jugador) {
 		ganador = jugador;
 	}
-	
-	public boolean juegoEnProceso() {
-		return false;
-	}
-	
+
+	@Override
 	public Jugador devolverGanador() {
 		return ganador;
+	}
+	
+	@Override
+	public Fase proxima() {
+		return this; //O lanzar ExcepcionJuegoTerminado
+	}
+	
+	@Override
+	public void ejecutar(Jugador jugador) throws ExcepcionJuegoTerminado {
+		//Game over...
+		throw new ExcepcionJuegoTerminado();
 	}
 
 }

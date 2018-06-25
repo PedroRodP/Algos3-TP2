@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import main.java.cartas.Carta;
 import main.java.cartas.ZonaMonstruos;
 import main.java.excepciones.*;
-import main.java.general.Vida;
+import main.java.general.Jugador;
 
 public abstract class Monstruo extends Carta {
 
@@ -35,25 +35,26 @@ public abstract class Monstruo extends Carta {
 		this.modo = new ModoDefensa(defensa);
 	}
 
-	public void atacar(Monstruo rival, Vida vidaPropia, Vida vidaOponente) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
-		double diferenciaDeCombate = diferenciaDeCombateCon(rival);
+	public void atacar(Monstruo monstruoRival, Jugador atacante, Jugador oponente) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
+		
+		double diferenciaDeCombate = diferenciaDeCombateCon(monstruoRival);
 
 		if (diferenciaDeCombate == 0) {
 			mandarAlCementerio();
-			rival.mandarAlCementerio();
+			monstruoRival.mandarAlCementerio();
 			return;
 		}
 		if (diferenciaDeCombate < 0) {
-			quitarVida(vidaPropia, diferenciaDeCombate);
+			quitarVida(atacante, diferenciaDeCombate);
 			mandarAlCementerio();
 		} else {
-			rival.quitarVida(vidaOponente, diferenciaDeCombate);
-			rival.mandarAlCementerio();
+			monstruoRival.quitarVida(oponente, diferenciaDeCombate);
+			monstruoRival.mandarAlCementerio();
 		}
 	}
 	
-	public void quitarVida(Vida vida, double danio) {
-		modo.quitarVida(vida, danio);
+	public void quitarVida(Jugador jugador, double danio) {
+		modo.quitarVida(jugador, danio);
 	}
 
 	public void agregarseSacrificando(ZonaMonstruos zona, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
