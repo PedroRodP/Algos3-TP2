@@ -230,7 +230,13 @@ public class MonstruoTest {
 		
 		Jugador jugador = new Jugador();
 		
-		Monstruo aux = new AgresorOscuro(); //Se requieren monstruos para sacrificar para colocar Dragones
+		Monstruo aux1 = new AgresorOscuro(); //Se requieren monstruos para sacrificar para colocar Dragones
+		Monstruo aux2 = new AgresorOscuro();
+		Monstruo aux3 = new AgresorOscuro();
+		Monstruo aux4 = new AgresorOscuro();
+		Monstruo aux5 = new AgresorOscuro();
+		Monstruo aux6 = new AgresorOscuro();
+		
 		LinkedList<Monstruo> aSacrificar = new LinkedList<>();
 		LinkedList<Monstruo> dragones = new LinkedList<>();
 		
@@ -238,23 +244,31 @@ public class MonstruoTest {
 		Monstruo dragon2 = new DragonBlancoDeOjosAzules();
 		Monstruo dragon3 = new DragonBlancoDeOjosAzules();
 		Monstruo definitivo = new DragonDefinitivoDeOjosAzules();
-		
-		aSacrificar.add(aux);
-		aSacrificar.add(aux);
+	
 		dragones.add(dragon1);
 		dragones.add(dragon2);
 		dragones.add(dragon3);
 		
-		jugador.jugarMonstruoBocaAbajo(aux);
-		jugador.jugarMonstruoBocaAbajo(aux);
+		aSacrificar.clear();
+		aSacrificar.add(aux1);
+		aSacrificar.add(aux2);
+		jugador.jugarMonstruoBocaAbajo(aux1);
+		jugador.jugarMonstruoBocaAbajo(aux2);
 		jugador.jugarMonstruoBocaAbajoSacrificando(dragon1, aSacrificar);
 		
-		jugador.jugarMonstruoBocaAbajo(aux);
-		jugador.jugarMonstruoBocaAbajo(aux);
+		
+		aSacrificar.clear();
+		aSacrificar.add(aux3);
+		aSacrificar.add(aux4);
+		jugador.jugarMonstruoBocaAbajo(aux3);
+		jugador.jugarMonstruoBocaAbajo(aux4);
 		jugador.jugarMonstruoBocaAbajoSacrificando(dragon2, aSacrificar);
 		
-		jugador.jugarMonstruoBocaAbajo(aux);
-		jugador.jugarMonstruoBocaAbajo(aux);
+		aSacrificar.clear();
+		aSacrificar.add(aux5);
+		aSacrificar.add(aux6);
+		jugador.jugarMonstruoBocaAbajo(aux5);
+		jugador.jugarMonstruoBocaAbajo(aux6);
 		jugador.jugarMonstruoBocaAbajoSacrificando(dragon3, aSacrificar);
 
 		jugador.jugarMonstruoBocaAbajoSacrificando(definitivo, dragones);
