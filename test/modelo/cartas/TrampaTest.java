@@ -54,7 +54,7 @@ public class TrampaTest {
         jugador.jugarMonstruoBocaAbajo(miMonstruo);
         jugador.jugarTrampaBocaAbajo(trampa);
         
-        oponente.atacar(monstruo, miMonstruo, trampa);
+        oponente.atacar(monstruo, miMonstruo);
         
         assertEquals (8000 - 1200, oponente.obtenerPuntosDeVida(), DELTA);
         assert (!miMonstruo.estaEnElCementerio());
@@ -77,7 +77,7 @@ public class TrampaTest {
         jugador.jugarMonstruoBocaArriba(miMonstruo);
         jugador.ponerEnAtaque(miMonstruo);
         jugador.jugarTrampaBocaAbajo(trampa);
-        oponente.atacar(monstruo, miMonstruo, trampa);
+        oponente.atacar(monstruo, miMonstruo);
         assertEquals(7900,oponente.obtenerPuntosDeVida(),DELTA);
         assert (monstruo.estaEnElCementerio());
         assertEquals(1200,miMonstruo.potenciaDeCombate(),DELTA);

@@ -123,9 +123,6 @@ public class Jugador {
 		carta.setBocaArriba();
 	}
 
-	public void atacar(Monstruo monstruoAtacante, Monstruo monstruoRival) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
-		monstruoAtacante.atacar(monstruoRival, this, oponente);
-	}
 	
 	public void ponerEnAtaque(Monstruo monstruo) {
 		monstruo.colocarEnAtaque();
@@ -163,7 +160,13 @@ public class Jugador {
 		return mano.completoExodia();
 	}
 
-	public void atacar(Monstruo atacante, Monstruo defensor, Trampa trampa) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
-		trampa.aplicarA(atacante, defensor, this);
+	public void atacar(Monstruo monstruoAtacante, Monstruo monstruoRival) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+		Trampa trampa=this.oponente.obtenerPrimerCartaTrampa();
+		trampa.aplicarA(monstruoAtacante, monstruoRival, this);
 	}
+
+	private Trampa obtenerPrimerCartaTrampa() {
+		return zonaMagicasYTrampas.obtenerPrimeraCartaTrampa();
+	}
+
 }
