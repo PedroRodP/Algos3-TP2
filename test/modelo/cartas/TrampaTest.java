@@ -80,6 +80,7 @@ public class TrampaTest {
         oponente.atacar(monstruo, miMonstruo, trampa);
         assertEquals(7900,oponente.obtenerPuntosDeVida(),DELTA);
         assert (monstruo.estaEnElCementerio());
+        assertEquals(1200,miMonstruo.potenciaDeCombate(),DELTA);
 
     }
 }

@@ -19,5 +19,6 @@ public class AgujeroNegro extends Magica {
 
 		for (Monstruo m : monstruosPropios) m.mandarAlCementerio();
 		for (Monstruo m : monstruosOponentes) m.mandarAlCementerio();
+		this.mandarAlCementerio();
 	}
 }

@@ -9,5 +9,11 @@ public class Reinforcement extends Trampa {
     @Override
     public void aplicarA(Jugador jugador, Monstruo atacante, Jugador oponente, Monstruo defensor) {
         defensor.alterarAtaque(500);
+        this.mandarAlCementerio();
+    }
+
+    @Override
+    public void desactivarEfecto(Jugador jugador, Monstruo atacante, Jugador oponente, Monstruo defensor) {
+        defensor.alterarAtaque(-500);
     }
 }

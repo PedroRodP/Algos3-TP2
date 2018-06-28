@@ -166,6 +166,7 @@ public class Jugador {
 	public void atacar(Monstruo atacante, Monstruo defensor, Trampa trampa) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
 		trampa.aplicarA(this,atacante,this.oponente,defensor);
 		this.atacar(atacante,defensor);
+		trampa.desactivarEfecto(this,atacante,this.oponente,defensor);
 
 	}
 }

@@ -24,4 +24,5 @@ public abstract class Trampa extends Carta{
 	public abstract void aplicarA(Jugador jugador, Monstruo atacante, Jugador oponente, Monstruo defensor);
 
 
+	public abstract void desactivarEfecto(Jugador jugador, Monstruo atacante, Jugador oponente, Monstruo defensor);
 }
