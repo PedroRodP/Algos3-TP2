@@ -162,4 +162,10 @@ public class Jugador {
 	public boolean completoExodia() {
 		return mano.completoExodia();
 	}
+
+	public void atacar(Monstruo atacante, Monstruo defensor, Trampa trampa) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
+		trampa.aplicarA(this,atacante,this.oponente,defensor);
+		this.atacar(atacante,defensor);
+
+	}
 }
