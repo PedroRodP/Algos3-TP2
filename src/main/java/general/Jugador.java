@@ -151,10 +151,6 @@ public class Jugador {
 		}
 	}
 	
-	public int cantidadDeCartasEnMano() {
-		return mano.cantidadDeCartas();
-	}
-	
 	public void asignarMazo(Mazo mazo) {
 		this.mazo = mazo;
 	}
@@ -162,11 +158,10 @@ public class Jugador {
 	public boolean completoExodia() {
 		return mano.completoExodia();
 	}
-
-	public void atacar(Monstruo atacante, Monstruo defensor, Trampa trampa) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
-		trampa.aplicarA(this,atacante,this.oponente,defensor);
-		this.atacar(atacante,defensor);
-		trampa.desactivarEfecto(this,atacante,this.oponente,defensor);
-
+	
+	public Trampa obtenerPrimerTrampa() {
+		return zonaMagicasYTrampas.obtenerPrimerTrampa();
 	}
+
+	
 }

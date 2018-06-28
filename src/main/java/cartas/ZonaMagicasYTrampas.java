@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import main.java.cartas.campo.Campo;
 import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Monstruo;
+import main.java.cartas.trampa.NoTrampa;
 import main.java.cartas.trampa.Trampa;
 import main.java.excepciones.ExcepcionZonaCompleta;
 import main.java.excepciones.ExcepcionZonaIncorrecta;
@@ -23,6 +24,11 @@ public class ZonaMagicasYTrampas implements Lugar {
 
 	public void agregar(Monstruo monstruo) throws ExcepcionZonaIncorrecta {
 		throw new ExcepcionZonaIncorrecta();
+	}
+	
+	public Trampa obtenerPrimerTrampa() {
+		if (trampas.isEmpty()) return new NoTrampa();
+		return trampas.getFirst();
 	}
 	
 	public void agregar(Campo campo) throws ExcepcionZonaIncorrecta {

@@ -4,6 +4,8 @@ import java.util.LinkedList;
 
 import main.java.cartas.Carta;
 import main.java.cartas.ZonaMonstruos;
+import main.java.cartas.trampa.Trampa;
+import main.java.cartas.trampa.trampas.ErrorAtaqueDenegado;
 import main.java.excepciones.*;
 import main.java.general.Jugador;
 
@@ -37,6 +39,14 @@ public abstract class Monstruo extends Carta {
 
 	public void atacar(Monstruo monstruoRival, Jugador atacante, Jugador oponente) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
 		
+		Trampa trampa = oponente.obtenerPrimerTrampa();
+		
+		try { //TODO preguntar hoy!!
+			trampa.aplicarA(atacante, this, oponente, monstruoRival);
+		}catch (ErrorAtaqueDenegado e) {
+			return;
+		}
+		
 		double diferenciaDeCombate = diferenciaDeCombateCon(monstruoRival);
 
 		if (diferenciaDeCombate == 0) {
@@ -51,6 +61,9 @@ public abstract class Monstruo extends Carta {
 			monstruoRival.quitarVida(oponente, diferenciaDeCombate);
 			monstruoRival.mandarAlCementerio();
 		}
+		
+		trampa.desactivarEfecto(atacante, this, oponente, monstruoRival);
+		
 	}
 	
 	public void quitarVida(Jugador jugador, double danio) {
