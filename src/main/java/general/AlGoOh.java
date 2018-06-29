@@ -22,6 +22,7 @@ public class AlGoOh {
 		
 		asignarEstadoDeJuego();
 		asignarMazos();
+		levantar5CartasDelMazo();
 		crearTurnador();
 		establecerOponentes();
 		
@@ -37,6 +38,14 @@ public class AlGoOh {
 		jugadorA.asignarMazo(new Mazo());
 		jugadorB.asignarMazo(new Mazo());
 		
+	}
+	
+	private void levantar5CartasDelMazo() {
+		
+		for (int i = 0; i < 5; i++) {
+			jugadorA.tomarCartaDelMazo();
+			jugadorB.tomarCartaDelMazo();
+		}
 	}
 	
 	private void crearTurnador() {
