@@ -22,10 +22,9 @@ public class EstadoDeJuego {
 	
 	public void ejecutarFase(Jugador jugador) throws ExcepcionJuegoTerminado, ExcepcionTurnoFinalizo {
 		fase.ejecutar(jugador);
-		pasarASiguienteFase();
 	}
 	
-	private void pasarASiguienteFase() throws ExcepcionTurnoFinalizo {
+	public void pasarASiguienteFase() throws ExcepcionTurnoFinalizo {
 		fase = fase.proxima();
 	}
 	

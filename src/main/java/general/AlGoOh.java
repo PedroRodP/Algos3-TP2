@@ -70,10 +70,16 @@ public class AlGoOh {
 	}
 	
 	//Se llama al metodo jugar() 4 veces (FaseTomarCarta, FasePreparacion, FaseAtaque, FaseMagicas)
-	//La ultima lanzara ExcepcionTurnoFinalizo para dar aviso de llamar al metodo siguienteTurno()
+	
+	/*	La ultima lanzara ExcepcionTurnoFinalizo cuando se acaban las fases 
+	 *	para dar aviso de llamar al metodo siguienteTurno() */
 	
 	public void jugar() throws ExcepcionJuegoTerminado, ExcepcionTurnoFinalizo {
 		estado.ejecutarFase(jugadorActual);
+	}
+	
+	public void pasarASiguienteFase() throws ExcepcionTurnoFinalizo {
+		estado.pasarASiguienteFase();
 	}
 	
 	public Jugador ganador() throws ExcepcionJuegoNoTermino {
