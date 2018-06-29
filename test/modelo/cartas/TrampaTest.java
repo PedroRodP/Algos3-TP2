@@ -47,6 +47,7 @@ public class TrampaTest {
         Jugador oponente = new Jugador();
         
         jugador.establecerOponente(oponente);
+        oponente.establecerOponente(jugador);
         
         oponente.jugarMonstruoBocaArriba(monstruo);
         oponente.ponerEnAtaque(monstruo);
@@ -70,6 +71,7 @@ public class TrampaTest {
         Jugador oponente = new Jugador();
 
         jugador.establecerOponente(oponente);
+        oponente.establecerOponente(jugador);
 
         oponente.jugarMonstruoBocaArriba(monstruo);
         oponente.ponerEnAtaque(monstruo);
