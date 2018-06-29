@@ -11,4 +11,4 @@
 -Cuando se seleccionan los Monstruos a sacrificar, se evalúa solamente que la cantidad sea la necesaria. Si hay más, se sacrificarán los necesarios y se destruirán los demás.
 -Le delegamos la responsabilidad de colocarseEnTablero a los Monstruos ya que DragonBlancoDeOjosAzules tiene una forma propia de solicitar sacrificios.
 
--A Monstruo le paso Jugador (y no un objeto Vida) para notificar al Jugador que está siendo atacado y podría cambiar el EstadoDeJuego a Terminado declarando ganador al oponente.
+-A Monstruo le paso Jugador (y no un objeto Vida) para notificar al Jugador que está siendo atacado y éste poder cambiar el EstadoDeJuego a Terminado declarando ganador al oponente (finalizarConGanador(ganador)).
