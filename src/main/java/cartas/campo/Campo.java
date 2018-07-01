@@ -4,6 +4,8 @@ import java.util.LinkedList;
 
 import main.java.cartas.Carta;
 import main.java.cartas.ZonaCampo;
+import main.java.cartas.ZonaMagicasYTrampas;
+import main.java.cartas.ZonaMonstruos;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.excepciones.ExcepcionZonaIncorrecta;
 
@@ -17,15 +19,15 @@ public abstract class Campo extends Carta {
 		this.monstruosRivales = monstruosRivales;
 	}
 	
+	public void agregarseEn(ZonaMagicasYTrampas zonaMagicasYTrampas, ZonaMonstruos zonaMonstruos, ZonaCampo zonaCampos) {
+		this.lugar = zonaCampos;
+		zonaCampos.agregar(this);
+	}
+	
 	public abstract void aplicarEfecto();
 	
 	public abstract void desactivarEfecto();
 	
-	public void agregarseEn(ZonaCampo zona) {
-		this.lugar = zona;
-		zona.agregar(this);
-	}
-
 	public void mandarAlCementerio(){
 		try {
 			lugar = lugar.quitarYAgregarAlCementerio(this);

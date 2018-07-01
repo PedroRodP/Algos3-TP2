@@ -24,7 +24,9 @@ public class FaseAtaque implements Fase {
 	 * throw new NoSePuedeJugarCartaEnEstaFase();
 		jugadorActual.jugarCarta(Carta carta); ...  esto pasa si estamos en fase de preparacion. La idea es q cada fase tenga toooodas
 		las acciones q se pueden realizar en cada fase o etapa levantando excepciones si no corresponde una accion en una fase 
-		La idea es q la fase sepa el jugador actual 
+		La idea es q la fase sepa el jugador actual
+		
+		
 
 	}
 	

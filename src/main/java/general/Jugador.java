@@ -12,6 +12,7 @@ import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.trampa.Trampa;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
+import main.java.excepciones.ExcepcionCartaNoNecesitaSacrificios;
 import main.java.excepciones.ExcepcionMazoVacio;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
@@ -64,60 +65,24 @@ public class Jugador {
 		return (LinkedList<Monstruo>) zonaMonstruos.obtenerMonstruos().clone();
 	}
 	
-	public void jugarMonstruoBocaAbajo(Monstruo monstruo) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
-		
-		if (monstruo.sacrificiosNecesariosPorInvocacion() != 0) {
-			throw new ExcepcionSacrificiosInsuficientes();
-		}
-		
-		monstruo.setBocaAbajo();
-		monstruo.agregarseEn(zonaMonstruos);
+	public void jugarCartaBocaAbajo(Carta carta) throws ExcepcionZonaCompleta {
+		carta.agregarseEn(zonaMagicasYTrampas, zonaMonstruos, zonaCampo);
 	}
 	
-	public void jugarMonstruoBocaArriba(Monstruo monstruo) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
-		
-		if (monstruo.sacrificiosNecesariosPorInvocacion() != 0) {
-			throw new ExcepcionSacrificiosInsuficientes();
-		}
-		
-		monstruo.setBocaArriba();
-		monstruo.agregarseEn(zonaMonstruos);
+	public void jugarCartaBocaArriba(Carta carta) throws ExcepcionZonaCompleta {
+		carta.setBocaArriba();
+		carta.agregarseEn(zonaMagicasYTrampas, zonaMonstruos, zonaCampo);
 	}
 	
-	public void jugarMonstruoBocaAbajoSacrificando(Monstruo monstruo, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
-		monstruo.setBocaAbajo();
-		monstruo.agregarseSacrificando(zonaMonstruos, sacrificados);
+	public void jugarCartaBocaAbajoSacrificando(Carta carta, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios {
+		carta.agregarseEn(zonaMonstruos, sacrificados);
 	}
 	
-	public void jugarMonstruoBocaArribaSacrificando(Monstruo monstruo, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
-		monstruo.setBocaArriba();
-		monstruo.agregarseSacrificando(zonaMonstruos, sacrificados);
+	public void jugarCartaBocaArribaSacrificando(Carta carta, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios {
+		carta.setBocaArriba();
+		carta.agregarseEn(zonaMonstruos, sacrificados);
 	}
-	
-	public void jugarMagicaBocaAbajo(Magica magica) throws ExcepcionZonaCompleta {
-		magica.setBocaAbajo();
-		magica.agregarseEn(zonaMagicasYTrampas);
-	}
-	
-	public void jugarMagicaBocaArriba(Magica magica) throws ExcepcionZonaCompleta {
-		magica.setBocaArriba();
-		magica.agregarseEn(zonaMagicasYTrampas);
-	}
-	
-	public void jugarTrampaBocaAbajo(Trampa trampa) throws ExcepcionZonaCompleta {
-		trampa.setBocaAbajo();
-		trampa.agregarseEn(zonaMagicasYTrampas);
-	}
-	
-	public void jugarTrampaBocaArriba(Trampa trampa) throws ExcepcionZonaCompleta {
-		trampa.setBocaArriba();
-		trampa.agregarseEn(zonaMagicasYTrampas);
-	}
-	
-	public void jugarCampo(Campo campo) { //Los campos se activan directamente
-		campo.setBocaArriba();
-		campo.agregarseEn(zonaCampo);
-	}
+
 	
 	public void voltearCarta(Carta carta) {
 		carta.setBocaArriba();

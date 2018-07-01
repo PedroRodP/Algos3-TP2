@@ -31,8 +31,8 @@ public class MagicaTest {
         Magica magica = new AgujeroNegro();
         Monstruo monstruo = new AgresorOscuro();
         
-        jugadorA.jugarMonstruoBocaAbajo(monstruo);
-        jugadorA.jugarMagicaBocaAbajo(magica);
+        jugadorA.jugarCartaBocaAbajo(monstruo);
+        jugadorA.jugarCartaBocaAbajo(magica);
         
         assert (! monstruo.estaEnElCementerio());
     }
@@ -50,10 +50,10 @@ public class MagicaTest {
         
         jugadorA.establecerOponente(jugadorB);
 
-        jugadorA.jugarMonstruoBocaAbajo(monstruoA);
-        jugadorA.jugarMonstruoBocaAbajo(monstruoB);
-        jugadorB.jugarMonstruoBocaAbajo(monstruoC);
-        jugadorA.jugarMagicaBocaArriba(agujeroNegro);
+        jugadorA.jugarCartaBocaAbajo(monstruoA);
+        jugadorA.jugarCartaBocaAbajo(monstruoB);
+        jugadorB.jugarCartaBocaAbajo(monstruoC);
+        jugadorA.jugarCartaBocaArriba(agujeroNegro);
 
         agujeroNegro.aplicarEfecto(jugadorA.obtenerMonstruos(),jugadorB.obtenerMonstruos());
 
@@ -72,7 +72,7 @@ public class MagicaTest {
     	Mazo mazo = new Mazo();
     	
     	jugador.asignarMazo(mazo);
-    	jugador.jugarMagicaBocaArriba(olla);
+    	jugador.jugarCartaBocaArriba(olla);
     	olla.afectaA(jugador);
     	olla.aplicarEfecto();
     	
@@ -92,9 +92,9 @@ public class MagicaTest {
     	
     	jugador.establecerOponente(oponente);
     	
-    	oponente.jugarMonstruoBocaArriba(agresorOscuro);
-    	oponente.jugarMonstruoBocaArriba(amanteFeliz);
-    	jugador.jugarMagicaBocaArriba(fisura);
+    	oponente.jugarCartaBocaArriba(agresorOscuro);
+    	oponente.jugarCartaBocaArriba(amanteFeliz);
+    	jugador.jugarCartaBocaArriba(fisura);
     	fisura.aplicarEfecto(oponente.obtenerMonstruos());
     	
     	assert(amanteFeliz.estaEnElCementerio());
@@ -113,7 +113,7 @@ public class MagicaTest {
 
     	AgujeroNegro magica = new AgujeroNegro();
     	
-    	jugador.jugarMagicaBocaAbajo(magica);
+    	jugador.jugarCartaBocaAbajo(magica);
 
     	magica.aplicarEfecto(jugador.obtenerMonstruos(),oponente.obtenerMonstruos());
     }
@@ -125,7 +125,7 @@ public class MagicaTest {
    		Jugador jugador = new Jugador();
    		OllaDeLaCodicia magica = new OllaDeLaCodicia();
    	
-   		jugador.jugarMagicaBocaAbajo(magica);
+   		jugador.jugarCartaBocaAbajo(magica);
    	
    		magica.afectaA(jugador);
    		magica.aplicarEfecto();
@@ -138,7 +138,7 @@ public class MagicaTest {
    		Jugador jugador = new Jugador();
    		Fisura magica = new Fisura();
    	
-   		jugador.jugarMagicaBocaAbajo(magica);
+   		jugador.jugarCartaBocaAbajo(magica);
 
    		magica.aplicarEfecto(jugador.obtenerMonstruos());
    }

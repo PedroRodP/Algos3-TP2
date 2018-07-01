@@ -12,3 +12,6 @@ public class NoTrampa extends Trampa {
         atacante.atacar(defensor,jugador,jugador.obtenerOponente());
     }
 }
+
+
+

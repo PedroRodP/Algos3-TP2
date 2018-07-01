@@ -3,6 +3,8 @@ package main.java.cartas.monstruo;
 import java.util.LinkedList;
 
 import main.java.cartas.Carta;
+import main.java.cartas.ZonaCampo;
+import main.java.cartas.ZonaMagicasYTrampas;
 import main.java.cartas.ZonaMonstruos;
 import main.java.excepciones.*;
 import main.java.general.Jugador;
@@ -57,18 +59,21 @@ public abstract class Monstruo extends Carta {
 		modo.quitarVida(jugador, danio);
 	}
 
-	public void agregarseSacrificando(ZonaMonstruos zona, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	@Override
+	public void agregarseEn(ZonaMonstruos zona, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+		
 		if (sacrificados.size() < sacrificiosNecesariosPorInvocacion()) {
 			throw new ExcepcionSacrificiosInsuficientes();
 		}
-
+		
+		this.lugar = zona;
 		for (Monstruo m : sacrificados) m.mandarAlCementerio();
-		this.agregarseEn(zona);
+		zona.agregar(this);
 	}
 	
-	public void agregarseEn(ZonaMonstruos zona) {
-		this.lugar = zona;
-		zona.agregar(this);
+	public void agregarseEn(ZonaMagicasYTrampas zonaMagicasYTrampas, ZonaMonstruos zonaMonstruos, ZonaCampo zonaCampos) {
+		this.lugar = zonaMonstruos;
+		zonaMonstruos.agregar(this);
 	}
 	
 	public double potenciaDeCombate() {

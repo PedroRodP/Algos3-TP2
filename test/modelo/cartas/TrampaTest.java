@@ -31,8 +31,8 @@ public class TrampaTest {
         
         jugador.establecerOponente(oponente);
         
-        oponente.jugarMonstruoBocaAbajo(monstruo);
-        jugador.jugarTrampaBocaAbajo(trampa);
+        oponente.jugarCartaBocaAbajo(monstruo);
+        jugador.jugarCartaBocaAbajo(trampa);
 
         assert (! monstruo.estaEnElCementerio());
     }
@@ -49,11 +49,11 @@ public class TrampaTest {
         jugador.establecerOponente(oponente);
         oponente.establecerOponente(jugador);
         
-        oponente.jugarMonstruoBocaArriba(monstruo);
+        oponente.jugarCartaBocaArriba(monstruo);
         oponente.ponerEnAtaque(monstruo);
         
-        jugador.jugarMonstruoBocaAbajo(miMonstruo);
-        jugador.jugarTrampaBocaAbajo(trampa);
+        jugador.jugarCartaBocaAbajo(miMonstruo);
+        jugador.jugarCartaBocaAbajo(trampa);
         
         oponente.atacar(monstruo, miMonstruo);
         
@@ -73,12 +73,12 @@ public class TrampaTest {
         jugador.establecerOponente(oponente);
         oponente.establecerOponente(jugador);
 
-        oponente.jugarMonstruoBocaArriba(monstruo);
+        oponente.jugarCartaBocaArriba(monstruo);
         oponente.ponerEnAtaque(monstruo);
 
-        jugador.jugarMonstruoBocaArriba(miMonstruo);
+        jugador.jugarCartaBocaArriba(miMonstruo);
         jugador.ponerEnAtaque(miMonstruo);
-        jugador.jugarTrampaBocaAbajo(trampa);
+        jugador.jugarCartaBocaAbajo(trampa);
         oponente.atacar(monstruo, miMonstruo);
         assertEquals(7900,oponente.obtenerPuntosDeVida(),DELTA);
         assert (monstruo.estaEnElCementerio());

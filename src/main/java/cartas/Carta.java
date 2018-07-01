@@ -1,5 +1,12 @@
 package main.java.cartas;
 
+import java.util.LinkedList;
+
+import main.java.cartas.monstruo.Monstruo;
+import main.java.excepciones.ExcepcionCartaNoNecesitaSacrificios;
+import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
+import main.java.excepciones.ExcepcionZonaCompleta;
+
 public abstract class Carta {
 
 	protected String nombre;
@@ -27,4 +34,10 @@ public abstract class Carta {
 	public boolean estaEnElCementerio(){
 	    return lugar.esUnCementerio();
     }
+	
+	public void agregarseEn(ZonaMonstruos zona, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios{
+		throw new ExcepcionCartaNoNecesitaSacrificios();
+	}
+	
+	public abstract void agregarseEn(ZonaMagicasYTrampas zonaMagicasYTrampas, ZonaMonstruos zonaMonstruos, ZonaCampo zonaCampos) throws ExcepcionZonaCompleta;
 }
