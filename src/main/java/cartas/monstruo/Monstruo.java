@@ -71,7 +71,10 @@ public abstract class Monstruo extends Carta {
 		zona.agregar(this);
 	}
 	
-	public void agregarseEn(ZonaMagicasYTrampas zonaMagicasYTrampas, ZonaMonstruos zonaMonstruos, ZonaCampo zonaCampos) {
+	public void agregarseEn(ZonaMagicasYTrampas zonaMagicasYTrampas, ZonaMonstruos zonaMonstruos, ZonaCampo zonaCampos) throws ExcepcionSacrificiosInsuficientes {
+		if (sacrificiosNecesariosPorInvocacion() != 0) {
+			throw new ExcepcionSacrificiosInsuficientes();
+		}
 		this.lugar = zonaMonstruos;
 		zonaMonstruos.agregar(this);
 	}

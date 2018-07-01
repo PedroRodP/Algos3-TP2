@@ -66,6 +66,7 @@ public class Jugador {
 	}
 	
 	public void jugarCartaBocaAbajo(Carta carta) throws ExcepcionZonaCompleta {
+		carta.setBocaAbajo();
 		carta.agregarseEn(zonaMagicasYTrampas, zonaMonstruos, zonaCampo);
 	}
 	

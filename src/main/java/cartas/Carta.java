@@ -39,5 +39,5 @@ public abstract class Carta {
 		throw new ExcepcionCartaNoNecesitaSacrificios();
 	}
 	
-	public abstract void agregarseEn(ZonaMagicasYTrampas zonaMagicasYTrampas, ZonaMonstruos zonaMonstruos, ZonaCampo zonaCampos) throws ExcepcionZonaCompleta;
+	public abstract void agregarseEn(ZonaMagicasYTrampas zonaMagicasYTrampas, ZonaMonstruos zonaMonstruos, ZonaCampo zonaCampos) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes;
 }
