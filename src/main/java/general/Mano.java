@@ -12,43 +12,20 @@ import main.java.cartas.monstruo.monstruos.exodia.Exodia;
 import main.java.cartas.trampa.Trampa;
 import main.java.excepciones.ExcepcionZonaIncorrecta;
 
-public class Mano implements Lugar {
-	
-	private int cantidad;
+public class Mano extends Lugar {
+
 	private LinkedList<Carta> cartas;
 	
 	public Mano() {
-		
-		this.cantidad = 0;
-		this.cartas = new LinkedList<Carta>();
+		this.cartas = new LinkedList<>();
 	}
-	
-	public void agregar(Monstruo monstruo) {
-		cartas.add(monstruo);
-	}
-	
-	public void agregar(Magica magica) {
-		cartas.add(magica);
-	}
-	
-	public void agregar(Trampa trampa) {
-		cartas.add(trampa);
-	}
-	
-	public void agregar(Campo campo) {
-		cartas.add(campo);
-	}
-	
+
 	public void agregar(Carta carta) {
-		
 		this.cartas.add(carta);
-		this.cantidad++;
 	}
 	
-	public void remover(Carta carta) {
-		
-		this.cartas.remove(carta);
-		this.cantidad--;
+	public void remover(Carta carta){
+        this.cartas.remove(carta);
 	}
 	
 	public boolean completoExodia() {
@@ -56,28 +33,7 @@ public class Mano implements Lugar {
 	}
 	
 	public int cantidadDeCartas() {
-		return this.cantidad;
+		return this.cartas.size();
 	}
 
-	@Override
-	public boolean esUnCementerio() {
-		return false;
-	}
-
-	@Override
-	public Cementerio quitarYAgregarAlCementerio(Campo campo) throws ExcepcionZonaIncorrecta {
-		throw new ExcepcionZonaIncorrecta();
-	}
-	@Override
-	public Cementerio quitarYAgregarAlCementerio(Monstruo monstruo) throws ExcepcionZonaIncorrecta {
-		throw new ExcepcionZonaIncorrecta();
-	}
-	@Override
-	public Cementerio quitarYAgregarAlCementerio(Magica magica) throws ExcepcionZonaIncorrecta {
-		throw new ExcepcionZonaIncorrecta();
-	}
-	@Override
-	public Cementerio quitarYAgregarAlCementerio(Trampa trampa) throws ExcepcionZonaIncorrecta {
-		throw new ExcepcionZonaIncorrecta();
-	}
 }

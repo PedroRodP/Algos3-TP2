@@ -7,7 +7,7 @@ import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.trampa.Trampa;
 import main.java.excepciones.ExcepcionZonaIncorrecta;
 
-public class ZonaCampo implements Lugar{
+public class ZonaCampo extends Lugar{
 
 	private Campo campo;
 	private Cementerio cementerio;
@@ -16,19 +16,7 @@ public class ZonaCampo implements Lugar{
 		this.campo = new NoCampo();
 		this.cementerio = cementerio;
 	}
-	
-	public void agregar(Monstruo monstruo) throws ExcepcionZonaIncorrecta {
-		throw new ExcepcionZonaIncorrecta();
-	}
-	
-	public void agregar(Magica magica) throws ExcepcionZonaIncorrecta {
-		throw new ExcepcionZonaIncorrecta();
-	}
-	
-	public void agregar(Trampa trampa) throws ExcepcionZonaIncorrecta {
-		throw new ExcepcionZonaIncorrecta();
-	}
-	
+
 	public void agregar(Campo campo) {
 		this.campo.desactivarEfecto();
 		cementerio.agregar(this.campo);
@@ -44,19 +32,7 @@ public class ZonaCampo implements Lugar{
 	@Override
 	public Cementerio quitarYAgregarAlCementerio(Campo campo) throws ExcepcionZonaIncorrecta {
 		cementerio.agregar(campo);
-		campo = new NoCampo();
+		this.campo = new NoCampo();
 		return cementerio;
-	}
-	@Override
-	public Cementerio quitarYAgregarAlCementerio(Monstruo monstruo) throws ExcepcionZonaIncorrecta {
-		throw new ExcepcionZonaIncorrecta();
-	}
-	@Override
-	public Cementerio quitarYAgregarAlCementerio(Magica magica) throws ExcepcionZonaIncorrecta {
-		throw new ExcepcionZonaIncorrecta();
-	}
-	@Override
-	public Cementerio quitarYAgregarAlCementerio(Trampa trampa) throws ExcepcionZonaIncorrecta {
-		throw new ExcepcionZonaIncorrecta();
 	}
 }

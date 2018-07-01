@@ -11,12 +11,7 @@ import main.java.cartas.campo.Campo;
 import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.trampa.Trampa;
-import main.java.excepciones.ExcepcionCartaBocaAbajo;
-import main.java.excepciones.ExcepcionCartaNoNecesitaSacrificios;
-import main.java.excepciones.ExcepcionMazoVacio;
-import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
-import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
-import main.java.excepciones.ExcepcionZonaCompleta;
+import main.java.excepciones.*;
 
 public class Jugador {
 
@@ -66,11 +61,13 @@ public class Jugador {
 	}
 	
 	public void jugarCartaBocaAbajo(Carta carta) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
+		mano.remover(carta);
 		carta.setBocaAbajo();
 		carta.agregarseEn(zonaMagicasYTrampas, zonaMonstruos, zonaCampo);
 	}
 	
 	public void jugarCartaBocaArriba(Carta carta) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
+		mano.remover(carta);
 		carta.setBocaArriba();
 		carta.agregarseEn(zonaMagicasYTrampas, zonaMonstruos, zonaCampo);
 	}
@@ -99,18 +96,12 @@ public class Jugador {
 	}
 		
 	public void tomarCartaDelMazo(){
-		
 		try {
-			
 			Carta carta = mazo.tomarCarta();
 			this.mano.agregar(carta);
-			
 			if (completoExodia()) estadoJuego.terminarConGanador(this);
-			
 		}catch (ExcepcionMazoVacio e){
-			
 			estadoJuego.terminarConGanador(oponente);
-			
 		}
 	}
 	

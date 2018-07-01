@@ -10,7 +10,7 @@ import main.java.cartas.trampa.Trampa;
 import main.java.excepciones.ExcepcionZonaCompleta;
 import main.java.excepciones.ExcepcionZonaIncorrecta;
 
-public class ZonaMagicasYTrampas implements Lugar {
+public class ZonaMagicasYTrampas extends Lugar {
 
 	private LinkedList<Magica> magicas;
 	private LinkedList<Trampa> trampas;
@@ -20,14 +20,6 @@ public class ZonaMagicasYTrampas implements Lugar {
 		this.magicas = new LinkedList<>();
 		this.trampas = new LinkedList<>();
 		this.cementerio = cementerio; 
-	}
-
-	public void agregar(Monstruo monstruo) throws ExcepcionZonaIncorrecta {
-		throw new ExcepcionZonaIncorrecta();
-	}
-	
-	public void agregar(Campo campo) throws ExcepcionZonaIncorrecta {
-		throw new ExcepcionZonaIncorrecta();
 	}
 	
 	public void agregar(Magica carta) throws ExcepcionZonaCompleta {
@@ -44,19 +36,6 @@ public class ZonaMagicasYTrampas implements Lugar {
 		trampas.add(carta);
 	}
 
-	@Override
-	public boolean esUnCementerio() {
-		return false;
-	}
-
-	@Override
-	public Cementerio quitarYAgregarAlCementerio(Campo campo) throws ExcepcionZonaIncorrecta {
-		throw new ExcepcionZonaIncorrecta();
-	}
-	@Override
-	public Cementerio quitarYAgregarAlCementerio(Monstruo monstruo) throws ExcepcionZonaIncorrecta {
-		throw new ExcepcionZonaIncorrecta();
-	}
 	@Override
 	public Cementerio quitarYAgregarAlCementerio(Magica magica) throws ExcepcionZonaIncorrecta {
 		magicas.remove(magica);

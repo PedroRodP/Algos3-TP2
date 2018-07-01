@@ -2,10 +2,7 @@ package modelo.cartas;
 
 import main.java.cartas.monstruo.monstruos.AbismoReluciente;
 import main.java.cartas.trampa.trampas.CilindroMagico;
-import main.java.excepciones.ExcepcionCartaBocaAbajo;
-import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
-import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
-import main.java.excepciones.ExcepcionZonaCompleta;
+import main.java.excepciones.*;
 import main.java.cartas.trampa.trampas.Reinforcement;
 import main.java.general.Jugador;
 
@@ -22,7 +19,7 @@ public class TrampaTest {
 	private final static double DELTA = 1e-2;
 	
     @Test
-    public void test01SiColocaUnaCartaTrampaBocaAbajoEnTableroNoSeActivaEfecto() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+    public void test01SiColocaUnaCartaTrampaBocaAbajoEnTableroNoSeActivaEfecto() throws ExcepcionAlGoOh {
     	
     	Monstruo monstruo = new AgresorOscuro();
         Trampa trampa = new CilindroMagico();
@@ -38,7 +35,7 @@ public class TrampaTest {
     }
     
    @Test
-    public void test02SiColocaUnaCartaTrampaBocaArribaEnTableroSeActivaEfecto() throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionCartaBocaAbajo {
+    public void test02SiColocaUnaCartaTrampaBocaArribaEnTableroSeActivaEfecto() throws ExcepcionAlGoOh {
     	
     	Monstruo monstruo = new AgresorOscuro();
     	Monstruo miMonstruo = new AgresorOscuro();
@@ -62,7 +59,7 @@ public class TrampaTest {
     }
 
     @Test
-    public void test03CartaTrampaReinforcementAumentaEn500ElAtaqueDelDefensorYDestruyeAtacante() throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
+    public void test03CartaTrampaReinforcementAumentaEn500ElAtaqueDelDefensorYDestruyeAtacante() throws ExcepcionAlGoOh {
 
         Monstruo monstruo = new AbismoReluciente();
         Monstruo miMonstruo = new AgresorOscuro();

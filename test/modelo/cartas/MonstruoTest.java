@@ -5,14 +5,10 @@ import static org.junit.Assert.assertEquals;
 import java.util.LinkedList;
 
 import main.java.cartas.monstruo.monstruos.*;
+import main.java.excepciones.*;
 import org.junit.Test;
 
 import main.java.cartas.monstruo.Monstruo;
-import main.java.excepciones.ExcepcionCartaBocaAbajo;
-import main.java.excepciones.ExcepcionCartaNoNecesitaSacrificios;
-import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
-import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
-import main.java.excepciones.ExcepcionZonaCompleta;
 import main.java.general.Jugador;
 
 public class MonstruoTest {
@@ -40,8 +36,7 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test03MonstruoEnAtaqueMuereSiAtacaAMonstruoConMayorAtaqueEnModoAtaque()
-			throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void test03MonstruoEnAtaqueMuereSiAtacaAMonstruoConMayorAtaqueEnModoAtaque() throws ExcepcionAlGoOh {
 		
 		Jugador jugador = new Jugador();
 		jugador.establecerOponente(new Jugador());
@@ -59,9 +54,7 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test04MonstruoEnAtaqueAtacaAMonstruoConMenorAtaqueYEsteMuere()
-			throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
-		
+	public void test04MonstruoEnAtaqueAtacaAMonstruoConMenorAtaqueYEsteMuereYJugadorPierdeVida() throws ExcepcionAlGoOh {
 		Jugador jugadorA = new Jugador();
 		Jugador jugadorB = new Jugador();
 		jugadorA.establecerOponente(jugadorB);
@@ -80,9 +73,7 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test05MonstruoEnAtaqueAtacaAMonstruoConIgualAtaqueYAmbosSeDestruyenPeroNoInfligenDanio()
-			throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
-		
+	public void test05MonstruoEnAtaqueAtacaAMonstruoConIgualAtaqueYAmbosSeDestruyenPeroNoInfligenDanio() throws ExcepcionAlGoOh {
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
 		
@@ -106,8 +97,7 @@ public class MonstruoTest {
 	}
 
 	@Test
-	public void test06MonstruoEnAtaqueAtacaAMonstruoConMenorDefensaYSeDestruyeSinInfligirDanio()
-			throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void test06MonstruoEnAtaqueAtacaAMonstruoConMenorDefensaYSeDestruyeSinInfligirDanio() throws ExcepcionAlGoOh {
 		
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
@@ -130,7 +120,7 @@ public class MonstruoTest {
 	
 	@Test
 	public void test07MonstruoEnAtaqueAtacaAMonstruoConMayorDefensaYNoSeDestruyeNiInfligeDanio()
-			throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+			throws ExcepcionAlGoOh {
 		
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
@@ -152,8 +142,7 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test08InvocacionAMonstruoDe5EstrellasSacrificaAMonstruoEnTablero()
-			throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios {
+	public void test08InvocacionAMonstruoDe5EstrellasSacrificaAMonstruoEnTablero() throws ExcepcionAlGoOh {
 		
 		Jugador jugador = new Jugador();
 		Monstruo monstruoAzul = new AgresorOscuro();
@@ -170,8 +159,7 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test09InvocacionAMonstruoDe8EstrellasSacrificaAMonstruoEnTablero()
-			throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios {
+	public void test09InvocacionAMonstruoDe8EstrellasSacrificaAMonstruoEnTablero() throws ExcepcionAlGoOh {
 		
 		Jugador jugador = new Jugador();
 		Monstruo monstruoVerde = new AgresorOscuro();
@@ -191,8 +179,7 @@ public class MonstruoTest {
 	}
 
 	@Test
-	public void testo10ActivoEfectoJinzoYAtacoALosPuntosDeVidaDirectamente()
-			throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void testo10ActivoEfectoJinzoYAtacoALosPuntosDeVidaDirectamente() throws ExcepcionAlGoOh {
 		Jugador jugador = new Jugador();
 		Jugador rival = new Jugador();
 		rival.establecerOponente(jugador);
@@ -226,8 +213,7 @@ public class MonstruoTest {
 	}
 
 	@Test
-	public void test13invocacionDragonDefinitivoDeOjosAzulesSacrifica3DragonesDeOjosAzules()
-			throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios{
+	public void test13invocacionDragonDefinitivoDeOjosAzulesSacrifica3DragonesDeOjosAzules() throws ExcepcionAlGoOh{
 		
 		Jugador jugador = new Jugador();
 		
@@ -281,8 +267,7 @@ public class MonstruoTest {
 	
 	@Test
 	(expected = ExcepcionSacrificiosInsuficientes.class)
-	public void test14InvocarDragonDefinitivoSinTenerDragonesBlancosLanzaExcepcion()
-			throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios {
+	public void test14InvocarDragonDefinitivoSinTenerDragonesBlancosLanzaExcepcion() throws ExcepcionAlGoOh {
 		
 		Jugador jugador = new Jugador();
 		
@@ -305,7 +290,7 @@ public class MonstruoTest {
 	
 	@Test
 	(expected = ExcepcionSacrificiosInsuficientes.class)
-	public void test15InvocarDragonDefinitivoConMenosDe3DragonesBlancosLanzaExcepcion() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios {
+	public void test15InvocarDragonDefinitivoConMenosDe3DragonesBlancosLanzaExcepcion() throws ExcepcionAlGoOh {
 		
 		Jugador jugador = new Jugador();
 		
@@ -339,8 +324,7 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test16SiSeSeleccionanMasMonstruosQueLosNecesariosSeSacrificaranLosNecesariosYSeDestruiranLosDemas() 
-			throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios {
+	public void test16SiSeSeleccionanMasMonstruosQueLosNecesariosSeSacrificaranLosNecesariosYSeDestruiranLosDemas() throws ExcepcionAlGoOh {
 
 		Jugador jugador = new Jugador();
 		Monstruo dragon = new DragonBlancoDeOjosAzules();
@@ -362,8 +346,7 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test17InsectoComeHombresRecibeAtaqueEstandoBocaAbajoActivaEfectoDeVolteoSenialandoAtacanteLoDestruyeYNadiePierdeVida()
-			throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+	public void test17InsectoComeHombresRecibeAtaqueEstandoBocaAbajoActivaEfectoDeVolteoSenialandoAtacanteLoDestruyeYNadiePierdeVida() throws ExcepcionAlGoOh {
 		
 		Jugador jugadorA = new Jugador();
 		Jugador jugadorB = new Jugador();

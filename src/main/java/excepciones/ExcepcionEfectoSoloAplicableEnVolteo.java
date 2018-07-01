@@ -1,5 +1,5 @@
 package main.java.excepciones;
 
-public class ExcepcionEfectoSoloAplicableEnVolteo extends Exception {
+public class ExcepcionEfectoSoloAplicableEnVolteo extends ExcepcionAlGoOh {
 
 }

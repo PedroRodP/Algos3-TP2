@@ -1,5 +1,5 @@
 package main.java.excepciones;
 
-public class ExcepcionZonaCompleta extends Exception {
+public class ExcepcionZonaCompleta extends ExcepcionAlGoOh {
 
 }

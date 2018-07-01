@@ -8,7 +8,7 @@ import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.trampa.Trampa;
 import main.java.excepciones.ExcepcionZonaIncorrecta;
 
-public class Cementerio implements Lugar {
+public class Cementerio extends Lugar {
 	
 	private LinkedList<Carta> cementerio;
 	
@@ -45,20 +45,4 @@ public class Cementerio implements Lugar {
 		return true;
 	}
 
-	@Override
-	public Cementerio quitarYAgregarAlCementerio(Campo campo) throws ExcepcionZonaIncorrecta {
-		throw new ExcepcionZonaIncorrecta();
-	}
-	@Override
-	public Cementerio quitarYAgregarAlCementerio(Monstruo monstruo) throws ExcepcionZonaIncorrecta {
-		throw new ExcepcionZonaIncorrecta();
-	}
-	@Override
-	public Cementerio quitarYAgregarAlCementerio(Magica magica) throws ExcepcionZonaIncorrecta {
-		throw new ExcepcionZonaIncorrecta();
-	}
-	@Override
-	public Cementerio quitarYAgregarAlCementerio(Trampa trampa) throws ExcepcionZonaIncorrecta {
-		throw new ExcepcionZonaIncorrecta();
-	}
 }
