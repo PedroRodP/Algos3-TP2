@@ -65,12 +65,12 @@ public class Jugador {
 		return (LinkedList<Monstruo>) zonaMonstruos.obtenerMonstruos().clone();
 	}
 	
-	public void jugarCartaBocaAbajo(Carta carta) throws ExcepcionZonaCompleta {
+	public void jugarCartaBocaAbajo(Carta carta) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
 		carta.setBocaAbajo();
 		carta.agregarseEn(zonaMagicasYTrampas, zonaMonstruos, zonaCampo);
 	}
 	
-	public void jugarCartaBocaArriba(Carta carta) throws ExcepcionZonaCompleta {
+	public void jugarCartaBocaArriba(Carta carta) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
 		carta.setBocaArriba();
 		carta.agregarseEn(zonaMagicasYTrampas, zonaMonstruos, zonaCampo);
 	}

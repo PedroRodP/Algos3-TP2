@@ -104,7 +104,7 @@ public class MagicaTest {
     
     @Test
     (expected = ExcepcionCartaBocaAbajo.class)
-    public void test05ActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionZonaCompleta, ExcepcionCartaBocaAbajo {
+    public void test05ActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionZonaCompleta, ExcepcionCartaBocaAbajo, ExcepcionSacrificiosInsuficientes {
     	
     	Jugador jugador = new Jugador();
     	Jugador oponente = new Jugador();
@@ -120,7 +120,7 @@ public class MagicaTest {
     
    @Test
    (expected = ExcepcionCartaBocaAbajo.class)
-   public void test05BISActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionZonaCompleta, ExcepcionCartaBocaAbajo, ExcepcionMazoVacio {
+   public void test05BISActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionZonaCompleta, ExcepcionCartaBocaAbajo, ExcepcionMazoVacio, ExcepcionSacrificiosInsuficientes {
    	
    		Jugador jugador = new Jugador();
    		OllaDeLaCodicia magica = new OllaDeLaCodicia();
@@ -133,7 +133,7 @@ public class MagicaTest {
    
    @Test
    (expected = ExcepcionCartaBocaAbajo.class)
-   public void test05BISBISActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionZonaCompleta, ExcepcionCartaBocaAbajo {
+   public void test05BISBISActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionZonaCompleta, ExcepcionCartaBocaAbajo, ExcepcionSacrificiosInsuficientes {
    	
    		Jugador jugador = new Jugador();
    		Fisura magica = new Fisura();
