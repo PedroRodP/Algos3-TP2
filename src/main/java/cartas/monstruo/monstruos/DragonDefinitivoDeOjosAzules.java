@@ -14,8 +14,8 @@ public class DragonDefinitivoDeOjosAzules extends Monstruo {
         nombre = "Dragon definitivo de ojos azules";
     }
 
-    @Override
-    public void agregarseSacrificando(ZonaMonstruos zona, LinkedList<Monstruo> sacrificados) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
+   @Override
+    public void agregarseEn(ZonaMonstruos zona, LinkedList<Monstruo> sacrificados) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
 
     	int dragones = 0;
     	for (Monstruo monstruo : sacrificados) {
@@ -29,6 +29,7 @@ public class DragonDefinitivoDeOjosAzules extends Monstruo {
     	}
 
 		for (Monstruo monstruo : sacrificados) monstruo.mandarAlCementerio();
-		super.agregarseEn(zona);
+		this.lugar=zona;
+	   zona.agregar(this);
     }
 }
