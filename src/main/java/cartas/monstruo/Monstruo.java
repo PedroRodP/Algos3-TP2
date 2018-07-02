@@ -36,10 +36,21 @@ public abstract class Monstruo extends Carta {
 		
 		this.modo = new ModoDefensa(defensa);
 	}
+	
+	public void aplicarEfecto(Monstruo monstruo) {
+		//No todos los monstruos tienen efecto
+	}
+	
+	protected void contraatacar(Monstruo monstruo) {
+		//No todos los monstruos contraatacan
+	}
 
 	public void atacar(Monstruo monstruoRival, Jugador atacante, Jugador oponente) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
 		
 		double diferenciaDeCombate = diferenciaDeCombateCon(monstruoRival);
+		
+		monstruoRival.contraatacar(this);
+		if (this.estaEnElCementerio()) return;
 
 		if (diferenciaDeCombate == 0) {
 			mandarAlCementerio();

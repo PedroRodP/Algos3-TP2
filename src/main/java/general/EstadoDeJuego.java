@@ -13,6 +13,7 @@ import main.java.excepciones.ExcepcionJuegoNoTermino;
 import main.java.excepciones.ExcepcionJuegoTerminado;
 import main.java.excepciones.ExcepcionMazoVacio;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
+import main.java.excepciones.ExcepcionMonstruoYaAtaco;
 import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
 import main.java.excepciones.ExcepcionTurnoFinalizo;
 import main.java.excepciones.ExcepcionZonaCompleta;
@@ -99,7 +100,11 @@ public class EstadoDeJuego {
 		fase.aplicarMagica(magica, jugador);
 	}
 	
-	public void atacarCon(Monstruo atacante, Monstruo defensor) throws ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+	public void atacarCon(Monstruo atacante, Monstruo defensor) throws ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionMonstruoYaAtaco {
 		fase.atacarCon(atacante, defensor, jugador);
+	}
+	
+	public void aplicarEfectoDeMonstruo(Monstruo monstruo, Monstruo elegido) throws ExcepcionFaseIncorrecta {
+		fase.aplicarEfectoDeMonstruo(monstruo, elegido, jugador);
 	}
 }

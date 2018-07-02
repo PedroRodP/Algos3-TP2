@@ -12,6 +12,7 @@ import main.java.excepciones.ExcepcionJuegoNoTermino;
 import main.java.excepciones.ExcepcionJuegoTerminado;
 import main.java.excepciones.ExcepcionMazoVacio;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
+import main.java.excepciones.ExcepcionMonstruoYaAtaco;
 import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
 import main.java.excepciones.ExcepcionTurnoFinalizo;
 import main.java.excepciones.ExcepcionZonaCompleta;
@@ -93,7 +94,11 @@ public class AlGoOh {
 		estado.aplicarMagica(magica);
 	}
 	
-	public void atacarCon(Monstruo atacante, Monstruo defensor) throws ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+	public void aplicarEfectoDeMonstruo(Monstruo monstruo, Monstruo elegido) throws ExcepcionFaseIncorrecta {
+		estado.aplicarEfectoDeMonstruo(monstruo, elegido);
+	}
+	
+	public void atacarCon(Monstruo atacante, Monstruo defensor) throws ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionMonstruoYaAtaco {
 		estado.atacarCon(atacante, defensor);
 	}
 	

@@ -12,6 +12,7 @@ import main.java.excepciones.ExcepcionJuegoNoTermino;
 import main.java.excepciones.ExcepcionJuegoTerminado;
 import main.java.excepciones.ExcepcionMazoVacio;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
+import main.java.excepciones.ExcepcionMonstruoYaAtaco;
 import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
 import main.java.excepciones.ExcepcionTurnoFinalizo;
 import main.java.excepciones.ExcepcionZonaCompleta;
@@ -53,7 +54,11 @@ public abstract class Fase {
 		throw new ExcepcionFaseIncorrecta();
 	}
 	
-	public void atacarCon(Monstruo atacante, Monstruo defensor, Jugador jugador) throws ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+	public void atacarCon(Monstruo atacante, Monstruo defensor, Jugador jugador) throws ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionMonstruoYaAtaco {
+		throw new ExcepcionFaseIncorrecta();
+	}
+
+	public void aplicarEfectoDeMonstruo(Monstruo monstruo, Monstruo elegido, Jugador jugador) throws ExcepcionFaseIncorrecta {
 		throw new ExcepcionFaseIncorrecta();
 	}
 }

@@ -156,4 +156,7 @@ public class Jugador {
 		return zonaMagicasYTrampas.obtenerPrimeraCartaTrampa();
 	}
 
+	public void aplicarEfectoDeMonstruo(Monstruo monstruo, Monstruo elegido) {
+		monstruo.aplicarEfecto(elegido);
+	}
 }

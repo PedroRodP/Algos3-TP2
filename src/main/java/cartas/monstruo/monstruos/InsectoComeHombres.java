@@ -1,7 +1,6 @@
 package main.java.cartas.monstruo.monstruos;
 
 import main.java.cartas.monstruo.Monstruo;
-import main.java.excepciones.ExcepcionEfectoSoloAplicableEnVolteo;
 
 public class InsectoComeHombres extends Monstruo {
 	
@@ -10,11 +9,18 @@ public class InsectoComeHombres extends Monstruo {
 		nombre = "Insecto come hombres";
 	}
 	
-	public void aplicarEfecto(Monstruo monstruoADestruir) throws ExcepcionEfectoSoloAplicableEnVolteo{
-		if (this.estaBocaArriba()){
-			throw new ExcepcionEfectoSoloAplicableEnVolteo();
+	@Override
+	public void aplicarEfecto(Monstruo monstruoADestruir) {
+		if (posicion.estaBocaAbajo()){
+			this.setBocaArriba();
+			monstruoADestruir.mandarAlCementerio();
 		}
-		this.setBocaArriba();
-		monstruoADestruir.mandarAlCementerio();
+		
 	}
+	
+	@Override
+	protected void contraatacar(Monstruo monstruo) {
+		aplicarEfecto(monstruo);
+	}
+	
 }
