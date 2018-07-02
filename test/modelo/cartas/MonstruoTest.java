@@ -104,7 +104,7 @@ public class MonstruoTest {
 	}
 
 	@Test
-	public void test06MonstruoEnAtaqueAtacaAMonstruoConMenorDefensaYSeDestruyeSinInfligirDanio() throws ExcepcionAlGoOh {
+	public void test06MonstruoEnAtaqueAtacaAMonstruoConMenorDefensaYSeDestruyeSinInfligirDanio() throws ExcepcionAlGoOh{
 		
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
@@ -170,7 +170,7 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test09InvocacionAMonstruoDe8EstrellasSacrificaAMonstruoEnTablero() throws ExcepcionAlGoOh {
+	public void test09InvocacionAMonstruoDe8EstrellasSacrificaAMonstruoEnTablero() throws ExcepcionAlGoOh{
 		
 		Jugador jugador = new Jugador();
 		Monstruo monstruoVerde = new AgresorOscuro();

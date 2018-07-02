@@ -12,6 +12,7 @@ import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
 import main.java.excepciones.ExcepcionZonaCompleta;
+import main.java.excepciones.ExcepcionZonaIncorrecta;
 import main.java.general.Jugador;
 
 public class CampoTest {
@@ -19,7 +20,7 @@ public class CampoTest {
 	private static final double DELTA = 1e-2;
 	
 	@Test
-	public void testWastelandIncrementaElAtaqueEn200PuntosDeMonstruosPropiosY300LaDefensaDeMonstruosRivales() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+	public void testWastelandIncrementaElAtaqueEn200PuntosDeMonstruosPropiosY300LaDefensaDeMonstruosRivales() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionZonaIncorrecta {
 
    	 	Jugador jugador= new Jugador();
         Jugador oponente= new Jugador();
@@ -48,7 +49,7 @@ public class CampoTest {
 	}
 	
 	@Test
-	public void testSogenIncrementaLaDefensaDeLosMonstruosPropiosEn500PuntosY200ElAtaqueDeMonstruosRivales() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+	public void testSogenIncrementaLaDefensaDeLosMonstruosPropiosEn500PuntosY200ElAtaqueDeMonstruosRivales() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionZonaIncorrecta {
 
    	 	Jugador jugador = new Jugador();
         Jugador oponente = new Jugador();

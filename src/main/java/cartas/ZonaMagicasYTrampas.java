@@ -20,19 +20,18 @@ public class ZonaMagicasYTrampas extends Lugar {
 	}
 	
 	@Override
-	public void agregar(Carta carta) throws ExcepcionZonaCompleta {
+	public void agregar(Magica cartaMagica) throws ExcepcionZonaCompleta {
 		if (magicas.size() + trampas.size() == 5) {
 			throw new ExcepcionZonaCompleta();
 		}
-		if (carta instanceof Magica) {
-			Magica cartaMagica = (Magica) carta;
-			magicas.add(cartaMagica);
+		magicas.add(cartaMagica);
+	}
+	
+	public void agregar(Trampa cartaTrampa) throws ExcepcionZonaCompleta{
+		if (magicas.size() + trampas.size() == 5) {
+			throw new ExcepcionZonaCompleta();
 		}
-		
-		if (carta instanceof Trampa) {
-			Trampa cartaTrampa = (Trampa) carta;
-			trampas.add(cartaTrampa);
-		}
+		trampas.add(cartaTrampa);
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import main.java.cartas.monstruo.Monstruo;
 import main.java.excepciones.ExcepcionCartaNoNecesitaSacrificios;
 import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
 import main.java.excepciones.ExcepcionZonaCompleta;
+import main.java.excepciones.ExcepcionZonaIncorrecta;
 
 public class FasePreparacion extends Fase {
 
@@ -16,22 +17,22 @@ public class FasePreparacion extends Fase {
 	}
 	
 	@Override
-	public void jugarCartaBocaAbajo(Carta carta, Jugador jugador) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
+	public void jugarCartaBocaAbajo(Carta carta, Jugador jugador) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta {
 		jugador.jugarCartaBocaAbajo(carta);
 	}
 	
 	@Override
-	public void jugarCartaBocaArriba(Carta carta, Jugador jugador) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
+	public void jugarCartaBocaArriba(Carta carta, Jugador jugador) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta {
 		jugador.jugarCartaBocaArriba(carta);
 	}
 	
 	@Override
-	public void jugarSacrificandoBocaAbajo(Carta carta, LinkedList<Monstruo> sacrificados, Jugador jugador) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios {
+	public void jugarSacrificandoBocaAbajo(Carta carta, LinkedList<Monstruo> sacrificados, Jugador jugador) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios, ExcepcionZonaIncorrecta {
 		jugador.jugarCartaBocaAbajoSacrificando(carta, sacrificados);
 	}
 	
 	@Override
-	public void jugarSacrificandoBocaArriba(Carta carta, LinkedList<Monstruo> sacrificados, Jugador jugador) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios {
+	public void jugarSacrificandoBocaArriba(Carta carta, LinkedList<Monstruo> sacrificados, Jugador jugador) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios, ExcepcionZonaIncorrecta {
 		jugador.jugarCartaBocaArribaSacrificando(carta, sacrificados);
 	}
 	

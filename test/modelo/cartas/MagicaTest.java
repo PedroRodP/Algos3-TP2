@@ -1,6 +1,7 @@
 package modelo.cartas;
 
-import main.java.excepciones.*;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 import main.java.cartas.magica.Magica;
@@ -11,17 +12,18 @@ import main.java.cartas.magica.magicas.OllaDeLaCodicia;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
 import main.java.cartas.monstruo.monstruos.AmanteFeliz;
+import main.java.excepciones.ExcepcionAlGoOh;
+import main.java.excepciones.ExcepcionCartaBocaAbajo;
+import main.java.excepciones.ExcepcionZonaIncorrecta;
 import main.java.general.Jugador;
 import main.java.general.Mazo;
-
-import static org.junit.Assert.assertEquals;
 
 public class MagicaTest {
 
     private static final double DELTA = 1e-2;
 
     @Test
-    public void test01CartaMagicaJugadaBocaAbajoNoActivaEfecto() throws ExcepcionAlGoOh {
+    public void test01CartaMagicaJugadaBocaAbajoNoActivaEfecto() throws ExcepcionAlGoOh{
     	
     	Jugador jugadorA = new Jugador();
         Magica magica = new AgujeroNegro();
@@ -61,7 +63,7 @@ public class MagicaTest {
 
     }
     @Test
-    public void test03ActivarOllaDeLaCodiciaTomaDosCartasDelMazo() throws ExcepcionAlGoOh {
+    public void test03ActivarOllaDeLaCodiciaTomaDosCartasDelMazo() throws ExcepcionAlGoOh{
     	
     	Magica olla = new OllaDeLaCodicia();
     	Jugador jugador = new Jugador();
@@ -78,7 +80,7 @@ public class MagicaTest {
     }
     
     @Test
-    public void test04CuandoActivarEfectoDeCartaMagicaFisuraSeDestruyeElMonstruoOponenteConMenorAtaque() throws ExcepcionAlGoOh {
+    public void test04CuandoActivarEfectoDeCartaMagicaFisuraSeDestruyeElMonstruoOponenteConMenorAtaque() throws ExcepcionAlGoOh{
 
     	Jugador jugador = new Jugador();
     	Jugador oponente = new Jugador();
@@ -102,7 +104,7 @@ public class MagicaTest {
     
     @Test
     (expected = ExcepcionCartaBocaAbajo.class)
-    public void test05ActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionAlGoOh {
+    public void test05ActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionAlGoOh{
     	
     	Jugador jugador = new Jugador();
     	AgujeroNegro magica = new AgujeroNegro();
@@ -115,7 +117,7 @@ public class MagicaTest {
     
    @Test
    (expected = ExcepcionCartaBocaAbajo.class)
-   public void test05BISActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionAlGoOh {
+   public void test05BISActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionAlGoOh{
    	
 	    Jugador jugador = new Jugador();
    		OllaDeLaCodicia magica = new OllaDeLaCodicia();
@@ -128,7 +130,7 @@ public class MagicaTest {
    
    @Test
    (expected = ExcepcionCartaBocaAbajo.class)
-   public void test05BISBISActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionAlGoOh {
+   public void test05BISBISActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionAlGoOh{
    	
 	    Jugador jugador = new Jugador();
    		Fisura magica = new Fisura();

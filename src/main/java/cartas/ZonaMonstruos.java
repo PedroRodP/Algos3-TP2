@@ -15,9 +15,8 @@ public class ZonaMonstruos extends Lugar {
 	}
 	
 	@Override
-	public void agregar(Carta carta) {
-		Monstruo cartaMonstruo = (Monstruo) carta;
-		monstruos.add(cartaMonstruo);
+	public void agregar(Monstruo carta) {
+		monstruos.add(carta);
 	}
 
 	@Override

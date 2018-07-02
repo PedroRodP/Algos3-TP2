@@ -60,7 +60,7 @@ public abstract class Monstruo extends Carta {
 	}
 
 	@Override
-	public void agregarseEn(ZonaMonstruos zona, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void agregarseEn(ZonaMonstruos zona, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionZonaIncorrecta {
 		
 		if (sacrificados.size() < sacrificiosNecesariosPorInvocacion()) {
 			throw new ExcepcionSacrificiosInsuficientes();
@@ -71,7 +71,7 @@ public abstract class Monstruo extends Carta {
 		zona.agregar(this);
 	}
 	
-	public void agregarseEn(ZonaMagicasYTrampas zonaMagicasYTrampas, ZonaMonstruos zonaMonstruos, ZonaCampo zonaCampos) throws ExcepcionSacrificiosInsuficientes {
+	public void agregarseEn(ZonaMagicasYTrampas zonaMagicasYTrampas, ZonaMonstruos zonaMonstruos, ZonaCampo zonaCampos) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionZonaIncorrecta {
 		if (sacrificiosNecesariosPorInvocacion() != 0) {
 			throw new ExcepcionSacrificiosInsuficientes();
 		}
