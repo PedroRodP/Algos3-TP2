@@ -2,5 +2,6 @@
 /.idea/
 /.idea/*
 /build/
+/build/*
 .classpath
 .project
