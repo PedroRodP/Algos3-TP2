@@ -14,13 +14,18 @@ public class ZonaCampo extends Lugar{
 	}
 
 	public void agregar(Carta carta) {
-		Campo campo = (Campo) carta;
-		this.campo.desactivarEfecto();
+		
 		cementerio.agregar(this.campo);
+		
+		Campo campo = (Campo) carta;
+		
 		this.campo = campo;
-		this.campo.aplicarEfecto();
 	}
 
+	public Campo obtenerCampo() {
+		return campo;
+	}
+	
 	@Override
 	public boolean esUnCementerio() {
 		return false;

@@ -39,13 +39,16 @@ public class MonstruoTest {
 	public void test03MonstruoEnAtaqueMuereSiAtacaAMonstruoConMayorAtaqueEnModoAtaque() throws ExcepcionAlGoOh {
 		
 		Jugador jugador = new Jugador();
-		jugador.establecerOponente(new Jugador());
+		Jugador oponente = new Jugador();
+		jugador.establecerOponente(oponente);
+		oponente.establecerOponente(jugador);
 		
 		Monstruo agresorOscuro = new AgresorOscuro();
-		agresorOscuro.colocarEnAtaque();
 		Monstruo dragonBlancoDeOjosAzules = new DragonBlancoDeOjosAzules();
-		dragonBlancoDeOjosAzules.colocarEnAtaque();
 		
+		agresorOscuro.colocarEnAtaque();
+		dragonBlancoDeOjosAzules.colocarEnAtaque();
+	
 		jugador.jugarCartaBocaArriba(agresorOscuro);
 		jugador.atacar(agresorOscuro,dragonBlancoDeOjosAzules);
 		
@@ -58,6 +61,7 @@ public class MonstruoTest {
 		Jugador jugadorA = new Jugador();
 		Jugador jugadorB = new Jugador();
 		jugadorA.establecerOponente(jugadorB);
+		jugadorB.establecerOponente(jugadorA);
 		
 		Monstruo monstruoAzul = new AgresorOscuro();
 		monstruoAzul.colocarEnAtaque();
@@ -74,14 +78,17 @@ public class MonstruoTest {
 	
 	@Test
 	public void test05MonstruoEnAtaqueAtacaAMonstruoConIgualAtaqueYAmbosSeDestruyenPeroNoInfligenDanio() throws ExcepcionAlGoOh {
+		
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
+		
+		atacante.establecerOponente(oponente);
+		oponente.establecerOponente(atacante);
 		
 		Monstruo monstruoA = new AmanteFeliz();
 		Monstruo monstruoB = new AmanteFeliz();
 
 		oponente.jugarCartaBocaAbajo(monstruoB);
-		atacante.establecerOponente(oponente);
 		atacante.jugarCartaBocaArriba(monstruoA);
 		
 		monstruoA.colocarEnAtaque();
@@ -102,10 +109,12 @@ public class MonstruoTest {
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
 		
+		atacante.establecerOponente(oponente);
+		oponente.establecerOponente(atacante);
+		
 		Monstruo monstruoA = new AgresorOscuro();
 		Monstruo monstruoB = new AmanteFeliz();
 		
-		atacante.establecerOponente(oponente);
 		atacante.jugarCartaBocaArriba(monstruoA);
 		atacante.jugarCartaBocaArriba(monstruoB);
 
@@ -124,12 +133,14 @@ public class MonstruoTest {
 		
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
-		double vidaPreviaOponente = oponente.obtenerPuntosDeVida();
+		
+		atacante.establecerOponente(oponente);
+		oponente.establecerOponente(atacante);
+		
 		Monstruo monstruoAzul = new AgresorOscuro();
 		Monstruo monstruoVerde = new AbismoReluciente();
 
 		oponente.jugarCartaBocaAbajo(monstruoVerde);
-		atacante.establecerOponente(oponente);
 		atacante.jugarCartaBocaArriba(monstruoAzul);
 		
 		monstruoAzul.colocarEnAtaque();
@@ -137,8 +148,8 @@ public class MonstruoTest {
 		
 		atacante.atacar(monstruoAzul, monstruoVerde);
 		
-		assertEquals(vidaPreviaOponente, oponente.obtenerPuntosDeVida(), DELTA);
-		assert ! monstruoVerde.estaEnElCementerio();
+		assertEquals(8000, oponente.obtenerPuntosDeVida(), DELTA);
+		assert (! monstruoVerde.estaEnElCementerio());
 	}
 	
 	@Test

@@ -8,6 +8,8 @@ import main.java.cartas.campo.campos.Sogen;
 import main.java.cartas.campo.campos.Wasteland;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
+import main.java.excepciones.ExcepcionCartaBocaAbajo;
+import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
 import main.java.excepciones.ExcepcionZonaCompleta;
 import main.java.general.Jugador;
@@ -17,13 +19,17 @@ public class CampoTest {
 	private static final double DELTA = 1e-2;
 	
 	@Test
-	public void testWastelandIncrementaElAtaqueEn200PuntosDeMonstruosPropiosY300LaDefensaDeMonstruosRivales() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void testWastelandIncrementaElAtaqueEn200PuntosDeMonstruosPropiosY300LaDefensaDeMonstruosRivales() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
 
    	 	Jugador jugador= new Jugador();
         Jugador oponente= new Jugador();
         
         Monstruo monstruoA = new AgresorOscuro();
         Monstruo monstruoB = new AgresorOscuro();
+        Wasteland wasteland = new Wasteland();
+        
+        jugador.establecerOponente(oponente);
+        oponente.establecerOponente(jugador);
        
         jugador.jugarCartaBocaArriba(monstruoA);
         oponente.jugarCartaBocaArriba(monstruoB);
@@ -31,44 +37,41 @@ public class CampoTest {
         monstruoA.colocarEnAtaque();
         monstruoB.colocarEnDefensa();
         
-        double ataqueMonstruoA = monstruoA.potenciaDeCombate();
-        double defensaMonstruoB = monstruoB.potenciaDeCombate();
-        
-        Wasteland wasteland = new Wasteland();
-        wasteland.afectaA(jugador.obtenerMonstruos(), oponente.obtenerMonstruos());
-        
         jugador.jugarCartaBocaArriba(wasteland);
+        jugador.atacar(monstruoA, monstruoB);
         
-        assertEquals(ataqueMonstruoA + 200, monstruoA.potenciaDeCombate(), DELTA);
-        assertEquals(defensaMonstruoB + 300, monstruoB.potenciaDeCombate(), DELTA);
+        /*2 Agresores Oscuros tienen igual diferencia de combate,
+         * pero Wasteland genera una diferencia de 100 puntos
+         */
+        assertEquals(8000 - 100, jugador.obtenerPuntosDeVida(), DELTA);
+        
 	}
 	
 	@Test
-	public void testSogenIncrementaElAtaqueDeLosMonstruosPropiosEn500PuntosY200ElAtaqueDeMonstruosRivales() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
+	public void testSogenIncrementaLaDefensaDeLosMonstruosPropiosEn500PuntosY200ElAtaqueDeMonstruosRivales() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
 
    	 	Jugador jugador = new Jugador();
         Jugador oponente = new Jugador();
         
         Monstruo monstruoA = new AgresorOscuro();
-        monstruoA.colocarEnDefensa();
         Monstruo monstruoB = new AgresorOscuro();
-        monstruoB.colocarEnAtaque();
-       
-        jugador.jugarCartaBocaArriba(monstruoA);
+        Sogen sogen = new Sogen();
         
+        jugador.establecerOponente(oponente);
+        oponente.establecerOponente(jugador);
+        
+        jugador.jugarCartaBocaArriba(monstruoA);
         oponente.jugarCartaBocaArriba(monstruoB);
         
-        double defensaMonstruoA = monstruoA.potenciaDeCombate();
-        double ataqueMonstruoB = monstruoB.potenciaDeCombate();
-        
-        Sogen sogen = new Sogen();
-        sogen.afectaA(jugador.obtenerMonstruos(), oponente.obtenerMonstruos());
-        
+        monstruoA.colocarEnDefensa();
+        monstruoB.colocarEnAtaque();
+
         jugador.jugarCartaBocaArriba(sogen);
         
-        assertEquals(defensaMonstruoA + 500, monstruoA.potenciaDeCombate(), DELTA);
-        assertEquals(ataqueMonstruoB + 200, monstruoB.potenciaDeCombate(), DELTA);
+        oponente.atacar(monstruoB, monstruoA);
         
+        //2 Agresores Oscuros no deberian tener diferencia de combate, pero Sogen genera una diferencia de 300
+        assertEquals(8000 - 300, oponente.obtenerPuntosDeVida(), DELTA);
 	}
 		
 

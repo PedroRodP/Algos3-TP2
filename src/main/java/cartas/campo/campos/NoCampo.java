@@ -1,16 +1,19 @@
 package main.java.cartas.campo.campos;
 
+import java.util.LinkedList;
+
 import main.java.cartas.campo.Campo;
+import main.java.cartas.monstruo.Monstruo;
 
 public class NoCampo extends Campo {
 
 	@Override
-	public void desactivarEfecto() {
+	public void desactivarEfecto(LinkedList<Monstruo> monstruosPropios, LinkedList<Monstruo> monstruosRivales) {
 		
 	}
 
 	@Override
-	public void aplicarEfecto() {
+	public void activarEfecto(LinkedList<Monstruo> monstruosPropios, LinkedList<Monstruo> monstruosRivales) {
 		
 	}
 }

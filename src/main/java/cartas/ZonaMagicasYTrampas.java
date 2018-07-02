@@ -47,7 +47,9 @@ public class ZonaMagicasYTrampas extends Lugar {
 	}
 
 	public Trampa obtenerPrimeraCartaTrampa() {
-		if(trampas.isEmpty()) return new NoTrampa();
+		if(trampas.isEmpty()) {
+			return new NoTrampa(this);
+		}
 		return trampas.getFirst();
 	}
 }
