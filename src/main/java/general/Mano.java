@@ -5,12 +5,8 @@ import java.util.LinkedList;
 import main.java.cartas.Carta;
 import main.java.cartas.Cementerio;
 import main.java.cartas.Lugar;
-import main.java.cartas.campo.Campo;
-import main.java.cartas.magica.Magica;
-import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.exodia.Exodia;
-import main.java.cartas.trampa.Trampa;
-import main.java.excepciones.ExcepcionZonaIncorrecta;
+import main.java.excepciones.ExcepcionNoEsPosibleAgregarAlCementerio;
 
 public class Mano extends Lugar {
 
@@ -34,6 +30,14 @@ public class Mano extends Lugar {
 	
 	public int cantidadDeCartas() {
 		return this.cartas.size();
+	}
+	
+	public Cementerio obtenerCementerio() {
+		return new Cementerio();
+	}
+
+	public void quitarYAgregarAlCementerio(Carta carta) throws ExcepcionNoEsPosibleAgregarAlCementerio {
+		throw new ExcepcionNoEsPosibleAgregarAlCementerio();	
 	}
 
 }

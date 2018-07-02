@@ -115,11 +115,8 @@ public abstract class Monstruo extends Carta {
 	}
 
 	public void mandarAlCementerio(){
-		try {
-			lugar = lugar.quitarYAgregarAlCementerio(this);
-		} catch (ExcepcionZonaIncorrecta excepcionZonaIncorrecta) {
-			excepcionZonaIncorrecta.printStackTrace();
-		}
+		lugar.quitarYAgregarAlCementerio(this);
+		lugar = lugar.obtenerCementerio();
 	}
 
 }

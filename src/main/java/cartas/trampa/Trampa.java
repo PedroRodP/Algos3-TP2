@@ -8,7 +8,6 @@ import main.java.cartas.monstruo.Monstruo;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.excepciones.ExcepcionZonaCompleta;
-import main.java.excepciones.ExcepcionZonaIncorrecta;
 import main.java.general.Jugador;
 
 public abstract class Trampa extends Carta{
@@ -19,11 +18,8 @@ public abstract class Trampa extends Carta{
 	}
 	
 	public void mandarAlCementerio(){
-		try {
-			lugar = lugar.quitarYAgregarAlCementerio(this);
-		} catch (ExcepcionZonaIncorrecta excepcionZonaIncorrecta) {
-			excepcionZonaIncorrecta.printStackTrace();
-		}
+		lugar.quitarYAgregarAlCementerio(this);
+		lugar = lugar.obtenerCementerio();
 	}
 
 	public abstract void aplicarA(Monstruo atacante, Monstruo defensor, Jugador jugador) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar;

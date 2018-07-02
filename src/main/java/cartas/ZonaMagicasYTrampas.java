@@ -2,13 +2,10 @@ package main.java.cartas;
 
 import java.util.LinkedList;
 
-import main.java.cartas.campo.Campo;
 import main.java.cartas.magica.Magica;
-import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.trampa.trampas.NoTrampa;
 import main.java.cartas.trampa.Trampa;
 import main.java.excepciones.ExcepcionZonaCompleta;
-import main.java.excepciones.ExcepcionZonaIncorrecta;
 
 public class ZonaMagicasYTrampas extends Lugar {
 
@@ -19,33 +16,33 @@ public class ZonaMagicasYTrampas extends Lugar {
 	public ZonaMagicasYTrampas(Cementerio cementerio) {
 		this.magicas = new LinkedList<>();
 		this.trampas = new LinkedList<>();
-		this.cementerio = cementerio; 
+		this.cementerio = cementerio;
 	}
 	
-	public void agregar(Magica carta) throws ExcepcionZonaCompleta {
+	@Override
+	public void agregar(Carta carta) throws ExcepcionZonaCompleta {
 		if (magicas.size() + trampas.size() == 5) {
 			throw new ExcepcionZonaCompleta();
 		}
-		magicas.add(carta);
-	}
-
-	public void agregar(Trampa carta) throws ExcepcionZonaCompleta {
-		if (magicas.size() + trampas.size() == 5) {
-			throw new ExcepcionZonaCompleta();
+		if (carta instanceof Magica) {
+			Magica cartaMagica = (Magica) carta;
+			magicas.add(cartaMagica);
 		}
-		trampas.add(carta);
+		
+		if (carta instanceof Trampa) {
+			Trampa cartaTrampa = (Trampa) carta;
+			trampas.add(cartaTrampa);
+		}
 	}
 
 	@Override
-	public Cementerio quitarYAgregarAlCementerio(Magica magica) throws ExcepcionZonaIncorrecta {
-		magicas.remove(magica);
-		cementerio.agregar(magica);
-		return cementerio;
+	public void quitarYAgregarAlCementerio(Carta carta){
+		trampas.remove(carta);
+		magicas.remove(carta);
+		cementerio.agregar(carta);
 	}
-	@Override
-	public Cementerio quitarYAgregarAlCementerio(Trampa trampa) throws ExcepcionZonaIncorrecta {
-		trampas.remove(trampa);
-		cementerio.agregar(trampa);
+	
+	public Cementerio obtenerCementerio() {
 		return cementerio;
 	}
 

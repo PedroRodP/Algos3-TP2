@@ -2,10 +2,6 @@ package main.java.cartas;
 
 import main.java.cartas.campo.Campo;
 import main.java.cartas.campo.NoCampo;
-import main.java.cartas.magica.Magica;
-import main.java.cartas.monstruo.Monstruo;
-import main.java.cartas.trampa.Trampa;
-import main.java.excepciones.ExcepcionZonaIncorrecta;
 
 public class ZonaCampo extends Lugar{
 
@@ -17,7 +13,8 @@ public class ZonaCampo extends Lugar{
 		this.cementerio = cementerio;
 	}
 
-	public void agregar(Campo campo) {
+	public void agregar(Carta carta) {
+		Campo campo = (Campo) carta;
 		this.campo.desactivarEfecto();
 		cementerio.agregar(this.campo);
 		this.campo = campo;
@@ -28,11 +25,14 @@ public class ZonaCampo extends Lugar{
 	public boolean esUnCementerio() {
 		return false;
 	}
+	
+	public Cementerio obtenerCementerio() {
+		return cementerio;
+	}
 
 	@Override
-	public Cementerio quitarYAgregarAlCementerio(Campo campo) throws ExcepcionZonaIncorrecta {
+	public void quitarYAgregarAlCementerio(Carta carta){
 		cementerio.agregar(campo);
 		this.campo = new NoCampo();
-		return cementerio;
 	}
 }

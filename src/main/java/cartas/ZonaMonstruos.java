@@ -2,11 +2,7 @@ package main.java.cartas;
 
 import java.util.LinkedList;
 
-import main.java.cartas.campo.Campo;
-import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Monstruo;
-import main.java.cartas.trampa.Trampa;
-import main.java.excepciones.ExcepcionZonaIncorrecta;
 
 public class ZonaMonstruos extends Lugar {
 
@@ -18,14 +14,19 @@ public class ZonaMonstruos extends Lugar {
 		this.cementerio = cementerio;
 	}
 	
-	public void agregar(Monstruo carta) {
-		monstruos.add(carta);
+	@Override
+	public void agregar(Carta carta) {
+		Monstruo cartaMonstruo = (Monstruo) carta;
+		monstruos.add(cartaMonstruo);
 	}
 
 	@Override
-	public Cementerio quitarYAgregarAlCementerio(Monstruo monstruo) throws ExcepcionZonaIncorrecta {
-		monstruos.remove(monstruo);
-		cementerio.agregar(monstruo);
+	public void quitarYAgregarAlCementerio(Carta carta){
+		monstruos.remove(carta);
+		cementerio.agregar(carta);
+	}
+	
+	public Cementerio obtenerCementerio() {
 		return cementerio;
 	}
 

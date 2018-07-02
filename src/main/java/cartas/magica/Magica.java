@@ -5,7 +5,6 @@ import main.java.cartas.ZonaCampo;
 import main.java.cartas.ZonaMagicasYTrampas;
 import main.java.cartas.ZonaMonstruos;
 import main.java.excepciones.ExcepcionZonaCompleta;
-import main.java.excepciones.ExcepcionZonaIncorrecta;
 
 public abstract class Magica extends Carta{
 	
@@ -15,10 +14,7 @@ public abstract class Magica extends Carta{
 	}
 
 	public void mandarAlCementerio(){
-		try {
-			lugar = lugar.quitarYAgregarAlCementerio(this);
-		} catch (ExcepcionZonaIncorrecta excepcionZonaIncorrecta) {
-			excepcionZonaIncorrecta.printStackTrace();
-		}
+		lugar.quitarYAgregarAlCementerio(this);
+		lugar = lugar.obtenerCementerio();
 	}
 }
