@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import main.java.cartas.Carta;
+import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionCartaNoNecesitaSacrificios;
 import main.java.excepciones.ExcepcionFaseIncorrecta;
 import main.java.excepciones.ExcepcionJuegoNoTermino;
 import main.java.excepciones.ExcepcionJuegoTerminado;
+import main.java.excepciones.ExcepcionMazoVacio;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
 import main.java.excepciones.ExcepcionTurnoFinalizo;
@@ -90,6 +92,10 @@ public class EstadoDeJuego {
 	
 	public void voltearCarta(Carta carta) throws ExcepcionFaseIncorrecta {
 		fase.voltearCarta(carta, jugador);
+	}
+	
+	public void aplicarMagica(Magica magica) throws ExcepcionCartaBocaAbajo, ExcepcionMazoVacio, ExcepcionFaseIncorrecta {
+		fase.aplicarMagica(magica, jugador);
 	}
 	
 	public void atacarCon(Monstruo atacante, Monstruo defensor) throws ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {

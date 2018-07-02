@@ -3,12 +3,14 @@ package main.java.general;
 import java.util.LinkedList;
 
 import main.java.cartas.Carta;
+import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionCartaNoNecesitaSacrificios;
 import main.java.excepciones.ExcepcionFaseIncorrecta;
 import main.java.excepciones.ExcepcionJuegoNoTermino;
 import main.java.excepciones.ExcepcionJuegoTerminado;
+import main.java.excepciones.ExcepcionMazoVacio;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
 import main.java.excepciones.ExcepcionTurnoFinalizo;
@@ -84,6 +86,10 @@ public class AlGoOh {
 	
 	public void voltearCarta(Carta carta) throws ExcepcionFaseIncorrecta {
 		estado.voltearCarta(carta);
+	}
+	
+	public void aplicarMagica(Magica magica) throws ExcepcionCartaBocaAbajo, ExcepcionMazoVacio, ExcepcionFaseIncorrecta {
+		estado.aplicarMagica(magica);
 	}
 	
 	public void atacarCon(Monstruo atacante, Monstruo defensor) throws ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
