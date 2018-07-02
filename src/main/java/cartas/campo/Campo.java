@@ -26,9 +26,5 @@ public abstract class Campo extends Carta {
 	public abstract void aplicarEfecto();
 	
 	public abstract void desactivarEfecto();
-	
-	public void mandarAlCementerio(){
-		lugar.quitarYAgregarAlCementerio(this);
-		lugar = lugar.obtenerCementerio();
-	}
+
 }

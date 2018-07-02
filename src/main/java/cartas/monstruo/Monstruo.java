@@ -113,10 +113,4 @@ public abstract class Monstruo extends Carta {
 	public double obtenerAtaque() {
 		return this.ataque;
 	}
-
-	public void mandarAlCementerio(){
-		lugar.quitarYAgregarAlCementerio(this);
-		lugar = lugar.obtenerCementerio();
-	}
-
 }

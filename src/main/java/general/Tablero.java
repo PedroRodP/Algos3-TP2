@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 import main.java.cartas.Carta;
 import main.java.cartas.campo.Campo;
-import main.java.cartas.campo.NoCampo;
+import main.java.cartas.campo.campos.NoCampo;
 import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.trampa.Trampa;

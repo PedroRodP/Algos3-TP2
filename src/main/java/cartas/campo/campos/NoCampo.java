@@ -1,4 +1,6 @@
-package main.java.cartas.campo;
+package main.java.cartas.campo.campos;
+
+import main.java.cartas.campo.Campo;
 
 public class NoCampo extends Campo {
 

@@ -13,8 +13,4 @@ public abstract class Magica extends Carta{
 		zonaMagicasYTrampas.agregar(this);
 	}
 
-	public void mandarAlCementerio(){
-		lugar.quitarYAgregarAlCementerio(this);
-		lugar = lugar.obtenerCementerio();
-	}
 }

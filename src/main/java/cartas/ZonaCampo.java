@@ -1,7 +1,7 @@
 package main.java.cartas;
 
 import main.java.cartas.campo.Campo;
-import main.java.cartas.campo.NoCampo;
+import main.java.cartas.campo.campos.NoCampo;
 
 public class ZonaCampo extends Lugar{
 

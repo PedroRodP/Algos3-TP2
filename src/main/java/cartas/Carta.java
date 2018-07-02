@@ -29,7 +29,10 @@ public abstract class Carta {
 		return posicion.estaBocaArriba();
 	}
 
-    public abstract void mandarAlCementerio();
+	public void mandarAlCementerio(){
+		lugar.quitarYAgregarAlCementerio(this);
+		lugar = lugar.obtenerCementerio();
+	}
 
 	public boolean estaEnElCementerio(){
 	    return lugar.esUnCementerio();

@@ -16,11 +16,6 @@ public abstract class Trampa extends Carta{
 		this.lugar = zonaMagicasYTrampas;
 		zonaMagicasYTrampas.agregar(this);
 	}
-	
-	public void mandarAlCementerio(){
-		lugar.quitarYAgregarAlCementerio(this);
-		lugar = lugar.obtenerCementerio();
-	}
 
 	public abstract void aplicarA(Monstruo atacante, Monstruo defensor, Jugador jugador) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar;
 }
