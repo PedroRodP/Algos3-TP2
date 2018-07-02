@@ -38,7 +38,7 @@ public class AlGoOhTest {
 		}
 		
 		//Intenta seguir jugando
-		juego.jugar();
+		juego.pasarASiguienteFase();
 	}
 
 }

@@ -10,9 +10,9 @@ public class InsectoComeHombres extends Monstruo {
 		nombre = "Insecto come hombres";
 	}
 	
-	public void aplicarEfecto(Monstruo monstruoADestruir){
+	public void aplicarEfecto(Monstruo monstruoADestruir) throws ExcepcionEfectoSoloAplicableEnVolteo{
 		if (this.estaBocaArriba()){
-			//TODO throw new ExcepcionEfectoSoloAplicableEnVolteo();
+			throw new ExcepcionEfectoSoloAplicableEnVolteo();
 		}
 		this.setBocaArriba();
 		monstruoADestruir.mandarAlCementerio();

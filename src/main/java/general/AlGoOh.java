@@ -1,36 +1,35 @@
 package main.java.general;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
+import main.java.cartas.Carta;
+import main.java.cartas.monstruo.Monstruo;
+import main.java.excepciones.ExcepcionCartaBocaAbajo;
+import main.java.excepciones.ExcepcionCartaNoNecesitaSacrificios;
+import main.java.excepciones.ExcepcionFaseIncorrecta;
 import main.java.excepciones.ExcepcionJuegoNoTermino;
 import main.java.excepciones.ExcepcionJuegoTerminado;
+import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
+import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
 import main.java.excepciones.ExcepcionTurnoFinalizo;
+import main.java.excepciones.ExcepcionZonaCompleta;
 
 public class AlGoOh {
 	
-	private Turnador turnador;
 	private Jugador jugadorA;
 	private Jugador jugadorB;
 	private EstadoDeJuego estado;
-	private Jugador jugadorActual;
 	
 	public AlGoOh() {
 		
 		jugadorA = new Jugador();
 		jugadorB = new Jugador();
-		estado = new EstadoDeJuego();
 		
-		asignarEstadoDeJuego();
 		asignarMazos();
 		levantar5CartasDelMazo();
-		crearTurnador();
 		establecerOponentes();
 		
-	}
-	
-	private void asignarEstadoDeJuego() {
-		jugadorA.asignarEstadoDeJuego(estado);
-		jugadorB.asignarEstadoDeJuego(estado);;
+		estado = new EstadoDeJuego(jugadorA, jugadorB);
 	}
 	
 	private void asignarMazos() {
@@ -47,49 +46,49 @@ public class AlGoOh {
 			jugadorB.tomarCartaDelMazo();
 		}
 	}
-	
-	private void crearTurnador() {
 
-		ArrayList<Jugador> jugadores = new ArrayList<>();
-		jugadores.add(jugadorA);
-		jugadores.add(jugadorB);
-		
-		this.turnador = new Turnador(jugadores);
-	}
 	
 	private void establecerOponentes() {
 		
 		jugadorA.establecerOponente(jugadorB);
 		jugadorB.establecerOponente(jugadorA);
 	}
-	
+
 	public Jugador siguienteTurno() {
-		jugadorActual = turnador.siguienteTurno();
-		estado.nuevoTurno();
-		return jugadorActual;
+		return estado.siguienteTurno();
 	}
-	
-	//Se llama al metodo jugar() 4 veces (FaseTomarCarta, FasePreparacion, FaseAtaque, FaseMagicas)
-	/*	La ultima lanzara ExcepcionTurnoFinalizo cuando se acaban las fases 
-	 *	para dar aviso de llamar al metodo siguienteTurno() */
-	
-	public void jugar() throws ExcepcionJuegoTerminado, ExcepcionTurnoFinalizo {
-		estado.ejecutarFase(jugadorActual);
-	}
-	
-	public void pasarASiguienteFase() throws ExcepcionTurnoFinalizo {
+
+	public void pasarASiguienteFase() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado {
 		estado.pasarASiguienteFase();
 	}
 	
-	/*public void jugarCartaBocaAbajo(Carta carta) {
-		estado.jugarCartaBocaAbajo(carta); //TODO if carta no esta en mano de jugador actual lanzar excepcion
+	public void tomarCarta() throws ExcepcionFaseIncorrecta {
+		estado.tomarCarta();
 	}
 	
-	public void jugarCartaBocaArriba(Carta carta) {
+	public void jugarCartaBocaAbajo(Carta carta) throws ExcepcionFaseIncorrecta, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
+		estado.jugarCartaBocaAbajo(carta);
+	}
+	
+	public void jugarCartaBocaArriba(Carta carta) throws ExcepcionFaseIncorrecta, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
 		estado.jugarCartaBocaArriba(carta);
 	}
 	
-	public void*/
+	public void jugarSacrificandoBocaAbajo(Carta carta, LinkedList<Monstruo> sacrificados) throws ExcepcionFaseIncorrecta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios {
+		estado.jugarSacrificandoBocaAbajo(carta, sacrificados);
+	}
+	
+	public void jugarSacrificandoBocaArriba(Carta carta, LinkedList<Monstruo> sacrificados) throws ExcepcionFaseIncorrecta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios {
+		estado.jugarSacrificandoBocaArriba(carta, sacrificados);
+	}
+	
+	public void voltearCarta(Carta carta) throws ExcepcionFaseIncorrecta {
+		estado.voltearCarta(carta);
+	}
+	
+	public void atacarCon(Monstruo atacante, Monstruo defensor) throws ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+		estado.atacarCon(atacante, defensor);
+	}
 	
 	public Jugador ganador() throws ExcepcionJuegoNoTermino {
 		return estado.devolverGanador(); 

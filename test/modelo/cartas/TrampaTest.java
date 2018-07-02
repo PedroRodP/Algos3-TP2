@@ -3,7 +3,7 @@ package modelo.cartas;
 import main.java.cartas.monstruo.monstruos.AbismoReluciente;
 import main.java.cartas.trampa.trampas.CilindroMagico;
 import main.java.excepciones.*;
-import main.java.cartas.trampa.trampas.Reinforcement;
+import main.java.cartas.trampa.trampas.Reinforcements;
 import main.java.general.Jugador;
 
 import org.junit.Test;
@@ -63,7 +63,7 @@ public class TrampaTest {
 
         Monstruo monstruo = new AbismoReluciente();
         Monstruo miMonstruo = new AgresorOscuro();
-        Trampa trampa = new Reinforcement();
+        Trampa trampa = new Reinforcements();
         Jugador jugador = new Jugador();
         Jugador oponente = new Jugador();
 

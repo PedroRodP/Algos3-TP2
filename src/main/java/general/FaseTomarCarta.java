@@ -1,13 +1,6 @@
 package main.java.general;
 
-import main.java.excepciones.ExcepcionJuegoNoTermino;
-
-public class FaseTomarCarta implements Fase {
-	
-	@Override
-	public Jugador devolverGanador() throws ExcepcionJuegoNoTermino {
-		throw new ExcepcionJuegoNoTermino();
-	}
+public class FaseTomarCarta extends Fase {
 	
 	@Override
 	public Fase proxima() {
@@ -15,7 +8,7 @@ public class FaseTomarCarta implements Fase {
 	}
 	
 	@Override
-	public void ejecutar(Jugador jugador) {
+	public void tomarCarta(Jugador jugador) {
 		jugador.tomarCartaDelMazo();
 	}
 }

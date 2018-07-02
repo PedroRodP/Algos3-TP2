@@ -7,8 +7,6 @@ import main.java.cartas.Cementerio;
 import main.java.cartas.ZonaCampo;
 import main.java.cartas.ZonaMagicasYTrampas;
 import main.java.cartas.ZonaMonstruos;
-import main.java.cartas.campo.Campo;
-import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.trampa.Trampa;
 import main.java.excepciones.*;
@@ -100,7 +98,8 @@ public class Jugador {
 			Carta carta = mazo.tomarCarta();
 			this.mano.agregar(carta);
 			if (completoExodia()) estadoJuego.terminarConGanador(this);
-		}catch (ExcepcionMazoVacio e){
+			
+		} catch (ExcepcionMazoVacio e) {
 			estadoJuego.terminarConGanador(oponente);
 		}
 	}

@@ -2,7 +2,7 @@ package main.java.general;
 
 import main.java.excepciones.ExcepcionJuegoTerminado;
 
-public class Terminado implements Fase {
+public class Terminado extends Fase {
 	
 	Jugador ganador;
 	
@@ -16,13 +16,7 @@ public class Terminado implements Fase {
 	}
 	
 	@Override
-	public Fase proxima() {
-		return this; //O lanzar ExcepcionJuegoTerminado
-	}
-	
-	@Override
-	public void ejecutar(Jugador jugador) throws ExcepcionJuegoTerminado {
-		//Game over...
+	public Fase proxima() throws ExcepcionJuegoTerminado {
 		throw new ExcepcionJuegoTerminado();
 	}
 

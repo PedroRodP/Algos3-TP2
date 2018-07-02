@@ -1,13 +1,14 @@
 package main.java.general;
 
-import main.java.excepciones.ExcepcionJuegoNoTermino;
+import java.util.LinkedList;
 
-public class FasePreparacion implements Fase {
+import main.java.cartas.Carta;
+import main.java.cartas.monstruo.Monstruo;
+import main.java.excepciones.ExcepcionCartaNoNecesitaSacrificios;
+import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
+import main.java.excepciones.ExcepcionZonaCompleta;
 
-	@Override
-	public Jugador devolverGanador() throws ExcepcionJuegoNoTermino {
-		throw new ExcepcionJuegoNoTermino();
-	}
+public class FasePreparacion extends Fase {
 
 	@Override
 	public Fase proxima() {
@@ -15,9 +16,28 @@ public class FasePreparacion implements Fase {
 	}
 	
 	@Override
-	public void ejecutar(Jugador jugador) {
-		//TODO Definir este metodo
-		//jugador.jugarCarta...;
+	public void jugarCartaBocaAbajo(Carta carta, Jugador jugador) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
+		jugador.jugarCartaBocaAbajo(carta);
+	}
+	
+	@Override
+	public void jugarCartaBocaArriba(Carta carta, Jugador jugador) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes {
+		jugador.jugarCartaBocaArriba(carta);
+	}
+	
+	@Override
+	public void jugarSacrificandoBocaAbajo(Carta carta, LinkedList<Monstruo> sacrificados, Jugador jugador) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios {
+		jugador.jugarCartaBocaAbajoSacrificando(carta, sacrificados);
+	}
+	
+	@Override
+	public void jugarSacrificandoBocaArriba(Carta carta, LinkedList<Monstruo> sacrificados, Jugador jugador) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios {
+		jugador.jugarCartaBocaArribaSacrificando(carta, sacrificados);
+	}
+	
+	@Override
+	public void voltearCarta(Carta carta, Jugador jugador) {
+		jugador.voltearCarta(carta);
 	}
 
 }

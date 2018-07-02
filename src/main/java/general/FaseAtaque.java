@@ -1,13 +1,10 @@
 package main.java.general;
 
-import main.java.excepciones.ExcepcionJuegoNoTermino;
+import main.java.cartas.monstruo.Monstruo;
+import main.java.excepciones.ExcepcionCartaBocaAbajo;
+import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 
-public class FaseAtaque implements Fase {
-
-	@Override
-	public Jugador devolverGanador() throws ExcepcionJuegoNoTermino {
-		throw new ExcepcionJuegoNoTermino();
-	}
+public class FaseAtaque extends Fase {
 
 	@Override
 	public Fase proxima() {
@@ -15,22 +12,7 @@ public class FaseAtaque implements Fase {
 	}
 
 	@Override
-	public void ejecutar(Jugador jugador) {
-		//TODO Definir este metodo
-		//jugador.atacar(atacante, rival);
+	public void atacarCon(Monstruo atacante, Monstruo defensor, Jugador jugador) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+		jugador.atacar(atacante, defensor);
 	}
-	
-	/* TODO public void jugarCarta(Carta carta) {
-	 * throw new NoSePuedeJugarCartaEnEstaFase();
-		jugadorActual.jugarCarta(Carta carta); ...  esto pasa si estamos en fase de preparacion. La idea es q cada fase tenga toooodas
-		las acciones q se pueden realizar en cada fase o etapa levantando excepciones si no corresponde una accion en una fase 
-		La idea es q la fase sepa el jugador actual
-		
-		
-
-	}
-	
-	public void pasarASigFase() {
-		faseActual.siguienteFase();
-	} TODO */
 }
