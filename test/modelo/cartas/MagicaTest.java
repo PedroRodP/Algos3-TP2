@@ -105,12 +105,9 @@ public class MagicaTest {
     public void test05ActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionAlGoOh {
     	
     	Jugador jugador = new Jugador();
-    	Jugador oponente = new Jugador();
-    	jugador.establecerOponente(oponente);
-        oponente.establecerOponente(jugador);
-
     	AgujeroNegro magica = new AgujeroNegro();
     	
+    	jugador.establecerOponente(new Jugador());
     	jugador.jugarCartaBocaAbajo(magica);
 
     	jugador.aplicarMagica(magica);
@@ -121,12 +118,9 @@ public class MagicaTest {
    public void test05BISActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionAlGoOh {
    	
 	    Jugador jugador = new Jugador();
-   		Jugador oponente = new Jugador();
-   		jugador.establecerOponente(oponente);
-   		oponente.establecerOponente(jugador);
-   		
    		OllaDeLaCodicia magica = new OllaDeLaCodicia();
    	
+   		jugador.establecerOponente(new Jugador());
    		jugador.jugarCartaBocaAbajo(magica);
    	
    		jugador.aplicarMagica(magica);
@@ -137,12 +131,9 @@ public class MagicaTest {
    public void test05BISBISActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionAlGoOh {
    	
 	    Jugador jugador = new Jugador();
-   		Jugador oponente = new Jugador();
-   		jugador.establecerOponente(oponente);
-        oponente.establecerOponente(jugador);
-       
    		Fisura magica = new Fisura();
    	
+   		jugador.establecerOponente(new Jugador());
    		jugador.jugarCartaBocaAbajo(magica);
 
    		jugador.aplicarMagica(magica);
