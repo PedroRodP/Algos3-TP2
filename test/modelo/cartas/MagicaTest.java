@@ -1,6 +1,5 @@
 package modelo.cartas;
 
-import main.java.cartas.ZonaMonstruos;
 import main.java.excepciones.*;
 import org.junit.Test;
 
@@ -70,8 +69,7 @@ public class MagicaTest {
     	
     	jugador.asignarMazo(mazo);
     	jugador.jugarCartaBocaArriba(olla);
-    	olla.afectaA(jugador);
-    	olla.aplicarEfecto();
+    	olla.aplicarEfecto(jugador);
     	
     	assertEquals (2, jugador.cantidadDeCartasEnMano());
     }
@@ -124,8 +122,7 @@ public class MagicaTest {
    	
    		jugador.jugarCartaBocaAbajo(magica);
    	
-   		magica.afectaA(jugador);
-   		magica.aplicarEfecto();
+   		magica.aplicarEfecto(jugador);
    }
    
    @Test
