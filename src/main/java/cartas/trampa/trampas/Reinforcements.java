@@ -9,7 +9,7 @@ import main.java.general.Jugador;
 public class Reinforcements extends Trampa {
 
     @Override
-    protected void aplicarTrampa(Monstruo atacante, Monstruo defensor, Jugador jugador) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
+    public void aplicarA(Monstruo atacante, Monstruo defensor, Jugador jugador) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
     	
     	defensor.alterarAtaque(500);
         atacante.atacar(defensor, jugador, jugador.obtenerOponente());

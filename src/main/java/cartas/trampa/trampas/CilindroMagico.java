@@ -11,8 +11,7 @@ public class CilindroMagico  extends Trampa {
     }
 
     @Override
-    protected void aplicarTrampa(Monstruo atacante, Monstruo defensor, Jugador jugador) {
-            
+    public void aplicarA(Monstruo atacante, Monstruo defensor, Jugador jugador) {
     	jugador.quitarVida(atacante.obtenerAtaque());
     }
 }

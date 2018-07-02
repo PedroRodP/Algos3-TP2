@@ -123,16 +123,37 @@ public class Jugador {
 	}
 
 	public void atacar(Monstruo monstruoAtacante, Monstruo monstruoRival) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
-		Trampa trampa=this.oponente.obtenerPrimerCartaTrampa();
+		
+		activarEfectosDeCampo();
+		oponente.activarEfectosDeCampo();
+		
+		Trampa trampa = this.oponente.obtenerPrimerCartaTrampa();
 		trampa.aplicarA(monstruoAtacante, monstruoRival, this);
+		
+		desactivarEfectosDeCampo();
+		oponente.desactivarEfectosDeCampo();
+	}
+	
+	private void activarEfectosDeCampo() {
+		
+		Campo campo = zonaCampo.obtenerCampo();
+		LinkedList<Monstruo> monstruosPropios = obtenerMonstruos();
+		LinkedList<Monstruo> monstruosRivales = oponente.obtenerMonstruos();
+		
+		campo.activarEfecto(monstruosPropios, monstruosRivales);
+	}
+	
+	private void desactivarEfectosDeCampo() {
+		
+		Campo campo = zonaCampo.obtenerCampo();
+		LinkedList<Monstruo> monstruosPropios = obtenerMonstruos();
+		LinkedList<Monstruo> monstruosRivales = oponente.obtenerMonstruos();
+		
+		campo.desactivarEfecto(monstruosPropios, monstruosRivales);
 	}
 
 	private Trampa obtenerPrimerCartaTrampa() {
 		return zonaMagicasYTrampas.obtenerPrimeraCartaTrampa();
-	}
-	
-	public Campo obtenerCampo() {
-		return zonaCampo.obtenerCampo();
 	}
 
 }
