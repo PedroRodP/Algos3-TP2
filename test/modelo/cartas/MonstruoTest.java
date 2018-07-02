@@ -193,7 +193,7 @@ public class MonstruoTest {
 		jugador.jugarCartaBocaArriba(jinzo7);
 		jinzo7.colocarEnAtaque();
 		
-		jinzo7.aplicarEfecto(rival);
+		jugador.atacar(jinzo7, monstruo);
 		
 		assertEquals(7500,rival.obtenerPuntosDeVida(),DELTA);
 	}

@@ -3,7 +3,6 @@ package main.java.cartas.magica.magicas;
 import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
-import main.java.general.Jugador;
 
 import java.util.LinkedList;
 

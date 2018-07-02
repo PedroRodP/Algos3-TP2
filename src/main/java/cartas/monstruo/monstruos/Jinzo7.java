@@ -12,8 +12,9 @@ public class Jinzo7 extends Monstruo {
         nombre = "Jinzo 7";
     }
 
-    public void aplicarEfecto(Jugador oponente){
-    	//TODO Si la carta esta boca abajo lanza excepcion..
-        oponente.quitarVida(potenciaDeCombate());
+    @Override
+    public void atacar(Monstruo monstruoRival, Jugador atacante, Jugador oponente) {
+    	
+    	oponente.quitarVida(potenciaDeCombate());
     }
 }
