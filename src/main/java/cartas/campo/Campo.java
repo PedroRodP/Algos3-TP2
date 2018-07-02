@@ -18,6 +18,7 @@ public abstract class Campo extends Carta {
 		this.monstruosRivales = monstruosRivales;
 	}
 	
+	@Override
 	public void agregarseEn(ZonaMagicasYTrampas zonaMagicasYTrampas, ZonaMonstruos zonaMonstruos, ZonaCampo zonaCampos) {
 		this.lugar = zonaCampos;
 		zonaCampos.agregar(this);

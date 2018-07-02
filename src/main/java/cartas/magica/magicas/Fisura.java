@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 import main.java.cartas.magica.Magica;
 import main.java.cartas.monstruo.Monstruo;
-import main.java.excepciones.ExcepcionCartaBocaAbajo;
+import main.java.general.Jugador;
 
 public class Fisura extends Magica {
 
@@ -12,13 +12,13 @@ public class Fisura extends Magica {
 		nombre = "Fisura";
 	}
 
-	public void aplicarEfecto(LinkedList<Monstruo> monstruos) throws ExcepcionCartaBocaAbajo {
+	public void aplicarA(LinkedList<Monstruo> monstruosPropios, LinkedList<Monstruo> monstruosRivales,
+			Jugador jugador) {
+
+		if (monstruosRivales.isEmpty()) return;
 		
-		if (posicion.estaBocaAbajo()) { throw new ExcepcionCartaBocaAbajo(); }
-		if (monstruos.isEmpty()) return;
-		
-		Monstruo monstruoConMenorAtaque = monstruos.getFirst();
-		for (Monstruo m: monstruos) {
+		Monstruo monstruoConMenorAtaque = monstruosRivales.getFirst();
+		for (Monstruo m: monstruosRivales) {
 			if (m.obtenerAtaque() < monstruoConMenorAtaque.obtenerAtaque()) {
 				monstruoConMenorAtaque = m;
 			}

@@ -1,7 +1,9 @@
 package main.java.cartas.magica.magicas;
 
+import java.util.LinkedList;
+
 import main.java.cartas.magica.Magica;
-import main.java.excepciones.ExcepcionCartaBocaAbajo;
+import main.java.cartas.monstruo.Monstruo;
 import main.java.excepciones.ExcepcionMazoVacio;
 import main.java.general.Jugador;
 
@@ -11,12 +13,12 @@ public class OllaDeLaCodicia extends Magica {
 		nombre = "Olla de la codicia";
 	}
 	
-	public void aplicarEfecto(Jugador afectado) throws ExcepcionMazoVacio, ExcepcionCartaBocaAbajo {
+	@Override
+	protected void aplicarA(LinkedList<Monstruo> monstruosPropios, LinkedList<Monstruo> monstruosRivales,
+			Jugador jugador) throws ExcepcionMazoVacio {
 		
-		if (posicion.estaBocaAbajo()) { throw new ExcepcionCartaBocaAbajo(); }
-		
-		afectado.tomarCartaDelMazo();
-		afectado.tomarCartaDelMazo();
+		jugador.tomarCartaDelMazo();
+		jugador.tomarCartaDelMazo();
 	}
 
 }

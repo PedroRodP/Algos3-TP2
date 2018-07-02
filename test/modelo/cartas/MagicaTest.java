@@ -38,7 +38,7 @@ public class MagicaTest {
     	
         Jugador jugadorA= new Jugador();
         Jugador jugadorB= new Jugador();
-        AgujeroNegro agujeroNegro = new AgujeroNegro();
+        Magica agujeroNegro = new AgujeroNegro();
         
         Monstruo monstruoA = new AgresorOscuro();
         Monstruo monstruoB = new AgresorOscuro();
@@ -51,7 +51,7 @@ public class MagicaTest {
         jugadorB.jugarCartaBocaAbajo(monstruoC);
         jugadorA.jugarCartaBocaArriba(agujeroNegro);
 
-        agujeroNegro.aplicarEfecto(jugadorA.obtenerMonstruos(),jugadorB.obtenerMonstruos());
+        jugadorA.aplicarMagica(agujeroNegro);
 
         assert(monstruoA.estaEnElCementerio());
         assert(monstruoB.estaEnElCementerio());
@@ -63,13 +63,16 @@ public class MagicaTest {
     @Test
     public void test03ActivarOllaDeLaCodiciaTomaDosCartasDelMazo() throws ExcepcionAlGoOh {
     	
-    	OllaDeLaCodicia olla = new OllaDeLaCodicia();
+    	Magica olla = new OllaDeLaCodicia();
     	Jugador jugador = new Jugador();
+    	Jugador oponente = new Jugador();
     	Mazo mazo = new Mazo();
     	
     	jugador.asignarMazo(mazo);
+    	jugador.establecerOponente(oponente);
+    	
     	jugador.jugarCartaBocaArriba(olla);
-    	olla.aplicarEfecto(jugador);
+    	jugador.aplicarMagica(olla);
     	
     	assertEquals (2, jugador.cantidadDeCartasEnMano());
     }
@@ -80,7 +83,7 @@ public class MagicaTest {
     	Jugador jugador = new Jugador();
     	Jugador oponente = new Jugador();
     	
-    	Fisura fisura = new Fisura();
+    	Magica fisura = new Fisura();
     
     	Monstruo agresorOscuro = new AgresorOscuro();
     	Monstruo amanteFeliz = new AmanteFeliz();
@@ -90,7 +93,7 @@ public class MagicaTest {
     	oponente.jugarCartaBocaArriba(agresorOscuro);
     	oponente.jugarCartaBocaArriba(amanteFeliz);
     	jugador.jugarCartaBocaArriba(fisura);
-    	fisura.aplicarEfecto(oponente.obtenerMonstruos());
+    	jugador.aplicarMagica(fisura);
     	
     	assert(amanteFeliz.estaEnElCementerio());
     	assert(! agresorOscuro.estaEnElCementerio());
@@ -110,31 +113,39 @@ public class MagicaTest {
     	
     	jugador.jugarCartaBocaAbajo(magica);
 
-    	magica.aplicarEfecto(jugador.obtenerMonstruos(),oponente.obtenerMonstruos());
+    	jugador.aplicarMagica(magica);
     }
     
    @Test
    (expected = ExcepcionCartaBocaAbajo.class)
    public void test05BISActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionAlGoOh {
    	
-   		Jugador jugador = new Jugador();
+	    Jugador jugador = new Jugador();
+   		Jugador oponente = new Jugador();
+   		jugador.establecerOponente(oponente);
+   		oponente.establecerOponente(jugador);
+   		
    		OllaDeLaCodicia magica = new OllaDeLaCodicia();
    	
    		jugador.jugarCartaBocaAbajo(magica);
    	
-   		magica.aplicarEfecto(jugador);
+   		jugador.aplicarMagica(magica);
    }
    
    @Test
    (expected = ExcepcionCartaBocaAbajo.class)
    public void test05BISBISActivarEfectoConCartaBocaAbajoLanzaExcepcion() throws ExcepcionAlGoOh {
    	
-   		Jugador jugador = new Jugador();
+	    Jugador jugador = new Jugador();
+   		Jugador oponente = new Jugador();
+   		jugador.establecerOponente(oponente);
+        oponente.establecerOponente(jugador);
+       
    		Fisura magica = new Fisura();
    	
    		jugador.jugarCartaBocaAbajo(magica);
 
-   		magica.aplicarEfecto(jugador.obtenerMonstruos());
+   		jugador.aplicarMagica(magica);
    }
 }
 	
