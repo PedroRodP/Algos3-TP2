@@ -27,27 +27,30 @@ public class EstadoDeJuego extends Observable {
 	private Turnador turnador;
 	
 	public EstadoDeJuego(Jugador jugadorA, Jugador jugadorB) {
-		
 		asignarTurnos(jugadorA, jugadorB);
 		asignarEstadoDeJuego(jugadorA, jugadorB);
-		
 	}
 	
 	private void asignarTurnos(Jugador jugadorA, Jugador jugadorB) {
 		ArrayList<Jugador> jugadores = new ArrayList<>();
 		jugadores.add(jugadorA);
 		jugadores.add(jugadorB);
-		
 		this.turnador = new Turnador(jugadores);
+		setChanged();
+		notifyObservers();
 	}
 	
 	private void asignarEstadoDeJuego(Jugador jugadorA, Jugador jugadorB) {
 		jugadorA.asignarEstadoDeJuego(this);
-		jugadorB.asignarEstadoDeJuego(this);;
+		jugadorB.asignarEstadoDeJuego(this);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public Jugador siguienteTurno() {
 		jugador = turnador.siguienteTurno();
+		setChanged();
+		notifyObservers();
 		return jugador;
 	}
 	
@@ -62,10 +65,14 @@ public class EstadoDeJuego extends Observable {
 	public void nuevoTurnoDe(Jugador jugador) {
 		this.jugador = jugador;
 		this.fase = new FaseTomarCarta();
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void pasarASiguienteFase() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado {
 		fase = fase.proxima();
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void terminarConGanador(Jugador jugador) {
@@ -74,37 +81,55 @@ public class EstadoDeJuego extends Observable {
 	
 	public void tomarCarta() throws ExcepcionFaseIncorrecta {
 		fase.tomarCarta(jugador);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void jugarCartaBocaAbajo(Carta carta) throws ExcepcionFaseIncorrecta, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta {
 		fase.jugarCartaBocaAbajo(carta, jugador);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void jugarCartaBocaArriba(Carta carta) throws ExcepcionFaseIncorrecta, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta {
 		fase.jugarCartaBocaArriba(carta, jugador);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void jugarSacrificandoBocaAbajo(Carta carta, LinkedList<Monstruo> sacrificados) throws ExcepcionFaseIncorrecta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios, ExcepcionZonaIncorrecta {
 		fase.jugarSacrificandoBocaAbajo(carta, sacrificados, jugador);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void jugarSacrificandoBocaArriba(Carta carta, LinkedList<Monstruo> sacrificados) throws ExcepcionFaseIncorrecta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios, ExcepcionZonaIncorrecta {
 		fase.jugarSacrificandoBocaArriba(carta, sacrificados, jugador);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void voltearCarta(Carta carta) throws ExcepcionFaseIncorrecta {
 		fase.voltearCarta(carta, jugador);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void aplicarMagica(Magica magica) throws ExcepcionCartaBocaAbajo, ExcepcionMazoVacio, ExcepcionFaseIncorrecta {
 		fase.aplicarMagica(magica, jugador);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void atacarCon(Monstruo atacante, Monstruo defensor) throws ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionMonstruoYaAtaco {
 		fase.atacarCon(atacante, defensor, jugador);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void aplicarEfectoDeMonstruo(Monstruo monstruo, Monstruo elegido) throws ExcepcionFaseIncorrecta {
 		fase.aplicarEfectoDeMonstruo(monstruo, elegido, jugador);
+		setChanged();
+		notifyObservers();
 	}
 }

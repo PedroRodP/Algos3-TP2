@@ -54,6 +54,8 @@ public class Jugador extends Observable {
 	public void quitarVida(double danio) {
 		vida -= (int) danio;
 		if (vida <= 0) estadoJuego.terminarConGanador(oponente);
+		setChanged();
+		notifyObservers();
 	}
 	
 	@SuppressWarnings("unchecked")

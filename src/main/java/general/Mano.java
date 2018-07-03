@@ -18,11 +18,13 @@ public class Mano extends Lugar {
 
 	public void agregar(Carta carta) {
 		this.cartas.add(carta);
+		setChanged();
 		notifyObservers();
 	}
 	
 	public void remover(Carta carta){
         this.cartas.remove(carta);
+		setChanged();
 		notifyObservers();
 	}
 	

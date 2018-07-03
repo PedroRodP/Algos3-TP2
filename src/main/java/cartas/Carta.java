@@ -34,6 +34,8 @@ public abstract class Carta extends Observable {
 	public void mandarAlCementerio(){
 		lugar.quitarYAgregarAlCementerio(this);
 		lugar = lugar.obtenerCementerio();
+		setChanged();
+		notifyObservers();
 	}
 
 	public boolean estaEnElCementerio(){
