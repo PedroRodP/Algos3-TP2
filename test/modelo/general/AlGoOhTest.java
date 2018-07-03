@@ -4,9 +4,18 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import main.java.cartas.monstruo.Monstruo;
+import main.java.cartas.monstruo.monstruos.AgresorOscuro;
+import main.java.excepciones.ExcepcionCartaBocaAbajo;
+import main.java.excepciones.ExcepcionFaseIncorrecta;
 import main.java.excepciones.ExcepcionJuegoNoTermino;
 import main.java.excepciones.ExcepcionJuegoTerminado;
+import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
+import main.java.excepciones.ExcepcionMonstruoYaAtaco;
+import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
 import main.java.excepciones.ExcepcionTurnoFinalizo;
+import main.java.excepciones.ExcepcionZonaCompleta;
+import main.java.excepciones.ExcepcionZonaIncorrecta;
 import main.java.general.AlGoOh;
 import main.java.general.Jugador;
 
@@ -39,6 +48,27 @@ public class AlGoOhTest {
 		
 		//Intenta seguir jugando
 		juego.pasarASiguienteFase();
+	}
+	
+	@Test
+	public void test03JugadorPuedeJugarCartaBocaArribaEnFasePreparacionYNoAtacarEnLaMismaFase() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta, ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionMonstruoYaAtaco {
+		
+		AlGoOh juego = new AlGoOh();
+		Jugador jugador = juego.siguienteTurno();
+		Monstruo ag = new AgresorOscuro();
+		Monstruo def = new AgresorOscuro();
+		
+		juego.pasarASiguienteFase();
+		
+		juego.jugarCartaBocaArriba(ag);
+		juego.colocarEnAtaque(ag);
+		jugador.obtenerOponente().jugarCartaBocaAbajo(def);
+		
+		juego.pasarASiguienteFase();
+		
+		juego.atacarCon(ag, def);
+		
+		assertEquals (0, 0);
 	}
 
 }

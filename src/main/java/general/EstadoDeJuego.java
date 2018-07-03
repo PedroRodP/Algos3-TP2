@@ -29,6 +29,7 @@ public class EstadoDeJuego extends Observable {
 	public EstadoDeJuego(Jugador jugadorA, Jugador jugadorB) {
 		asignarTurnos(jugadorA, jugadorB);
 		asignarEstadoDeJuego(jugadorA, jugadorB);
+		nuevoTurnoDe(siguienteTurno());
 	}
 	
 	private void asignarTurnos(Jugador jugadorA, Jugador jugadorB) {
