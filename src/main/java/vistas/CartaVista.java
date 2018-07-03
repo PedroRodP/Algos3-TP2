@@ -10,6 +10,7 @@ public class CartaVista {
         //String urlImagen= m.obtenerUrl();
         //ImageView imagen = new ImageView(urlImagen);
         Button boton= new Button("jugarCarta");
+        boton.setOnAction(event -> {});
         pane.getChildren().addAll(boton);
         // falta la forma de que la carta le pase el url de su imagen
     }

@@ -10,8 +10,8 @@ public class MonstruoVista  {
     public MonstruoVista(Monstruo m,Pane pane) {
         //String urlImagen= m.obtenerUrl();
         //ImageView imagen = new ImageView(urlImagen);
-        //Button boton= new Button("atacar");
-
+        Button boton= new Button("atacar");
+        pane.getChildren().add(boton);
     }
 
 

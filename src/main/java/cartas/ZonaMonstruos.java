@@ -16,13 +16,18 @@ public class ZonaMonstruos extends Lugar {
 	
 	@Override
 	public void agregar(Monstruo carta) {
+
 		monstruos.add(carta);
+		setChanged();
+		notifyObservers();
 	}
 
 	@Override
 	public void quitarYAgregarAlCementerio(Carta carta){
 		monstruos.remove(carta);
 		cementerio.agregar(carta);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public Cementerio obtenerCementerio() {

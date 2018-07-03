@@ -4,10 +4,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import main.java.general.AlGoOh;
 import main.java.general.Jugador;
@@ -56,6 +53,7 @@ public class Main extends Application {
 
 
         alGoOh.siguienteTurno();
+        alGoOh.obtenerJugadores().get(1).jugarCartaBocaArriba(alGoOh.obtenerJugadores().get(1).obtenerMano().obtenerCartas().getFirst());
 
 
 
@@ -76,10 +74,11 @@ public class Main extends Application {
     private void llenarContenedorTablero(ArrayList<Jugador> jugadores,VBox contenedorTableros){
         contenedorTableros.setAlignment(Pos.CENTER);
         for (Jugador j : jugadores){
-            VBox pane = new VBox();
+            StackPane pane = new StackPane();
             pane.setAlignment(Pos.TOP_CENTER);
-            contenedorTableros.getChildren().add(pane);
             new TableroVista(j,pane);
+            contenedorTableros.getChildren().add(pane);
+
 
         }
 

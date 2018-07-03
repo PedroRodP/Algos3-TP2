@@ -25,6 +25,8 @@ public class ZonaMagicasYTrampas extends Lugar {
 			throw new ExcepcionZonaCompleta();
 		}
 		magicas.add(cartaMagica);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void agregar(Trampa cartaTrampa) throws ExcepcionZonaCompleta{
@@ -32,6 +34,8 @@ public class ZonaMagicasYTrampas extends Lugar {
 			throw new ExcepcionZonaCompleta();
 		}
 		trampas.add(cartaTrampa);
+		setChanged();
+		notifyObservers();
 	}
 
 	@Override
@@ -39,6 +43,8 @@ public class ZonaMagicasYTrampas extends Lugar {
 		trampas.remove(carta);
 		magicas.remove(carta);
 		cementerio.agregar(carta);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public Cementerio obtenerCementerio() {

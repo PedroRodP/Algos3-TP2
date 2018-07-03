@@ -1,6 +1,8 @@
 package main.java.vistas;
 
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import main.java.general.Jugador;
@@ -8,22 +10,20 @@ import main.java.general.Jugador;
 public class TableroVista {
 
     public TableroVista(Jugador jugador, Pane paneTablero){
-
-        HBox mano = new HBox(20);
-        mano.setAlignment(Pos.TOP_CENTER);
+        GridPane tablero = new GridPane();
+        tablero.setAlignment(Pos.TOP_CENTER);
+        Pane mano = new Pane();
         new ManoVista(jugador.obtenerMano(),mano);
-        paneTablero.getChildren().add(mano);
+        tablero.add(mano,0,0);
 
-        HBox zonaMonstruos = new HBox(20);
-        zonaMonstruos.setAlignment(Pos.CENTER);
+        Pane zonaMonstruos = new Pane();
         new ZonaMonstruoVista(jugador.obtenerZonaMonstruos(),zonaMonstruos);
-        paneTablero.getChildren().add(zonaMonstruos);
+        tablero.add(zonaMonstruos,0,1);
 
-        HBox zonaMagica = new HBox(20);
-        zonaMagica.setAlignment(Pos.CENTER);
+        Pane zonaMagica = new Pane();
         new ZonaMagicaVista(jugador.obtenerZonaMagicaYTrampa(),zonaMagica);
-        paneTablero.getChildren().add(zonaMagica);
-
+        tablero.add(zonaMagica,0,2);
+        paneTablero.getChildren().add(tablero);
 
     }
 }

@@ -77,11 +77,13 @@ public class Jugador extends Observable {
 	
 	public void jugarCartaBocaAbajoSacrificando(Carta carta, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios, ExcepcionZonaIncorrecta {
 		carta.agregarseEn(zonaMonstruos, sacrificados);
+		mano.remover(carta);
 	}
 	
 	public void jugarCartaBocaArribaSacrificando(Carta carta, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios, ExcepcionZonaIncorrecta {
 		carta.setBocaArriba();
 		carta.agregarseEn(zonaMonstruos, sacrificados);
+		mano.remover(carta);
 	}
 
 	public void aplicarMagica(Magica magica) throws ExcepcionCartaBocaAbajo, ExcepcionMazoVacio {
