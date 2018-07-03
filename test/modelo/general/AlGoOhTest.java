@@ -6,12 +6,15 @@ import org.junit.Test;
 
 import main.java.cartas.campo.Campo;
 import main.java.cartas.campo.campos.Wasteland;
+import main.java.cartas.magica.Magica;
+import main.java.cartas.magica.magicas.Fisura;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionFaseIncorrecta;
 import main.java.excepciones.ExcepcionJuegoNoTermino;
 import main.java.excepciones.ExcepcionJuegoTerminado;
+import main.java.excepciones.ExcepcionMazoVacio;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.excepciones.ExcepcionMonstruoYaAtaco;
 import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
@@ -93,5 +96,38 @@ public class AlGoOhTest {
 		
 		assertEquals(8000 - 100, jugador.obtenerPuntosDeVida());
 	}
+	
+	@Test
+	public void test05JugadorAplicaMagicaEnLaCuartaFaseYDestruyeMonstruoOponente() throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta, ExcepcionFaseIncorrecta, ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado, ExcepcionCartaBocaAbajo, ExcepcionMazoVacio {
+		
+		AlGoOh juego = new AlGoOh();
+		Jugador jugador = juego.turnoActual();
+		Magica fisura = new Fisura();
+		Monstruo def = new AgresorOscuro();
+		
+		juego.pasarASiguienteFase();
+		
+		juego.jugarCartaBocaArriba(fisura);
+		jugador.obtenerOponente().jugarCartaBocaAbajo(def); //Deberia jugarlo en su turno
+		
+		juego.pasarASiguienteFase();
+		juego.pasarASiguienteFase();
+		
+		juego.aplicarMagica(fisura);
+		
+		assert(def.estaEnElCementerio());
+	}
 
+	@Test
+	(expected = ExcepcionTurnoFinalizo.class)
+	public void test06SiSePasaASiguienteFaseYNoHayMasArrojaExcepcionTurnoFinalizo() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado {
+		
+		AlGoOh juego = new AlGoOh();
+		
+		//Solo hay 4 fases. El ultimo llamado no devolvera una fase.
+		juego.pasarASiguienteFase();
+		juego.pasarASiguienteFase();
+		juego.pasarASiguienteFase();
+		juego.pasarASiguienteFase();
+	}
 }
