@@ -40,5 +40,15 @@ public class FasePreparacion extends Fase {
 	public void voltearCarta(Carta carta, Jugador jugador) {
 		jugador.voltearCarta(carta);
 	}
+	
+	@Override
+	public void colocarEnAtaque(Monstruo monstruo, Jugador jugador) {
+		jugador.ponerEnAtaque(monstruo);
+	}
+	
+	@Override
+	public void colocarEnDefensa(Monstruo monstruo, Jugador jugador) {
+		jugador.ponerEnDefensa(monstruo);
+	}
 
 }
