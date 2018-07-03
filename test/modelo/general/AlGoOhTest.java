@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import main.java.cartas.campo.Campo;
+import main.java.cartas.campo.campos.Wasteland;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
@@ -25,7 +27,7 @@ public class AlGoOhTest {
 	public void test01SiNoHayCartasEnMazoJugadorPierde() throws ExcepcionJuegoNoTermino {
 		
 		AlGoOh juego = new AlGoOh();
-		Jugador jugador = juego.siguienteTurno();
+		Jugador jugador = juego.turnoActual();
 		
 		for (int i = 0; i <= 40; i++) { //41 veces, se acaba el mazo
 			jugador.tomarCartaDelMazo();
@@ -40,7 +42,7 @@ public class AlGoOhTest {
 	public void test02SiNoHayCartasEnMazoJuegoTermina() throws ExcepcionJuegoTerminado, ExcepcionTurnoFinalizo {
 		
 		AlGoOh juego = new AlGoOh();
-		Jugador jugador = juego.siguienteTurno();
+		Jugador jugador = juego.turnoActual();
 		
 		for (int i = 0; i <= 40; i++) {
 			jugador.tomarCartaDelMazo();
@@ -51,10 +53,11 @@ public class AlGoOhTest {
 	}
 	
 	@Test
-	public void test03JugadorPuedeJugarCartaBocaArribaEnFasePreparacionYNoAtacarEnLaMismaFase() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta, ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionMonstruoYaAtaco {
+	(expected = ExcepcionFaseIncorrecta.class)
+	public void test03JugadorPuedeJugarCartaBocaArribaEnLaSegundaFaseYNoAtacarEnLaMismaFase() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta, ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionMonstruoYaAtaco {
 		
 		AlGoOh juego = new AlGoOh();
-		Jugador jugador = juego.siguienteTurno();
+		Jugador jugador = juego.turnoActual();
 		Monstruo ag = new AgresorOscuro();
 		Monstruo def = new AgresorOscuro();
 		
@@ -64,11 +67,31 @@ public class AlGoOhTest {
 		juego.colocarEnAtaque(ag);
 		jugador.obtenerOponente().jugarCartaBocaAbajo(def);
 		
+		juego.atacarCon(ag, def);
+	}
+	
+	@Test
+	public void test04JugadorAtacaEnLaTerceraFaseYGanaPorEfectoDeCampo() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta, ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionMonstruoYaAtaco {
+		
+		AlGoOh juego = new AlGoOh();
+		Jugador jugador = juego.turnoActual();
+		Monstruo ata = new AgresorOscuro(); //+200 ataque por campo
+		Monstruo def = new AgresorOscuro(); //+300 defensa por campo
+		Campo sogen = new Wasteland();
+		
 		juego.pasarASiguienteFase();
 		
-		juego.atacarCon(ag, def);
+		juego.jugarCartaBocaArriba(ata);
+		juego.colocarEnAtaque(ata);
+		juego.jugarCartaBocaArriba(sogen); 	//Crea diferenciaDeCombate = 100 entre los AgresorOscuro,
+											//en contra de Jugador turnoActual
+		jugador.obtenerOponente().jugarCartaBocaAbajo(def); //Oponente juega su monstruo en defensa y boca abajo
 		
-		assertEquals (0, 0);
+		juego.pasarASiguienteFase();
+		
+		juego.atacarCon(ata, def); //Sogen modifica ataque 
+		
+		assertEquals(8000 - 100, jugador.obtenerPuntosDeVida());
 	}
 
 }

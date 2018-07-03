@@ -125,5 +125,9 @@ public class AlGoOh extends Observable {
 	public Jugador ganador() throws ExcepcionJuegoNoTermino {
 		return estado.devolverGanador(); 
 	}
+
+	public Jugador turnoActual() {
+		return estado.turnoActual();
+	}
 	
 }
