@@ -132,4 +132,16 @@ public class EstadoDeJuego extends Observable {
 		setChanged();
 		notifyObservers();
 	}
+	
+	public void colocarEnAtaque(Monstruo monstruo) throws ExcepcionFaseIncorrecta {
+		fase.colocarEnAtaque(monstruo, jugador);
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void colocarEnDefensa(Monstruo monstruo) throws ExcepcionFaseIncorrecta {
+		fase.colocarEnDefensa(monstruo, jugador);
+		setChanged();
+		notifyObservers();
+	}
 }

@@ -114,6 +114,14 @@ public class AlGoOh extends Observable {
 		estado.atacarCon(atacante, defensor);
 	}
 	
+	public void colocarEnAtaque(Monstruo monstruo) throws ExcepcionFaseIncorrecta {
+		estado.colocarEnAtaque(monstruo);
+	}
+	
+	public void colocarEnDefensa(Monstruo monstruo) throws ExcepcionFaseIncorrecta {
+		estado.colocarEnDefensa(monstruo);
+	}
+
 	public Jugador ganador() throws ExcepcionJuegoNoTermino {
 		return estado.devolverGanador(); 
 	}

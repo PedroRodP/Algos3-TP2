@@ -61,4 +61,12 @@ public abstract class Fase {
 	public void aplicarEfectoDeMonstruo(Monstruo monstruo, Monstruo elegido, Jugador jugador) throws ExcepcionFaseIncorrecta {
 		throw new ExcepcionFaseIncorrecta();
 	}
+	
+	public void colocarEnAtaque(Monstruo monstruo, Jugador jugador) throws ExcepcionFaseIncorrecta {
+		throw new ExcepcionFaseIncorrecta();
+	}
+
+	public void colocarEnDefensa(Monstruo monstruo, Jugador jugador) throws ExcepcionFaseIncorrecta {
+		throw new ExcepcionFaseIncorrecta();
+	}
 }
