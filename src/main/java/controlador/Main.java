@@ -72,11 +72,11 @@ public class Main extends Application {
         }
     }
 
-    private void llenarContenedorTablero(ArrayList<Jugador> jugadores,VBox contenedorJugadores){
-        contenedorJugadores.setAlignment(Pos.CENTER);
+    private void llenarContenedorTablero(ArrayList<Jugador> jugadores,VBox contenedorTableros){
+        contenedorTableros.setAlignment(Pos.CENTER);
         for (Jugador j : jugadores){
-            Pane pane = new Pane();
-            contenedorJugadores.getChildren().add(pane);
+            VBox pane = new VBox();
+            contenedorTableros.getChildren().add(pane);
             new TableroVista(j,pane);
         }
     }
