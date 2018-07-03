@@ -51,4 +51,12 @@ public class ZonaMagicasYTrampas extends Lugar {
 		}
 		return trampas.getFirst();
 	}
+
+	public LinkedList<Magica> obtenerMagicas() {
+		return magicas;
+	}
+
+	public LinkedList<Trampa> obtenerTrampas() {
+		return trampas;
+	}
 }

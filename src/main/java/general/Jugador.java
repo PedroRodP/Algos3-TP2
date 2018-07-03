@@ -162,4 +162,16 @@ public class Jugador extends Observable {
 	public void aplicarEfectoDeMonstruo(Monstruo monstruo, Monstruo elegido) {
 		monstruo.aplicarEfecto(elegido);
 	}
+
+	public Mano obtenerMano() {
+		return mano;
+	}
+
+	public ZonaMonstruos obtenerZonaMonstruos() {
+		return zonaMonstruos;
+	}
+
+	public ZonaMagicasYTrampas obtenerZonaMagicaYTrampa() {
+		return zonaMagicasYTrampas;
+	}
 }

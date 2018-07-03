@@ -1,6 +1,7 @@
 package main.java.vistas;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import main.java.general.Jugador;
 
@@ -13,10 +14,13 @@ public class JugadorVista {
     private Pane pane;
 
     public JugadorVista(Jugador jugador,Pane pane){
+        pane.getChildren().add( new Label("VIDA "+jugador.obtenerPuntosDeVida()));
+
         observer = (o, arg) -> {
+            pane.getChildren().remove(0);
             pane.getChildren().add(
-                    new Button("VIDA "+jugador.obtenerPuntosDeVida())
-            );
+                    new Label("VIDA "+jugador.obtenerPuntosDeVida())
+           );
         };
         jugador.addObserver(observer);
         this.jugador = jugador;

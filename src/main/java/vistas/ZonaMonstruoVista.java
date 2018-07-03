@@ -17,7 +17,7 @@ public class ZonaMonstruoVista {
 
         for(Monstruo m: monstruos){
             StackPane paneMonstruo = new StackPane();
-            MonstruoVista monstruo =new MonstruoVista(m,paneMonstruo);
+            new MonstruoVista(m,paneMonstruo);
             pane.getChildren().add(paneMonstruo);
 
 

@@ -13,7 +13,7 @@ import main.java.general.AlGoOh;
 import main.java.general.Jugador;
 import main.java.vistas.JugadorVista;
 import main.java.vistas.TableroVista;
-import org.mortbay.log.Log;
+//import org.mortbay.log.Log;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -34,7 +34,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
-        primaryStage.setTitle("AlGoOh");
+        primaryStage.setTitle("Yu Gi OH");
         alGoOh = new AlGoOh();
 
         BorderPane contenedorPrincipal = new BorderPane();
@@ -44,13 +44,14 @@ public class Main extends Application {
         contenedorPrincipal.setLeft(contenedorJugadores);
 
         VBox contenedorTablero = new VBox(100);
+        llenarContenedorTablero(alGoOh.obtenerJugadores(),contenedorTablero);
 
         contenedorPrincipal.setCenter(contenedorTablero);
 
 
-
+        alGoOh.obtenerJugadores().get(1).quitarVida(500);
         alGoOh.addObserver((o, arg) -> {
-            Log.debug("AlGoOh observer");
+            //Log.debug("AlGoOh observer");
         });
 
 
@@ -58,7 +59,7 @@ public class Main extends Application {
 
 
 
-        scene = new Scene(contenedorPrincipal, 1200, 800);
+        scene = new Scene(contenedorPrincipal, 800, 600);
         stage.setScene(scene);
         stage.show();
     }
@@ -76,9 +77,12 @@ public class Main extends Application {
         contenedorTableros.setAlignment(Pos.CENTER);
         for (Jugador j : jugadores){
             VBox pane = new VBox();
+            pane.setAlignment(Pos.TOP_CENTER);
             contenedorTableros.getChildren().add(pane);
             new TableroVista(j,pane);
+
         }
+
     }
 }
 

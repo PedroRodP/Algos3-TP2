@@ -44,4 +44,7 @@ public class Mano extends Lugar {
 		throw new ExcepcionNoEsPosibleAgregarAlCementerio();	
 	}
 
+	public LinkedList<Carta> obtenerCartas() {
+		return cartas;
+	}
 }
