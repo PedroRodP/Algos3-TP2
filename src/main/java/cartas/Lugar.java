@@ -8,7 +8,9 @@ import main.java.excepciones.ExcepcionNoEsPosibleAgregarAlCementerio;
 import main.java.excepciones.ExcepcionZonaCompleta;
 import main.java.excepciones.ExcepcionZonaIncorrecta;
 
-public abstract class Lugar {
+import java.util.Observable;
+
+public abstract class Lugar extends Observable {
 	
 	public void agregar(Monstruo carta) throws ExcepcionZonaCompleta, ExcepcionZonaIncorrecta {
 		throw new ExcepcionZonaIncorrecta();

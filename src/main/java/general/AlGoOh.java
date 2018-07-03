@@ -1,6 +1,8 @@
 package main.java.general;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Observable;
 
 import main.java.cartas.Carta;
 import main.java.cartas.magica.Magica;
@@ -18,8 +20,19 @@ import main.java.excepciones.ExcepcionTurnoFinalizo;
 import main.java.excepciones.ExcepcionZonaCompleta;
 import main.java.excepciones.ExcepcionZonaIncorrecta;
 
-public class AlGoOh {
-	
+public class AlGoOh extends Observable {
+
+	public EstadoDeJuego obtenerEstadoDelJuego() {
+		return estado;
+	}
+
+	public ArrayList<Jugador> obtenerJugadores() {
+		ArrayList<Jugador> list = new ArrayList<>();
+		list.add(jugadorA);
+		list.add(jugadorB);
+		return list;
+	}
+
 	private Jugador jugadorA;
 	private Jugador jugadorB;
 	private EstadoDeJuego estado;
@@ -37,14 +50,11 @@ public class AlGoOh {
 	}
 	
 	private void asignarMazos() {
-		
 		jugadorA.asignarMazo(new Mazo());
 		jugadorB.asignarMazo(new Mazo());
-		
 	}
 	
 	private void levantar5CartasDelMazo() {
-		
 		for (int i = 0; i < 5; i++) {
 			jugadorA.tomarCartaDelMazo();
 			jugadorB.tomarCartaDelMazo();
@@ -53,13 +63,15 @@ public class AlGoOh {
 
 	
 	private void establecerOponentes() {
-		
 		jugadorA.establecerOponente(jugadorB);
 		jugadorB.establecerOponente(jugadorA);
 	}
 
 	public Jugador siguienteTurno() {
-		return estado.siguienteTurno();
+		Jugador actual = estado.siguienteTurno();
+		setChanged();
+		notifyObservers();
+		return actual;
 	}
 
 	public void pasarASiguienteFase() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado {

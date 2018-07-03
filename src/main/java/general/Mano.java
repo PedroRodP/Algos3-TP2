@@ -18,10 +18,12 @@ public class Mano extends Lugar {
 
 	public void agregar(Carta carta) {
 		this.cartas.add(carta);
+		notifyObservers();
 	}
 	
 	public void remover(Carta carta){
         this.cartas.remove(carta);
+		notifyObservers();
 	}
 	
 	public boolean completoExodia() {

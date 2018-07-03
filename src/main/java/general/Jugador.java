@@ -1,6 +1,7 @@
 package main.java.general;
 
 import java.util.LinkedList;
+import java.util.Observable;
 
 import main.java.cartas.Carta;
 import main.java.cartas.Cementerio;
@@ -13,7 +14,7 @@ import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.trampa.Trampa;
 import main.java.excepciones.*;
 
-public class Jugador {
+public class Jugador extends Observable {
 
 	private EstadoDeJuego estadoJuego;
 	private int vida;

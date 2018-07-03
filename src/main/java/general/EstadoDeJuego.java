@@ -2,6 +2,7 @@ package main.java.general;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Observable;
 
 import main.java.cartas.Carta;
 import main.java.cartas.magica.Magica;
@@ -19,7 +20,7 @@ import main.java.excepciones.ExcepcionTurnoFinalizo;
 import main.java.excepciones.ExcepcionZonaCompleta;
 import main.java.excepciones.ExcepcionZonaIncorrecta;
 
-public class EstadoDeJuego {
+public class EstadoDeJuego extends Observable {
 	
 	private Fase fase;
 	private Jugador jugador;
@@ -33,7 +34,6 @@ public class EstadoDeJuego {
 	}
 	
 	private void asignarTurnos(Jugador jugadorA, Jugador jugadorB) {
-		
 		ArrayList<Jugador> jugadores = new ArrayList<>();
 		jugadores.add(jugadorA);
 		jugadores.add(jugadorB);

@@ -1,6 +1,7 @@
 package main.java.cartas;
 
 import java.util.LinkedList;
+import java.util.Observable;
 
 import main.java.cartas.monstruo.Monstruo;
 import main.java.excepciones.ExcepcionCartaNoNecesitaSacrificios;
@@ -8,7 +9,7 @@ import main.java.excepciones.ExcepcionSacrificiosInsuficientes;
 import main.java.excepciones.ExcepcionZonaCompleta;
 import main.java.excepciones.ExcepcionZonaIncorrecta;
 
-public abstract class Carta {
+public abstract class Carta extends Observable {
 
 	protected String nombre;
 	protected Posicion posicion;
