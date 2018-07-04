@@ -1,6 +1,7 @@
 package main.java.vistas;
 
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 
@@ -13,6 +14,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class ManoVista {
+
     private final int CANTIDAD_CARTAS = 5;
 
     private GridPane pane;
@@ -21,13 +23,18 @@ public class ManoVista {
     private ArrayList<CartaVista> cartas = new ArrayList<>();
 
     public ManoVista(Mano mano, GridPane pane){
-        this.mano= mano;
-        this.pane= pane;
-
+        this.mano = mano;
+        this.pane = pane;
 
         RowConstraints fila = new RowConstraints();
         fila.setPercentHeight(100);
         this.pane.getRowConstraints().add(fila);
+
+        for (int c = 0; c < CANTIDAD_CARTAS ; c++){
+            ColumnConstraints col = new ColumnConstraints();
+            col.setPercentWidth(100 / CANTIDAD_CARTAS);
+            this.pane.getColumnConstraints().add(col);
+        }
 
         actualizar();
         observer= (o, arg) -> {
@@ -38,22 +45,17 @@ public class ManoVista {
     }
 
     private void actualizar(){
-        for (CartaVista carta : cartas)  carta.removerObservador();
+        // Remover antiguos observadores
+        for (CartaVista carta : cartas) carta.removerObservador();
 
-        try {
-            pane.getColumnConstraints().remove(0,CANTIDAD_CARTAS);
-        }catch (IndexOutOfBoundsException e){}
+        // Quitar las antiguas vistas del pane
+        pane.getChildren().clear();
 
-        for (int c = 0; c < CANTIDAD_CARTAS ; c++){
-            ColumnConstraints col = new ColumnConstraints();
-            col.setPercentWidth(100 / CANTIDAD_CARTAS);
-            this.pane.getColumnConstraints().add(col);
-        }
-
+        // Agregar las nuevas vistas
         LinkedList<Carta> nuevasCartas = mano.obtenerCartas();
         for (int i = 0; i < nuevasCartas.size(); i++){
             GridPane gridPane = new GridPane();
-            new CartaVista(nuevasCartas.get(i),gridPane);
+            cartas.add(new CartaVista(nuevasCartas.get(i),gridPane));
             pane.add(gridPane,i,0);
         }
     }
