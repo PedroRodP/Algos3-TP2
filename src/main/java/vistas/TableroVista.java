@@ -43,9 +43,9 @@ public class TableroVista {
         new ZonaCampoVista(jugador.obtenerZonaCampo(),zonaCampo);
         tablero.add(zonaCampo,0,3);
 
-        mano.setBackground(new Background(new BackgroundFill(Color.web("#ab5498"), CornerRadii.EMPTY, Insets.EMPTY)));
-        zonaCampo.setBackground(new Background(new BackgroundFill(Color.web("#ab5981"), CornerRadii.EMPTY, Insets.EMPTY)));
-        zonaMagica.setBackground(new Background(new BackgroundFill(Color.web("#ab5400"), CornerRadii.EMPTY, Insets.EMPTY)));
-        zonaMonstruos.setBackground(new Background(new BackgroundFill(Color.web("#990098"), CornerRadii.EMPTY, Insets.EMPTY)));
+        mano.setStyle("-fx-border-color: green");
+        zonaCampo.setStyle("-fx-border-color: red");
+        zonaMagica.setStyle("-fx-border-color: orange");
+        zonaMonstruos.setStyle("-fx-border-color: black");
     }
 }
