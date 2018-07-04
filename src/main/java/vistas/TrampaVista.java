@@ -7,8 +7,8 @@ import main.java.cartas.trampa.Trampa;
 
 public class TrampaVista extends CartaVista{
 
-    public TrampaVista(Trampa t, GridPane pane) {
-        Button boton= new Button("jugarTrampa");
-        pane.getChildren().add(boton);
+    public TrampaVista(Trampa trampa, GridPane pane) {
+        super(trampa,pane);
+        removerObservador();
     }
 }

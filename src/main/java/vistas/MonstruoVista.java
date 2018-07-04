@@ -6,13 +6,14 @@ import main.java.cartas.monstruo.Monstruo;
 
 public class MonstruoVista extends CartaVista  {
 
-    public MonstruoVista(Monstruo m,GridPane pane) {
-        carta = m;
-        this.pane = pane;
-        this.observer = (o, arg) -> {
-            mostrarImagen();
+    public MonstruoVista(Monstruo monstruo,GridPane pane) {
+        super(monstruo,pane);
+        removerObservador();
+
+        observer = (o, arg) -> {
+
         };
-        mostrarImagen();
+        //monstruo.addObserver(observer);
     }
 
 }

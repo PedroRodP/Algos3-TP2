@@ -8,9 +8,9 @@ import main.java.cartas.magica.Magica;
 import main.java.cartas.trampa.Trampa;
 
 public class MagicaVista extends CartaVista {
-    public MagicaVista(Magica m, GridPane pane) {
-        Button boton= new Button("jugarMagica");
-        pane.getChildren().add(boton);
+    public MagicaVista(Magica magica, GridPane pane) {
+        super(magica,pane);
+        removerObservador();
     }
 
 
