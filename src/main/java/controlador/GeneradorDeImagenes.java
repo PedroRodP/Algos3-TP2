@@ -10,15 +10,8 @@ import java.io.FileNotFoundException;
 public class GeneradorDeImagenes {
 
     public static ImageView obtenerImagenDeCarta(Carta carta) throws IllegalArgumentException {
-
-
-        if (carta.obtenerNombre() == null){
-            System.out.println(carta.getClass()); // debuguear las que no tienen nombre
-        }
-
-
-        return new ImageView("main/java/imagenes/cartas/" +
-                carta.obtenerNombre().replace(" ","_") + ".jpg");
-
+        return new ImageView("main/java/imagenes/cartas/"
+                + carta.obtenerNombre().replace(" ","_")
+                + ".jpg");
     }
 }

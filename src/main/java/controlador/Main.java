@@ -20,8 +20,8 @@ import java.util.Observer;
 import java.util.logging.Logger;
 
 public class Main extends Application {
-    private final int ANCHO = 1400;
-    private final int ALTO = 1000;
+    private final int ANCHO = 1100;
+    private final int ALTO = 700;
 
 
     private static AlGoOh alGoOh;

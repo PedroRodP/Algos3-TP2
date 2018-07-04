@@ -29,7 +29,7 @@ public class EstadoDeJuego extends Observable {
 	public EstadoDeJuego(Jugador jugadorA, Jugador jugadorB) {
 		asignarTurnos(jugadorA, jugadorB);
 		asignarEstadoDeJuego(jugadorA, jugadorB);
-		nuevoTurnoDe(siguienteTurno());
+		siguienteTurno();
 	}
 	
 	private void asignarTurnos(Jugador jugadorA, Jugador jugadorB) {
@@ -48,8 +48,15 @@ public class EstadoDeJuego extends Observable {
 		notifyObservers();
 	}
 	
+	private void inicializarTurno(Jugador jugador) {
+		this.jugador = jugador;
+		fase = new FasePreparacion();
+		jugador.tomarCartaDelMazo();
+	}
+	
 	public Jugador siguienteTurno() {
-		jugador = turnador.siguienteTurno();
+		Jugador jugador = turnador.siguienteTurno();
+		inicializarTurno(jugador);
 		setChanged();
 		notifyObservers();
 		return jugador;
@@ -63,13 +70,6 @@ public class EstadoDeJuego extends Observable {
 		return fase.devolverGanador();
 	}
 	
-	public void nuevoTurnoDe(Jugador jugador) {
-		this.jugador = jugador;
-		this.fase = new FaseTomarCarta();
-		setChanged();
-		notifyObservers();
-	}
-	
 	public void pasarASiguienteFase() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado {
 		fase = fase.proxima();
 		setChanged();
@@ -78,12 +78,6 @@ public class EstadoDeJuego extends Observable {
 	
 	public void terminarConGanador(Jugador jugador) {
 		fase = new Terminado(jugador);
-	}
-	
-	public void tomarCarta() throws ExcepcionFaseIncorrecta {
-		fase.tomarCarta(jugador);
-		setChanged();
-		notifyObservers();
 	}
 	
 	public void jugarCartaBocaAbajo(Carta carta) throws ExcepcionFaseIncorrecta, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta {

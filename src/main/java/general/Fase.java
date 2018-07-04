@@ -25,10 +25,6 @@ public abstract class Fase {
 	}
 	
 	public abstract Fase proxima() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado;
-
-	public void tomarCarta(Jugador jugador) throws ExcepcionFaseIncorrecta {
-		throw new ExcepcionFaseIncorrecta();
-	}
 	
 	public void jugarCartaBocaAbajo(Carta carta, Jugador jugador) throws ExcepcionFaseIncorrecta, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta {
 		throw new ExcepcionFaseIncorrecta();

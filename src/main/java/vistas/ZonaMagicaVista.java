@@ -1,50 +1,64 @@
 package main.java.vistas;
 
 import javafx.geometry.Pos;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import main.java.cartas.ZonaMagicasYTrampas;
 import main.java.cartas.magica.Magica;
 import main.java.cartas.trampa.Trampa;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
 
 public class ZonaMagicaVista {
-    private Observer observer;
-    private Pane pane;
+
+    private final int CANTIDAD_CARTAS = 5;
     private ZonaMagicasYTrampas zona;
+    private Observer observer;
+    private GridPane pane;
+    private ArrayList<CartaVista> vistas = new ArrayList<>();
+
     public ZonaMagicaVista(ZonaMagicasYTrampas zona, GridPane pane) {
-        this.zona= zona;
-        this.zona=zona;
-        this.pane=pane;
-        llamarfuncion();
-        observer= ((o, arg) -> {
-            pane.getChildren().remove(0);
-            llamarfuncion();
-        });
+        this.zona = zona;
+        this.pane = pane;
+
+        RowConstraints fila = new RowConstraints();
+        fila.setPercentHeight(100);
+        this.pane.getRowConstraints().add(fila);
+
+        for (int c = 0; c < CANTIDAD_CARTAS ; c++){
+            ColumnConstraints col = new ColumnConstraints();
+            col.setPercentWidth(100 / CANTIDAD_CARTAS);
+            this.pane.getColumnConstraints().add(col);
+        }
+
+        actualizar();
+        observer= (o, arg) -> {
+            actualizar();
+        };
 
         zona.addObserver(observer);
     }
+    private void actualizar(){
+        // Remover antiguos observadores
+        for (CartaVista carta : vistas) carta.removerObservador();
 
-    private void llamarfuncion(){
-        LinkedList<Magica> magicas=zona.obtenerMagicas();
+        // Quitar las antiguas vistas del pane
+        pane.getChildren().clear();
+
+        // Agregar las nuevas vistas
+        LinkedList<Magica> magicas = zona.obtenerMagicas();
+        for (int i = 0; i < magicas.size(); i++){
+            GridPane gridPane = new GridPane();
+            vistas.add(new MagicaVista(magicas.get(i),gridPane));
+            pane.add(gridPane,i,0);
+        }
         LinkedList<Trampa> trampas=zona.obtenerTrampas();
-        HBox zonaMyT= new HBox(20);
-        for(Magica m: magicas){
-            StackPane paneMagica = new StackPane();
-            new MagicaVista(m,paneMagica);
-            zonaMyT.getChildren().add(paneMagica);
+        for (int i = 0; i < trampas.size(); i++){
+            GridPane gridPane = new GridPane();
+            vistas.add(new TrampaVista(trampas.get(i),gridPane));
+            pane.add(gridPane,i,0);
         }
-        for (Trampa t: trampas ){
-            StackPane paneTrampa = new StackPane();
-            paneTrampa.setAlignment(Pos.CENTER);
-            new TrampaVista(t,paneTrampa);
-            zonaMyT.getChildren().add(paneTrampa);
-        }
-        this.pane.getChildren().add(zonaMyT);
     }
 }

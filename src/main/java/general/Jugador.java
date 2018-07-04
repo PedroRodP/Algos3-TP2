@@ -64,15 +64,15 @@ public class Jugador extends Observable {
 	}
 	
 	public void jugarCartaBocaAbajo(Carta carta) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta {
-		mano.remover(carta);
 		carta.setBocaAbajo();
 		carta.agregarseEn(zonaMagicasYTrampas, zonaMonstruos, zonaCampo);
+		mano.remover(carta);
 	}
 	
 	public void jugarCartaBocaArriba(Carta carta) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta {
-		mano.remover(carta);
 		carta.setBocaArriba();
 		carta.agregarseEn(zonaMagicasYTrampas, zonaMonstruos, zonaCampo);
+		mano.remover(carta);
 	}
 	
 	public void jugarCartaBocaAbajoSacrificando(Carta carta, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios, ExcepcionZonaIncorrecta {
