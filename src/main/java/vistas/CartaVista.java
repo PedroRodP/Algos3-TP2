@@ -19,11 +19,12 @@ public class CartaVista {
     protected Carta carta;
     protected GridPane pane;
     protected Observer observer;
+    protected ImageView imagen;
 
-    protected CartaVista(){}
+    //protected CartaVista(){}
 
-    public CartaVista(Carta c, GridPane pane) {
-        this.carta = c;
+    public CartaVista(Carta carta, GridPane pane) {
+        this.carta = carta;
         this.pane = pane;
 
         RowConstraints filaImagen = new RowConstraints();
@@ -36,24 +37,26 @@ public class CartaVista {
         col.setPercentWidth(100);
         this.pane.getColumnConstraints().add(col);
 
-        this.observer = (o, arg) -> {
-            //mostrarImagen();
-        };
         mostrarImagen();
         mostrarNombre();
+
+        observer = (o, arg) -> {
+            mostrarImagen();
+        };
+        this.carta.addObserver(observer);
     }
 
     protected void mostrarImagen(){
         try {
-            /*ImageView imagen1 = GeneradorDeImagenes.obtenerImagenDeCarta(carta);
-            boton.setOnAction(event -> {
-                Alerta.display(carta.obtenerNombre(),imagen1);
-            });*/
-            //TODO QUITAR IMAGEN ANTERIOR SI EXISTE
-            ImageView image = GeneradorDeImagenes.obtenerImagenDeCarta(carta);
-            image.setFitHeight(90);
-            image.setFitWidth(70);
-            pane.add(image,0,0);
+            pane.getChildren().remove(imagen); // Quitar anterior si existe
+
+            imagen = GeneradorDeImagenes.obtenerImagenDeCarta(carta);
+            imagen.setFitHeight(90);
+            imagen.setFitWidth(70);
+            imagen.setOnMouseClicked(event -> {
+                Alerta.display(carta.obtenerNombre(), GeneradorDeImagenes.obtenerImagenDeCarta(carta));
+            });
+            pane.add(imagen,0,0);
         } catch (IllegalArgumentException e) {
             System.out.println("FALTA IMAGEN "+carta.obtenerNombre());
         }
