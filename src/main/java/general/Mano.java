@@ -28,8 +28,8 @@ public class Mano extends Lugar {
 		notifyObservers();
 	}
 	
-	public boolean completoExodia() {
-		return Exodia.estaCompleto(cartas);
+	public void estadoExodia(Jugador jugador, EstadoDeJuego estado) {
+		Exodia.estado(cartas, estado, jugador);
 	}
 	
 	public int cantidadDeCartas() {

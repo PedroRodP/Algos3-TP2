@@ -107,8 +107,7 @@ public class Jugador extends Observable {
 		try {
 			Carta carta = mazo.tomarCarta();
 			this.mano.agregar(carta);
-			if (completoExodia()) estadoJuego.terminarConGanador(this);
-			
+			mano.estadoExodia(this, estadoJuego);
 		} catch (ExcepcionMazoVacio e) {
 			estadoJuego.terminarConGanador(oponente);
 		}
@@ -122,10 +121,6 @@ public class Jugador extends Observable {
 		this.mazo = mazo;
 	}
 	
-	public boolean completoExodia() {
-		return mano.completoExodia();
-	}
-
 	public void atacar(Monstruo monstruoAtacante, Monstruo monstruoRival) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
 		
 		activarEfectosDeCampo();

@@ -2,12 +2,14 @@ package main.java.cartas.monstruo.monstruos.exodia;
 
 import main.java.cartas.Carta;
 import main.java.cartas.monstruo.Monstruo;
+import main.java.general.EstadoDeJuego;
+import main.java.general.Jugador;
 
 import java.util.LinkedList;
 
 public abstract class Exodia extends Monstruo {
 
-    public static boolean estaCompleto(LinkedList<Carta> cartas){
+    public static void estado(LinkedList<Carta> cartas, EstadoDeJuego estado, Jugador jugador){
         boolean tieneCabeza = false,tieneBrazoIzq = false,tieneBrazoDer = false,tienePiernaIzq = false,tienePiernaDer = false;
         for (Carta carta : cartas){
             if (carta instanceof Exodia){
@@ -18,12 +20,10 @@ public abstract class Exodia extends Monstruo {
                 tienePiernaIzq = tienePiernaIzq || parteDeExodia.esPiernaIzquierdaDeExodia();
                 tienePiernaDer = tienePiernaDer || parteDeExodia.esPiernaDerechaDeExodia();
 
-                if (tieneCabeza && tieneBrazoIzq && tieneBrazoDer && tienePiernaIzq && tienePiernaDer){
-                    return true;
-                }
+                if (tieneCabeza && tieneBrazoIzq && tieneBrazoDer && tienePiernaIzq && tienePiernaDer)
+                	estado.terminarConGanador(jugador);
             }
         }
-        return false;
     }
 
     public Exodia(double ataque,double defensa,int cantidadDeEstrellas){
