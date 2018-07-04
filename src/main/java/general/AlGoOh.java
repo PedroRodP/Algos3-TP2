@@ -78,10 +78,6 @@ public class AlGoOh extends Observable {
 		estado.pasarASiguienteFase();
 	}
 	
-	public void tomarCarta() throws ExcepcionFaseIncorrecta {
-		estado.tomarCarta();
-	}
-	
 	public void jugarCartaBocaAbajo(Carta carta) throws ExcepcionFaseIncorrecta, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta {
 		estado.jugarCartaBocaAbajo(carta);
 	}

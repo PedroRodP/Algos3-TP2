@@ -65,7 +65,8 @@ public class EstadoDeJuego extends Observable {
 	
 	public void nuevoTurnoDe(Jugador jugador) {
 		this.jugador = jugador;
-		this.fase = new FaseTomarCarta();
+		jugador.tomarCartaDelMazo();
+		this.fase = new FasePreparacion();
 		setChanged();
 		notifyObservers();
 	}
@@ -78,12 +79,6 @@ public class EstadoDeJuego extends Observable {
 	
 	public void terminarConGanador(Jugador jugador) {
 		fase = new Terminado(jugador);
-	}
-	
-	public void tomarCarta() throws ExcepcionFaseIncorrecta {
-		fase.tomarCarta(jugador);
-		setChanged();
-		notifyObservers();
 	}
 	
 	public void jugarCartaBocaAbajo(Carta carta) throws ExcepcionFaseIncorrecta, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta {

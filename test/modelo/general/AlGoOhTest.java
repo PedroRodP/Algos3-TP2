@@ -64,8 +64,6 @@ public class AlGoOhTest {
 		Monstruo ag = new AgresorOscuro();
 		Monstruo def = new AgresorOscuro();
 		
-		juego.pasarASiguienteFase();
-		
 		juego.jugarCartaBocaArriba(ag);
 		juego.colocarEnAtaque(ag);
 		jugador.obtenerOponente().jugarCartaBocaAbajo(def);
@@ -81,8 +79,6 @@ public class AlGoOhTest {
 		Monstruo ata = new AgresorOscuro(); //+200 ataque por campo
 		Monstruo def = new AgresorOscuro(); //+300 defensa por campo
 		Campo sogen = new Wasteland();
-		
-		juego.pasarASiguienteFase();
 		
 		juego.jugarCartaBocaArriba(ata);
 		juego.colocarEnAtaque(ata);
@@ -105,8 +101,6 @@ public class AlGoOhTest {
 		Magica fisura = new Fisura();
 		Monstruo def = new AgresorOscuro();
 		
-		juego.pasarASiguienteFase();
-		
 		juego.jugarCartaBocaArriba(fisura);
 		jugador.obtenerOponente().jugarCartaBocaAbajo(def); //Deberia jugarlo en su turno
 		
@@ -124,8 +118,7 @@ public class AlGoOhTest {
 		
 		AlGoOh juego = new AlGoOh();
 		
-		//Solo hay 4 fases. El ultimo llamado no devolvera una fase.
-		juego.pasarASiguienteFase();
+		//Solo hay 3 fases. El ultimo llamado no devolvera una fase.
 		juego.pasarASiguienteFase();
 		juego.pasarASiguienteFase();
 		juego.pasarASiguienteFase();
