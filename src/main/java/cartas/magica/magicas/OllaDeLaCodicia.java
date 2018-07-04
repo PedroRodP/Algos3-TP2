@@ -10,6 +10,7 @@ import main.java.general.Jugador;
 public class OllaDeLaCodicia extends Magica {
 	
 	public OllaDeLaCodicia() {
+		super();
 		nombre = "Olla de la codicia";
 	}
 	

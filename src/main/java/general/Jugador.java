@@ -64,7 +64,6 @@ public class Jugador extends Observable {
 	}
 	
 	public void jugarCartaBocaAbajo(Carta carta) throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta {
-		carta.setBocaAbajo();
 		carta.agregarseEn(zonaMagicasYTrampas, zonaMonstruos, zonaCampo);
 		mano.remover(carta);
 	}

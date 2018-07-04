@@ -6,6 +6,10 @@ import main.java.cartas.campo.Campo;
 import main.java.cartas.monstruo.Monstruo;
 
 public class NoCampo extends Campo {
+	
+	public NoCampo() {
+		super();
+	}
 
 	@Override
 	public void desactivarEfecto(LinkedList<Monstruo> monstruosPropios, LinkedList<Monstruo> monstruosRivales) {

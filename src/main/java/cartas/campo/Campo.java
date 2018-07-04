@@ -10,6 +10,10 @@ import main.java.cartas.monstruo.Monstruo;
 
 public abstract class Campo extends Carta {
 	
+	public Campo() {
+		super();
+	}
+	
 	@Override
 	public void agregarseEn(ZonaMagicasYTrampas zonaMagicasYTrampas, ZonaMonstruos zonaMonstruos, ZonaCampo zonaCampos) {
 		this.lugar = zonaCampos;

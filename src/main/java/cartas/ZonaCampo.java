@@ -23,12 +23,7 @@ public class ZonaCampo extends Lugar{
 	public Campo obtenerCampo() {
 		return campo;
 	}
-	
-	@Override
-	public boolean esUnCementerio() {
-		return false;
-	}
-	
+		
 	public Cementerio obtenerCementerio() {
 		return cementerio;
 	}

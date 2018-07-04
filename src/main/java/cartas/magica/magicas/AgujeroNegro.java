@@ -9,6 +9,7 @@ import java.util.LinkedList;
 public class AgujeroNegro extends Magica {
 	
 	public AgujeroNegro() {
+		super();
 		nombre = "Agujero negro";
 	}
 

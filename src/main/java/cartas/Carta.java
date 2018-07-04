@@ -14,6 +14,10 @@ public abstract class Carta extends Observable {
 	protected String nombre;
 	protected Posicion posicion;
 	protected Lugar lugar;
+	
+	public Carta() {
+		posicion = new BocaAbajo();
+	}
 
 	public String obtenerNombre() {
 		return nombre;
@@ -21,10 +25,6 @@ public abstract class Carta extends Observable {
 	
 	public void setBocaArriba() {
 		this.posicion = new BocaArriba();
-	}
-	
-	public void setBocaAbajo() {
-		this.posicion = new BocaAbajo();
 	}
 	
 	public boolean estaBocaArriba() {

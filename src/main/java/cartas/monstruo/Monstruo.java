@@ -17,6 +17,7 @@ public abstract class Monstruo extends Carta {
 	private Clasificacion clasificacion;
 	
 	public Monstruo(double ataque, double defensa, int cantidadDeEstrellas) {
+		super();
 		this.ataque = ataque;
 		this.defensa = defensa;
 		this.colocarEnDefensa(); //Se inicializa en modo defensivo
@@ -52,6 +53,7 @@ public abstract class Monstruo extends Carta {
 		double diferenciaDeCombate = diferenciaDeCombateCon(monstruoRival);
 		
 		monstruoRival.contraatacar(this);
+		
 		if (this.estaEnElCementerio()) return;
 
 		if (diferenciaDeCombate == 0) {

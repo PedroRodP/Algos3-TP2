@@ -7,6 +7,7 @@ import main.java.general.Jugador;
 public class CilindroMagico  extends Trampa {
 
     public CilindroMagico(){
+    	super();
         nombre = "Cilindro Magico";
     }
 

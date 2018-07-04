@@ -8,6 +8,10 @@ import main.java.general.Jugador;
 
 public class NoTrampa extends Trampa {
 	
+	public NoTrampa() {
+		super();
+	}
+	
 	@Override
 	public void aplicarA(Monstruo atacante, Monstruo defensor, Jugador jugador) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
 		atacante.atacar(defensor, jugador, jugador.obtenerOponente());

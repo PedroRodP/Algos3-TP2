@@ -8,6 +8,7 @@ import main.java.cartas.monstruo.Monstruo;
 public class Wasteland extends Campo {
 	
 	public Wasteland() {
+		super();
 		nombre = "Wasteland";
 	}
 

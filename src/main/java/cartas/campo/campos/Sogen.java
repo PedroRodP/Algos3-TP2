@@ -8,6 +8,7 @@ import main.java.cartas.monstruo.Monstruo;
 public class Sogen extends Campo {
 	
 	public Sogen() {
+		super();
 		nombre = "Sogen";
 	}
 	

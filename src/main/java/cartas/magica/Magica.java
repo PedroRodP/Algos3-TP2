@@ -14,6 +14,10 @@ import main.java.general.Jugador;
 
 public abstract class Magica extends Carta{
 	
+	public Magica() {
+		super();
+	}
+	
 	@Override
 	public void agregarseEn(ZonaMagicasYTrampas zonaMagicasYTrampas, ZonaMonstruos zonaMonstruos, ZonaCampo zonaCampos) throws ExcepcionZonaCompleta {
 		this.lugar = zonaMagicasYTrampas;

@@ -9,6 +9,7 @@ import main.java.general.Jugador;
 public class Fisura extends Magica {
 
 	public Fisura() {
+		super();
 		nombre = "Fisura";
 	}
 

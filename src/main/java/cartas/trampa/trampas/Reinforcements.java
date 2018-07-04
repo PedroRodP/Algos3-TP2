@@ -9,6 +9,7 @@ import main.java.general.Jugador;
 public class Reinforcements extends Trampa {
 
     public Reinforcements(){
+    	super();
         nombre = "Reinforcements";
     }
 
