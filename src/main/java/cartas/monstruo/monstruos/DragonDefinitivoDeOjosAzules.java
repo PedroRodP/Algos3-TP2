@@ -19,7 +19,7 @@ public class DragonDefinitivoDeOjosAzules extends Monstruo {
 
     	int dragones = 0;
     	for (Monstruo monstruo : sacrificados) {
-    		if (monstruo.nombre().equals("Dragon blanco de ojos azules")) {
+    		if (monstruo.obtenerNombre().equals("Dragon blanco de ojos azules")) {
     			dragones++;
     		}
     	}

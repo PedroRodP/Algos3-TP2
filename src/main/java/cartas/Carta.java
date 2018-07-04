@@ -15,7 +15,7 @@ public abstract class Carta extends Observable {
 	protected Posicion posicion;
 	protected Lugar lugar;
 
-	public String nombre() {
+	public String obtenerNombre() {
 		return nombre;
 	}
 	
