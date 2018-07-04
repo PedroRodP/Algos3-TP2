@@ -1,29 +1,51 @@
 package main.java.vistas;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.Control;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import main.java.general.Jugador;
 
 public class TableroVista {
 
-    public TableroVista(Jugador jugador, Pane paneTablero){
-        GridPane tablero = new GridPane();
-        tablero.setAlignment(Pos.TOP_CENTER);
-        Pane mano = new Pane();
+    public TableroVista(Jugador jugador, GridPane tablero){
+        ColumnConstraints col = new ColumnConstraints();
+        col.setPercentWidth(100);
+        tablero.getColumnConstraints().add(col);
+
+        RowConstraints filaMano = new RowConstraints();
+        filaMano.setPercentHeight(25);
+        tablero.getRowConstraints().add(filaMano);
+        GridPane mano = new GridPane();
         new ManoVista(jugador.obtenerMano(),mano);
         tablero.add(mano,0,0);
 
-        Pane zonaMonstruos = new Pane();
+        RowConstraints filaZonaMonstruos = new RowConstraints();
+        filaZonaMonstruos.setPercentHeight(25);
+        tablero.getRowConstraints().add(filaZonaMonstruos);
+        GridPane zonaMonstruos = new GridPane();
         new ZonaMonstruoVista(jugador.obtenerZonaMonstruos(),zonaMonstruos);
         tablero.add(zonaMonstruos,0,1);
 
-        Pane zonaMagica = new Pane();
+        RowConstraints filaZonaMagica = new RowConstraints();
+        filaZonaMagica.setPercentHeight(25);
+        tablero.getRowConstraints().add(filaZonaMagica);
+        GridPane zonaMagica = new GridPane();
         new ZonaMagicaVista(jugador.obtenerZonaMagicaYTrampa(),zonaMagica);
         tablero.add(zonaMagica,0,2);
-        paneTablero.getChildren().add(tablero);
 
+        RowConstraints filaZonaCampo = new RowConstraints();
+        filaZonaCampo.setPercentHeight(25);
+        tablero.getRowConstraints().add(filaZonaCampo);
+        GridPane zonaCampo = new GridPane();
+        new ZonaCampoVista(jugador.obtenerZonaCampo(),zonaCampo);
+        tablero.add(zonaCampo,0,3);
+
+        mano.setBackground(new Background(new BackgroundFill(Color.web("#ab5498"), CornerRadii.EMPTY, Insets.EMPTY)));
+        zonaCampo.setBackground(new Background(new BackgroundFill(Color.web("#ab5981"), CornerRadii.EMPTY, Insets.EMPTY)));
+        zonaMagica.setBackground(new Background(new BackgroundFill(Color.web("#ab5400"), CornerRadii.EMPTY, Insets.EMPTY)));
+        zonaMonstruos.setBackground(new Background(new BackgroundFill(Color.web("#990098"), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 }

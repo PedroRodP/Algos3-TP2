@@ -176,4 +176,8 @@ public class Jugador extends Observable {
 	public ZonaMagicasYTrampas obtenerZonaMagicaYTrampa() {
 		return zonaMagicasYTrampas;
 	}
+
+	public ZonaCampo obtenerZonaCampo() {
+		return zonaCampo;
+	}
 }

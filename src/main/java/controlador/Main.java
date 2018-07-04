@@ -4,7 +4,9 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Control;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.java.general.AlGoOh;
 import main.java.general.Jugador;
@@ -18,10 +20,13 @@ import java.util.Observer;
 import java.util.logging.Logger;
 
 public class Main extends Application {
+    private final int ANCHO = 1400;
+    private final int ALTO = 1000;
+
+
     private static AlGoOh alGoOh;
     private static Scene scene;
     private static Stage stage;
-
 
 
     public static void main(String[] args) {
@@ -34,35 +39,44 @@ public class Main extends Application {
         primaryStage.setTitle("Yu Gi OH");
         alGoOh = new AlGoOh();
 
-        BorderPane contenedorPrincipal = new BorderPane();
+        GridPane contenedorPrincipal = new GridPane();
+        contenedorPrincipal.getRowConstraints().add(new RowConstraints(ALTO));
 
-        VBox contenedorJugadores = new VBox(100);
+        ColumnConstraints col1 = new ColumnConstraints();
+        col1.setPercentWidth(25);
+        ColumnConstraints col2 = new ColumnConstraints();
+        col2.setPercentWidth(50);
+        ColumnConstraints col3 = new ColumnConstraints();
+        col3.setPercentWidth(25);
+
+        contenedorPrincipal.getColumnConstraints().addAll(col1, col2, col3);
+
+        GridPane contenedorJugadores = new GridPane();
+        contenedorJugadores.setBackground(new Background(new BackgroundFill(Color.web("#456468"), CornerRadii.EMPTY, Insets.EMPTY)));
         llenarContenedorJugadores(alGoOh.obtenerJugadores(),contenedorJugadores);
-        contenedorPrincipal.setLeft(contenedorJugadores);
+        contenedorPrincipal.add(contenedorJugadores,0,0);
 
-        VBox contenedorTablero = new VBox(100);
+        GridPane contenedorTablero = new GridPane();
         llenarContenedorTablero(alGoOh.obtenerJugadores(),contenedorTablero);
-
-        contenedorPrincipal.setCenter(contenedorTablero);
+        contenedorPrincipal.add(contenedorTablero,1,0);
 
 
         alGoOh.obtenerJugadores().get(1).quitarVida(500);
         alGoOh.addObserver((o, arg) -> {
             //Log.debug("AlGoOh observer");
         });
+        scene = new Scene(contenedorPrincipal, ANCHO, ALTO);
+        stage.setScene(scene);
+        stage.show();
+
 
 
         alGoOh.siguienteTurno();
-        //alGoOh.obtenerJugadores().get(1).jugarCartaBocaArriba(alGoOh.obtenerJugadores().get(1).obtenerMano().obtenerCartas().getFirst());
+        alGoOh.obtenerJugadores().get(1).jugarCartaBocaArriba(alGoOh.obtenerJugadores().get(1).obtenerMano().obtenerCartas().getFirst());
 
-
-
-        scene = new Scene(contenedorPrincipal, 800, 600);
-        stage.setScene(scene);
-        stage.show();
     }
 
-    private void llenarContenedorJugadores(ArrayList<Jugador> jugadores,VBox contenedorJugadores){
+    private void llenarContenedorJugadores(ArrayList<Jugador> jugadores,GridPane contenedorJugadores){
         contenedorJugadores.setAlignment(Pos.CENTER);
         for (Jugador j : jugadores){
             Pane pane = new Pane();
@@ -71,17 +85,18 @@ public class Main extends Application {
         }
     }
 
-    private void llenarContenedorTablero(ArrayList<Jugador> jugadores,VBox contenedorTableros){
-        contenedorTableros.setAlignment(Pos.CENTER);
-        for (Jugador j : jugadores){
-            StackPane pane = new StackPane();
-            pane.setAlignment(Pos.TOP_CENTER);
-            new TableroVista(j,pane);
-            contenedorTableros.getChildren().add(pane);
-
-
+    private void llenarContenedorTablero(ArrayList<Jugador> jugadores,GridPane contenedorTableros){
+        ColumnConstraints col = new ColumnConstraints();
+        col.setPercentWidth(100);
+        contenedorTableros.getColumnConstraints().add(col);
+        for (int i = 0; i < jugadores.size();i++){
+            RowConstraints fila = new RowConstraints();
+            fila.setPercentHeight(100 / jugadores.size());
+            contenedorTableros.getRowConstraints().add(fila);
+            GridPane pane = new GridPane();
+            contenedorTableros.add(pane,0,i);
+            new TableroVista(jugadores.get(i),pane);
         }
-
     }
 }
 

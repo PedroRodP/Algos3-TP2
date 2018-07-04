@@ -1,6 +1,7 @@
 package main.java.vistas;
 
 import javafx.geometry.Pos;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -16,7 +17,7 @@ public class ZonaMagicaVista {
     private Observer observer;
     private Pane pane;
     private ZonaMagicasYTrampas zona;
-    public ZonaMagicaVista(ZonaMagicasYTrampas zona, Pane pane) {
+    public ZonaMagicaVista(ZonaMagicasYTrampas zona, GridPane pane) {
         this.zona= zona;
         this.zona=zona;
         this.pane=pane;

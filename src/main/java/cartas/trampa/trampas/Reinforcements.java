@@ -8,6 +8,10 @@ import main.java.general.Jugador;
 
 public class Reinforcements extends Trampa {
 
+    public Reinforcements(){
+        nombre = "Reinforcements";
+    }
+
     @Override
     public void aplicarA(Monstruo atacante, Monstruo defensor, Jugador jugador) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
     	
