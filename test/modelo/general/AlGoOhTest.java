@@ -130,4 +130,17 @@ public class AlGoOhTest {
 		juego.pasarASiguienteFase();
 		juego.pasarASiguienteFase();
 	}
+	
+	@Test
+	(expected = ExcepcionTurnoFinalizo.class)
+	public void test06Si() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado {
+		
+		AlGoOh juego = new AlGoOh();
+		
+		//Solo hay 4 fases. El ultimo llamado no devolvera una fase.
+		juego.pasarASiguienteFase();
+		juego.pasarASiguienteFase();
+		juego.pasarASiguienteFase();
+		juego.pasarASiguienteFase();
+	}
 }

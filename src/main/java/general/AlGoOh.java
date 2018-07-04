@@ -99,7 +99,7 @@ public class AlGoOh extends Observable {
 	}
 	
 	public void voltearCarta(Carta carta) throws ExcepcionFaseIncorrecta {
-		estado.voltearCarta(carta);
+		estado.voltearCarta(carta); //TODO si la carta ya esta boca arriba (ver ese caso)
 	}
 	
 	public void aplicarMagica(Magica magica) throws ExcepcionCartaBocaAbajo, ExcepcionMazoVacio, ExcepcionFaseIncorrecta {
