@@ -17,7 +17,7 @@ public class JugadorVista {
         pane.getChildren().add( new Label("VIDA "+jugador.obtenerPuntosDeVida()));
 
         observer = (o, arg) -> {
-            pane.getChildren().remove(0);
+            pane.getChildren().clear();
             pane.getChildren().add(
                     new Label("VIDA "+jugador.obtenerPuntosDeVida())
            );

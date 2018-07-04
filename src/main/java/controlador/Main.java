@@ -78,11 +78,15 @@ public class Main extends Application {
 
     private void llenarContenedorJugadores(ArrayList<Jugador> jugadores,GridPane contenedorJugadores){
         contenedorJugadores.setAlignment(Pos.CENTER);
+        VBox vidaJugadores = new VBox(100);
+        vidaJugadores.setAlignment(Pos.CENTER);
         for (Jugador j : jugadores){
             Pane pane = new Pane();
-            contenedorJugadores.getChildren().add(pane);
+            vidaJugadores.getChildren().add(pane);
             new JugadorVista(j,pane);
+
         }
+        contenedorJugadores.getChildren().add(vidaJugadores);
     }
 
     private void llenarContenedorTablero(ArrayList<Jugador> jugadores,GridPane contenedorTableros){
