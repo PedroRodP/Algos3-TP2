@@ -9,8 +9,9 @@ import java.io.FileNotFoundException;
 
 public class GeneradorDeImagenes {
 
-    public static ImageView obtenerImagenDeCarta(Carta carta) throws FileNotFoundException {
-        Image image = new Image(new FileInputStream("/main/java/imagenes/cartas/"+carta.obtenerNombre()+".jpg"));
-        return new ImageView(image);
+    public static ImageView obtenerImagenDeCarta(Carta carta) throws IllegalArgumentException {
+        return new ImageView("main/java/imagenes/cartas/" +
+                carta.obtenerNombre().replace(" ","_") + ".jpg");
+
     }
 }

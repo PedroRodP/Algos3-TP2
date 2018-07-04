@@ -53,7 +53,7 @@ public class Main extends Application {
 
 
         alGoOh.siguienteTurno();
-        alGoOh.obtenerJugadores().get(1).jugarCartaBocaArriba(alGoOh.obtenerJugadores().get(1).obtenerMano().obtenerCartas().getFirst());
+        //alGoOh.obtenerJugadores().get(1).jugarCartaBocaArriba(alGoOh.obtenerJugadores().get(1).obtenerMano().obtenerCartas().getFirst());
 
 
 

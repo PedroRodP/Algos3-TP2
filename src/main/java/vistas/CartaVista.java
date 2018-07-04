@@ -12,17 +12,28 @@ import java.io.FileNotFoundException;
 public class CartaVista {
 
     public CartaVista(Carta c, Pane pane) {
-        //String urlImagen= m.obtenerUrl();
-        //ImageView imagen = new ImageView(urlImagen);
+
         Button boton= new Button(c.obtenerNombre());
-        boton.setOnAction(event -> {});
         try {
+        ImageView imagen1 = GeneradorDeImagenes.obtenerImagenDeCarta(c);
+            boton.setOnAction(event -> {
+
+            Alerta.display(c.obtenerNombre(),imagen1);
+
+        });
+        } catch (IllegalArgumentException e) {
+            System.out.println("FALTA IMAGEN");
+        }
+        try {
+
             ImageView image = GeneradorDeImagenes.obtenerImagenDeCarta(c);
+            image.setFitHeight(60);
+            image.setFitWidth(50);
             pane.getChildren().add(image);
-        } catch (FileNotFoundException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("FALTA IMAGEN");
         }
         pane.getChildren().addAll(boton);
-        // falta la forma de que la carta le pase el url de su imagen
+
     }
 }
