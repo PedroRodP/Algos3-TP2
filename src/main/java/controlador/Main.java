@@ -9,24 +9,21 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.java.general.AlGoOh;
 import main.java.general.Jugador;
-import main.java.vistas.AccionCartaVista;
-import main.java.vistas.ContenedorAccionesVista;
-import main.java.vistas.JugadorVista;
-import main.java.vistas.TableroVista;
+import main.java.vistas.*;
 //import org.mortbay.log.Log;
 
 import java.util.ArrayList;
 
 public class Main extends Application {
     private final int ANCHO = 1300;
-    private final int ALTO = 1000;
+    private final int ALTO = 700;
 
 
     public static AlGoOh alGoOh;
     private static Scene scene;
     private static Stage stage;
+    private static ArrayList<MonstruoVista> monstruoVistaSeleccionados = new ArrayList<>();
     private static ContenedorAccionesVista contenedorAcciones;
-
 
     public static void main(String[] args) {
         launch(args);
@@ -43,7 +40,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
-        primaryStage.setTitle("Yu Gi OH");
+        primaryStage.setTitle("Yu Gi Oh");
 
         GridPane contAciones = new GridPane();
         contenedorAcciones = new ContenedorAccionesVista(contAciones);
@@ -56,9 +53,9 @@ public class Main extends Application {
         contenedorPrincipal.getRowConstraints().add(row);
 
         ColumnConstraints col1 = new ColumnConstraints();
-        col1.setPercentWidth(25);
+        col1.setPercentWidth(15);
         ColumnConstraints col2 = new ColumnConstraints();
-        col2.setPercentWidth(50);
+        col2.setPercentWidth(60);
         ColumnConstraints col3 = new ColumnConstraints();
         col3.setPercentWidth(25);
 
@@ -110,6 +107,22 @@ public class Main extends Application {
             contenedorTableros.add(pane,0,i);
             new TableroVista(jugadores.get(i),pane);
         }
+    }
+
+    public static void seleccionar(MonstruoVista monstruoVista){
+        monstruoVistaSeleccionados.add(monstruoVista);
+    }
+    public static void desseleccionar(MonstruoVista monstruoVista){
+        monstruoVistaSeleccionados.remove(monstruoVista);
+    }
+    public static void desseleccionarMonstruos(){
+        for (MonstruoVista monstruoVista : monstruoVistaSeleccionados)
+            monstruoVista.destacar(false);
+        monstruoVistaSeleccionados.clear();
+    }
+
+    public static ArrayList<MonstruoVista> obtenerMonstruosSeleccionados(){
+        return monstruoVistaSeleccionados;
     }
 }
 

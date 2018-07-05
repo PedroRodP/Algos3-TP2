@@ -14,27 +14,40 @@ import javafx.stage.Stage;
 
 public class Alerta {
 
-        public static void display(String titulo, ImageView nodo){
-            Stage ventana = new Stage();
-            nodo.setFitHeight(200);
-            nodo.setFitWidth(150);
-            ventana.initModality(Modality.APPLICATION_MODAL);
-            ventana.setTitle(titulo);
-            ventana.setMinWidth(250);
+    public static void display(String titulo, Node nodo){
+        Stage ventana = new Stage();
+        //nodo.setFitHeight(200);
+        //nodo.setFitWidth(150);
+        ventana.initModality(Modality.APPLICATION_MODAL);
+        ventana.setTitle(titulo);
+        ventana.setMinWidth(250);
 
 
-            Button cerrar = new Button("cerrar");
-            cerrar.setOnAction(event -> {ventana.close();});
+        Button cerrar = new Button("Cerrar");
+        cerrar.setOnAction(event -> {ventana.close();});
 
-            VBox layout = new VBox(10);
-            layout.getChildren().addAll(nodo,cerrar);
-            layout.setAlignment(Pos.CENTER);
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(nodo,cerrar);
+        layout.setAlignment(Pos.CENTER);
 
-            Scene escena = new Scene(layout);
-            ventana.setScene(escena);
-            ventana.showAndWait();
+        Scene escena = new Scene(layout);
+        ventana.setScene(escena);
+        ventana.showAndWait();
 
-        }
     }
+
+    public static void sacrificiosInsuficientes(int necesarios){
+        Alerta.display("Atención",
+                new Label("La carta requiere " + necesarios + " sacrificios.")
+        );
+    }
+
+    public static void faseIncorrecta(){
+        Alerta.display("Atención",
+                new Label("Fase incorrecta.")
+        );
+    }
+
+}
 
 

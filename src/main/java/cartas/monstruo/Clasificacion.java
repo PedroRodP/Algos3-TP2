@@ -21,12 +21,14 @@ public class Clasificacion {
 	}
 	
 	public void invocarSinSacrificios(Monstruo monstruo, ZonaMonstruos zona) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
-		if (cantidadDeSacrificiosPorInvocacion() != 0) throw new ExcepcionSacrificiosInsuficientes();
+		if (cantidadDeSacrificiosPorInvocacion() != 0)
+			throw new ExcepcionSacrificiosInsuficientes(cantidadDeSacrificiosPorInvocacion());
 		zona.agregar(monstruo);
 	}
 	
 	public void invocarConSacrificios(Monstruo monstruo, LinkedList<Monstruo> sacrificios, ZonaMonstruos zona) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta {
-		if (cantidadDeSacrificiosPorInvocacion() > sacrificios.size()) throw new ExcepcionSacrificiosInsuficientes();
+		if (cantidadDeSacrificiosPorInvocacion() > sacrificios.size())
+			throw new ExcepcionSacrificiosInsuficientes(cantidadDeSacrificiosPorInvocacion());
 		for (Monstruo m: sacrificios) m.mandarAlCementerio();
 		zona.agregar(monstruo);
 	}

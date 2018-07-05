@@ -1,10 +1,12 @@
 package main.java.vistas;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.paint.Paint;
 import main.java.cartas.Carta;
 import main.java.controlador.GeneradorDeImagenes;
 import main.java.controlador.Main;
@@ -14,8 +16,9 @@ import java.util.ArrayList;
 import java.util.Observer;
 
 public abstract class CartaVista {
-    protected ArrayList<AccionCartaVista> acciones = new ArrayList<>();
+    protected AccionCartaVista accionCartaVista;
     protected Carta carta;
+    protected Label nombre;
     protected GridPane pane;
     protected Observer observer;
     protected ImageView imagen;
@@ -23,9 +26,11 @@ public abstract class CartaVista {
     public CartaVista(Carta carta, GridPane pane) {
         this.carta = carta;
         this.pane = pane;
+        pane.setAlignment(Pos.CENTER);
+        accionCartaVista = new AccionCartaVista(this);
 
         RowConstraints filaImagen = new RowConstraints();
-        filaImagen.setPercentHeight(70);
+        filaImagen.setPercentHeight(80);
         RowConstraints filaNombre = new RowConstraints();
         //filaNombre.setPercentHeight(10);
         this.pane.getRowConstraints().addAll(filaImagen,filaNombre);
@@ -36,21 +41,28 @@ public abstract class CartaVista {
 
         this.pane.setOnMouseClicked(event -> {
             Main.removerAcciones();
-            for (AccionCartaVista a : acciones)
-                Main.agregarAccion(a);
+            Main.agregarAccion(accionCartaVista);
         });
 
         mostrarImagen();
         mostrarNombre();
     }
 
-
+    public void destacar(boolean bool){
+        if (bool){
+            nombre.setStyle("-fx-font-weight: bold;");
+            nombre.setTextFill(Paint.valueOf("green"));
+        }else {
+            nombre.setStyle("-fx-font-weight: none");
+            nombre.setTextFill(Paint.valueOf("black"));
+        }
+    }
 
     protected void mostrarImagen(){
         try {
             pane.getChildren().remove(imagen); // Quitar anterior si existe
             imagen = obtenerImagen();
-            imagen.setFitHeight(80);
+            imagen.setFitHeight(60);
             imagen.setPreserveRatio(true);
             pane.add(imagen,0,0);
         } catch (FileNotFoundException e) {}
@@ -67,9 +79,9 @@ public abstract class CartaVista {
     }
 
     protected void mostrarNombre(){
-        Label label = new Label();
-        label.setText(obtenerNombre());
-        pane.add(label,0,1);
+        nombre = new Label();
+        nombre.setText(obtenerNombre());
+        pane.add(nombre,0,1);
     }
 
     public void removerObservador(){

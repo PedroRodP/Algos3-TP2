@@ -1,6 +1,7 @@
 package main.java.vistas;
 
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import main.java.cartas.Carta;
@@ -14,26 +15,21 @@ public class CartaEnManoVista extends CartaVista {
 
     public CartaEnManoVista(Carta carta, GridPane pane) {
         super(carta,pane);
-        AccionCartaVista accion = new AccionCartaVista(this);
 
-        accion.agregarAccion("Jugar carta boca arriba", event -> {
+        accionCartaVista.agregarAccion("Jugar carta boca arriba", event -> {
             try {
                 Main.alGoOh.jugarCartaBocaArriba(carta);
-            } catch (ExcepcionSacrificiosInsuficientes excepcionSacrificiosInsuficientes) {
-                excepcionSacrificiosInsuficientes.printStackTrace();
-                //TODO excepcionSacrificiosInsuficientes
+            } catch (ExcepcionSacrificiosInsuficientes e) {
+                Alerta.sacrificiosInsuficientes(e.obtenerSacrificiosNecesarios());
             } catch (ExcepcionAlGoOh e) {}
         });
-        accion.agregarAccion("Jugar carta boca abajo", event -> {
+        accionCartaVista.agregarAccion("Jugar carta boca abajo", event -> {
             try {
                 Main.alGoOh.jugarCartaBocaAbajo(carta);
-            } catch (ExcepcionSacrificiosInsuficientes excepcionSacrificiosInsuficientes) {
-                excepcionSacrificiosInsuficientes.printStackTrace();
-                //TODO excepcionSacrificiosInsuficientes
+            } catch (ExcepcionSacrificiosInsuficientes e) {
+                Alerta.sacrificiosInsuficientes(e.obtenerSacrificiosNecesarios());
             } catch (ExcepcionAlGoOh e) {}
         });
-
-        acciones.add(accion);
     }
 
     @Override

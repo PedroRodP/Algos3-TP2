@@ -1,13 +1,8 @@
 package main.java.vistas;
 
-import javafx.geometry.Insets;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import main.java.cartas.Carta;
 import main.java.cartas.ZonaMonstruos;
 import main.java.cartas.monstruo.Monstruo;
-import main.java.general.Mano;
-import javafx.scene.control.Label;
 
 import java.util.ArrayList;
 import java.util.Observer;
@@ -17,7 +12,7 @@ import java.util.LinkedList;
 
 public class ZonaMonstruoVista {
 
-    private final int CANTIDAD_CARTAS = 5;
+    private final int MAX_CANTIDAD_CARTAS = 5;
 
     private ZonaMonstruos zona;
     private Observer observer;
@@ -32,9 +27,9 @@ public class ZonaMonstruoVista {
         fila.setPercentHeight(100);
         this.pane.getRowConstraints().add(fila);
 
-        for (int c = 0; c < CANTIDAD_CARTAS ; c++){
+        for (int c = 0; c < MAX_CANTIDAD_CARTAS; c++){
             ColumnConstraints col = new ColumnConstraints();
-            col.setPercentWidth(100 / CANTIDAD_CARTAS);
+            col.setPercentWidth(100 / MAX_CANTIDAD_CARTAS);
             this.pane.getColumnConstraints().add(col);
         }
 
