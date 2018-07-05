@@ -13,7 +13,7 @@ public class ModoAtaque implements ModoDeCombate {
 	
 	@Override
 	public double diferenciaDeCombateCon(Monstruo monstruo) {
-		return this.puntaje - monstruo.potenciaDeCombate();
+		return puntaje - monstruo.potenciaDeCombate();
 	}
 
 	@Override

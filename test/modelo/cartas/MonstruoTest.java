@@ -394,7 +394,24 @@ public class MonstruoTest {
 	}
 	
 	@Test
-	public void test19cuandoMonstruoEsAtacadoEsteEsSeteadoBocaArriba() throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+	(expected = ExcepcionCartaBocaAbajo.class)
+	public void test18cuandoMonstruoAtacaEstandoBocaAbajoSeLanzaExcepcionCartaBocaAbajo() throws ExcepcionAlGoOh {
+		Jugador atacante = new Jugador();
+		Jugador oponente = new Jugador();
+		atacante.establecerOponente(oponente);
+		oponente.establecerOponente(atacante);
+		
+		Monstruo monstruoAtacante = new AgresorOscuro();
+		Monstruo monstruoOponente = new AbismoReluciente();
+
+		oponente.jugarCartaBocaArriba(monstruoOponente);
+		atacante.jugarCartaBocaAbajo(monstruoAtacante); //No se puede realizar un ataque estando boca abajo
+		
+		atacante.atacar(monstruoAtacante, monstruoOponente);
+	}
+	
+	@Test
+	public void test19cuandoMonstruoEsAtacadoEsteEsSeteadoBocaArriba() throws ExcepcionAlGoOh {
 		Jugador atacante = new Jugador();
 		Jugador oponente = new Jugador();
 		atacante.establecerOponente(oponente);

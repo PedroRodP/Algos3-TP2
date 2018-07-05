@@ -47,11 +47,11 @@ public abstract class Monstruo extends Carta {
 	public void atacar(Monstruo monstruoRival, Jugador atacante, Jugador oponente) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
 		
 		double diferenciaDeCombate = diferenciaDeCombateCon(monstruoRival);
+		monstruoRival.setBocaArriba(); //El ataque voltea al monstruo atacado y lo deja boca arriba
 		
-		monstruoRival.contraatacar(this);
-		monstruoRival.setBocaArriba(); //TODO habria que ver si esto no rompe cuando se trata del insecto come hombres
+		monstruoRival.contraatacar(this); 
 		
-		if (this.estaEnElCementerio()) return;
+		if (this.estaEnElCementerio()) return; //El contraataque del monstruo atacado puede destruir al monstruo atacante
 
 		if (diferenciaDeCombate == 0) {
 			mandarAlCementerio();
