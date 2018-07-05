@@ -68,7 +68,7 @@ public abstract class Monstruo extends Carta {
 		notifyObservers();
 	}
 	
-	public double diferenciaDeCombateCon(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+	private double diferenciaDeCombateCon(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
 		if (posicion.estaBocaAbajo()) {
 			throw new ExcepcionCartaBocaAbajo();
 		}
