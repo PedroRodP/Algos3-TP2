@@ -83,11 +83,6 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
 
-
-
-        alGoOh.siguienteTurno();
-        alGoOh.obtenerJugadores().get(1).jugarCartaBocaAbajo(alGoOh.obtenerJugadores().get(1).obtenerMano().obtenerCartas().getFirst());
-
     }
 
     private void llenarContenedorJugadores(ArrayList<Jugador> jugadores,GridPane contenedorJugadores){
