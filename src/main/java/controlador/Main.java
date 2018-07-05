@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import main.java.cartas.Carta;
 import main.java.general.AlGoOh;
 import main.java.general.Jugador;
 import main.java.vistas.*;
@@ -36,6 +37,7 @@ public class Main extends Application {
     public static void removerAcciones(){
         contenedorAcciones.removerAcciones();
     }
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {

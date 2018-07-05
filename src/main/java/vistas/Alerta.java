@@ -48,6 +48,15 @@ public class Alerta {
         );
     }
 
+    public static void monstruoNoPuedeAtacar() {
+        Alerta.display("Atencion",
+                new Label("Monstruo no puede atacar"));
+    }
+
+    public static void ZonaCompleta() {
+        Alerta.display("Alerta",
+                new Label("Zona completa"));
+    }
 }
 
 

@@ -57,6 +57,7 @@ public class ContenedorAccionesVista {
 
         accionesJuegoPane.add(siguienteTurno,0,0);
         accionesJuegoPane.add(siguienteFase,0,1);
+
     }
 
     public void mostrarAccion(AccionCartaVista accionCartaVista){

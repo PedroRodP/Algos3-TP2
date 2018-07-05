@@ -35,7 +35,7 @@ public class Cementerio extends Lugar {
 
 	@Override
 	public void quitarYAgregarAlCementerio(Carta carta) throws ExcepcionNoEsPosibleAgregarAlCementerio{
-		throw new ExcepcionNoEsPosibleAgregarAlCementerio();	
+			throw new ExcepcionNoEsPosibleAgregarAlCementerio();
 	}
 
 }

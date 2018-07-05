@@ -4,7 +4,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.controlador.Main;
+import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionFaseIncorrecta;
+import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
+import main.java.excepciones.ExcepcionMonstruoYaAtaco;
 
 
 public class MonstruoVista extends CartaVista  {
@@ -44,7 +47,26 @@ public class MonstruoVista extends CartaVista  {
             }
             Alerta.display("Atención",new Label("Debe seleccionar un monstruo."));
         });
-    }
+
+        accionCartaVista.agregarAccion("atacar", event -> {
+
+                try {
+
+                    Main.alGoOh.atacarCon(monstruo,Main.obtenerMonstruosSeleccionados().get(0).obtenerMonstruo());
+                    seleccionar();
+                } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
+                    Alerta.faseIncorrecta();
+                } catch (ExcepcionMonstruoNoPuedeAtacar excepcionMonstruoNoPuedeAtacar) {
+                    Alerta.monstruoNoPuedeAtacar();
+                } catch (ExcepcionMonstruoYaAtaco excepcionMonstruoYaAtaco) {
+                    Alerta.monstruoNoPuedeAtacar();
+                } catch (ExcepcionCartaBocaAbajo excepcionCartaBocaAbajo) {
+                    Alerta.monstruoNoPuedeAtacar();
+                }
+
+
+
+    });}
 
     public void seleccionar(){
         if (seleccionado) {
