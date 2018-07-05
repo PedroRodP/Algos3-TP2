@@ -9,14 +9,12 @@ public class ZonaCampo extends Lugar{
 	private Cementerio cementerio;
 	
 	public ZonaCampo(Cementerio cementerio) {
-		this.campo = new NoCampo();
+		campo = new NoCampo();
 		this.cementerio = cementerio;
 	}
 
 	public void agregar(Campo carta) {
-		
-		cementerio.agregar((Carta) this.campo);
-		
+		quitarYAgregarAlCementerio(campo);
 		this.campo = carta;
 	}
 
@@ -31,6 +29,5 @@ public class ZonaCampo extends Lugar{
 	@Override
 	public void quitarYAgregarAlCementerio(Carta cartaCampo){
 		cementerio.agregar((Carta) cartaCampo);
-		this.campo = new NoCampo();
 	}
 }
