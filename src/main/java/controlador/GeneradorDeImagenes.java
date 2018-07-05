@@ -9,9 +9,17 @@ import java.io.FileNotFoundException;
 
 public class GeneradorDeImagenes {
 
-    public static ImageView obtenerImagenDeCarta(Carta carta) throws IllegalArgumentException {
-        return new ImageView("main/java/imagenes/cartas/"
-                + carta.obtenerNombre().replace(" ","_")
-                + ".jpg");
+    public static ImageView obtenerImagenDelanteraDeCarta(Carta carta) throws FileNotFoundException {
+        try {
+            return new ImageView("main/java/imagenes/cartas/"
+                    + carta.obtenerNombre().replace(" ", "_")
+                    + ".jpg");
+        }catch (IllegalArgumentException e){
+            throw new FileNotFoundException();
+        }
+    }
+
+    public static ImageView obtenerImagenTraseraDeCarta(){
+        return new ImageView("main/java/imagenes/cartas/Carta_dada_vuelta.jpg");
     }
 }

@@ -1,27 +1,21 @@
 package main.java.vistas;
 
-import javafx.event.EventType;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import main.java.cartas.Carta;
 import main.java.controlador.GeneradorDeImagenes;
 
 import java.io.FileNotFoundException;
-import java.util.Observable;
 import java.util.Observer;
 
-public class CartaVista {
+public abstract class CartaVista {
     protected Carta carta;
     protected GridPane pane;
     protected Observer observer;
     protected ImageView imagen;
-
-    //protected CartaVista(){}
 
     public CartaVista(Carta carta, GridPane pane) {
         this.carta = carta;
@@ -30,7 +24,7 @@ public class CartaVista {
         RowConstraints filaImagen = new RowConstraints();
         filaImagen.setPercentHeight(70);
         RowConstraints filaNombre = new RowConstraints();
-        filaNombre.setPercentHeight(10);
+        //filaNombre.setPercentHeight(10);
         this.pane.getRowConstraints().addAll(filaImagen,filaNombre);
 
         ColumnConstraints col = new ColumnConstraints();
@@ -39,32 +33,39 @@ public class CartaVista {
 
         mostrarImagen();
         mostrarNombre();
-
-        observer = (o, arg) -> {
-            mostrarImagen();
-        };
-        this.carta.addObserver(observer);
     }
 
     protected void mostrarImagen(){
         try {
             pane.getChildren().remove(imagen); // Quitar anterior si existe
 
-            imagen = GeneradorDeImagenes.obtenerImagenDeCarta(carta);
-            imagen.setFitHeight(90);
-            imagen.setFitWidth(70);
-            imagen.setOnMouseClicked(event -> {
-                Alerta.display(carta.obtenerNombre(), GeneradorDeImagenes.obtenerImagenDeCarta(carta));
-            });
+            if (carta.estaBocaArriba()){
+                imagen = GeneradorDeImagenes.obtenerImagenDelanteraDeCarta(carta);
+                imagen.setOnMouseClicked(event -> {
+                    try {
+                        Alerta.display(carta.obtenerNombre(), GeneradorDeImagenes.obtenerImagenDelanteraDeCarta(carta));
+                    } catch (FileNotFoundException e) {}
+                });
+            }else {
+                imagen = GeneradorDeImagenes.obtenerImagenTraseraDeCarta();
+            }
+            imagen.setFitHeight(pane.heightProperty().doubleValue() * 0.7);
+            imagen.setPreserveRatio(true);
+            //imagen.setFitWidth(70);
             pane.add(imagen,0,0);
-        } catch (IllegalArgumentException e) {
-            System.out.println("FALTA IMAGEN "+carta.obtenerNombre());
+        } catch (FileNotFoundException e) {
+            System.out.println("FALTA IMAGEN "+carta.obtenerNombre()); //TODO BORRAR
         }
     }
 
     protected void mostrarNombre(){
+        String nombre = (carta.estaBocaArriba()) ? carta.obtenerNombre() : "Oculta";
+        auxMostrarNombre(nombre);
+    }
+
+    protected void auxMostrarNombre(String nombre){
         Label label = new Label();
-        label.setText(carta.obtenerNombre());
+        label.setText(nombre);
         pane.add(label,0,1);
     }
 

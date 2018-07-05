@@ -15,7 +15,7 @@ import java.util.Observer;
 
 public class ManoVista {
 
-    private final int CANTIDAD_CARTAS = 5;
+    private final int MAX_CANTIDAD_CARTAS = 5;
 
     private GridPane pane;
     private Mano mano;
@@ -30,9 +30,9 @@ public class ManoVista {
         fila.setPercentHeight(100);
         this.pane.getRowConstraints().add(fila);
 
-        for (int c = 0; c < CANTIDAD_CARTAS ; c++){
+        for (int c = 0; c < MAX_CANTIDAD_CARTAS ; c++){
             ColumnConstraints col = new ColumnConstraints();
-            col.setPercentWidth(100 / CANTIDAD_CARTAS);
+            col.setPercentWidth(100 / MAX_CANTIDAD_CARTAS);
             this.pane.getColumnConstraints().add(col);
         }
 
@@ -55,7 +55,7 @@ public class ManoVista {
         LinkedList<Carta> nuevasCartas = mano.obtenerCartas();
         for (int i = 0; i < nuevasCartas.size(); i++){
             GridPane gridPane = new GridPane();
-            cartas.add(new CartaVista(nuevasCartas.get(i),gridPane));
+            cartas.add(new CartaEnManoVista(nuevasCartas.get(i),gridPane));
             pane.add(gridPane,i,0);
         }
     }

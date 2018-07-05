@@ -20,8 +20,8 @@ import java.util.Observer;
 import java.util.logging.Logger;
 
 public class Main extends Application {
-    private final int ANCHO = 1100;
-    private final int ALTO = 700;
+    private final int ANCHO = 1300;
+    private final int ALTO = 1000;
 
 
     private static AlGoOh alGoOh;
@@ -40,7 +40,9 @@ public class Main extends Application {
         alGoOh = new AlGoOh();
 
         GridPane contenedorPrincipal = new GridPane();
-        contenedorPrincipal.getRowConstraints().add(new RowConstraints(ALTO));
+        RowConstraints row = new RowConstraints();
+        row.setPercentHeight(100);
+        contenedorPrincipal.getRowConstraints().add(row);
 
         ColumnConstraints col1 = new ColumnConstraints();
         col1.setPercentWidth(25);
@@ -60,8 +62,6 @@ public class Main extends Application {
         llenarContenedorTablero(alGoOh.obtenerJugadores(),contenedorTablero);
         contenedorPrincipal.add(contenedorTablero,1,0);
 
-
-        alGoOh.obtenerJugadores().get(1).quitarVida(500);
         alGoOh.addObserver((o, arg) -> {
             //Log.debug("AlGoOh observer");
         });
@@ -72,7 +72,7 @@ public class Main extends Application {
 
 
         alGoOh.siguienteTurno();
-        alGoOh.obtenerJugadores().get(1).jugarCartaBocaArriba(alGoOh.obtenerJugadores().get(1).obtenerMano().obtenerCartas().getFirst());
+        alGoOh.obtenerJugadores().get(1).jugarCartaBocaAbajo(alGoOh.obtenerJugadores().get(1).obtenerMano().obtenerCartas().getFirst());
 
     }
 

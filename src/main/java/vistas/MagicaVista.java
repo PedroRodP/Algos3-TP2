@@ -10,7 +10,6 @@ import main.java.cartas.trampa.Trampa;
 public class MagicaVista extends CartaVista {
     public MagicaVista(Magica magica, GridPane pane) {
         super(magica,pane);
-        removerObservador();
     }
 
 

@@ -8,7 +8,6 @@ public class MonstruoVista extends CartaVista  {
 
     public MonstruoVista(Monstruo monstruo,GridPane pane) {
         super(monstruo,pane);
-        removerObservador();
 
         observer = (o, arg) -> {
 
