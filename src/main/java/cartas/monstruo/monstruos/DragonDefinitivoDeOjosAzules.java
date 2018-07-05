@@ -25,11 +25,11 @@ public class DragonDefinitivoDeOjosAzules extends Monstruo {
     	}
     	
     	if (dragones < 3) {
-    		throw new ExcepcionSacrificiosInsuficientes();	
+    		throw new ExcepcionSacrificiosInsuficientes(3);
     	}
 
 		for (Monstruo monstruo : sacrificados) monstruo.mandarAlCementerio();
-		this.lugar=zona;
+		this.lugar = zona;
 	   zona.agregar(this);
     }
 }
