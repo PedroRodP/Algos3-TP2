@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import main.java.cartas.Carta;
 import main.java.cartas.Cementerio;
 import main.java.cartas.Lugar;
-import main.java.cartas.monstruo.monstruos.exodia.Exodia;
+import main.java.cartas.monstruo.monstruos.Exodia;
 import main.java.excepciones.ExcepcionNoEsPosibleAgregarAlCementerio;
 
 public class Mano extends Lugar {
