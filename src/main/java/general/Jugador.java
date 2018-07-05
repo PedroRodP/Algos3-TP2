@@ -107,7 +107,7 @@ public class Jugador extends Observable {
 		try {
 			Carta carta = mazo.tomarCarta();
 			this.mano.agregar(carta);
-			mano.estadoExodia(this, estadoJuego);
+			mano.comprobarEstadoExodia(this, estadoJuego);
 		} catch (ExcepcionMazoVacio e) {
 			estadoJuego.terminarConGanador(oponente);
 		}

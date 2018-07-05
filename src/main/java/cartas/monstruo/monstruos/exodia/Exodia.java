@@ -9,7 +9,7 @@ import java.util.LinkedList;
 
 public abstract class Exodia extends Monstruo {
 
-    public static void estado(LinkedList<Carta> cartas, EstadoDeJuego estado, Jugador jugador){
+    public static void comprobarEstado(LinkedList<Carta> cartas, EstadoDeJuego estado, Jugador jugador){
         boolean tieneCabeza = false,tieneBrazoIzq = false,tieneBrazoDer = false,tienePiernaIzq = false,tienePiernaDer = false;
         for (Carta carta : cartas){
             if (carta instanceof Exodia){
