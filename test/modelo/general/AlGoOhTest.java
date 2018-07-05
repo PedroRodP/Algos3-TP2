@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import main.java.cartas.Carta;
 import main.java.cartas.campo.Campo;
+import main.java.cartas.campo.campos.Sogen;
 import main.java.cartas.campo.campos.Wasteland;
 import main.java.cartas.magica.Magica;
 import main.java.cartas.magica.magicas.Fisura;
@@ -16,6 +17,7 @@ import main.java.cartas.monstruo.monstruos.BrazoIzquierdoExodia;
 import main.java.cartas.monstruo.monstruos.CabezaExodia;
 import main.java.cartas.monstruo.monstruos.PiernaDerechaExodia;
 import main.java.cartas.monstruo.monstruos.PiernaIzquierdaExodia;
+import main.java.excepciones.ExcepcionAlGoOh;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionFaseIncorrecta;
 import main.java.excepciones.ExcepcionJuegoNoTermino;
@@ -64,7 +66,7 @@ public class AlGoOhTest {
 	
 	@Test
 	(expected = ExcepcionFaseIncorrecta.class)
-	public void test03JugadorPuedeJugarCartaBocaArribaEnLaSegundaFaseYNoAtacarEnLaMismaFase() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta, ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionMonstruoYaAtaco {
+	public void test03JugadorPuedeJugarCartaBocaArribaEnLaSegundaFasePeroNoAtacarEnLaMismaFase() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta, ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionMonstruoYaAtaco {
 		
 		AlGoOh juego = new AlGoOh();
 		Jugador jugador = juego.turnoActual();
@@ -145,7 +147,21 @@ public class AlGoOhTest {
 		mano.agregar(brazoDer); mano.agregar(brazoIzq); mano.agregar(cabeza); mano.agregar(piernaDer); mano.agregar(piernaIzq);
 		jugador.comprobarExodia();
 		juego.pasarASiguienteFase();
-		
 	}
 	
+	@Test
+	(expected = ExcepcionJuegoNoTermino.class)
+	public void test19SiQuieroObtenerElGanadorYElJuegoNoTerminoSeLanzaExcepcionJuegoNoTermino() throws ExcepcionJuegoNoTermino {
+		AlGoOh juego = new AlGoOh();
+		juego.ganador();
+	}
+	
+	@Test
+	(expected = ExcepcionFaseIncorrecta.class)
+	public void test19SiJugadorActualIntentaJugarCartaEnFaseDeAtaqueSeLanzaExcepcionFaseIncorrecta() throws ExcepcionAlGoOh{
+		AlGoOh juego = new AlGoOh();
+		juego.pasarASiguienteFase();
+		Carta carta = new Sogen();
+		juego.jugarCartaBocaAbajo(carta);
+	}
 }

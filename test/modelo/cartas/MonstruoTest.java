@@ -410,8 +410,7 @@ public class MonstruoTest {
 		
 		atacante.atacar(monstruoAtacante, monstruoOponente);
 		
-		assert(monstruoOponente.estaBocaArriba());
-		
+		assert(monstruoOponente.estaBocaArriba());	
 	}
 	
 }
