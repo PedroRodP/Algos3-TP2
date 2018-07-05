@@ -2,7 +2,9 @@ package main.java.cartas.monstruo;
 
 import main.java.general.Jugador;
 
-public class ModoAtaque extends ModoDeCombate {
+public class ModoAtaque implements ModoDeCombate {
+	
+	private double puntaje;
 	
 	public ModoAtaque(double puntajeAtaque) {
 		
@@ -20,12 +22,18 @@ public class ModoAtaque extends ModoDeCombate {
 		jugador.quitarVida(danioAbsoluto);
 	}
 
-	
+	@Override
 	public void actualizarPotencialDeAtaque(double puntos) {
 		puntaje += puntos;
 	}
 	
+	@Override
 	public void actualizarPotencialDeDefensa(double puntos) {	
-		return;
+		//No hay defensa
+	}
+
+	@Override
+	public double potencia() {
+		return puntaje;
 	}
 }
