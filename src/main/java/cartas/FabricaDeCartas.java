@@ -19,17 +19,17 @@ public class FabricaDeCartas {
 		cartas = new LinkedList<Carta>();
 	}
 	
-	public Carta obtenerCarta(int pos) {
+	private int numeroRandomEnIntervalo(int min, int max) {
+	   int range = (max - min) + 1;     
+	   return (int)(Math.random() * range) + min;
+	}
+	
+	public Carta obtenerCartaAleatoria() {
+		int pos = numeroRandomEnIntervalo(0, i-1);
 		return cartas.get(pos);
 	}
 	
-	public int cantidadDeCartas() {
-		return i;
-	}
-	
 	public void generarMonstruos() {
-		
-		i = 0;
 		
 		cartas.add(i++, new AbismoReluciente());
 		cartas.add(i++, new AgresorOscuro());

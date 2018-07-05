@@ -8,6 +8,7 @@ import main.java.general.Jugador;
 
 import org.junit.Test;
 
+import main.java.cartas.FabricaDeCartas;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
 import main.java.cartas.trampa.Trampa;
@@ -82,4 +83,5 @@ public class TrampaTest {
         assertEquals(1200,miMonstruo.potenciaDeCombate(),DELTA);
 
     }
+    
 }

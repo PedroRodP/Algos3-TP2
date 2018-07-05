@@ -5,10 +5,13 @@ import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
 import main.java.cartas.Carta;
+import main.java.cartas.Cementerio;
 import main.java.cartas.FabricaDeCartas;
+import main.java.cartas.Lugar;
 import main.java.excepciones.ExcepcionMazoVacio;
+import main.java.excepciones.ExcepcionNoEsPosibleAgregarAlCementerio;
 
-public class Mazo {
+public class Mazo extends Lugar{
 
 	private LinkedList<Carta> cartas;
 	private final int MAX_CARTAS = 40;
@@ -36,9 +39,8 @@ public class Mazo {
 	}
 	
 	private void obtenerCartaAleatoriaDe(FabricaDeCartas fabrica) {
-		
-		int pos = (int) (Math.random() * fabrica.cantidadDeCartas()); //Posicion aleatoria para obtener carta
-		Carta carta = fabrica.obtenerCarta(pos); //Obtiene la carta elegida aleatoriamente
+		Carta carta = fabrica.obtenerCartaAleatoria();
+		carta.setLugar(this);
 		this.cartas.add(carta); //Asigna carta al mazo
 	}
 	
@@ -65,6 +67,17 @@ public class Mazo {
 		for (int i = 0; i < MAX_CAMPOS; i++) {
 			this.obtenerCartaAleatoriaDe(fabrica);
 		}
+	}
+
+	@Override
+	public void quitarYAgregarAlCementerio(Carta carta) throws ExcepcionNoEsPosibleAgregarAlCementerio {
+		throw new ExcepcionNoEsPosibleAgregarAlCementerio();
+		
+	}
+
+	@Override
+	public Cementerio obtenerCementerio() {
+		return new Cementerio();  //Devuelve un cementerio solamente para cumplir con la firma del metodo
 	}
 	
 }

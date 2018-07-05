@@ -30,6 +30,10 @@ public abstract class Carta extends Observable {
 	public boolean estaBocaArriba() {
 		return posicion.estaBocaArriba();
 	}
+	
+	public void setLugar(Lugar lugar) {
+		this.lugar = lugar; 
+	}
 
 	public void mandarAlCementerio(){
 		lugar.quitarYAgregarAlCementerio(this);
