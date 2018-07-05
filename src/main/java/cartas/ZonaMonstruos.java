@@ -3,6 +3,7 @@ package main.java.cartas;
 import java.util.LinkedList;
 
 import main.java.cartas.monstruo.Monstruo;
+import main.java.excepciones.ExcepcionZonaCompleta;
 
 public class ZonaMonstruos extends Lugar {
 
@@ -15,8 +16,8 @@ public class ZonaMonstruos extends Lugar {
 	}
 	
 	@Override
-	public void agregar(Monstruo carta) {
-
+	public void agregar(Monstruo carta) throws ExcepcionZonaCompleta {
+		if (monstruos.size() == 5) throw new ExcepcionZonaCompleta(); 
 		monstruos.add(carta);
 		setChanged();
 		notifyObservers();

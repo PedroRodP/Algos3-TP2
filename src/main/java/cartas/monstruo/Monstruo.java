@@ -30,10 +30,6 @@ public abstract class Monstruo extends Carta {
 		notifyObservers();
 	}
 	
-	public int sacrificiosNecesariosPorInvocacion() {
-		return clasificacion.cantidadDeSacrificiosPorInvocacion();
-	}
-	
 	public void colocarEnDefensa() {
 		this.modo = new ModoDefensa(defensa);
 		setChanged();
@@ -72,6 +68,17 @@ public abstract class Monstruo extends Carta {
 		notifyObservers();
 	}
 	
+	public double diferenciaDeCombateCon(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+		if (posicion.estaBocaAbajo()) {
+			throw new ExcepcionCartaBocaAbajo();
+		}
+		return this.modo.diferenciaDeCombateCon(monstruo);
+	}
+	
+	public double potenciaDeCombate() {
+		return modo.potencia();
+	}
+	
 	public void quitarVida(Jugador jugador, double danio) {
 		modo.quitarVida(jugador, danio);
 		setChanged();
@@ -79,37 +86,18 @@ public abstract class Monstruo extends Carta {
 	}
 
 	@Override
-	public void agregarseEn(ZonaMonstruos zona, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionZonaIncorrecta {
-		if (sacrificados.size() < sacrificiosNecesariosPorInvocacion()) {
-			throw new ExcepcionSacrificiosInsuficientes();
-		}
-		
-		this.lugar = zona;
-		for (Monstruo m : sacrificados) m.mandarAlCementerio();
-		zona.agregar(this);
+	public void agregarseEn(ZonaMonstruos zonaMonstruos, LinkedList<Monstruo> sacrificados) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionZonaIncorrecta {
+		clasificacion.invocarConSacrificios(this, sacrificados, zonaMonstruos);
+		this.lugar = zonaMonstruos;
 		setChanged();
 		notifyObservers();
 	}
 	
 	public void agregarseEn(ZonaMagicasYTrampas zonaMagicasYTrampas, ZonaMonstruos zonaMonstruos, ZonaCampo zonaCampos) throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionZonaIncorrecta {
-		if (sacrificiosNecesariosPorInvocacion() != 0) {
-			throw new ExcepcionSacrificiosInsuficientes();
-		}
+		clasificacion.invocarSinSacrificios(this, zonaMonstruos);
 		this.lugar = zonaMonstruos;
-		zonaMonstruos.agregar(this);
 		setChanged();
 		notifyObservers();
-	}
-	
-	public double potenciaDeCombate() {
-		return modo.potencia();
-	}
-	
-	public double diferenciaDeCombateCon(Monstruo monstruo) throws ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
-		if (posicion.estaBocaAbajo()) {
-			throw new ExcepcionCartaBocaAbajo();
-		}
-		return this.modo.diferenciaDeCombateCon(monstruo);
 	}
 	
 	public void alterarAtaque(double puntos) {
