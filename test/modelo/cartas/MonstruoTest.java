@@ -375,5 +375,4 @@ public class MonstruoTest {
 		assertEquals(8000, jugadorA.obtenerPuntosDeVida(), DELTA);
 		assertEquals(8000, jugadorB.obtenerPuntosDeVida(), DELTA);
 	}
-	
 }
