@@ -4,39 +4,50 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Control;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.java.general.AlGoOh;
 import main.java.general.Jugador;
+import main.java.vistas.AccionCartaVista;
+import main.java.vistas.ContenedorAccionesVista;
 import main.java.vistas.JugadorVista;
 import main.java.vistas.TableroVista;
 //import org.mortbay.log.Log;
 
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.logging.Logger;
 
 public class Main extends Application {
     private final int ANCHO = 1300;
     private final int ALTO = 1000;
 
 
-    private static AlGoOh alGoOh;
+    public static AlGoOh alGoOh;
     private static Scene scene;
     private static Stage stage;
+    private static ContenedorAccionesVista contenedorAcciones;
 
 
     public static void main(String[] args) {
         launch(args);
     }
 
+    public static void agregarAccion(AccionCartaVista accionCartaVista){
+        contenedorAcciones.mostrarAccion(accionCartaVista);
+    }
+
+    public static void removerAcciones(){
+        contenedorAcciones.removerAcciones();
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
         primaryStage.setTitle("Yu Gi OH");
+
+        GridPane contAciones = new GridPane();
+        contenedorAcciones = new ContenedorAccionesVista(contAciones);
+
         alGoOh = new AlGoOh();
 
         GridPane contenedorPrincipal = new GridPane();
@@ -61,6 +72,9 @@ public class Main extends Application {
         GridPane contenedorTablero = new GridPane();
         llenarContenedorTablero(alGoOh.obtenerJugadores(),contenedorTablero);
         contenedorPrincipal.add(contenedorTablero,1,0);
+
+
+        contenedorPrincipal.add(contAciones,2,0);
 
         alGoOh.addObserver((o, arg) -> {
             //Log.debug("AlGoOh observer");

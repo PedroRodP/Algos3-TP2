@@ -7,11 +7,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import main.java.cartas.Carta;
 import main.java.controlador.GeneradorDeImagenes;
+import main.java.controlador.Main;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Observer;
 
 public abstract class CartaVista {
+    protected ArrayList<AccionCartaVista> acciones = new ArrayList<>();
     protected Carta carta;
     protected GridPane pane;
     protected Observer observer;
@@ -31,41 +34,41 @@ public abstract class CartaVista {
         col.setPercentWidth(100);
         this.pane.getColumnConstraints().add(col);
 
+        this.pane.setOnMouseClicked(event -> {
+            Main.removerAcciones();
+            for (AccionCartaVista a : acciones)
+                Main.agregarAccion(a);
+        });
+
         mostrarImagen();
         mostrarNombre();
     }
 
+
+
     protected void mostrarImagen(){
         try {
             pane.getChildren().remove(imagen); // Quitar anterior si existe
-
-            if (carta.estaBocaArriba()){
-                imagen = GeneradorDeImagenes.obtenerImagenDelanteraDeCarta(carta);
-                imagen.setOnMouseClicked(event -> {
-                    try {
-                        Alerta.display(carta.obtenerNombre(), GeneradorDeImagenes.obtenerImagenDelanteraDeCarta(carta));
-                    } catch (FileNotFoundException e) {}
-                });
-            }else {
-                imagen = GeneradorDeImagenes.obtenerImagenTraseraDeCarta();
-            }
-            imagen.setFitHeight(pane.heightProperty().doubleValue() * 0.7);
+            imagen = obtenerImagen();
+            imagen.setFitHeight(80);
             imagen.setPreserveRatio(true);
-            //imagen.setFitWidth(70);
             pane.add(imagen,0,0);
-        } catch (FileNotFoundException e) {
-            System.out.println("FALTA IMAGEN "+carta.obtenerNombre()); //TODO BORRAR
-        }
+        } catch (FileNotFoundException e) {}
+    }
+
+    protected ImageView obtenerImagen() throws FileNotFoundException {
+        return  (carta.estaBocaArriba())?
+            GeneradorDeImagenes.obtenerImagenDelanteraDeCarta(carta) :
+            GeneradorDeImagenes.obtenerImagenTraseraDeCarta();
+    }
+
+    protected String obtenerNombre(){
+        return (carta.estaBocaArriba()) ? carta.obtenerNombre() : "Oculta";
     }
 
     protected void mostrarNombre(){
-        String nombre = (carta.estaBocaArriba()) ? carta.obtenerNombre() : "Oculta";
-        auxMostrarNombre(nombre);
-    }
-
-    protected void auxMostrarNombre(String nombre){
         Label label = new Label();
-        label.setText(nombre);
+        label.setText(obtenerNombre());
         pane.add(label,0,1);
     }
 

@@ -1,8 +1,12 @@
 package main.java.vistas;
 
+import javafx.geometry.Pos;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import main.java.cartas.Carta;
 import main.java.controlador.GeneradorDeImagenes;
+import main.java.controlador.Main;
+import main.java.excepciones.*;
 
 import java.io.FileNotFoundException;
 
@@ -10,30 +14,36 @@ public class CartaEnManoVista extends CartaVista {
 
     public CartaEnManoVista(Carta carta, GridPane pane) {
         super(carta,pane);
+        AccionCartaVista accion = new AccionCartaVista(this);
 
+        accion.agregarAccion("Jugar carta boca arriba", event -> {
+            try {
+                Main.alGoOh.jugarCartaBocaArriba(carta);
+            } catch (ExcepcionSacrificiosInsuficientes excepcionSacrificiosInsuficientes) {
+                excepcionSacrificiosInsuficientes.printStackTrace();
+                //TODO excepcionSacrificiosInsuficientes
+            } catch (ExcepcionAlGoOh e) {}
+        });
+        accion.agregarAccion("Jugar carta boca abajo", event -> {
+            try {
+                Main.alGoOh.jugarCartaBocaAbajo(carta);
+            } catch (ExcepcionSacrificiosInsuficientes excepcionSacrificiosInsuficientes) {
+                excepcionSacrificiosInsuficientes.printStackTrace();
+                //TODO excepcionSacrificiosInsuficientes
+            } catch (ExcepcionAlGoOh e) {}
+        });
+
+        acciones.add(accion);
     }
 
     @Override
-    protected void mostrarImagen() {
-        try {
-            pane.getChildren().remove(imagen); // Quitar anterior si existe
-
-            imagen = GeneradorDeImagenes.obtenerImagenDelanteraDeCarta(carta);
-            imagen.setFitHeight(90);
-            imagen.setFitWidth(70);
-            imagen.setOnMouseClicked(event -> {
-                try {
-                    Alerta.display(carta.obtenerNombre(), GeneradorDeImagenes.obtenerImagenDelanteraDeCarta(carta));
-                } catch (FileNotFoundException e) {}
-            });
-            pane.add(imagen,0,0);
-        } catch (FileNotFoundException e) {
-            System.out.println("FALTA IMAGEN "+carta.obtenerNombre()); //TODO BORRAR
-        }
+    protected ImageView obtenerImagen() throws FileNotFoundException {
+        return GeneradorDeImagenes.obtenerImagenDelanteraDeCarta(carta);
     }
 
     @Override
-    protected void mostrarNombre() {
-        auxMostrarNombre(carta.obtenerNombre());
+    protected String obtenerNombre() {
+        return carta.obtenerNombre();
     }
+
 }
