@@ -49,6 +49,7 @@ public abstract class Monstruo extends Carta {
 		double diferenciaDeCombate = diferenciaDeCombateCon(monstruoRival);
 		
 		monstruoRival.contraatacar(this);
+		monstruoRival.setBocaArriba(); //TODO habria que ver si esto no rompe cuando se trata del insecto come hombres
 		
 		if (this.estaEnElCementerio()) return;
 

@@ -63,17 +63,17 @@ public class MonstruoTest {
 		jugadorA.establecerOponente(jugadorB);
 		jugadorB.establecerOponente(jugadorA);
 		
-		Monstruo monstruoAzul = new AgresorOscuro();
-		monstruoAzul.colocarEnAtaque();
-		Monstruo monstruoVerde = new AmanteFeliz();
-		monstruoVerde.colocarEnAtaque();
+		Monstruo monstruoA = new AgresorOscuro();
+		monstruoA.colocarEnAtaque();
+		Monstruo monstruoB = new AmanteFeliz();
+		monstruoB.colocarEnAtaque();
 
-		jugadorB.jugarCartaBocaAbajo(monstruoVerde);
-		jugadorA.jugarCartaBocaArriba(monstruoAzul);
-		jugadorA.atacar(monstruoAzul, monstruoVerde);
+		jugadorB.jugarCartaBocaAbajo(monstruoB);
+		jugadorA.jugarCartaBocaArriba(monstruoA);
+		jugadorA.atacar(monstruoA, monstruoB);
 		
 		assertEquals(8000 - 400,jugadorB.obtenerPuntosDeVida(),DELTA);
-		assert (monstruoVerde.estaEnElCementerio());
+		assert (monstruoB.estaEnElCementerio());
 	}
 	
 	@Test
@@ -137,35 +137,35 @@ public class MonstruoTest {
 		atacante.establecerOponente(oponente);
 		oponente.establecerOponente(atacante);
 		
-		Monstruo monstruoAzul = new AgresorOscuro();
-		Monstruo monstruoVerde = new AbismoReluciente();
+		Monstruo monstruoA = new AgresorOscuro();
+		Monstruo monstruoB = new AbismoReluciente();
 
-		oponente.jugarCartaBocaAbajo(monstruoVerde);
-		atacante.jugarCartaBocaArriba(monstruoAzul);
+		oponente.jugarCartaBocaAbajo(monstruoB);
+		atacante.jugarCartaBocaArriba(monstruoA);
 		
-		monstruoAzul.colocarEnAtaque();
-		monstruoVerde.colocarEnDefensa();
+		monstruoA.colocarEnAtaque();
+		monstruoB.colocarEnDefensa();
 		
-		atacante.atacar(monstruoAzul, monstruoVerde);
+		atacante.atacar(monstruoA, monstruoB);
 		
 		assertEquals(8000, oponente.obtenerPuntosDeVida(), DELTA);
-		assert (! monstruoVerde.estaEnElCementerio());
+		assert (! monstruoB.estaEnElCementerio());
 	}
 	
 	@Test
 	public void test08InvocacionAMonstruoDe5EstrellasSacrificaAMonstruoEnTablero() throws ExcepcionAlGoOh {
 		
 		Jugador jugador = new Jugador();
-		Monstruo monstruoAzul = new AgresorOscuro();
-		Monstruo monstruoRojo = new Aitsu();
+		Monstruo monstruoA = new AgresorOscuro();
+		Monstruo monstruoB = new Aitsu();
 		LinkedList<Monstruo> aSacrificar = new LinkedList<>();
 		
-		aSacrificar.add(monstruoAzul);
+		aSacrificar.add(monstruoA);
 		
-		jugador.jugarCartaBocaAbajo(monstruoAzul);
-		jugador.jugarCartaBocaAbajoSacrificando(monstruoRojo, aSacrificar);
+		jugador.jugarCartaBocaAbajo(monstruoA);
+		jugador.jugarCartaBocaAbajoSacrificando(monstruoB, aSacrificar);
 		
-		assert monstruoAzul.estaEnElCementerio();
+		assert monstruoA.estaEnElCementerio();
 		
 	}
 	
@@ -173,20 +173,20 @@ public class MonstruoTest {
 	public void test09InvocacionAMonstruoDe8EstrellasSacrificaAMonstruoEnTablero() throws ExcepcionAlGoOh{
 		
 		Jugador jugador = new Jugador();
-		Monstruo monstruoVerde = new AgresorOscuro();
-		Monstruo monstruoRojo = new AgresorOscuro();
-		Monstruo monstruoAzul = new DragonBlancoDeOjosAzules();
+		Monstruo monstruoB = new AgresorOscuro();
+		Monstruo monstruoC = new AgresorOscuro();
+		Monstruo monstruoA = new DragonBlancoDeOjosAzules();
 		LinkedList<Monstruo> aSacrificar = new LinkedList<>();
 		
-		aSacrificar.add(monstruoRojo);
-		aSacrificar.add(monstruoVerde);
+		aSacrificar.add(monstruoC);
+		aSacrificar.add(monstruoB);
 
-		jugador.jugarCartaBocaAbajo(monstruoRojo);
-		jugador.jugarCartaBocaAbajo(monstruoVerde);
-		jugador.jugarCartaBocaAbajoSacrificando(monstruoAzul, aSacrificar);
+		jugador.jugarCartaBocaAbajo(monstruoC);
+		jugador.jugarCartaBocaAbajo(monstruoB);
+		jugador.jugarCartaBocaAbajoSacrificando(monstruoA, aSacrificar);
 		
-		assert monstruoRojo.estaEnElCementerio();
-		assert monstruoVerde.estaEnElCementerio();
+		assert monstruoC.estaEnElCementerio();
+		assert monstruoB.estaEnElCementerio();
 	}
 
 	@Test
@@ -375,4 +375,43 @@ public class MonstruoTest {
 		assertEquals(8000, jugadorA.obtenerPuntosDeVida(), DELTA);
 		assertEquals(8000, jugadorB.obtenerPuntosDeVida(), DELTA);
 	}
+	
+	@Test
+	(expected = ExcepcionMonstruoNoPuedeAtacar.class)
+	public void test18cuandoMonstruoAtacaEnModoDefensaSeLanzaExcepcionMonstruoNoPuedeAtacar() throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+		Jugador atacante = new Jugador();
+		Jugador oponente = new Jugador();
+		atacante.establecerOponente(oponente);
+		oponente.establecerOponente(atacante);
+		
+		Monstruo monstruoAtacante = new AgresorOscuro();
+		Monstruo monstruoOponente = new AbismoReluciente();
+
+		oponente.jugarCartaBocaAbajo(monstruoOponente);
+		atacante.jugarCartaBocaArriba(monstruoAtacante); //Por defecto los monstruos estan en modo defensa
+		
+		atacante.atacar(monstruoAtacante, monstruoOponente);
+	}
+	
+	@Test
+	public void test19cuandoMonstruoEsAtacadoEsteEsSeteadoBocaArriba() throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+		Jugador atacante = new Jugador();
+		Jugador oponente = new Jugador();
+		atacante.establecerOponente(oponente);
+		oponente.establecerOponente(atacante);
+		
+		Monstruo monstruoAtacante = new AgresorOscuro();
+		Monstruo monstruoOponente = new AbismoReluciente();
+		
+		oponente.jugarCartaBocaAbajo(monstruoOponente);
+		
+		atacante.jugarCartaBocaArriba(monstruoAtacante);
+		atacante.ponerEnAtaque(monstruoAtacante);
+		
+		atacante.atacar(monstruoAtacante, monstruoOponente);
+		
+		assert(monstruoOponente.estaBocaArriba());
+		
+	}
+	
 }
