@@ -376,4 +376,42 @@ public class MonstruoTest {
 		assertEquals(8000, jugadorB.obtenerPuntosDeVida(), DELTA);
 	}
 	
+	@Test
+	(expected = ExcepcionMonstruoNoPuedeAtacar.class)
+	public void test18cuandoMonstruoAtacaEnModoDefensaSeLanzaExcepcionMonstruoNoPuedeAtacar() throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+		Jugador atacante = new Jugador();
+		Jugador oponente = new Jugador();
+		atacante.establecerOponente(oponente);
+		oponente.establecerOponente(atacante);
+		
+		Monstruo monstruoAtacante = new AgresorOscuro();
+		Monstruo monstruoOponente = new AbismoReluciente();
+
+		oponente.jugarCartaBocaAbajo(monstruoOponente);
+		atacante.jugarCartaBocaArriba(monstruoAtacante); //Por defecto los monstruos estan en modo defensa
+		
+		atacante.atacar(monstruoAtacante, monstruoOponente);
+	}
+	
+	@Test
+	public void test19cuandoMonstruoEsAtacadoEsteEsSeteadoBocaArriba() throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo {
+		Jugador atacante = new Jugador();
+		Jugador oponente = new Jugador();
+		atacante.establecerOponente(oponente);
+		oponente.establecerOponente(atacante);
+		
+		Monstruo monstruoAtacante = new AgresorOscuro();
+		Monstruo monstruoOponente = new AbismoReluciente();
+		
+		oponente.jugarCartaBocaAbajo(monstruoOponente);
+		
+		atacante.jugarCartaBocaArriba(monstruoAtacante);
+		atacante.ponerEnAtaque(monstruoAtacante);
+		
+		atacante.atacar(monstruoAtacante, monstruoOponente);
+		
+		assert(monstruoOponente.estaBocaArriba());
+		
+	}
+	
 }
