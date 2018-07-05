@@ -1,4 +1,4 @@
-package main.java.cartas.monstruo.monstruos.exodia;
+package main.java.cartas.monstruo.monstruos;
 
 import main.java.cartas.Carta;
 import main.java.cartas.monstruo.Monstruo;

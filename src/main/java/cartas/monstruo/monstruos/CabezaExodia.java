@@ -1,4 +1,4 @@
-package main.java.cartas.monstruo.monstruos.exodia;
+package main.java.cartas.monstruo.monstruos;
 
 public class CabezaExodia extends Exodia {
 

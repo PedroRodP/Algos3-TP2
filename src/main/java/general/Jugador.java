@@ -102,12 +102,16 @@ public class Jugador extends Observable {
 	public void ponerEnDefensa(Monstruo monstruo) {
 		monstruo.colocarEnDefensa();
 	}
+	
+	public void comprobarExodia() {
+		mano.comprobarEstadoExodia(this, estadoJuego);
+	}
 		
 	public void tomarCartaDelMazo(){
 		try {
 			Carta carta = mazo.tomarCarta();
 			this.mano.agregar(carta);
-			mano.comprobarEstadoExodia(this, estadoJuego);
+			comprobarExodia();
 		} catch (ExcepcionMazoVacio e) {
 			estadoJuego.terminarConGanador(oponente);
 		}

@@ -1,7 +1,6 @@
 package main.java.cartas;
 
 import main.java.cartas.monstruo.monstruos.*;
-import main.java.cartas.monstruo.monstruos.exodia.*;
 import main.java.cartas.magica.magicas.*;
 
 import java.util.LinkedList;

@@ -4,12 +4,18 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import main.java.cartas.Carta;
 import main.java.cartas.campo.Campo;
 import main.java.cartas.campo.campos.Wasteland;
 import main.java.cartas.magica.Magica;
 import main.java.cartas.magica.magicas.Fisura;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
+import main.java.cartas.monstruo.monstruos.BrazoDerechoExodia;
+import main.java.cartas.monstruo.monstruos.BrazoIzquierdoExodia;
+import main.java.cartas.monstruo.monstruos.CabezaExodia;
+import main.java.cartas.monstruo.monstruos.PiernaDerechaExodia;
+import main.java.cartas.monstruo.monstruos.PiernaIzquierdaExodia;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionFaseIncorrecta;
 import main.java.excepciones.ExcepcionJuegoNoTermino;
@@ -23,6 +29,7 @@ import main.java.excepciones.ExcepcionZonaCompleta;
 import main.java.excepciones.ExcepcionZonaIncorrecta;
 import main.java.general.AlGoOh;
 import main.java.general.Jugador;
+import main.java.general.Mano;
 
 public class AlGoOhTest {
 	
@@ -125,15 +132,20 @@ public class AlGoOhTest {
 	}
 	
 	@Test
-	(expected = ExcepcionTurnoFinalizo.class)
-	public void test06Si() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado {
-		
+	(expected = ExcepcionJuegoTerminado.class)
+	public void test18SiTengoTodasLasPartesDeExodiaEnLaManoYJugadorIntentaPasarDeFaseLanzaExcepcionJuegoTerminado() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado {
 		AlGoOh juego = new AlGoOh();
+		Jugador jugador = juego.turnoActual();
+		Mano mano = jugador.obtenerMano();
+		Carta brazoDer = new BrazoDerechoExodia();
+		Carta brazoIzq = new BrazoIzquierdoExodia();
+		Carta cabeza = new CabezaExodia();
+		Carta piernaDer = new PiernaDerechaExodia();
+		Carta piernaIzq = new PiernaIzquierdaExodia();
+		mano.agregar(brazoDer); mano.agregar(brazoIzq); mano.agregar(cabeza); mano.agregar(piernaDer); mano.agregar(piernaIzq);
+		jugador.comprobarExodia();
+		juego.pasarASiguienteFase();
 		
-		//Solo hay 4 fases. El ultimo llamado no devolvera una fase.
-		juego.pasarASiguienteFase();
-		juego.pasarASiguienteFase();
-		juego.pasarASiguienteFase();
-		juego.pasarASiguienteFase();
 	}
+	
 }
