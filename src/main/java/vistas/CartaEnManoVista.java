@@ -36,15 +36,15 @@ public class CartaEnManoVista extends CartaVista {
         });
         accionCartaVista.agregarAccion("jugar carta boca arriba sacrificando",event -> {
             LinkedList<Monstruo> monstruos= new LinkedList<>();
-            while (!Main.obtenerMonstruosSeleccionados().isEmpty()){
-                MonstruoVista sacrificio = Main.obtenerMonstruosSeleccionados().get(0);
+            while (!EscenaJugador.obtenerMonstruosSeleccionados().isEmpty()){
+                MonstruoVista sacrificio = EscenaJugador.obtenerMonstruosSeleccionados().get(0);
                 monstruos.add(sacrificio.obtenerMonstruo());
                 sacrificio.seleccionar();
             }
 
             try {
                 Main.alGoOh.jugarSacrificandoBocaArriba(carta,monstruos);
-                for (MonstruoVista m: Main.obtenerMonstruosSeleccionados()){m.seleccionar();}
+                for (MonstruoVista m: EscenaJugador.obtenerMonstruosSeleccionados()){m.seleccionar();}
             } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
                 Alerta.faseIncorrecta();
             } catch (ExcepcionSacrificiosInsuficientes e) {
@@ -56,7 +56,7 @@ public class CartaEnManoVista extends CartaVista {
 
         accionCartaVista.agregarAccion("jugar carta boca abajo Sacrificando", event -> {
             LinkedList<Monstruo> monstruos= new LinkedList<>();
-            for (MonstruoVista m : Main.obtenerMonstruosSeleccionados()) {
+            for (MonstruoVista m : EscenaJugador.obtenerMonstruosSeleccionados()) {
                 monstruos.add(m.obtenerMonstruo());
                 m.seleccionar();
             }

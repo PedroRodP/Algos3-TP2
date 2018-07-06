@@ -37,7 +37,7 @@ public class MonstruoVista extends CartaVista  {
         });
 
         accionCartaVista.agregarAccion("Aplicar efecto",event -> {
-            for (MonstruoVista m : Main.obtenerMonstruosSeleccionados()){
+            for (MonstruoVista m : EscenaJugador.obtenerMonstruosSeleccionados()){
                 try {
                     Main.alGoOh.aplicarEfectoDeMonstruo(monstruo,m.obtenerMonstruo());
                 } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
@@ -52,7 +52,7 @@ public class MonstruoVista extends CartaVista  {
 
                 try {
 
-                    Main.alGoOh.atacarCon(monstruo,Main.obtenerMonstruosSeleccionados().get(0).obtenerMonstruo());
+                    Main.alGoOh.atacarCon(monstruo,EscenaJugador.obtenerMonstruosSeleccionados().get(0).obtenerMonstruo());
                     seleccionar();
                 } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
                     Alerta.faseIncorrecta();
@@ -70,10 +70,10 @@ public class MonstruoVista extends CartaVista  {
 
     public void seleccionar(){
         if (seleccionado) {
-            Main.desseleccionar(this);
+            EscenaJugador.desseleccionar(this);
             destacar(false);
         }else{
-            Main.seleccionar(this);
+            EscenaJugador.seleccionar(this);
             destacar(true);
         }
         seleccionado = !seleccionado;

@@ -16,8 +16,8 @@ import main.java.vistas.*;
 import java.util.ArrayList;
 
 public class Main extends Application {
-    private final int ANCHO = 1300;
-    private final int ALTO = 700;
+    public static int ANCHO = 1300;
+    public static int ALTO = 700;
 
 
     public static AlGoOh alGoOh;
@@ -30,101 +30,19 @@ public class Main extends Application {
         launch(args);
     }
 
-    public static void agregarAccion(AccionCartaVista accionCartaVista){
-        contenedorAcciones.mostrarAccion(accionCartaVista);
-    }
-
-    public static void removerAcciones(){
-        contenedorAcciones.removerAcciones();
-    }
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
         primaryStage.setTitle("Yu Gi Oh");
-
-        GridPane contAciones = new GridPane();
-        contenedorAcciones = new ContenedorAccionesVista(contAciones);
-
-        alGoOh = new AlGoOh();
-
-        GridPane contenedorPrincipal = new GridPane();
-        RowConstraints row = new RowConstraints();
-        row.setPercentHeight(100);
-        contenedorPrincipal.getRowConstraints().add(row);
-
-        ColumnConstraints col1 = new ColumnConstraints();
-        col1.setPercentWidth(15);
-        ColumnConstraints col2 = new ColumnConstraints();
-        col2.setPercentWidth(60);
-        ColumnConstraints col3 = new ColumnConstraints();
-        col3.setPercentWidth(25);
-
-        contenedorPrincipal.getColumnConstraints().addAll(col1, col2, col3);
-
-        GridPane contenedorJugadores = new GridPane();
-        contenedorJugadores.setBackground(new Background(new BackgroundFill(Color.web("#456468"), CornerRadii.EMPTY, Insets.EMPTY)));
-        llenarContenedorJugadores(alGoOh.obtenerJugadores(),contenedorJugadores);
-        contenedorPrincipal.add(contenedorJugadores,0,0);
-
-        GridPane contenedorTablero = new GridPane();
-        llenarContenedorTablero(alGoOh.obtenerJugadores(),contenedorTablero);
-        contenedorPrincipal.add(contenedorTablero,1,0);
-
-
-        contenedorPrincipal.add(contAciones,2,0);
-
-        alGoOh.addObserver((o, arg) -> {
-            //Log.debug("AlGoOh observer");
-        });
-        scene = new Scene(contenedorPrincipal, ANCHO, ALTO);
-        stage.setScene(scene);
+        alGoOh= new AlGoOh();
+        EscenaJugador jugador1 = new EscenaJugador(stage,alGoOh.obtenerJugadores().get(0));
+        EscenaJugador jugador2 = new EscenaJugador(stage,alGoOh.obtenerJugadores().get(1));
+        jugador1.setOponente(jugador2);
+        jugador2.setOponente(jugador1);
+        jugador1.setearEscena();
         stage.show();
-
-    }
-
-    private void llenarContenedorJugadores(ArrayList<Jugador> jugadores,GridPane contenedorJugadores){
-        contenedorJugadores.setAlignment(Pos.CENTER);
-        VBox vidaJugadores = new VBox(100);
-        vidaJugadores.setAlignment(Pos.CENTER);
-        for (Jugador j : jugadores){
-            Pane pane = new Pane();
-            vidaJugadores.getChildren().add(pane);
-            new JugadorVista(j,pane);
-
-        }
-        contenedorJugadores.getChildren().add(vidaJugadores);
-    }
-
-    private void llenarContenedorTablero(ArrayList<Jugador> jugadores,GridPane contenedorTableros){
-        ColumnConstraints col = new ColumnConstraints();
-        col.setPercentWidth(100);
-        contenedorTableros.getColumnConstraints().add(col);
-        for (int i = 0; i < jugadores.size();i++){
-            RowConstraints fila = new RowConstraints();
-            fila.setPercentHeight(100 / jugadores.size());
-            contenedorTableros.getRowConstraints().add(fila);
-            GridPane pane = new GridPane();
-            contenedorTableros.add(pane,0,i);
-            new TableroVista(jugadores.get(i),pane);
-        }
-    }
-
-    public static void seleccionar(MonstruoVista monstruoVista){
-        monstruoVistaSeleccionados.add(monstruoVista);
-    }
-    public static void desseleccionar(MonstruoVista monstruoVista){
-        monstruoVistaSeleccionados.remove(monstruoVista);
-    }
-    public static void desseleccionarMonstruos(){
-        for (MonstruoVista monstruoVista : monstruoVistaSeleccionados)
-            monstruoVista.destacar(false);
-        monstruoVistaSeleccionados.clear();
-    }
-
-    public static ArrayList<MonstruoVista> obtenerMonstruosSeleccionados(){
-        return monstruoVistaSeleccionados;
     }
 }
 

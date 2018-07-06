@@ -1,25 +1,24 @@
 package main.java.vistas;
 
-import javafx.geometry.Pos;
-import javafx.scene.layout.*;
-
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.RowConstraints;
 import main.java.cartas.Carta;
 import main.java.controlador.GeneradorDeImagenes;
 import main.java.general.Mano;
 
-import javax.swing.text.html.ImageView;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Observer;
 
-public class ManoVista {
+public class ManoRivalVista {
 
-    private GridPane pane;
-    private Mano mano;
-    private Observer observer;
+        private Mano mano;
+        private GridPane pane;
+        private Observer observer;
 
+    public ManoRivalVista(Mano mano, GridPane mano1) {
 
-    public ManoVista(Mano mano, GridPane pane){
         this.mano = mano;
         this.pane = pane;
 
