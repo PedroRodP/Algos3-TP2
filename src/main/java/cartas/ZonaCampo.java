@@ -16,6 +16,8 @@ public class ZonaCampo extends Lugar{
 	public void agregar(Campo carta) {
 		quitarYAgregarAlCementerio(campo);
 		this.campo = carta;
+		setChanged();
+		notifyObservers();
 	}
 
 	public Campo obtenerCampo() {

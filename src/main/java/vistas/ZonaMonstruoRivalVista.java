@@ -1,17 +1,16 @@
 package main.java.vistas;
 
-import javafx.scene.layout.*;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import main.java.cartas.ZonaMonstruos;
 import main.java.cartas.monstruo.Monstruo;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Observer;
 
-import java.util.LinkedList;
-
-
-public class ZonaMonstruoVista {
-
+public class ZonaMonstruoRivalVista {
     private final int MAX_CANTIDAD_CARTAS = 5;
 
     private ZonaMonstruos zona;
@@ -19,7 +18,7 @@ public class ZonaMonstruoVista {
     private GridPane pane;
     private ArrayList<MonstruoVista> vistas = new ArrayList<>();
 
-    public ZonaMonstruoVista(ZonaMonstruos zona, GridPane pane) {
+    public ZonaMonstruoRivalVista(ZonaMonstruos zona, GridPane pane) {
         this.zona = zona;
         this.pane = pane;
 
@@ -51,7 +50,7 @@ public class ZonaMonstruoVista {
         LinkedList<Monstruo> monstruos = zona.obtenerMonstruos();
         for (int i = 0; i < monstruos.size(); i++){
             GridPane gridPane = new GridPane();
-            vistas.add(new MonstruoVista(monstruos.get(i),gridPane));
+            new MonstruoRivalVista(monstruos.get(i),gridPane);
             pane.add(gridPane,i,0);
         }
     }

@@ -19,7 +19,7 @@ public class EscenaJugador {
         public static AlGoOh alGoOh;
         private  Scene scene;
         private static Stage stage;
-        private static ArrayList<MonstruoVista> monstruoVistaSeleccionados = new ArrayList<>();
+        private static ArrayList<MonstruoGeneralVista> monstruoVistaSeleccionados = new ArrayList<>();
         private static ContenedorAccionesVista contenedorAcciones;
         private static GridPane contAciones;
         private final Jugador jugador;
@@ -27,26 +27,7 @@ public class EscenaJugador {
         private String nombre;
         private GridPane contenedorPrincipal;
 
-    public static void agregarAccion(AccionCartaVista accionCartaVista){
-            contenedorAcciones.mostrarAccion(accionCartaVista);
-        }
 
-    public static void removerAcciones(){
-            contenedorAcciones.removerAcciones();
-        }
-
-    public boolean sosEste(Jugador jugador) {
-        return jugador==this.jugador;
-    }
-
-    public static void setearCampoAcciones(){
-        contAciones = new GridPane();
-        contenedorAcciones = new ContenedorAccionesVista(contAciones);
-    }
-
-    public void setOponente(EscenaJugador escena){
-            this.escenaOponente=escena;
-        }
 
     public EscenaJugador (Stage stage, Jugador jugador, String nombre){
             this.nombre = nombre;
@@ -102,13 +83,32 @@ public class EscenaJugador {
             new JugadorVista(jugador,pane);
 
 
-            //Pane pane1 = new Pane();
-            //vidaJugadores.getChildren().add(pane1);
-            //new JugadorVista(jugador.obtenerOponente(),pane);
+
 
 
             contenedorJugadores.getChildren().addAll(new Label("turno jugador"+this.obtenerNombre()),vidaJugadores);
-        }
+    }
+
+    public static void agregarAccion(AccionCartaVista accionCartaVista){
+        contenedorAcciones.mostrarAccion(accionCartaVista);
+    }
+
+    public static void removerAcciones(){
+        contenedorAcciones.removerAcciones();
+    }
+
+    public boolean sosEste(Jugador jugador) {
+        return jugador==this.jugador;
+    }
+
+    public static void setearCampoAcciones(){
+        contAciones = new GridPane();
+        contenedorAcciones = new ContenedorAccionesVista(contAciones);
+    }
+
+    public void setOponente(EscenaJugador escena){
+        this.escenaOponente=escena;
+    }
 
     public String obtenerNombre() {
         return this.nombre;
@@ -135,18 +135,18 @@ public class EscenaJugador {
 
         }
 
-        public static void seleccionar(MonstruoVista monstruoVista){
+        public static void seleccionar(MonstruoGeneralVista monstruoVista){
             monstruoVistaSeleccionados.add(monstruoVista);
         }
-        public static void desseleccionar(MonstruoVista monstruoVista){
+        public static void desseleccionar(MonstruoGeneralVista monstruoVista){
             monstruoVistaSeleccionados.remove(monstruoVista);
         }
         public static void desseleccionarMonstruos(){
-            for (MonstruoVista monstruoVista : monstruoVistaSeleccionados)
+            for (MonstruoGeneralVista monstruoVista : monstruoVistaSeleccionados)
                 monstruoVista.seleccionar();
         }
 
-        public static ArrayList<MonstruoVista> obtenerMonstruosSeleccionados(){
+        public static ArrayList<MonstruoGeneralVista> obtenerMonstruosSeleccionados(){
             return monstruoVistaSeleccionados;
         }
     }

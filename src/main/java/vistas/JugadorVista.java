@@ -15,13 +15,13 @@ public class JugadorVista {
     private Pane pane;
 
     public JugadorVista(Jugador jugador,VBox pane){
-        pane.getChildren().add( new Label("VIDA "+jugador.obtenerPuntosDeVida()));
-        pane.getChildren().add(new Label("VIDA "+ jugador.obtenerOponente().obtenerPuntosDeVida()));
+        pane.getChildren().add( new Label("VIDA DE : "+jugador.obtenerPuntosDeVida()));
+        pane.getChildren().add(new Label("VIDA RIVAL: "+ jugador.obtenerOponente().obtenerPuntosDeVida()));
 
         observer = (o, arg) -> {
             pane.getChildren().clear();
-            pane.getChildren().add(new Label("VIDA "+jugador.obtenerPuntosDeVida()));
-            pane.getChildren().add(new Label("VIDA "+ jugador.obtenerOponente().obtenerPuntosDeVida()));
+            pane.getChildren().add(new Label("MI VIDA: "+jugador.obtenerPuntosDeVida()));
+            pane.getChildren().add(new Label("VIDA RIVAL: "+ jugador.obtenerOponente().obtenerPuntosDeVida()));
         };
         jugador.addObserver(observer);
         jugador.obtenerOponente().addObserver(observer);

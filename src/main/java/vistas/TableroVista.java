@@ -11,6 +11,7 @@ import main.java.general.Jugador;
 public class TableroVista {
 
     public TableroVista(Jugador jugador, GridPane tablero){
+
         ColumnConstraints col = new ColumnConstraints();
         col.setPercentWidth(100);
         tablero.getColumnConstraints().add(col);

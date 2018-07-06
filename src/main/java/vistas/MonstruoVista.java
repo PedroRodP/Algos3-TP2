@@ -10,7 +10,7 @@ import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.excepciones.ExcepcionMonstruoYaAtaco;
 
 
-public class MonstruoVista extends CartaVista  {
+public class MonstruoVista extends MonstruoGeneralVista  {
     public boolean seleccionado = false;
 
     public MonstruoVista(Monstruo monstruo,GridPane pane) {
@@ -37,7 +37,7 @@ public class MonstruoVista extends CartaVista  {
         });
 
         accionCartaVista.agregarAccion("Aplicar efecto",event -> {
-            for (MonstruoVista m : EscenaJugador.obtenerMonstruosSeleccionados()){
+            for (MonstruoGeneralVista m : EscenaJugador.obtenerMonstruosSeleccionados()){
                 try {
                     Main.alGoOh.aplicarEfectoDeMonstruo(monstruo,m.obtenerMonstruo());
                 } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
