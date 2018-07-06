@@ -4,10 +4,8 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 
 import main.java.cartas.Carta;
-import main.java.controlador.GeneradorDeImagenes;
 import main.java.general.Mano;
 
-import javax.swing.text.html.ImageView;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Observer;
@@ -17,7 +15,7 @@ public class ManoVista {
     private GridPane pane;
     private Mano mano;
     private Observer observer;
-
+    private ArrayList<CartaVista> cartas = new ArrayList<>();
 
     public ManoVista(Mano mano, GridPane pane){
         this.mano = mano;
@@ -36,6 +34,8 @@ public class ManoVista {
     }
 
     private void actualizar(){
+        // Remover antiguos observadores
+        for (CartaVista carta : cartas) carta.removerObservador();
 
         // Quitar las antiguas vistas del pane
         pane.getChildren().clear();
@@ -49,8 +49,9 @@ public class ManoVista {
             this.pane.getColumnConstraints().add(col);
 
             // Agregar las nuevas vistas
-
-            pane.add(GeneradorDeImagenes.obtenerImagenTraseraDeCarta(),i,0);
+            GridPane gridPane = new GridPane();
+            cartas.add(new CartaEnManoVista(nuevasCartas.get(i),gridPane));
+            pane.add(gridPane,i,0);
         }
     }
 }

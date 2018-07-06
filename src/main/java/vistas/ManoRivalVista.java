@@ -17,7 +17,7 @@ public class ManoRivalVista {
         private GridPane pane;
         private Observer observer;
 
-    public ManoRivalVista(Mano mano, GridPane mano1) {
+    public ManoRivalVista(Mano mano, GridPane pane) {
 
         this.mano = mano;
         this.pane = pane;

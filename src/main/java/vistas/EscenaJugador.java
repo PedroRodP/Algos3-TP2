@@ -3,6 +3,7 @@ package main.java.vistas;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -16,29 +17,42 @@ public class EscenaJugador {
 
 
         public static AlGoOh alGoOh;
-        private static Scene scene;
+        private  Scene scene;
         private static Stage stage;
         private static ArrayList<MonstruoVista> monstruoVistaSeleccionados = new ArrayList<>();
         private static ContenedorAccionesVista contenedorAcciones;
+        private static GridPane contAciones;
         private final Jugador jugador;
         private EscenaJugador escenaOponente;
+        private String nombre;
+        private GridPane contenedorPrincipal;
 
-        public static void agregarAccion(AccionCartaVista accionCartaVista){
+    public static void agregarAccion(AccionCartaVista accionCartaVista){
             contenedorAcciones.mostrarAccion(accionCartaVista);
         }
 
-        public static void removerAcciones(){
+    public static void removerAcciones(){
             contenedorAcciones.removerAcciones();
         }
 
-        public void setOponente(EscenaJugador escena){
+    public boolean sosEste(Jugador jugador) {
+        return jugador==this.jugador;
+    }
+
+    public static void setearCampoAcciones(){
+        contAciones = new GridPane();
+        contenedorAcciones = new ContenedorAccionesVista(contAciones);
+    }
+
+    public void setOponente(EscenaJugador escena){
             this.escenaOponente=escena;
         }
-    public EscenaJugador (Stage stage, Jugador jugador){
+
+    public EscenaJugador (Stage stage, Jugador jugador, String nombre){
+            this.nombre = nombre;
             this.stage = stage;
             this.jugador=jugador;
-            GridPane contAciones = new GridPane();
-            contenedorAcciones = new ContenedorAccionesVista(contAciones);
+
 
 
             GridPane contenedorPrincipal = new GridPane();
@@ -65,16 +79,17 @@ public class EscenaJugador {
             contenedorPrincipal.add(contenedorTablero,1,0);
 
 
-            contenedorPrincipal.add(contAciones,2,0);
 
+            this.contenedorPrincipal=contenedorPrincipal;
 
             scene = new Scene(contenedorPrincipal, Main.ANCHO, Main.ALTO);
 
         }
 
         public void setearEscena(){
+            contenedorPrincipal.add(contAciones,2,0);
             stage.setScene(scene);
-            stage.show();
+
         }
 
         private void llenarContenedorJugadores(Jugador jugador,GridPane contenedorJugadores){
@@ -82,19 +97,24 @@ public class EscenaJugador {
             VBox vidaJugadores = new VBox(100);
             vidaJugadores.setAlignment(Pos.CENTER);
 
-            Pane pane = new Pane();
+            VBox pane = new VBox(100);
             vidaJugadores.getChildren().add(pane);
             new JugadorVista(jugador,pane);
 
-            Pane pane1 = new Pane();
-            vidaJugadores.getChildren().add(pane1);
-            new JugadorVista(jugador.obtenerOponente(),pane);
+
+            //Pane pane1 = new Pane();
+            //vidaJugadores.getChildren().add(pane1);
+            //new JugadorVista(jugador.obtenerOponente(),pane);
 
 
-            contenedorJugadores.getChildren().add(vidaJugadores);
+            contenedorJugadores.getChildren().addAll(new Label("turno jugador"+this.obtenerNombre()),vidaJugadores);
         }
 
-        private void llenarContenedorTablero(Jugador jugador,GridPane contenedorTableros){
+    public String obtenerNombre() {
+        return this.nombre;
+    }
+
+    private void llenarContenedorTablero(Jugador jugador,GridPane contenedorTableros){
             ColumnConstraints col = new ColumnConstraints();
             col.setPercentWidth(100);
             contenedorTableros.getColumnConstraints().add(col);
