@@ -1,17 +1,12 @@
 package main.java.vistas;
 
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Control;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import main.java.general.Jugador;
 
-public class TableroVista {
-
-    public TableroVista(Jugador jugador, GridPane tablero){
-
+public class TableroRivalVista {
+    public TableroRivalVista(Jugador jugador, GridPane tablero){
         ColumnConstraints col = new ColumnConstraints();
         col.setPercentWidth(100);
         tablero.getColumnConstraints().add(col);
@@ -20,29 +15,29 @@ public class TableroVista {
         filaMano.setPercentHeight(25);
         tablero.getRowConstraints().add(filaMano);
         GridPane mano = new GridPane();
-        new ManoVista(jugador.obtenerMano(),mano);
-        tablero.add(mano,0,0);
+        new ManoRivalVista(jugador.obtenerOponente().obtenerMano(),mano);
+        tablero.add(mano,0,3);
 
         RowConstraints filaZonaMonstruos = new RowConstraints();
         filaZonaMonstruos.setPercentHeight(25);
         tablero.getRowConstraints().add(filaZonaMonstruos);
         GridPane zonaMonstruos = new GridPane();
-        new ZonaMonstruoVista(jugador.obtenerZonaMonstruos(),zonaMonstruos);
-        tablero.add(zonaMonstruos,0,1);
+        new ZonaMonstruoRivalVista(jugador.obtenerOponente().obtenerZonaMonstruos(),zonaMonstruos);
+        tablero.add(zonaMonstruos,0,2);
 
         RowConstraints filaZonaMagica = new RowConstraints();
         filaZonaMagica.setPercentHeight(25);
         tablero.getRowConstraints().add(filaZonaMagica);
         GridPane zonaMagica = new GridPane();
-        new ZonaMagicaVista(jugador.obtenerZonaMagicaYTrampa(),zonaMagica);
-        tablero.add(zonaMagica,0,2);
+        new ZonaMagicaVista(jugador.obtenerOponente().obtenerZonaMagicaYTrampa(),zonaMagica);
+        tablero.add(zonaMagica,0,1);
 
         RowConstraints filaZonaCampo = new RowConstraints();
         filaZonaCampo.setPercentHeight(25);
         tablero.getRowConstraints().add(filaZonaCampo);
         GridPane zonaCampo = new GridPane();
-        new ZonaCampoVista(jugador.obtenerZonaCampo(),zonaCampo);
-        tablero.add(zonaCampo,0,3);
+        new ZonaCampoVista(jugador.obtenerOponente().obtenerZonaCampo(),zonaCampo);
+        tablero.add(zonaCampo,0,0);
 
         mano.setStyle("-fx-border-color: green");
         zonaCampo.setStyle("-fx-border-color: red");

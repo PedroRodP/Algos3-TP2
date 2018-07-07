@@ -48,6 +48,15 @@ public class Alerta {
         );
     }
 
+    public static void monstruoNoPuedeAtacar(String causa) {
+        Alerta.display("Monstruo no puede atacar",
+                new Label(causa));
+    }
+
+    public static void ZonaCompleta() {
+        Alerta.display("Alerta",
+                new Label("Zona completa"));
+    }
 }
 
 

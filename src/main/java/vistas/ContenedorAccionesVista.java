@@ -48,7 +48,7 @@ public class ContenedorAccionesVista {
             } catch (ExcepcionTurnoFinalizo excepcionTurnoFinalizo) {
                 Main.alGoOh.siguienteTurno();
             } catch (ExcepcionJuegoTerminado excepcionJuegoTerminado) {
-                Alerta.display("Atención",
+                Alerta.display("Juego Terminado",
                         new Label("El juego ha terminado!"
                         )
                 );
@@ -57,6 +57,7 @@ public class ContenedorAccionesVista {
 
         accionesJuegoPane.add(siguienteTurno,0,0);
         accionesJuegoPane.add(siguienteFase,0,1);
+
     }
 
     public void mostrarAccion(AccionCartaVista accionCartaVista){

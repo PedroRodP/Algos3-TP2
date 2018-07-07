@@ -40,8 +40,8 @@ public abstract class CartaVista {
         this.pane.getColumnConstraints().add(col);
 
         this.pane.setOnMouseClicked(event -> {
-            Main.removerAcciones();
-            Main.agregarAccion(accionCartaVista);
+            EscenaJugador.removerAcciones();
+            EscenaJugador.agregarAccion(accionCartaVista);
         });
 
         mostrarImagen();
