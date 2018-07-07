@@ -16,7 +16,7 @@ public class ZonaMonstruoRivalVista {
     private ZonaMonstruos zona;
     private Observer observer;
     private GridPane pane;
-    private ArrayList<MonstruoVista> vistas = new ArrayList<>();
+    private ArrayList<MonstruoRivalVista> vistas = new ArrayList<>();
 
     public ZonaMonstruoRivalVista(ZonaMonstruos zona, GridPane pane) {
         this.zona = zona;
@@ -42,6 +42,7 @@ public class ZonaMonstruoRivalVista {
 
     private void actualizar(){
 
+        for (CartaVista carta : vistas) carta.removerObservador();
 
         // Quitar las antiguas vistas del pane
         pane.getChildren().clear();
@@ -50,7 +51,7 @@ public class ZonaMonstruoRivalVista {
         LinkedList<Monstruo> monstruos = zona.obtenerMonstruos();
         for (int i = 0; i < monstruos.size(); i++){
             GridPane gridPane = new GridPane();
-            new MonstruoRivalVista(monstruos.get(i),gridPane);
+            vistas.add(new MonstruoRivalVista(monstruos.get(i),gridPane));
             pane.add(gridPane,i,0);
         }
     }

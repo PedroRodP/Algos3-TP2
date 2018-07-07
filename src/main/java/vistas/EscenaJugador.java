@@ -67,7 +67,7 @@ public class EscenaJugador {
 
         }
 
-        public void setearEscena(){
+        public void setEscena(){
             contenedorPrincipal.add(contAciones,2,0);
             stage.setScene(scene);
 
@@ -97,11 +97,11 @@ public class EscenaJugador {
         contenedorAcciones.removerAcciones();
     }
 
-    public boolean sosEste(Jugador jugador) {
+    public boolean sosEsteJugador(Jugador jugador) {
         return jugador==this.jugador;
     }
 
-    public static void setearCampoAcciones(){
+    public static void setCampoAcciones(){
         contAciones = new GridPane();
         contenedorAcciones = new ContenedorAccionesVista(contAciones);
     }
@@ -142,9 +142,10 @@ public class EscenaJugador {
             monstruoVistaSeleccionados.remove(monstruoVista);
         }
         public static void desseleccionarMonstruos(){
-            for (MonstruoGeneralVista monstruoVista : monstruoVistaSeleccionados)
-                monstruoVista.seleccionar();
+                while (!monstruoVistaSeleccionados.isEmpty())
+                monstruoVistaSeleccionados.get(0).seleccionar();
         }
+
 
         public static ArrayList<MonstruoGeneralVista> obtenerMonstruosSeleccionados(){
             return monstruoVistaSeleccionados;

@@ -10,26 +10,18 @@ import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.excepciones.ExcepcionMonstruoYaAtaco;
 
 public class MonstruoRivalVista extends MonstruoGeneralVista {
-    public boolean seleccionado = false;
+
 
     public MonstruoRivalVista(Monstruo monstruo,GridPane pane) {
         super(monstruo, pane);
 
         accionCartaVista.agregarAccion("seleccionar", event -> {
+            EscenaJugador.desseleccionarMonstruos();
             seleccionar();
         });
     }
 
-    public void seleccionar(){
-        if (seleccionado) {
-            EscenaJugador.desseleccionar(this);
-            destacar(false);
-        }else{
-            EscenaJugador.seleccionar(this);
-            destacar(true);
-        }
-        seleccionado = !seleccionado;
-    }
+
 
     public Monstruo obtenerMonstruo(){
         return (Monstruo) carta;

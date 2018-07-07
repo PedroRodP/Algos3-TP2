@@ -11,7 +11,7 @@ import main.java.excepciones.ExcepcionMonstruoYaAtaco;
 
 
 public class MonstruoVista extends MonstruoGeneralVista  {
-    public boolean seleccionado = false;
+
 
     public MonstruoVista(Monstruo monstruo,GridPane pane) {
         super(monstruo,pane);
@@ -53,31 +53,20 @@ public class MonstruoVista extends MonstruoGeneralVista  {
                 try {
 
                     Main.alGoOh.atacarCon(monstruo,EscenaJugador.obtenerMonstruosSeleccionados().get(0).obtenerMonstruo());
-                    seleccionar();
+                    EscenaJugador.desseleccionarMonstruos();
                 } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
                     Alerta.faseIncorrecta();
-                } catch (ExcepcionMonstruoNoPuedeAtacar excepcionMonstruoNoPuedeAtacar) {
-                    Alerta.monstruoNoPuedeAtacar();
                 } catch (ExcepcionMonstruoYaAtaco excepcionMonstruoYaAtaco) {
-                    Alerta.monstruoNoPuedeAtacar();
+                    Alerta.monstruoNoPuedeAtacar("monstruo ya ataco este turno");
                 } catch (ExcepcionCartaBocaAbajo excepcionCartaBocaAbajo) {
-                    Alerta.monstruoNoPuedeAtacar();
+                    Alerta.monstruoNoPuedeAtacar("monstruo esta boca abajo");
+                } catch (ExcepcionMonstruoNoPuedeAtacar excepcionMonstruoNoPuedeAtacar) {
+                    Alerta.monstruoNoPuedeAtacar("monstruo esta en posicion de defensa");
                 }
 
 
+        });}
 
-    });}
-
-    public void seleccionar(){
-        if (seleccionado) {
-            EscenaJugador.desseleccionar(this);
-            destacar(false);
-        }else{
-            EscenaJugador.seleccionar(this);
-            destacar(true);
-        }
-        seleccionado = !seleccionado;
-    }
 
     public Monstruo obtenerMonstruo(){
         return (Monstruo) carta;

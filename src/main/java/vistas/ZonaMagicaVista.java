@@ -55,7 +55,7 @@ public class ZonaMagicaVista {
             pane.add(gridPane,i,0);
         }
         LinkedList<Trampa> trampas=zona.obtenerTrampas();
-        for (int i = 0; i < trampas.size(); i++){
+        for (int i = magicas.size(); i < trampas.size()+magicas.size(); i++){
             GridPane gridPane = new GridPane();
             vistas.add(new TrampaVista(trampas.get(i),gridPane));
             pane.add(gridPane,i,0);

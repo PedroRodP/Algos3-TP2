@@ -1,7 +1,6 @@
 package main.java.vistas;
 
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import main.java.cartas.Carta;
@@ -32,7 +31,7 @@ public class CartaEnManoVista extends CartaVista {
                 Main.alGoOh.jugarCartaBocaAbajo(carta);
             } catch (ExcepcionSacrificiosInsuficientes e) {
                 Alerta.sacrificiosInsuficientes(e.obtenerSacrificiosNecesarios());
-            } catch (ExcepcionAlGoOh e) {}
+            } catch (ExcepcionAlGoOh e) {      }
         });
         accionCartaVista.agregarAccion("jugar carta boca arriba sacrificando",event -> {
             LinkedList<Monstruo> monstruos= new LinkedList<>();

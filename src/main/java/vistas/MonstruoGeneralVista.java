@@ -5,12 +5,22 @@ import main.java.cartas.monstruo.Monstruo;
 
 public abstract class MonstruoGeneralVista extends CartaVista {
 
+    public boolean seleccionado = false;
 
     public MonstruoGeneralVista(Monstruo monstruo, GridPane pane) {
         super(monstruo, pane);
     }
 
-    public abstract void seleccionar();
+    public void seleccionar(){
+        if (seleccionado) {
+            EscenaJugador.desseleccionar(this);
+            destacar(false);
+        }else{
+            EscenaJugador.seleccionar(this);
+            destacar(true);
+        }
+        seleccionado = !seleccionado;
+    }
 
     protected abstract Monstruo obtenerMonstruo();
 }

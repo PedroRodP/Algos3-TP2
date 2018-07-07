@@ -43,7 +43,7 @@ public class ZonaMonstruoVista {
 
     private void actualizar(){
 
-
+        for (CartaVista carta : vistas) carta.removerObservador();
         // Quitar las antiguas vistas del pane
         pane.getChildren().clear();
 
