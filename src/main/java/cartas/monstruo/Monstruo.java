@@ -23,7 +23,11 @@ public abstract class Monstruo extends Carta {
 		this.colocarEnDefensa(); //Se inicializa en modo defensivo
 		this.clasificacion = new Clasificacion(cantidadDeEstrellas);
 	}
-	
+
+	public boolean estaEnDefensa(){
+		return modo.estaEnDefensa();
+	}
+
 	public void colocarEnAtaque() {
 		this.modo = new ModoAtaque(ataque);
 		setChanged();
