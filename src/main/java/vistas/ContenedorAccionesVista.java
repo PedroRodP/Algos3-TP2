@@ -49,8 +49,7 @@ public class ContenedorAccionesVista {
                 Main.alGoOh.siguienteTurno();
             } catch (ExcepcionJuegoTerminado excepcionJuegoTerminado) {
                 Alerta.display("Juego Terminado",
-                        new Label("El juego ha terminado!"
-                        )
+                    new Label("El juego ha terminado!")
                 );
             }
         });

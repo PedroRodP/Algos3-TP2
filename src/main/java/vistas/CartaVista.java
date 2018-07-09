@@ -40,8 +40,8 @@ public abstract class CartaVista {
         this.pane.getColumnConstraints().add(col);
 
         this.pane.setOnMouseClicked(event -> {
-            EscenaJugador.removerAcciones();
-            EscenaJugador.agregarAccion(accionCartaVista);
+            Main.removerAcciones();
+            Main.agregarAccion(accionCartaVista);
         });
 
         mostrarImagen();
@@ -60,7 +60,7 @@ public abstract class CartaVista {
 
     protected void mostrarImagen(){
         try {
-            pane.getChildren().remove(imagen); // Quitar anterior si existe
+            if (imagen != null) pane.getChildren().remove(imagen); // Quitar anterior si existe
             imagen = obtenerImagen();
             imagen.setFitHeight(60);
             imagen.setPreserveRatio(true);
@@ -79,6 +79,7 @@ public abstract class CartaVista {
     }
 
     protected void mostrarNombre(){
+        if (nombre != null) pane.getChildren().remove(nombre); // Quitar anterior si existe
         nombre = new Label();
         nombre.setText(obtenerNombre());
         pane.add(nombre,0,1);

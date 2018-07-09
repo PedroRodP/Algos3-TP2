@@ -2,6 +2,7 @@ package main.java.vistas;
 
 import javafx.scene.layout.GridPane;
 import main.java.cartas.monstruo.Monstruo;
+import main.java.controlador.Main;
 
 public abstract class MonstruoGeneralVista extends CartaVista {
 
@@ -11,16 +12,24 @@ public abstract class MonstruoGeneralVista extends CartaVista {
         super(monstruo, pane);
     }
 
-    public void seleccionar(){
-        if (seleccionado) {
-            EscenaJugador.desseleccionar(this);
-            destacar(false);
-        }else{
-            EscenaJugador.seleccionar(this);
-            destacar(true);
-        }
-        seleccionado = !seleccionado;
+    public void altenarSeleccionar(){
+        if (seleccionado) deseleccionar();
+        else seleccionar();
     }
 
-    protected abstract Monstruo obtenerMonstruo();
+    public void deseleccionar(){
+        Main.desseleccionar(this);
+        destacar(false);
+        seleccionado = false;
+    }
+
+    public void seleccionar(){
+        Main.seleccionar(this);
+        destacar(true);
+        seleccionado = true;
+    }
+
+    public Monstruo obtenerMonstruo(){
+        return (Monstruo) carta;
+    }
 }

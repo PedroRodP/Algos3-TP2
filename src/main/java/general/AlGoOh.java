@@ -38,7 +38,6 @@ public class AlGoOh extends Observable {
 	private EstadoDeJuego estado;
 	
 	public AlGoOh() {
-		
 		jugadorA = new Jugador();
 		jugadorB = new Jugador();
 		
@@ -76,46 +75,68 @@ public class AlGoOh extends Observable {
 
 	public void pasarASiguienteFase() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado {
 		estado.pasarASiguienteFase();
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void jugarCartaBocaAbajo(Carta carta) throws ExcepcionFaseIncorrecta, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta {
 		estado.jugarCartaBocaAbajo(carta);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void jugarCartaBocaArriba(Carta carta) throws ExcepcionFaseIncorrecta, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta {
 		estado.jugarCartaBocaArriba(carta);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void jugarSacrificandoBocaAbajo(Carta carta, LinkedList<Monstruo> sacrificados) throws ExcepcionFaseIncorrecta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios, ExcepcionZonaIncorrecta {
 		estado.jugarSacrificandoBocaAbajo(carta, sacrificados);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void jugarSacrificandoBocaArriba(Carta carta, LinkedList<Monstruo> sacrificados) throws ExcepcionFaseIncorrecta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios, ExcepcionZonaIncorrecta {
 		estado.jugarSacrificandoBocaArriba(carta, sacrificados);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void voltearCarta(Carta carta) throws ExcepcionFaseIncorrecta {
 		estado.voltearCarta(carta); //TODO si la carta ya esta boca arriba (ver ese caso)
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void aplicarMagica(Magica magica) throws ExcepcionCartaBocaAbajo, ExcepcionMazoVacio, ExcepcionFaseIncorrecta {
 		estado.aplicarMagica(magica);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void aplicarEfectoDeMonstruo(Monstruo monstruo, Monstruo elegido) throws ExcepcionFaseIncorrecta {
 		estado.aplicarEfectoDeMonstruo(monstruo, elegido);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void atacarCon(Monstruo atacante, Monstruo defensor) throws ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionMonstruoYaAtaco {
 		estado.atacarCon(atacante, defensor);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void colocarEnAtaque(Monstruo monstruo) throws ExcepcionFaseIncorrecta {
 		estado.colocarEnAtaque(monstruo);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void colocarEnDefensa(Monstruo monstruo) throws ExcepcionFaseIncorrecta {
 		estado.colocarEnDefensa(monstruo);
+		setChanged();
+		notifyObservers();
 	}
 
 	public Jugador ganador() throws ExcepcionJuegoNoTermino {

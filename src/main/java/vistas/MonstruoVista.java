@@ -37,7 +37,7 @@ public class MonstruoVista extends MonstruoGeneralVista  {
         });
 
         accionCartaVista.agregarAccion("Aplicar efecto",event -> {
-            for (MonstruoGeneralVista m : EscenaJugador.obtenerMonstruosSeleccionados()){
+            for (MonstruoGeneralVista m : Main.obtenerMonstruosSeleccionados()){
                 try {
                     Main.alGoOh.aplicarEfectoDeMonstruo(monstruo,m.obtenerMonstruo());
                 } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
@@ -49,27 +49,19 @@ public class MonstruoVista extends MonstruoGeneralVista  {
         });
 
         accionCartaVista.agregarAccion("atacar", event -> {
-
-                try {
-
-                    Main.alGoOh.atacarCon(monstruo,EscenaJugador.obtenerMonstruosSeleccionados().get(0).obtenerMonstruo());
-                    EscenaJugador.desseleccionarMonstruos();
-                } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
-                    Alerta.faseIncorrecta();
-                } catch (ExcepcionMonstruoYaAtaco excepcionMonstruoYaAtaco) {
-                    Alerta.monstruoNoPuedeAtacar("monstruo ya ataco este turno");
-                } catch (ExcepcionCartaBocaAbajo excepcionCartaBocaAbajo) {
-                    Alerta.monstruoNoPuedeAtacar("monstruo esta boca abajo");
-                } catch (ExcepcionMonstruoNoPuedeAtacar excepcionMonstruoNoPuedeAtacar) {
-                    Alerta.monstruoNoPuedeAtacar("monstruo esta en posicion de defensa");
-                }
-
-
-        });}
-
-
-    public Monstruo obtenerMonstruo(){
-        return (Monstruo) carta;
+            try {
+                Main.alGoOh.atacarCon(monstruo,Main.obtenerMonstruosSeleccionados().get(0).obtenerMonstruo());
+                Main.desseleccionarMonstruos();
+            } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
+                Alerta.faseIncorrecta();
+            } catch (ExcepcionMonstruoYaAtaco excepcionMonstruoYaAtaco) {
+                Alerta.monstruoNoPuedeAtacar("monstruo ya ataco este turno");
+            } catch (ExcepcionCartaBocaAbajo excepcionCartaBocaAbajo) {
+                Alerta.monstruoNoPuedeAtacar("monstruo esta boca abajo");
+            } catch (ExcepcionMonstruoNoPuedeAtacar excepcionMonstruoNoPuedeAtacar) {
+                Alerta.monstruoNoPuedeAtacar("monstruo esta en posicion de defensa");
+            }
+        });
     }
 
 }
