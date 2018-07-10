@@ -21,11 +21,11 @@ public class ContenedorAccionesVista {
         pane.getColumnConstraints().add(col);
 
         RowConstraints fila1 = new RowConstraints();
-        fila1.setPercentHeight(50);
+        fila1.setPercentHeight(55);
         pane.getRowConstraints().add(fila1);
 
         RowConstraints fila2 = new RowConstraints();
-        fila2.setPercentHeight(50);
+        fila2.setPercentHeight(45);
         pane.getRowConstraints().add(fila2);
 
         cartaVistaPane = new Pane();
