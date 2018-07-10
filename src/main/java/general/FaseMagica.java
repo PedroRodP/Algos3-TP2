@@ -9,6 +9,11 @@ import main.java.excepciones.ExcepcionTurnoFinalizo;
 public class FaseMagica extends Fase {
 
 	@Override
+	public String obtenerNombre() {
+		return "Fase mágica";
+	}
+
+	@Override
 	public Fase proxima() throws ExcepcionTurnoFinalizo {
 		throw new ExcepcionTurnoFinalizo();
 	}

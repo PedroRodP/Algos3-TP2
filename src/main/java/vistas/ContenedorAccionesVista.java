@@ -2,10 +2,7 @@ package main.java.vistas;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.*;
 import main.java.controlador.Main;
 import main.java.excepciones.ExcepcionJuegoTerminado;
 import main.java.excepciones.ExcepcionTurnoFinalizo;
@@ -13,7 +10,8 @@ import main.java.excepciones.ExcepcionTurnoFinalizo;
 public class ContenedorAccionesVista {
     private GridPane pane;
     private Pane cartaVistaPane;
-    private GridPane accionesJuegoPane;
+    //private GridPane accionesJuegoPane;
+    private Label nombreFase;
 
     public ContenedorAccionesVista(GridPane pane){
         this.pane = pane;
@@ -33,7 +31,7 @@ public class ContenedorAccionesVista {
         cartaVistaPane = new Pane();
         pane.add(cartaVistaPane,0,0);
 
-        accionesJuegoPane = new GridPane();
+        VBox accionesJuegoPane = new VBox();
         pane.add(accionesJuegoPane,0,1);
 
         Button siguienteTurno = new Button("Siguiente turno");
@@ -54,8 +52,12 @@ public class ContenedorAccionesVista {
             }
         });
 
-        accionesJuegoPane.add(siguienteTurno,0,0);
-        accionesJuegoPane.add(siguienteFase,0,1);
+        nombreFase = new Label(Main.alGoOh.obtenerNombreDeFase());
+        Main.alGoOh.addObserver((o, arg) -> {
+            nombreFase.setText(Main.alGoOh.obtenerNombreDeFase());
+        });
+
+        accionesJuegoPane.getChildren().addAll(siguienteTurno,siguienteFase,nombreFase);
 
     }
 

@@ -47,6 +47,10 @@ public class AlGoOh extends Observable {
 		
 		estado = new EstadoDeJuego(jugadorA, jugadorB);
 	}
+
+	public String obtenerNombreDeFase(){
+		return estado.obtenerNombreDeFase();
+	}
 	
 	private void asignarMazos() {
 		jugadorA.asignarMazo(new Mazo());

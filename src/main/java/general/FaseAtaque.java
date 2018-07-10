@@ -9,6 +9,11 @@ import main.java.excepciones.ExcepcionMonstruoYaAtaco;
 
 public class FaseAtaque extends Fase {
 
+	@Override
+	public String obtenerNombre() {
+		return "Fase de ataque";
+	}
+
 	LinkedList<Monstruo> atacantes = new LinkedList<>();
 	
 	@Override

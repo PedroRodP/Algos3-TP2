@@ -5,6 +5,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -34,13 +36,17 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("Yu Gi Oh");
 
-        GridPane contAciones = new GridPane();
-        contenedorAcciones = new ContenedorAccionesVista(contAciones);
-
         alGoOh = new AlGoOh();
         jugadorActual = alGoOh.turnoActual();
 
+        GridPane contAciones = new GridPane();
+        contenedorAcciones = new ContenedorAccionesVista(contAciones);
+
         GridPane contenedorPrincipal = new GridPane();
+        /*contenedorPrincipal.setBackground(new Background(new BackgroundImage(
+                new Image("main/java/imagenes/otras/yugi2.jpg",ANCHO,ALTO,false,true),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT
+        )));*/
         RowConstraints row = new RowConstraints();
         row.setPercentHeight(100);
         contenedorPrincipal.getRowConstraints().add(row);
@@ -110,8 +116,9 @@ public class Main extends Application {
         monstruoVistaSeleccionados.remove(monstruoVista);
     }
     public static void desseleccionarMonstruos(){
-        for (MonstruoGeneralVista mv : monstruoVistaSeleccionados) mv.deseleccionar();
-        monstruoVistaSeleccionados.clear();
+        ArrayList<MonstruoGeneralVista> clone = (ArrayList<MonstruoGeneralVista>) monstruoVistaSeleccionados.clone();
+        for (MonstruoGeneralVista mv : clone)
+            mv.deseleccionar();
     }
 
     public static ArrayList<MonstruoGeneralVista> obtenerMonstruosSeleccionados(){

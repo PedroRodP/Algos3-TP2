@@ -12,6 +12,11 @@ import main.java.excepciones.ExcepcionZonaIncorrecta;
 public class FasePreparacion extends Fase {
 
 	@Override
+	public String obtenerNombre() {
+		return "Fase de preparación";
+	}
+
+	@Override
 	public Fase proxima() {
 		return new FaseAtaque();
 	}

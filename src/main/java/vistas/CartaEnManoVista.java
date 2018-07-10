@@ -1,6 +1,7 @@
 package main.java.vistas;
 
 
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import main.java.cartas.Carta;
@@ -22,7 +23,13 @@ public class CartaEnManoVista extends CartaVista {
                 Main.alGoOh.jugarCartaBocaArriba(carta);
             } catch (ExcepcionSacrificiosInsuficientes e) {
                 Alerta.sacrificiosInsuficientes(e.obtenerSacrificiosNecesarios());
-            } catch (ExcepcionAlGoOh e) {}
+            } catch (ExcepcionFaseIncorrecta e) {
+                Alerta.faseIncorrecta();
+            } catch (ExcepcionZonaCompleta excepcionZonaCompleta) {
+                Alerta.ZonaCompleta();
+            } catch (ExcepcionZonaIncorrecta excepcionZonaIncorrecta) {
+                throw new RuntimeException();
+            }
         });
         accionCartaVista.agregarAccion("Jugar carta boca abajo", event -> {
             try {

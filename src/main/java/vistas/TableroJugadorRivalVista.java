@@ -1,7 +1,9 @@
 package main.java.vistas;
 
+import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import main.java.general.Jugador;
 
@@ -39,10 +41,5 @@ public class TableroJugadorRivalVista{
         GridPane zonaCampo = new GridPane();
         new ZonaCampoVista(jugador.obtenerZonaCampo(),zonaCampo);
         tablero.add(zonaCampo,0,3);
-
-        mano.setStyle("-fx-border-color: green");
-        zonaCampo.setStyle("-fx-border-color: red");
-        zonaMagica.setStyle("-fx-border-color: orange");
-        zonaMonstruos.setStyle("-fx-border-color: black");
     }
 }
