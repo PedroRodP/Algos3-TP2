@@ -47,23 +47,16 @@ public class Main extends Application {
                 new Image("main/java/imagenes/otras/yugi2.jpg",ANCHO,ALTO,false,true),
                 BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT
         )));*/
-        RowConstraints row = new RowConstraints();
-        row.setPercentHeight(100);
-        contenedorPrincipal.getRowConstraints().add(row);
+        setRowAndColumnConstraints(contenedorPrincipal);
 
-        ColumnConstraints col1 = new ColumnConstraints();
-        col1.setPercentWidth(15);
-        ColumnConstraints col2 = new ColumnConstraints();
-        col2.setPercentWidth(60);
-        ColumnConstraints col3 = new ColumnConstraints();
-        col3.setPercentWidth(25);
-
-        contenedorPrincipal.getColumnConstraints().addAll(col1, col2, col3);
-
-        GridPane contenedorJugadores = new GridPane();
+        VBox contenedorJugadores = new VBox(100);
         contenedorPrincipal.add(contenedorJugadores,0,0);
-        contenedorJugadores.setBackground(new Background(new BackgroundFill(Color.web("#456468"), CornerRadii.EMPTY, Insets.EMPTY)));
-        llenarContenedorJugadores(alGoOh.obtenerJugadores(),contenedorJugadores);
+        contenedorJugadores.setAlignment(Pos.CENTER);
+        for (Jugador j : alGoOh.obtenerJugadores()){
+            VBox pane = new VBox();
+            contenedorJugadores.getChildren().add(pane);
+            new JugadorVista(j,pane);
+        }
 
         GridPane contenedorTablero = new GridPane();
         contenedorPrincipal.add(contenedorTablero,1,0);
@@ -88,16 +81,18 @@ public class Main extends Application {
         stage.show();
     }
 
-    private void llenarContenedorJugadores(ArrayList<Jugador> jugadores,GridPane contenedorJugadores){
-        contenedorJugadores.setAlignment(Pos.CENTER);
-        VBox vidaJugadores = new VBox(100);
-        vidaJugadores.setAlignment(Pos.CENTER);
-        for (Jugador j : jugadores){
-            VBox pane = new VBox();
-            vidaJugadores.getChildren().add(pane);
-            new JugadorVista(j,pane);
-        }
-        contenedorJugadores.getChildren().add(vidaJugadores);
+    private void setRowAndColumnConstraints(GridPane contenedorPrincipal){
+        RowConstraints row = new RowConstraints();
+        row.setPercentHeight(100);
+        contenedorPrincipal.getRowConstraints().add(row);
+
+        ColumnConstraints col1 = new ColumnConstraints();
+        col1.setPercentWidth(15);
+        ColumnConstraints col2 = new ColumnConstraints();
+        col2.setPercentWidth(60);
+        ColumnConstraints col3 = new ColumnConstraints();
+        col3.setPercentWidth(25);
+        contenedorPrincipal.getColumnConstraints().addAll(col1, col2, col3);
     }
 
     public static void agregarAccion(AccionCartaVista accionCartaVista){

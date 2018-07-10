@@ -25,9 +25,9 @@ public class CartaEnManoVista extends CartaVista {
                 Alerta.sacrificiosInsuficientes(e.obtenerSacrificiosNecesarios());
             } catch (ExcepcionFaseIncorrecta e) {
                 Alerta.faseIncorrecta();
-            } catch (ExcepcionZonaCompleta excepcionZonaCompleta) {
+            } catch (ExcepcionZonaCompleta e) {
                 Alerta.ZonaCompleta();
-            } catch (ExcepcionZonaIncorrecta excepcionZonaIncorrecta) {
+            } catch (ExcepcionZonaIncorrecta e) {
                 throw new RuntimeException();
             }
         });
@@ -36,7 +36,13 @@ public class CartaEnManoVista extends CartaVista {
                 Main.alGoOh.jugarCartaBocaAbajo(carta);
             } catch (ExcepcionSacrificiosInsuficientes e) {
                 Alerta.sacrificiosInsuficientes(e.obtenerSacrificiosNecesarios());
-            } catch (ExcepcionAlGoOh e) {}
+            } catch (ExcepcionFaseIncorrecta e) {
+                Alerta.faseIncorrecta();
+            } catch (ExcepcionZonaCompleta e) {
+                Alerta.ZonaCompleta();
+            } catch (ExcepcionZonaIncorrecta e) {
+                throw new RuntimeException();
+            }
         });
         accionCartaVista.agregarAccion("jugar carta boca arriba sacrificando",event -> {
             LinkedList<Monstruo> monstruos= new LinkedList<>();
@@ -54,8 +60,10 @@ public class CartaEnManoVista extends CartaVista {
             } catch (ExcepcionZonaCompleta e) {
                 Alerta.ZonaCompleta();
             } catch (ExcepcionCartaNoNecesitaSacrificios e) {
-
-            } catch (ExcepcionZonaIncorrecta e) {}
+                Alerta.display("Atención",new Label("La carta no necesita sacrificios."));
+            } catch (ExcepcionZonaIncorrecta e) {
+                throw new RuntimeException();
+            }
         });
 
         accionCartaVista.agregarAccion("jugar carta boca abajo Sacrificando", event -> {
@@ -72,7 +80,9 @@ public class CartaEnManoVista extends CartaVista {
                 Alerta.sacrificiosInsuficientes(e.obtenerSacrificiosNecesarios());
             } catch (ExcepcionZonaCompleta excepcionZonaCompleta) {
                 Alerta.ZonaCompleta();
-            } catch (ExcepcionAlGoOh excepcionCartaNoNecesitaSacrificios) {}
+            } catch (ExcepcionAlGoOh excepcionCartaNoNecesitaSacrificios) {
+                Alerta.display("Atención",new Label("La carta no necesita sacrificios."));
+            }
 
         });
     }
