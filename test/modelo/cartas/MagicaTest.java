@@ -140,6 +140,34 @@ public class MagicaTest {
 
    		jugador.aplicarMagica(magica);
    }
+
+    @Test
+
+    public void testDosFisuraDestruyenDosMonstruos() throws ExcepcionAlGoOh{
+
+        Jugador jugador = new Jugador();
+        Jugador jugador2 = new Jugador();
+
+        Fisura magica = new Fisura();
+        Fisura magica1 = new Fisura();
+        AgresorOscuro monstruo = new AgresorOscuro();
+        AgresorOscuro monstruo1 = new AgresorOscuro();
+
+        jugador.establecerOponente(jugador2);
+        jugador2.establecerOponente(jugador);
+
+        jugador.jugarCartaBocaArriba(magica);
+        jugador.jugarCartaBocaArriba(magica1);
+        jugador2.jugarCartaBocaArriba(monstruo);
+        jugador2.jugarCartaBocaArriba(monstruo1);
+
+        jugador.aplicarMagica(magica);
+        jugador.aplicarMagica(magica1);
+
+        assert (monstruo.estaEnElCementerio());
+        assert (monstruo1.estaEnElCementerio());
+
+    }
 }
 	
 

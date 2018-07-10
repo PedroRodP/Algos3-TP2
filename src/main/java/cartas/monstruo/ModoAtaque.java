@@ -36,4 +36,9 @@ public class ModoAtaque implements ModoDeCombate {
 	public double potencia() {
 		return puntaje;
 	}
+
+	@Override
+	public boolean estaEnDefensa() {
+		return false;
+	}
 }

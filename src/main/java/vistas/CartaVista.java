@@ -1,5 +1,6 @@
 package main.java.vistas;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -13,6 +14,7 @@ import main.java.controlador.Main;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Observer;
 
 public abstract class CartaVista {
@@ -40,10 +42,14 @@ public abstract class CartaVista {
         this.pane.getColumnConstraints().add(col);
 
         this.pane.setOnMouseClicked(event -> {
-            EscenaJugador.removerAcciones();
-            EscenaJugador.agregarAccion(accionCartaVista);
+            Main.removerAcciones();
+            Main.agregarAccion(accionCartaVista);
         });
-
+        observer = (o, arg) -> {
+            mostrarImagen();
+            mostrarNombre();
+        };
+        carta.addObserver(observer);
         mostrarImagen();
         mostrarNombre();
     }
@@ -60,17 +66,18 @@ public abstract class CartaVista {
 
     protected void mostrarImagen(){
         try {
-            pane.getChildren().remove(imagen); // Quitar anterior si existe
+            if (imagen != null) pane.getChildren().remove(imagen); // Quitar anterior si existe
             imagen = obtenerImagen();
             imagen.setFitHeight(60);
             imagen.setPreserveRatio(true);
+            GridPane.setHalignment(imagen,HPos.CENTER);
             pane.add(imagen,0,0);
         } catch (FileNotFoundException e) {}
     }
 
     protected ImageView obtenerImagen() throws FileNotFoundException {
-        return  (carta.estaBocaArriba())?
-            GeneradorDeImagenes.obtenerImagenDelanteraDeCarta(carta) :
+        return (carta.estaBocaArriba())?
+            GeneradorDeImagenes.obtenerImagenDelanteraDeCarta(carta):
             GeneradorDeImagenes.obtenerImagenTraseraDeCarta();
     }
 
@@ -79,7 +86,9 @@ public abstract class CartaVista {
     }
 
     protected void mostrarNombre(){
+        if (nombre != null) pane.getChildren().remove(nombre); // Quitar anterior si existe
         nombre = new Label();
+        GridPane.setHalignment(nombre,HPos.CENTER);
         nombre.setText(obtenerNombre());
         pane.add(nombre,0,1);
     }

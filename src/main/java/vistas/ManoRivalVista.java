@@ -13,12 +13,11 @@ import java.util.Observer;
 
 public class ManoRivalVista {
 
-        private Mano mano;
-        private GridPane pane;
-        private Observer observer;
+    private Mano mano;
+    private GridPane pane;
+    private Observer observer;
 
     public ManoRivalVista(Mano mano, GridPane pane) {
-
         this.mano = mano;
         this.pane = pane;
 
@@ -35,7 +34,6 @@ public class ManoRivalVista {
     }
 
     private void actualizar(){
-
         // Quitar las antiguas vistas del pane
         pane.getChildren().clear();
 
@@ -48,7 +46,6 @@ public class ManoRivalVista {
             this.pane.getColumnConstraints().add(col);
 
             // Agregar las nuevas vistas
-
             pane.add(GeneradorDeImagenes.obtenerImagenTraseraDeCarta(),i,0);
         }
     }

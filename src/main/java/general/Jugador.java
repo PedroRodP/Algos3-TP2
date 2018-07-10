@@ -167,6 +167,10 @@ public class Jugador extends Observable {
 		return mano;
 	}
 
+	public Mazo obtenerMazo() {
+		return mazo;
+	}
+
 	public ZonaMonstruos obtenerZonaMonstruos() {
 		return zonaMonstruos;
 	}

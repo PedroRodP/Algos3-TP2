@@ -14,6 +14,7 @@ public interface ModoDeCombate {
 	public void actualizarPotencialDeAtaque(double puntos);
 	
 	public void actualizarPotencialDeDefensa(double puntos);
-	
+
+	public boolean estaEnDefensa();
 
 }

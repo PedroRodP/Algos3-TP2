@@ -2,6 +2,11 @@ package main.java.vistas;
 
 import javafx.scene.layout.GridPane;
 import main.java.cartas.monstruo.Monstruo;
+import main.java.controlador.Main;
+
+import java.io.FileNotFoundException;
+import java.util.Observable;
+import java.util.Observer;
 
 public abstract class MonstruoGeneralVista extends CartaVista {
 
@@ -9,18 +14,37 @@ public abstract class MonstruoGeneralVista extends CartaVista {
 
     public MonstruoGeneralVista(Monstruo monstruo, GridPane pane) {
         super(monstruo, pane);
+        girarSiEstaEnDefensa();
+        observer = (o, arg) -> {
+            girarSiEstaEnDefensa();
+        };
+        carta.addObserver(observer);
+    }
+
+    public void altenarSeleccionar(){
+        if (seleccionado) deseleccionar();
+        else seleccionar();
+    }
+
+    public void deseleccionar(){
+        Main.desseleccionar(this);
+        destacar(false);
+        seleccionado = false;
     }
 
     public void seleccionar(){
-        if (seleccionado) {
-            EscenaJugador.desseleccionar(this);
-            destacar(false);
-        }else{
-            EscenaJugador.seleccionar(this);
-            destacar(true);
-        }
-        seleccionado = !seleccionado;
+        Main.seleccionar(this);
+        destacar(true);
+        seleccionado = true;
     }
 
-    protected abstract Monstruo obtenerMonstruo();
+    private void girarSiEstaEnDefensa(){
+        imagen.setRotate(
+                (obtenerMonstruo().estaEnDefensa())? 90 : 0
+        );
+    }
+
+    public Monstruo obtenerMonstruo(){
+        return (Monstruo) carta;
+    }
 }

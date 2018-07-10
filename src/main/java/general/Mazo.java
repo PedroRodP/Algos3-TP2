@@ -21,21 +21,24 @@ public class Mazo extends Lugar{
 	private final int MAX_CAMPOS = (int) (0.05 * MAX_CARTAS); //5 por ciento. 2 cartas
 	
 	public Mazo() {
-		
-		this.cartas = new LinkedList<Carta>();
+		this.cartas = new LinkedList<>();
 		this.generarCartasAleatoriamente();
 		Collections.shuffle(cartas); //Mezcla el mazo
 	}
 	
 	public Carta tomarCarta() throws ExcepcionMazoVacio {
-		
 		try {
-			Carta carta = cartas.removeFirst();
-			return carta;
-			
+			Carta c =  cartas.removeFirst();
+			setChanged();
+			notifyObservers();
+			return c;
 		} catch (NoSuchElementException e) {
 			throw new ExcepcionMazoVacio();
 		}
+	}
+
+	public Integer obtenerCantidadCartas(){
+		return cartas.size();
 	}
 	
 	private void obtenerCartaAleatoriaDe(FabricaDeCartas fabrica) {
@@ -72,12 +75,11 @@ public class Mazo extends Lugar{
 	@Override
 	public void quitarYAgregarAlCementerio(Carta carta) throws ExcepcionNoEsPosibleAgregarAlCementerio {
 		throw new ExcepcionNoEsPosibleAgregarAlCementerio();
-		
 	}
 
 	@Override
 	public Cementerio obtenerCementerio() {
-		return new Cementerio();  //Devuelve un cementerio solamente para cumplir con la firma del metodo
+		return null;  //Solamente para cumplir con la firma del metodo
 	}
 	
 }

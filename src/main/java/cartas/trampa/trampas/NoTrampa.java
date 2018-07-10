@@ -15,6 +15,7 @@ public class NoTrampa extends Trampa {
 	@Override
 	public void aplicarA(Monstruo atacante, Monstruo defensor, Jugador jugador) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
 		atacante.atacar(defensor, jugador, jugador.obtenerOponente());
+		//Esta carta no se destruye ya que no tiene un Lugar para estar, sino que se aplica cuando no hay Trampas
 	}
 
 }

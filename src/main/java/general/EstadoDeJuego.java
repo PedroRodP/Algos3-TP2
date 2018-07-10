@@ -31,6 +31,10 @@ public class EstadoDeJuego extends Observable {
 		asignarEstadoDeJuego(jugadorA, jugadorB);
 		siguienteTurno();
 	}
+
+	public String obtenerNombreDeFase(){
+	    return fase.obtenerNombre();
+    }
 	
 	private void asignarTurnos(Jugador jugadorA, Jugador jugadorB) {
 		ArrayList<Jugador> jugadores = new ArrayList<>();
