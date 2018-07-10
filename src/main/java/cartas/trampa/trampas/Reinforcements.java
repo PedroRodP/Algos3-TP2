@@ -20,5 +20,6 @@ public class Reinforcements extends Trampa {
         atacante.atacar(defensor, jugador, jugador.obtenerOponente());
         defensor.alterarAtaque(-500);
         
+        this.mandarAlCementerio();
     }
 }

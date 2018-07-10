@@ -15,6 +15,7 @@ public class NoTrampa extends Trampa {
 	@Override
 	public void aplicarA(Monstruo atacante, Monstruo defensor, Jugador jugador) throws ExcepcionCartaBocaAbajo, ExcepcionMonstruoNoPuedeAtacar {
 		atacante.atacar(defensor, jugador, jugador.obtenerOponente());
+		this.mandarAlCementerio();
 	}
 
 }
