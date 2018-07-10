@@ -20,6 +20,14 @@ public class MonstruoVista extends MonstruoGeneralVista  {
             seleccionar();
         });
 
+        accionCartaVista.agregarAccion("voltear carta", event -> {
+            try {
+                Main.alGoOh.voltearCarta(monstruo);
+            } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
+                Alerta.faseIncorrecta();
+            }
+        });
+
         accionCartaVista.agregarAccion("Colocar en ataque",event -> {
             try {
                 Main.alGoOh.colocarEnAtaque(monstruo);

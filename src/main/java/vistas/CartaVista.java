@@ -14,6 +14,7 @@ import main.java.controlador.Main;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Observer;
 
 public abstract class CartaVista {
@@ -44,7 +45,11 @@ public abstract class CartaVista {
             Main.removerAcciones();
             Main.agregarAccion(accionCartaVista);
         });
-
+        observer = (o, arg) -> {
+            mostrarImagen();
+            mostrarNombre();
+        };
+        carta.addObserver(observer);
         mostrarImagen();
         mostrarNombre();
     }

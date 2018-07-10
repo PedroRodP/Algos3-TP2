@@ -34,5 +34,13 @@ public class MagicaVista extends CartaVista {
             }
         });
 
+        accionCartaVista.agregarAccion("voltear carta", event -> {
+            try {
+                Main.alGoOh.voltearCarta(magica);
+            } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
+                Alerta.faseIncorrecta();
+            }
+        });
+
     }
 }

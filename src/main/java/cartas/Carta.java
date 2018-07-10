@@ -25,6 +25,8 @@ public abstract class Carta extends Observable {
 	
 	public void setBocaArriba() {
 		this.posicion = new BocaArriba();
+		setChanged();
+		notifyObservers();
 	}
 	
 	public boolean estaBocaArriba() {
