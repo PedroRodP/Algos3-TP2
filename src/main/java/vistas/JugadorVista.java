@@ -3,6 +3,7 @@ package main.java.vistas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import main.java.general.Jugador;
 
 import java.util.Observable;
@@ -13,17 +14,19 @@ public class JugadorVista {
     private Observer observer;
     private Pane pane;
 
-    public JugadorVista(Jugador jugador,Pane pane){
-        pane.getChildren().add( new Label("VIDA "+jugador.obtenerPuntosDeVida()));
+    public JugadorVista(Jugador jugador,VBox pane){
+        this.pane = pane;
+        this.jugador = jugador;
 
         observer = (o, arg) -> {
-            pane.getChildren().clear();
-            pane.getChildren().add(
-                    new Label("VIDA "+jugador.obtenerPuntosDeVida())
-           );
+            actualizar();
         };
+        actualizar();
         jugador.addObserver(observer);
-        this.jugador = jugador;
     }
 
+    private void actualizar(){
+        pane.getChildren().clear();
+        pane.getChildren().add(new Label("VIDA: "+jugador.obtenerPuntosDeVida()));
+    }
 }

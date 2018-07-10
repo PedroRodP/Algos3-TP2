@@ -20,10 +20,12 @@ import main.java.excepciones.ExcepcionZonaIncorrecta;
 
 public abstract class Fase {
 
+	public abstract String obtenerNombre();
+
 	public Jugador devolverGanador() throws ExcepcionJuegoNoTermino {
 		throw new ExcepcionJuegoNoTermino();
 	}
-	
+
 	public abstract Fase proxima() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado;
 	
 	public void jugarCartaBocaAbajo(Carta carta, Jugador jugador) throws ExcepcionFaseIncorrecta, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta {

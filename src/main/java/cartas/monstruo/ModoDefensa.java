@@ -37,4 +37,8 @@ public class ModoDefensa implements ModoDeCombate {
 		return puntaje;
 	}
 
+	@Override
+	public boolean estaEnDefensa() {
+		return true;
+	}
 }

@@ -16,8 +16,6 @@ public class Alerta {
 
     public static void display(String titulo, Node nodo){
         Stage ventana = new Stage();
-        //nodo.setFitHeight(200);
-        //nodo.setFitWidth(150);
         ventana.initModality(Modality.APPLICATION_MODAL);
         ventana.setTitle(titulo);
         ventana.setMinWidth(250);
@@ -33,7 +31,6 @@ public class Alerta {
         Scene escena = new Scene(layout);
         ventana.setScene(escena);
         ventana.showAndWait();
-
     }
 
     public static void sacrificiosInsuficientes(int necesarios){
@@ -48,6 +45,15 @@ public class Alerta {
         );
     }
 
+    public static void monstruoNoPuedeAtacar(String causa) {
+        Alerta.display("Monstruo no puede atacar",
+                new Label(causa));
+    }
+
+    public static void ZonaCompleta() {
+        Alerta.display("Alerta",
+                new Label("Zona completa"));
+    }
 }
 
 

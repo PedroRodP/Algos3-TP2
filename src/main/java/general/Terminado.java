@@ -3,8 +3,13 @@ package main.java.general;
 import main.java.excepciones.ExcepcionJuegoTerminado;
 
 public class Terminado extends Fase {
+
+	@Override
+	public String obtenerNombre() {
+		return "Juego terminado";
+	}
 	
-	Jugador ganador;
+	private Jugador ganador;
 	
 	public Terminado(Jugador jugador) {
 		ganador = jugador;
