@@ -70,8 +70,8 @@ public class CartaEnManoVista extends CartaVista {
             LinkedList<Monstruo> monstruos= new LinkedList<>();
             for (MonstruoGeneralVista m : Main.obtenerMonstruosSeleccionados()) {
                 monstruos.add(m.obtenerMonstruo());
-                m.seleccionar();
-            }
+                }
+                Main.desseleccionarMonstruos();
             try {
                 Main.alGoOh.jugarSacrificandoBocaAbajo(carta,monstruos);
             } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
