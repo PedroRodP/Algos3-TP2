@@ -430,4 +430,17 @@ public class MonstruoTest {
 		assert(monstruoOponente.estaBocaArriba());	
 	}
 	
+	@Test
+	public void test20AgregarMonstruoCon1SacrificioNecesarioYExcepcionSacrificiosInsuficientesObtenerSacrificiosNecesariosDevuelve1() throws ExcepcionSacrificiosInsuficientes, ExcepcionZonaCompleta, ExcepcionCartaNoNecesitaSacrificios, ExcepcionZonaIncorrecta {
+		Jugador atacante = new Jugador();
+		Monstruo monstruo = new Aitsu(); //Sabemos que Aitsu pide 1 sacrificio para invocarlo.
+		try {
+		atacante.jugarCartaBocaAbajoSacrificando(monstruo, new LinkedList<Monstruo>());
+		}catch (ExcepcionSacrificiosInsuficientes e) {
+			int sacrificiosNecesarios = e.obtenerSacrificiosNecesarios();
+			assertEquals(1, sacrificiosNecesarios);
+		}
+		
+	}
+	
 }

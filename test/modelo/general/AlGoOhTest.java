@@ -137,7 +137,7 @@ public class AlGoOhTest {
 	
 	@Test
 	(expected = ExcepcionJuegoTerminado.class)
-	public void test18SiTengoTodasLasPartesDeExodiaEnLaManoYJugadorIntentaPasarDeFaseLanzaExcepcionJuegoTerminado() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado {
+	public void test07SiTengoTodasLasPartesDeExodiaEnLaManoYJugadorIntentaPasarDeFaseLanzaExcepcionJuegoTerminado() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado {
 		AlGoOh juego = new AlGoOh();
 		Jugador jugador = juego.turnoActual();
 		Mano mano = jugador.obtenerMano();
@@ -153,14 +153,14 @@ public class AlGoOhTest {
 	
 	@Test
 	(expected = ExcepcionJuegoNoTermino.class)
-	public void test19SiQuieroObtenerElGanadorYElJuegoNoTerminoSeLanzaExcepcionJuegoNoTermino() throws ExcepcionJuegoNoTermino {
+	public void test08SiQuieroObtenerElGanadorYElJuegoNoTerminoSeLanzaExcepcionJuegoNoTermino() throws ExcepcionJuegoNoTermino {
 		AlGoOh juego = new AlGoOh();
 		juego.ganador();
 	}
 	
 	@Test
 	(expected = ExcepcionFaseIncorrecta.class)
-	public void test19SiJugadorActualIntentaJugarCartaEnFaseDeAtaqueSeLanzaExcepcionFaseIncorrecta() throws ExcepcionAlGoOh{
+	public void test09SiJugadorActualIntentaJugarCartaEnFaseDeAtaqueSeLanzaExcepcionFaseIncorrecta() throws ExcepcionAlGoOh{
 		AlGoOh juego = new AlGoOh();
 		juego.pasarASiguienteFase();
 		Carta carta = new Sogen();
@@ -169,10 +169,9 @@ public class AlGoOhTest {
 	
 	@Test
 	(expected = ExcepcionMonstruoYaAtaco.class)
-	public void test01CuandoAtacarDosVecesConMonstruoEnFaseAtaqueSeLanzaExcepcionMonstruoYaAtaco() throws ExcepcionAlGoOh {
+	public void test10CuandoAtacarDosVecesConMonstruoEnFaseAtaqueSeLanzaExcepcionMonstruoYaAtaco() throws ExcepcionAlGoOh {
 		AlGoOh juego = new AlGoOh();
 		
-		Jugador jugadorA = juego.turnoActual();
 		Monstruo atacante = new AgresorOscuro();
 		
 		juego.jugarCartaBocaArriba(atacante);
