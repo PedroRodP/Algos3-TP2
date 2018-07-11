@@ -32,10 +32,6 @@ public class Mano extends Lugar {
 		Exodia.comprobarEstado(cartas, estado, jugador);
 	}
 	
-	public int cantidadDeCartas() {
-		return this.cartas.size();
-	}
-	
 	public Cementerio obtenerCementerio() {
 		return new Cementerio();
 	}
@@ -46,5 +42,9 @@ public class Mano extends Lugar {
 
 	public LinkedList<Carta> obtenerCartas() {
 		return cartas;
+	}
+
+	public int cantidadDeCartas() {
+		return cartas.size();
 	}
 }

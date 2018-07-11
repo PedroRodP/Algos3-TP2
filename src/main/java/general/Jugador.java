@@ -117,10 +117,6 @@ public class Jugador extends Observable {
 		}
 	}
 	
-	public int cantidadDeCartasEnMano() {
-		return mano.cantidadDeCartas();
-	}
-	
 	public void asignarMazo(Mazo mazo) {
 		this.mazo = mazo;
 	}
@@ -181,5 +177,9 @@ public class Jugador extends Observable {
 
 	public ZonaCampo obtenerZonaCampo() {
 		return zonaCampo;
+	}
+
+	public int cantidadDeCartasEnMano() {
+		return mano.cantidadDeCartas();
 	}
 }
