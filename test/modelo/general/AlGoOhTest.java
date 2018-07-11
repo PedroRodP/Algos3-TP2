@@ -12,6 +12,8 @@ import main.java.cartas.magica.Magica;
 import main.java.cartas.magica.magicas.Fisura;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
+import main.java.cartas.monstruo.monstruos.AgujaAsesina;
+import main.java.cartas.monstruo.monstruos.AmanteFeliz;
 import main.java.cartas.monstruo.monstruos.BrazoDerechoExodia;
 import main.java.cartas.monstruo.monstruos.BrazoIzquierdoExodia;
 import main.java.cartas.monstruo.monstruos.CabezaExodia;
@@ -135,7 +137,7 @@ public class AlGoOhTest {
 	
 	@Test
 	(expected = ExcepcionJuegoTerminado.class)
-	public void test18SiTengoTodasLasPartesDeExodiaEnLaManoYJugadorIntentaPasarDeFaseLanzaExcepcionJuegoTerminado() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado {
+	public void test07SiTengoTodasLasPartesDeExodiaEnLaManoYJugadorIntentaPasarDeFaseLanzaExcepcionJuegoTerminado() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado {
 		AlGoOh juego = new AlGoOh();
 		Jugador jugador = juego.turnoActual();
 		Mano mano = jugador.obtenerMano();
@@ -151,17 +153,39 @@ public class AlGoOhTest {
 	
 	@Test
 	(expected = ExcepcionJuegoNoTermino.class)
-	public void test19SiQuieroObtenerElGanadorYElJuegoNoTerminoSeLanzaExcepcionJuegoNoTermino() throws ExcepcionJuegoNoTermino {
+	public void test08SiQuieroObtenerElGanadorYElJuegoNoTerminoSeLanzaExcepcionJuegoNoTermino() throws ExcepcionJuegoNoTermino {
 		AlGoOh juego = new AlGoOh();
 		juego.ganador();
 	}
 	
 	@Test
 	(expected = ExcepcionFaseIncorrecta.class)
-	public void test19SiJugadorActualIntentaJugarCartaEnFaseDeAtaqueSeLanzaExcepcionFaseIncorrecta() throws ExcepcionAlGoOh{
+	public void test09SiJugadorActualIntentaJugarCartaEnFaseDeAtaqueSeLanzaExcepcionFaseIncorrecta() throws ExcepcionAlGoOh{
 		AlGoOh juego = new AlGoOh();
 		juego.pasarASiguienteFase();
 		Carta carta = new Sogen();
 		juego.jugarCartaBocaAbajo(carta);
+	}
+	
+	@Test
+	(expected = ExcepcionMonstruoYaAtaco.class)
+	public void test10CuandoAtacarDosVecesConMonstruoEnFaseAtaqueSeLanzaExcepcionMonstruoYaAtaco() throws ExcepcionAlGoOh {
+		AlGoOh juego = new AlGoOh();
+		
+		Monstruo atacante = new AgresorOscuro();
+		
+		juego.jugarCartaBocaArriba(atacante);
+		juego.colocarEnAtaque(atacante);
+		
+		juego.siguienteTurno();
+		Monstruo atacado = new AmanteFeliz();
+		juego.jugarCartaBocaArriba(atacado);
+		juego.colocarEnDefensa(atacado);
+		
+		juego.siguienteTurno();
+		juego.pasarASiguienteFase();
+		
+		juego.atacarCon(atacante, atacado);
+		juego.atacarCon(atacante, atacado);
 	}
 }

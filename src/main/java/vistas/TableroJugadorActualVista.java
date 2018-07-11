@@ -1,11 +1,6 @@
 package main.java.vistas;
 
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Control;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import main.java.general.Jugador;
 
 public class TableroJugadorActualVista{

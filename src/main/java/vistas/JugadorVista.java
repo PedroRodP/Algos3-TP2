@@ -1,17 +1,12 @@
 package main.java.vistas;
 
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
-import main.java.controlador.Main;
 import main.java.general.Jugador;
-
-import java.util.Observable;
-import java.util.Observer;
 
 public class JugadorVista {
     private Jugador jugador;
