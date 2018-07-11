@@ -1,4 +1,4 @@
-<project xmlns:ivy="antlib:org.apache.ivy.ant" name="fiuba.algo3" basedir="." default="test">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="Algos3-TP2" basedir="." default="test">
 	<property name="build" location="build" />
 	<property name="libs" location="libs" />
 	<property name="classes.dir" location="build" />
@@ -133,6 +133,7 @@
 		</cobertura-report>
 	</target>
 
+	<!-- Ejecutar pruebas -->
     <target name="test" depends="compilar.tests.sin.instrumentar">
         <junit fork="no" failureProperty="test.failure" showoutput="true">
             <classpath location="${build}" />
@@ -198,14 +199,15 @@
 		</pmd>
 	</target>
 
-
+	<!-- Compilacion con imagenes -->
 		<target name="empaquetar.con.imagenes" depends="compilar.paquete">
 			<copydir src="src/main/java/imagenes"
 				dest="${build}/classes/main/java/imagenes"
 				includes="**/*.jpg"/>
 		<jar destfile="${build}/dist/algo3.jar" basedir="${build}/classes"/>
 	</target>
-
+	
+	<!-- Ejecutar aplicacion desde consola (ant ejecutar.aplicacion) -->
 	<target name="ejecutar.aplicacion" depends="empaquetar.con.imagenes">
 		<java classname="main.java.controlador.Main" fork="true">
 			<classpath refid="classpath" />
