@@ -35,5 +35,18 @@ public class MazoTest {
 		
 		assertEquals(40, almacen.size());
 	}
+	
+	@Test
+	public void test03CuandoCreoMazoCantidadDeCartasEnElMazoDevuelve39() {
+		Mazo mazo = new Mazo();
+		assertEquals(40, mazo.obtenerCantidadCartas());
+	}
+	
+	@Test
+	public void test03CuandoCreoMazoYTomoUnaCartaCantidadDeCartasEnElMazoDevuelve39() throws ExcepcionMazoVacio {
+		Mazo mazo = new Mazo();
+		mazo.tomarCarta();
+		assertEquals(39, mazo.obtenerCantidadCartas());
+	}
 
 }

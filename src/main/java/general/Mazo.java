@@ -37,7 +37,7 @@ public class Mazo extends Lugar{
 		}
 	}
 
-	public Integer obtenerCantidadCartas(){
+	public int obtenerCantidadCartas(){
 		return cartas.size();
 	}
 	
@@ -79,7 +79,7 @@ public class Mazo extends Lugar{
 
 	@Override
 	public Cementerio obtenerCementerio() {
-		return null;  //Solamente para cumplir con la firma del metodo
+		return new Cementerio();  //Solamente para cumplir con la firma del metodo
 	}
 	
 }
