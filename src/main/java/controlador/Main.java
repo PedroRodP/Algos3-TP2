@@ -26,6 +26,7 @@ public class Main extends Application {
     private static ArrayList<MonstruoGeneralVista> monstruoVistaSeleccionados = new ArrayList<>();
     private static ContenedorAccionesVista contenedorAcciones;
     private ContenedorTableros contenedorTableros;
+    private ContenedorJugadores contenedorJugadores;
     private Jugador jugadorActual;
 
     public static void main(String[] args) {
@@ -49,19 +50,13 @@ public class Main extends Application {
         )));*/
         setRowAndColumnConstraints(contenedorPrincipal);
 
-        VBox contenedorJugadores = new VBox(100);
-        contenedorPrincipal.add(contenedorJugadores,0,0);
-        contenedorJugadores.setAlignment(Pos.CENTER);
-        for (Jugador j : alGoOh.obtenerJugadores()){
-            VBox pane = new VBox();
-            contenedorJugadores.getChildren().add(pane);
-            new JugadorVista(j,pane);
-        }
+        Pane pane = new Pane();
+        contenedorPrincipal.add(pane,0,0);
+        contenedorJugadores = new ContenedorJugadores(pane,alGoOh.obtenerJugadores());
 
         GridPane contenedorTablero = new GridPane();
         contenedorPrincipal.add(contenedorTablero,1,0);
         contenedorTableros = new ContenedorTableros(alGoOh.obtenerJugadores(),contenedorTablero);
-
 
         contenedorPrincipal.add(contAciones,2,0);
 
@@ -70,11 +65,16 @@ public class Main extends Application {
             if (!jugadorActual.equals(alGoOh.turnoActual())){
                 jugadorActual = alGoOh.turnoActual();
                 contenedorTableros.cambiarTablero(jugadorActual);
-                Alerta.display("cambio de turno", new Label("Turno de ..."));
+                contenedorJugadores.cambiarJugador(jugadorActual);
+                JugadorVista jugadorVista = contenedorJugadores.obtenerJugadorVista(jugadorActual);
+                Alerta.display("Cambio de turno",
+                        new Label("Turno de "+jugadorVista.obtenerNombre())
+                );
             }
         });
 
         contenedorTableros.cambiarTablero(alGoOh.turnoActual());
+        contenedorJugadores.cambiarJugador(alGoOh.turnoActual());
 
         Scene scene = new Scene(contenedorPrincipal, ANCHO, ALTO);
         stage.setScene(scene);

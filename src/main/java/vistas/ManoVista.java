@@ -1,8 +1,11 @@
 package main.java.vistas;
 
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import main.java.cartas.Carta;
 import main.java.general.Mano;
 
@@ -17,13 +20,20 @@ public class ManoVista {
     private Observer observer;
     private ArrayList<CartaVista> cartas = new ArrayList<>();
 
-    public ManoVista(Mano mano, GridPane pane){
+    public ManoVista(Mano mano, StackPane pane){
+        Label nombreZona = new Label("M a n o");
+        nombreZona.setFont(new Font(50));
+        nombreZona.setTextFill(Paint.valueOf(
+                "grey"
+        ));
+        pane.getChildren().add(nombreZona);
         this.mano = mano;
-        this.pane = pane;
+        this.pane = new GridPane();
+        pane.getChildren().add(this.pane);
 
         RowConstraints fila = new RowConstraints();
         fila.setPercentHeight(100);
-        this.pane.getRowConstraints().add(fila);
+        //this.pane.getRowConstraints().add(fila);
 
         actualizar();
         observer= (o, arg) -> {
