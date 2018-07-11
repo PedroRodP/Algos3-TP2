@@ -74,6 +74,7 @@ public class JugadorVista {
         vidaBarra.progressProperty().unbind();
         vidaBarra.progressProperty().bind(task.progressProperty());
         new Thread(task).start();
+        vidaBarra.setOnMouseClicked(event -> Alerta.display("vida restante",new Label("vida: "+vida)));
         return vidaBarra;
     }
 

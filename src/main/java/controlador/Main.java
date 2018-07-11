@@ -16,6 +16,7 @@ import main.java.vistas.*;
 //import org.mortbay.log.Log;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Observer;
 
 public class Main extends Application {
@@ -35,6 +36,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        LinkedList<String> nombres = Alerta.menuPrincipal();
+
+        System.out.println(nombres.getFirst());
         stage.setTitle("Yu Gi Oh");
 
         alGoOh = new AlGoOh();
