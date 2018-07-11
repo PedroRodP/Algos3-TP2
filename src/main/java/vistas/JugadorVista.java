@@ -1,7 +1,9 @@
 package main.java.vistas;
 
+import javafx.concurrent.Task;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
@@ -42,12 +44,16 @@ public class JugadorVista {
 
     private void actualizarActual(){
         pane.getChildren().clear();
-        pane.getChildren().add(new Label("VIDA: "+jugador.obtenerPuntosDeVida()));
+        VBox vida= new VBox(10);
+        vida.getChildren().addAll(new Label("VIDA: "+jugador.obtenerPuntosDeVida()),porgresBar(jugador.obtenerPuntosDeVida()));
+        pane.getChildren().add(vida);
     }
 
     private void actualizarOponente(){
         pane.getChildren().clear();
-        pane.getChildren().add(new Label("VIDA: "+oponente.obtenerPuntosDeVida()));
+        VBox vida= new VBox(10);
+        vida.getChildren().addAll(new Label("VIDA: "+oponente.obtenerPuntosDeVida()),porgresBar(oponente.obtenerPuntosDeVida()));
+        pane.getChildren().add(vida);
     }
 
     public String obtenerNombre(){
@@ -60,5 +66,25 @@ public class JugadorVista {
 
     public Node obtenerVista(){
         return pane;
+    }
+
+    public ProgressBar porgresBar(double vida){
+        ProgressBar vidaBarra = new ProgressBar(0);
+        Task task = taskCreator(vida);
+        vidaBarra.progressProperty().unbind();
+        vidaBarra.progressProperty().bind(task.progressProperty());
+        new Thread(task).start();
+        return vidaBarra;
+    }
+
+    private Task taskCreator(double vida) {
+
+        return new Task() {
+            @Override
+            protected Object call() throws Exception {
+                updateProgress(vida,8000);
+                return true;
+            }
+        };
     }
 }
