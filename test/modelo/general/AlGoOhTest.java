@@ -12,6 +12,8 @@ import main.java.cartas.magica.Magica;
 import main.java.cartas.magica.magicas.Fisura;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
+import main.java.cartas.monstruo.monstruos.AgujaAsesina;
+import main.java.cartas.monstruo.monstruos.AmanteFeliz;
 import main.java.cartas.monstruo.monstruos.BrazoDerechoExodia;
 import main.java.cartas.monstruo.monstruos.BrazoIzquierdoExodia;
 import main.java.cartas.monstruo.monstruos.CabezaExodia;
@@ -163,5 +165,28 @@ public class AlGoOhTest {
 		juego.pasarASiguienteFase();
 		Carta carta = new Sogen();
 		juego.jugarCartaBocaAbajo(carta);
+	}
+	
+	@Test
+	(expected = ExcepcionMonstruoYaAtaco.class)
+	public void test01CuandoAtacarDosVecesConMonstruoEnFaseAtaqueSeLanzaExcepcionMonstruoYaAtaco() throws ExcepcionAlGoOh {
+		AlGoOh juego = new AlGoOh();
+		
+		Jugador jugadorA = juego.turnoActual();
+		Monstruo atacante = new AgresorOscuro();
+		
+		juego.jugarCartaBocaArriba(atacante);
+		juego.colocarEnAtaque(atacante);
+		
+		juego.siguienteTurno();
+		Monstruo atacado = new AmanteFeliz();
+		juego.jugarCartaBocaArriba(atacado);
+		juego.colocarEnDefensa(atacado);
+		
+		juego.siguienteTurno();
+		juego.pasarASiguienteFase();
+		
+		juego.atacarCon(atacante, atacado);
+		juego.atacarCon(atacante, atacado);
 	}
 }

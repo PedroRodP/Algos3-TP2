@@ -1,12 +1,10 @@
 package main.java.vistas;
 
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import main.java.general.Jugador;
 
-import java.util.Observable;
 import java.util.Observer;
 
 public class JugadorVista {

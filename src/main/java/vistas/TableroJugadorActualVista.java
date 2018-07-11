@@ -51,6 +51,6 @@ public class TableroJugadorActualVista{
 
         StackPane mazoPane = new StackPane();
         pane.setRight(mazoPane);
-        new MazoVista(jugador.obtenerMazo(),mazoPane);
+        //new MazoVista(jugador.obtenerMazo(),mazoPane);
     }
 }
