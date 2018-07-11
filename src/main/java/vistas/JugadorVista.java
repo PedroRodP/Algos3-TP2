@@ -17,6 +17,8 @@ public class JugadorVista {
     private Jugador oponente;
     private Pane pane;
     private String nombre;
+    private VBox paneVidaMia;
+    private VBox paneVidaRival;
 
     public JugadorVista(Jugador jugador, String nombre) {
         this.jugador = jugador;
@@ -25,10 +27,17 @@ public class JugadorVista {
 
         generarVista();
 
+        this.paneVidaRival = new VBox(20);
+        pane.getChildren().add(paneVidaRival);
+        actualizarOponente();
+
+        this.paneVidaMia = new VBox(20);
+        pane.getChildren().add(paneVidaMia);
         actualizarActual();
-        //actualizarOponente();
+
         jugador.addObserver((o, arg) -> actualizarActual());
-        //oponente.addObserver((o, arg) -> actualizarOponente());
+        oponente.addObserver((o, arg) -> actualizarOponente());
+
     }
 
     private void generarVista(){
@@ -38,24 +47,23 @@ public class JugadorVista {
         turnoActual.setTextFill(Paint.valueOf("green"));
         pane.getChildren().add(turnoActual);
 
-        Label rival = new Label("Rival:");
-        rival.setFont(Font.font(50));
+        //Label rival = new Label("Rival:");
+        //rival.setFont(Font.font(50));
+
 
         //TODO terminar
     }
 
     private void actualizarActual(){
-        pane.getChildren().clear();
-        VBox vida= new VBox(10);
-        vida.getChildren().addAll(new Label("VIDA "+nombre+" :"+jugador.obtenerPuntosDeVida()),porgresBar(jugador.obtenerPuntosDeVida()));
-        pane.getChildren().add(vida);
+        paneVidaMia.getChildren().clear();
+        paneVidaMia.getChildren().addAll(new Label("VIDA "+nombre+" :"+jugador.obtenerPuntosDeVida()),porgresBar(jugador.obtenerPuntosDeVida()));
+
     }
 
     private void actualizarOponente(){
-        pane.getChildren().clear();
-        VBox vida= new VBox(10);
-        vida.getChildren().addAll(new Label("VIDA: "+oponente.obtenerPuntosDeVida()),porgresBar(oponente.obtenerPuntosDeVida()));
-        pane.getChildren().add(vida);
+        paneVidaRival.getChildren().clear();
+        paneVidaRival.getChildren().addAll(new Label("VIDA Rival: "+oponente.obtenerPuntosDeVida()),porgresBar(oponente.obtenerPuntosDeVida()));
+
     }
 
     public String obtenerNombre(){
