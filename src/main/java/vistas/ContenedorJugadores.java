@@ -5,17 +5,18 @@ import main.java.general.Jugador;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class ContenedorJugadores {
     private Pane pane;
     private HashMap<Jugador,JugadorVista> mapJugadores = new HashMap<>();
 
-    public ContenedorJugadores(Pane pane, ArrayList<Jugador> jugadores){
+    public ContenedorJugadores(Pane pane, ArrayList<Jugador> jugadores, LinkedList<String> nombres){
         this.pane = pane;
 
         for (int i = 1; i <= jugadores.size();i++){
             Jugador j = jugadores.get(i-1);
-            mapJugadores.put(j,new JugadorVista(j,"Jugador "+i));
+            mapJugadores.put(j,new JugadorVista(j,nombres.get(i-1)));
         }
     }
 

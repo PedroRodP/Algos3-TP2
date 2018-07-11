@@ -56,7 +56,7 @@ public class Main extends Application {
 
         Pane pane = new Pane();
         contenedorPrincipal.add(pane,0,0);
-        contenedorJugadores = new ContenedorJugadores(pane,alGoOh.obtenerJugadores());
+        contenedorJugadores = new ContenedorJugadores(pane,alGoOh.obtenerJugadores(),nombres);
 
         GridPane contenedorTablero = new GridPane();
         contenedorPrincipal.add(contenedorTablero,1,0);

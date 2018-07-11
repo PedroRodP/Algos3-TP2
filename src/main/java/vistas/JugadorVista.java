@@ -1,5 +1,7 @@
 package main.java.vistas;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -24,9 +26,9 @@ public class JugadorVista {
         generarVista();
 
         actualizarActual();
-        actualizarOponente();
+        //actualizarOponente();
         jugador.addObserver((o, arg) -> actualizarActual());
-        oponente.addObserver((o, arg) -> actualizarOponente());
+        //oponente.addObserver((o, arg) -> actualizarOponente());
     }
 
     private void generarVista(){
@@ -45,7 +47,7 @@ public class JugadorVista {
     private void actualizarActual(){
         pane.getChildren().clear();
         VBox vida= new VBox(10);
-        vida.getChildren().addAll(new Label("VIDA: "+jugador.obtenerPuntosDeVida()),porgresBar(jugador.obtenerPuntosDeVida()));
+        vida.getChildren().addAll(new Label("VIDA "+nombre+" :"+jugador.obtenerPuntosDeVida()),porgresBar(jugador.obtenerPuntosDeVida()));
         pane.getChildren().add(vida);
     }
 
@@ -70,12 +72,28 @@ public class JugadorVista {
 
     public ProgressBar porgresBar(double vida){
         ProgressBar vidaBarra = new ProgressBar(0);
+        cambiarPropiedadesBarra(vidaBarra);
         Task task = taskCreator(vida);
         vidaBarra.progressProperty().unbind();
         vidaBarra.progressProperty().bind(task.progressProperty());
         new Thread(task).start();
-        vidaBarra.setOnMouseClicked(event -> Alerta.display("vida restante",new Label("vida: "+vida)));
+        vidaBarra.setOnMousePressed(event -> Alerta.display("vida restante",new Label("vida: "+vida)));
         return vidaBarra;
+    }
+
+    private void cambiarPropiedadesBarra(ProgressBar vidaBarra) {
+        vidaBarra.progressProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.doubleValue()>0.66)
+              {
+                vidaBarra.setStyle("-fx-accent: green");
+              }else{
+                    if (newValue.doubleValue() > 0.33)
+                      {
+                        vidaBarra.setStyle("-fx-accent: yellow");
+                      }else {vidaBarra.setStyle("-fx-accent: red");}
+                   }
+
+        });
     }
 
     private Task taskCreator(double vida) {
@@ -89,3 +107,5 @@ public class JugadorVista {
         };
     }
 }
+
+
