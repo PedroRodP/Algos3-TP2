@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import main.java.controlador.Main;
 import main.java.excepciones.ExcepcionJuegoTerminado;
@@ -57,6 +58,7 @@ public class ContenedorAccionesVista {
 
         nombreFase = new Label(Main.alGoOh.obtenerNombreDeFase());
         nombreFase.setFont(new Font(30));
+        nombreFase.setTextFill(Paint.valueOf("white"));
         Main.alGoOh.addObserver((o, arg) -> {
             nombreFase.setText(Main.alGoOh.obtenerNombreDeFase());
         });

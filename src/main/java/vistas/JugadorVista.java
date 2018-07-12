@@ -34,12 +34,6 @@ public class JugadorVista {
         Label turnoActual = new Label("TURNO ACTUAL:\n"+nombre);
         turnoActual.setTextFill(Paint.valueOf("green"));
         pane.getChildren().add(turnoActual);
-
-        //Label rival = new Label("Rival:");
-        //rival.setFont(Font.font(50));
-
-
-        //TODO terminar
     }
 
 
