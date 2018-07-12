@@ -25,55 +25,62 @@ public class MonstruoVista extends MonstruoGeneralVista  {
             altenarSeleccionar();
         });
 
-        accionCartaVista.agregarAccion("voltear carta", event -> {
-            try {
-                Main.alGoOh.voltearCarta(monstruo);
-            } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
-                Alerta.faseIncorrecta();
+        if (Main.estaEnFasePreparacion()){
+            if (!monstruo.estaBocaArriba()){
+                accionCartaVista.agregarAccion("Voltear carta", event -> {
+                    try {
+                        Main.alGoOh.voltearCarta(monstruo);
+                    } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
+                        Alerta.faseIncorrecta();
+                    }
+                });
             }
-        });
-
-        accionCartaVista.agregarAccion("Colocar en ataque",event -> {
-            try {
-                Main.alGoOh.colocarEnAtaque(monstruo);
-            } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
-                Alerta.faseIncorrecta();
+            if (monstruo.estaEnDefensa()){
+                accionCartaVista.agregarAccion("Colocar en ataque",event -> {
+                    try {
+                        Main.alGoOh.colocarEnAtaque(monstruo);
+                    } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
+                        Alerta.faseIncorrecta();
+                    }
+                });
+            }else {
+                accionCartaVista.agregarAccion("Colocar en defensa",event -> {
+                    try {
+                        Main.alGoOh.colocarEnDefensa(monstruo);
+                    } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
+                        Alerta.faseIncorrecta();
+                    }
+                });
             }
-        });
+        }
 
-        accionCartaVista.agregarAccion("Colocar en defensa",event -> {
-            try {
-                Main.alGoOh.colocarEnDefensa(monstruo);
-            } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
-                Alerta.faseIncorrecta();
-            }
-        });
+        if (Main.estaEnFaseAtaque()){
+            accionCartaVista.agregarAccion("Aplicar efecto",event -> {
+                for (MonstruoGeneralVista m : Main.obtenerMonstruosSeleccionados()){
+                    try {
+                        Main.alGoOh.aplicarEfectoDeMonstruo(monstruo,m.obtenerMonstruo());
+                    } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
+                        Alerta.faseIncorrecta();
+                    }
+                    return;
+                }
+                Alerta.display("Atención",new Label("Debe seleccionar un monstruo."));
+            });
 
-        accionCartaVista.agregarAccion("Aplicar efecto",event -> {
-            for (MonstruoGeneralVista m : Main.obtenerMonstruosSeleccionados()){
+            accionCartaVista.agregarAccion("Atacar", event -> {
                 try {
-                    Main.alGoOh.aplicarEfectoDeMonstruo(monstruo,m.obtenerMonstruo());
+                    Main.alGoOh.atacarCon(monstruo,Main.obtenerMonstruosSeleccionados().get(0).obtenerMonstruo());
+                    Main.desseleccionarMonstruos();
                 } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
                     Alerta.faseIncorrecta();
+                } catch (ExcepcionMonstruoYaAtaco excepcionMonstruoYaAtaco) {
+                    Alerta.monstruoNoPuedeAtacar("monstruo ya ataco este turno");
+                } catch (ExcepcionCartaBocaAbajo excepcionCartaBocaAbajo) {
+                    Alerta.monstruoNoPuedeAtacar("monstruo esta boca abajo");
+                } catch (ExcepcionMonstruoNoPuedeAtacar excepcionMonstruoNoPuedeAtacar) {
+                    Alerta.monstruoNoPuedeAtacar("monstruo esta en posicion de defensa");
                 }
-                return;
-            }
-            Alerta.display("Atención",new Label("Debe seleccionar un monstruo."));
-        });
-
-        accionCartaVista.agregarAccion("atacar", event -> {
-            try {
-                Main.alGoOh.atacarCon(monstruo,Main.obtenerMonstruosSeleccionados().get(0).obtenerMonstruo());
-                Main.desseleccionarMonstruos();
-            } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
-                Alerta.faseIncorrecta();
-            } catch (ExcepcionMonstruoYaAtaco excepcionMonstruoYaAtaco) {
-                Alerta.monstruoNoPuedeAtacar("monstruo ya ataco este turno");
-            } catch (ExcepcionCartaBocaAbajo excepcionCartaBocaAbajo) {
-                Alerta.monstruoNoPuedeAtacar("monstruo esta boca abajo");
-            } catch (ExcepcionMonstruoNoPuedeAtacar excepcionMonstruoNoPuedeAtacar) {
-                Alerta.monstruoNoPuedeAtacar("monstruo esta en posicion de defensa");
-            }
-        });
+            });
+        }
     }
 }

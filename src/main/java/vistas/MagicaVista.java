@@ -20,6 +20,19 @@ public class MagicaVista extends CartaVista {
     @Override
     protected void actualizarAcciones() {
         final Magica magica = (Magica) carta;
+
+        if (Main.estaEnFasePreparacion()) {
+            accionCartaVista.agregarAccion("Voltear carta", event -> {
+                try {
+                    Main.alGoOh.voltearCarta(magica);
+                } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
+                    Alerta.faseIncorrecta();
+                }
+            });
+        }
+
+        if (!Main.estaEnFaseMagica()) return;
+
         accionCartaVista.agregarAccion("Aplicar Magia",event -> {
             try {
                 Main.alGoOh.aplicarMagica(magica);
@@ -35,14 +48,6 @@ public class MagicaVista extends CartaVista {
                 Alerta.display("Atención",
                         new Label("Fase incorrecta.")
                 );
-            }
-        });
-
-        accionCartaVista.agregarAccion("voltear carta", event -> {
-            try {
-                Main.alGoOh.voltearCarta(magica);
-            } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
-                Alerta.faseIncorrecta();
             }
         });
     }
