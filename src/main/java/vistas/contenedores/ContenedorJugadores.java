@@ -2,6 +2,7 @@ package main.java.vistas.contenedores;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import main.java.general.Jugador;
 import main.java.vistas.JugadorVista;
@@ -14,7 +15,7 @@ import java.util.LinkedList;
 public class ContenedorJugadores {
     private Pane pane;
     private HashMap<Jugador,JugadorVista> mapJugadores = new HashMap<>();
-    private Pane paneVida;
+    private StackPane paneVida;
 
     public ContenedorJugadores(Pane pane, ArrayList<Jugador> jugadores, LinkedList<String> nombres){
         this.pane = pane;
@@ -25,7 +26,9 @@ public class ContenedorJugadores {
         }
 
 
-        this.paneVida = new Pane();
+        this.paneVida = new StackPane();
+        paneVida.setAlignment(Pos.CENTER);
+
         new ContenedorBarraVidas(mapJugadores,jugadores,paneVida);
     }
 
