@@ -32,7 +32,8 @@ public class JugadorVista {
         pane = new VBox(200);
 
         Label turnoActual = new Label("TURNO ACTUAL:\n"+nombre);
-        turnoActual.setTextFill(Paint.valueOf("green"));
+        turnoActual.setTextFill(Paint.valueOf("orange"));
+        turnoActual.setFont(new Font(18));
         pane.getChildren().add(turnoActual);
     }
 

@@ -7,6 +7,8 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import main.java.general.Jugador;
 
 import java.util.ArrayList;
@@ -38,10 +40,14 @@ public class ContenedorBarraVidas {
         contenedor.getChildren().clear();
         for (Jugador jug: jugadores){
             JugadorVista vistaJug = mapJugadores.get(jug);
+
             VBox vida = new VBox(10);
-            HBox barra = new HBox(10);
-            barra.getChildren().addAll(porgresBar(jug.obtenerPuntosDeVida()),new Label(jug.obtenerPuntosDeVida()+"/8000"));
-            vida.getChildren().addAll(new Label("Vida "+vistaJug.obtenerNombre()+" :"),barra);
+
+            Label vidaTexto = new Label(vistaJug.obtenerNombre()+" :\n"+ jug.obtenerPuntosDeVida()+"/8000");
+            vidaTexto.setFont(new Font(20));
+            vidaTexto.setTextFill(Paint.valueOf("white"));
+
+            vida.getChildren().addAll(vidaTexto,porgresBar(jug.obtenerPuntosDeVida()));
             contenedor.getChildren().add(vida);
         }
     }

@@ -1,5 +1,6 @@
 package main.java.vistas;
 
+import javafx.geometry.Pos;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import main.java.general.Jugador;
@@ -29,7 +30,8 @@ public class ContenedorJugadores {
 
     public void cambiarJugador(Jugador jugador){
         pane.getChildren().clear();
-        VBox panAux = new VBox(10);
+        VBox panAux = new VBox(40);
+        panAux.setAlignment(Pos.CENTER);
         panAux.getChildren().addAll(obtenerJugadorVista(jugador).obtenerVista(),this.paneVida);
         pane.getChildren().add(panAux);
     }
