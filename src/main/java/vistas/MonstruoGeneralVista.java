@@ -44,6 +44,12 @@ public abstract class MonstruoGeneralVista extends CartaVista {
         );
     }
 
+    @Override
+    protected void mostrarImagen() {
+        super.mostrarImagen();
+        girarSiEstaEnDefensa();
+    }
+
     public Monstruo obtenerMonstruo(){
         return (Monstruo) carta;
     }

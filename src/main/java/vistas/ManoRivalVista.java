@@ -1,5 +1,7 @@
 package main.java.vistas;
 
+import javafx.geometry.HPos;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -45,8 +47,10 @@ public class ManoRivalVista {
             col.setPercentWidth(100 / nuevasCartas.size());
             this.pane.getColumnConstraints().add(col);
 
+            ImageView imagen = GeneradorDeImagenes.obtenerImagenTraseraDeCarta();
+            GridPane.setHalignment(imagen,HPos.CENTER);
             // Agregar las nuevas vistas
-            pane.add(GeneradorDeImagenes.obtenerImagenTraseraDeCarta(),i,0);
+            pane.add(imagen,i,0);
         }
     }
 }

@@ -17,7 +17,7 @@ public class MonstruoVista extends MonstruoGeneralVista  {
         super(monstruo,pane);
 
         accionCartaVista.agregarAccion("Seleccionar", event -> {
-            seleccionar();
+            altenarSeleccionar();
         });
 
         accionCartaVista.agregarAccion("voltear carta", event -> {
