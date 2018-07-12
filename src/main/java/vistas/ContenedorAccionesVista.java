@@ -9,8 +9,7 @@ import main.java.excepciones.ExcepcionTurnoFinalizo;
 
 public class ContenedorAccionesVista {
     private GridPane pane;
-    private Pane cartaVistaPane;
-    //private GridPane accionesJuegoPane;
+    private BorderPane cartaVistaPane;
     private Label nombreFase;
 
     public ContenedorAccionesVista(GridPane pane){
@@ -28,7 +27,7 @@ public class ContenedorAccionesVista {
         fila2.setPercentHeight(45);
         pane.getRowConstraints().add(fila2);
 
-        cartaVistaPane = new Pane();
+        cartaVistaPane = new BorderPane();
         pane.add(cartaVistaPane,0,0);
 
         VBox accionesJuegoPane = new VBox();
@@ -62,7 +61,7 @@ public class ContenedorAccionesVista {
     }
 
     public void mostrarAccion(AccionCartaVista accionCartaVista){
-        cartaVistaPane.getChildren().add(accionCartaVista.obtenerVista());
+        cartaVistaPane.setCenter(accionCartaVista.obtenerVista());
     }
 
     public void removerAcciones(){

@@ -8,8 +8,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -25,7 +27,9 @@ public class AccionCartaVista {
         this.cartaVista = cartaVista;
 
         GridPane.setHalignment(pane,HPos.CENTER);
-
+        ColumnConstraints colum = new ColumnConstraints();
+        colum.setPercentWidth(100);
+        pane.getColumnConstraints().add(colum);
     }
 
     public void agregarAccion(String mensaje, EventHandler<ActionEvent> eventHandler){
@@ -39,14 +43,17 @@ public class AccionCartaVista {
 
         Label nombre = new Label(cartaVista.obtenerNombre());
         GridPane.setHalignment(nombre,HPos.CENTER);
-        pane.add(nombre,0,1);
+        nombre.setFont(new Font(16));
+        nombre.setWrapText(true);
+        nombre.setStyle("-fx-font-weight: bold;");
+        pane.add(nombre,0,0);
 
         try {
             ImageView imagen = cartaVista.obtenerImagen();
             imagen.setFitHeight(200);
             imagen.setFitWidth(160);
             GridPane.setHalignment(imagen,HPos.CENTER);
-            pane.add(imagen,0,0);
+            pane.add(imagen,0,1);
         } catch (FileNotFoundException e) {}
 
         for (int i = 0; i < buttons.size();i++){
