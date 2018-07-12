@@ -27,16 +27,16 @@ public class JugadorVista {
 
         generarVista();
 
-        this.paneVidaRival = new VBox(20);
-        pane.getChildren().add(paneVidaRival);
-        actualizarOponente();
+        //this.paneVidaRival = new VBox(20);
+        //pane.getChildren().add(paneVidaRival);
+        //actualizarOponente();
 
-        this.paneVidaMia = new VBox(20);
-        pane.getChildren().add(paneVidaMia);
-        actualizarActual();
+        //this.paneVidaMia = new VBox(20);
+       //pane.getChildren().add(paneVidaMia);
+        //actualizarActual();
 
-        jugador.addObserver((o, arg) -> actualizarActual());
-        oponente.addObserver((o, arg) -> actualizarOponente());
+        //jugador.addObserver((o, arg) -> actualizarActual());
+        //oponente.addObserver((o, arg) -> actualizarOponente());
 
     }
 
