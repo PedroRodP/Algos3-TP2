@@ -41,8 +41,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         LinkedList<String> nombres = Alerta.menuPrincipal();
-
-        System.out.println(nombres.getFirst());
+        
         stage.setTitle("Yu Gi Oh");
 
         alGoOh = new AlGoOh();
