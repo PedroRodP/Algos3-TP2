@@ -22,7 +22,24 @@ public class CartaEnManoVista extends CartaVista {
             try {
                 Main.alGoOh.jugarCartaBocaArriba(carta);
             } catch (ExcepcionSacrificiosInsuficientes e) {
-                Alerta.sacrificiosInsuficientes(e.obtenerSacrificiosNecesarios());
+                LinkedList<Monstruo> monstruos= new LinkedList<>();
+                for (MonstruoGeneralVista mgv : Main.obtenerMonstruosSeleccionados()){
+                    monstruos.add(mgv.obtenerMonstruo());}
+                Main.desseleccionarMonstruos();
+
+                try {
+                    Main.alGoOh.jugarSacrificandoBocaArriba(carta,monstruos);
+                } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
+                    Alerta.faseIncorrecta();
+                } catch (ExcepcionSacrificiosInsuficientes excepcionSacrificiosInsuficientes) {
+                    Alerta.sacrificiosInsuficientes(e.obtenerSacrificiosNecesarios());
+                } catch (ExcepcionZonaIncorrecta excepcionZonaIncorrecta) {
+                    excepcionZonaIncorrecta.printStackTrace();
+                } catch (ExcepcionCartaNoNecesitaSacrificios excepcionCartaNoNecesitaSacrificios) {
+                    excepcionCartaNoNecesitaSacrificios.printStackTrace();
+                } catch (ExcepcionZonaCompleta excepcionZonaCompleta) {
+                    Alerta.ZonaCompleta();
+                }
             } catch (ExcepcionFaseIncorrecta e) {
                 Alerta.faseIncorrecta();
             } catch (ExcepcionZonaCompleta e) {
@@ -35,56 +52,33 @@ public class CartaEnManoVista extends CartaVista {
             try {
                 Main.alGoOh.jugarCartaBocaAbajo(carta);
             } catch (ExcepcionSacrificiosInsuficientes e) {
-                Alerta.sacrificiosInsuficientes(e.obtenerSacrificiosNecesarios());
-            } catch (ExcepcionFaseIncorrecta e) {
-                Alerta.faseIncorrecta();
-            } catch (ExcepcionZonaCompleta e) {
-                Alerta.ZonaCompleta();
-            } catch (ExcepcionZonaIncorrecta e) {
-                throw new RuntimeException();
-            }
-        });
-        accionCartaVista.agregarAccion("jugar carta boca arriba sacrificando",event -> {
-            LinkedList<Monstruo> monstruos= new LinkedList<>();
-            for (MonstruoGeneralVista mgv : Main.obtenerMonstruosSeleccionados()){
-                monstruos.add(mgv.obtenerMonstruo());
-            }
-            Main.desseleccionarMonstruos();
-
-            try {
-                Main.alGoOh.jugarSacrificandoBocaArriba(carta,monstruos);
-            } catch (ExcepcionFaseIncorrecta e) {
-                Alerta.faseIncorrecta();
-            } catch (ExcepcionSacrificiosInsuficientes e) {
-                Alerta.sacrificiosInsuficientes(e.obtenerSacrificiosNecesarios());
-            } catch (ExcepcionZonaCompleta e) {
-                Alerta.ZonaCompleta();
-            } catch (ExcepcionCartaNoNecesitaSacrificios e) {
-                Alerta.display("Atención",new Label("La carta no necesita sacrificios."));
-            } catch (ExcepcionZonaIncorrecta e) {
-                throw new RuntimeException();
-            }
-        });
-
-        accionCartaVista.agregarAccion("jugar carta boca abajo Sacrificando", event -> {
-            LinkedList<Monstruo> monstruos= new LinkedList<>();
-            for (MonstruoGeneralVista m : Main.obtenerMonstruosSeleccionados()) {
-                monstruos.add(m.obtenerMonstruo());
-                }
+                LinkedList<Monstruo> monstruos= new LinkedList<>();
+                for (MonstruoGeneralVista mgv : Main.obtenerMonstruosSeleccionados()){
+                    monstruos.add(mgv.obtenerMonstruo());}
                 Main.desseleccionarMonstruos();
-            try {
-                Main.alGoOh.jugarSacrificandoBocaAbajo(carta,monstruos);
-            } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
-                Alerta.faseIncorrecta();
-            } catch (ExcepcionSacrificiosInsuficientes e) {
-                Alerta.sacrificiosInsuficientes(e.obtenerSacrificiosNecesarios());
-            } catch (ExcepcionZonaCompleta excepcionZonaCompleta) {
-                Alerta.ZonaCompleta();
-            } catch (ExcepcionAlGoOh excepcionCartaNoNecesitaSacrificios) {
-                Alerta.display("Atención",new Label("La carta no necesita sacrificios."));
-            }
 
+                try {
+                    Main.alGoOh.jugarSacrificandoBocaAbajo(carta,monstruos);
+                } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
+                    Alerta.faseIncorrecta();
+                } catch (ExcepcionSacrificiosInsuficientes excepcionSacrificiosInsuficientes) {
+                    Alerta.sacrificiosInsuficientes(e.obtenerSacrificiosNecesarios());
+                } catch (ExcepcionZonaIncorrecta excepcionZonaIncorrecta) {
+                    excepcionZonaIncorrecta.printStackTrace();
+                } catch (ExcepcionCartaNoNecesitaSacrificios excepcionCartaNoNecesitaSacrificios) {
+                    excepcionCartaNoNecesitaSacrificios.printStackTrace();
+                } catch (ExcepcionZonaCompleta excepcionZonaCompleta) {
+                    Alerta.ZonaCompleta();
+                }
+            } catch (ExcepcionFaseIncorrecta e) {
+                Alerta.faseIncorrecta();
+            } catch (ExcepcionZonaCompleta e) {
+                Alerta.ZonaCompleta();
+            } catch (ExcepcionZonaIncorrecta e) {
+                throw new RuntimeException();
+            }
         });
+
     }
 
     @Override
