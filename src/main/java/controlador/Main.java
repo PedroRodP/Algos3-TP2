@@ -49,8 +49,9 @@ public class Main extends Application {
 
         GridPane contenedorPrincipal = new GridPane();
         contenedorPrincipal.setBackground(new Background(new BackgroundImage(
-                new Image("main/java/imagenes/otras/fondo4.jpg",ANCHO,ALTO,false,true),
-                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT
+                new Image("main/java/imagenes/otras/fondo4.jpg",0,0,false,true),
+                null, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(0,0,false,
+                false,false,true)
         )));
         setRowAndColumnConstraints(contenedorPrincipal);
 

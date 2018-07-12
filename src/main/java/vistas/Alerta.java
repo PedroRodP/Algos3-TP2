@@ -8,8 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -92,10 +91,11 @@ public class Alerta {
         layout.getChildren().addAll(jugador1,jugador2,botonInicio);
         layout.setAlignment(Pos.CENTER);
         StackPane stack = new StackPane();
-        ImageView imagen = new ImageView("main/java/imagenes/otras/yugimenu.jpg");
-        imagen.setFitWidth(300);
-        imagen.setFitHeight(300);
-        stack.getChildren().addAll(imagen,layout);
+        Image imagen = new Image("main/java/imagenes/otras/yugimenu.jpg");
+        BackgroundImage backImage = new BackgroundImage(imagen,null,null,null,
+                new BackgroundSize(0,0,false,false,false,true));
+        stack.getChildren().addAll(layout);
+        stack.setBackground(new Background(backImage));
         Scene escena = new Scene(stack);
         ventana.getIcons().clear();
         ventana.getIcons().add(new Image("main/java/imagenes/cartas/Carta_dada_vuelta.jpg"));
