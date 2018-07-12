@@ -43,6 +43,7 @@ public class ContenedorBarraVidas {
             JugadorVista vistaJug = mapJugadores.get(jug);
 
             VBox vida = new VBox(10);
+            vida.setAlignment(Pos.CENTER);
 
             Label vidaTexto = new Label(vistaJug.obtenerNombre()+" :\n"+ jug.obtenerPuntosDeVida()+"/8000");
             vidaTexto.setFont(new Font(20));
@@ -60,6 +61,8 @@ public class ContenedorBarraVidas {
         vidaBarra.progressProperty().unbind();
         vidaBarra.progressProperty().bind(task.progressProperty());
         new Thread(task).start();
+        vidaBarra.setPrefWidth(140);
+
         return vidaBarra;
     }
 
