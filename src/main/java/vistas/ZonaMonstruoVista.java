@@ -57,14 +57,5 @@ public class ZonaMonstruoVista {
             vistas.add(new MonstruoVista(monstruos.get(i),gridPane));
             pane.add(gridPane,i,0);
         }
-
-        for (;i < MAX_CANTIDAD_CARTAS; i++){
-            ImageView imageView = GeneradorDeImagenes.obtenerImagenDeCartaZonaMonstruo();
-            imageView.setFitHeight(CartaVista.ALTO);
-            imageView.setPreserveRatio(true);
-            GridPane.setHalignment(imageView,HPos.CENTER);
-            pane.add(imageView,i,0);
-        }
-
     }
 }

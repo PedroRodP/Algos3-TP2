@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 
 import java.io.FileNotFoundException;
@@ -47,6 +48,7 @@ public class AccionCartaVista {
 
         Label nombre = new Label(cartaVista.obtenerNombre());
         GridPane.setHalignment(nombre,HPos.CENTER);
+        nombre.setTextFill(Paint.valueOf("white"));
         nombre.setFont(new Font(16));
         nombre.setWrapText(true);
         nombre.setStyle("-fx-font-weight: bold;");

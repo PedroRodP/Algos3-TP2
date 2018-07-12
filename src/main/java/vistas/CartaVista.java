@@ -62,7 +62,7 @@ public abstract class CartaVista {
             nombre.setTextFill(Paint.valueOf("green"));
         }else {
             nombre.setStyle("-fx-font-weight: none");
-            nombre.setTextFill(Paint.valueOf("black"));
+            nombre.setTextFill(Paint.valueOf("white"));
         }
     }
 
@@ -90,6 +90,7 @@ public abstract class CartaVista {
     protected void mostrarNombre(){
         if (nombre != null) pane.getChildren().remove(nombre); // Quitar anterior si existe
         nombre = new Label();
+        nombre.setTextFill(Paint.valueOf("white"));
         GridPane.setHalignment(nombre,HPos.CENTER);
         nombre.setText(obtenerNombre());
         pane.add(nombre,0,1);
