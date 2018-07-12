@@ -108,7 +108,7 @@ public class AlGoOh extends Observable {
 	}
 	
 	public void voltearCarta(Carta carta) throws ExcepcionFaseIncorrecta {
-		estado.voltearCarta(carta); //TODO si la carta ya esta boca arriba (ver ese caso)
+		estado.voltearCarta(carta);
 		setChanged();
 		notifyObservers();
 	}

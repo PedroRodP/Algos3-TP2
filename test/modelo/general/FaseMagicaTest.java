@@ -51,5 +51,25 @@ public class FaseMagicaTest {
 		Fase fase = new FaseMagica();
 		fase.jugarSacrificandoBocaArriba(new Sogen(), new LinkedList<Monstruo>(),  new Jugador());
 	}
-
+	
+	@Test
+	(expected = ExcepcionFaseIncorrecta.class)
+	public void testCuandoColocarEnAtaqueMonstruoSeLanzaExcepcionFaseIncorrecta() throws ExcepcionAlGoOh {
+		Fase fase = new FaseMagica();
+		fase.colocarEnAtaque(new AgresorOscuro(), new Jugador());
+	}
+	
+	@Test
+	(expected = ExcepcionFaseIncorrecta.class)
+	public void testCuandoColocarEnDefensaMonstruoSeLanzaExcepcionFaseIncorrecta() throws ExcepcionAlGoOh {
+		Fase fase = new FaseMagica();
+		fase.colocarEnDefensa(new AgresorOscuro(), new Jugador());
+	}
+	
+	@Test
+	(expected = ExcepcionFaseIncorrecta.class)
+	public void testCuandoSeIntentaAplicarEfectoDeMonstruoSeLanzaExcepcionFaseIncorrecta() throws ExcepcionAlGoOh {
+		Fase fase = new FaseMagica();
+		fase.aplicarEfectoDeMonstruo(new AgresorOscuro(), new AgresorOscuro(), new Jugador());
+	}
 }
