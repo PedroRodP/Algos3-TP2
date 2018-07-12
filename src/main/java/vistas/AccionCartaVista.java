@@ -13,6 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import main.java.vistas.cartas.CartaVista;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

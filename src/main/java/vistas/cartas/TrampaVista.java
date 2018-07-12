@@ -1,4 +1,4 @@
-package main.java.vistas;
+package main.java.vistas.cartas;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;

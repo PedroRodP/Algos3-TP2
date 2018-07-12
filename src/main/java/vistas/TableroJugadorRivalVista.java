@@ -3,6 +3,7 @@ package main.java.vistas;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import main.java.general.Jugador;
+import main.java.vistas.zonas.*;
 
 public class TableroJugadorRivalVista{
 

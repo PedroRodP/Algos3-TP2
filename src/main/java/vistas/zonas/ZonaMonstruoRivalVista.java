@@ -1,10 +1,12 @@
-package main.java.vistas;
+package main.java.vistas.zonas;
 
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import main.java.cartas.ZonaMonstruos;
 import main.java.cartas.monstruo.Monstruo;
+import main.java.vistas.cartas.CartaVista;
+import main.java.vistas.cartas.MonstruoRivalVista;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

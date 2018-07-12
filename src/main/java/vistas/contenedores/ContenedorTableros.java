@@ -1,7 +1,9 @@
-package main.java.vistas;
+package main.java.vistas.contenedores;
 
 import javafx.scene.layout.*;
 import main.java.general.Jugador;
+import main.java.vistas.TableroJugadorActualVista;
+import main.java.vistas.TableroJugadorRivalVista;
 
 import java.util.ArrayList;
 import java.util.HashMap;

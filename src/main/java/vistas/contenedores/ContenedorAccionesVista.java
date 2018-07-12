@@ -1,4 +1,4 @@
-package main.java.vistas;
+package main.java.vistas.contenedores;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
@@ -10,6 +10,8 @@ import javafx.scene.text.Font;
 import main.java.controlador.Main;
 import main.java.excepciones.ExcepcionJuegoTerminado;
 import main.java.excepciones.ExcepcionTurnoFinalizo;
+import main.java.vistas.AccionCartaVista;
+import main.java.vistas.Alerta;
 
 public class ContenedorAccionesVista {
     private GridPane pane;

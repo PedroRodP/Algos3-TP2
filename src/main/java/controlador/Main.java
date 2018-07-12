@@ -13,6 +13,10 @@ import javafx.stage.Stage;
 import main.java.general.AlGoOh;
 import main.java.general.Jugador;
 import main.java.vistas.*;
+import main.java.vistas.cartas.MonstruoGeneralVista;
+import main.java.vistas.contenedores.ContenedorAccionesVista;
+import main.java.vistas.contenedores.ContenedorJugadores;
+import main.java.vistas.contenedores.ContenedorTableros;
 //import org.mortbay.log.Log;
 
 import java.util.ArrayList;
@@ -49,7 +53,7 @@ public class Main extends Application {
 
         GridPane contenedorPrincipal = new GridPane();
         contenedorPrincipal.setBackground(new Background(new BackgroundImage(
-                new Image("main/java/imagenes/otras/fondo5.jpg",0,0,false,true),
+                GeneradorDeImagenes.obtenerImagenDeFondo(),
                 null, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(0,0,false,
                 false,false,true)
         )));

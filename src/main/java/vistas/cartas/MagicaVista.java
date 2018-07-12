@@ -1,4 +1,4 @@
-package main.java.vistas;
+package main.java.vistas.cartas;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,6 +11,7 @@ import main.java.controlador.Main;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionFaseIncorrecta;
 import main.java.excepciones.ExcepcionMazoVacio;
+import main.java.vistas.Alerta;
 
 public class MagicaVista extends CartaVista {
     public MagicaVista(Magica magica, GridPane pane) {

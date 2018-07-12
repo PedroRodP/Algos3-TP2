@@ -1,4 +1,4 @@
-package main.java.vistas;
+package main.java.vistas.zonas;
 
 import javafx.geometry.HPos;
 import javafx.scene.image.ImageView;

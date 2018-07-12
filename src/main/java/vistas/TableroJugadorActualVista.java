@@ -1,7 +1,10 @@
 package main.java.vistas;
 
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import main.java.controlador.GeneradorDeImagenes;
 import main.java.general.Jugador;
+import main.java.vistas.zonas.*;
 
 public class TableroJugadorActualVista{
 
@@ -47,5 +50,10 @@ public class TableroJugadorActualVista{
         StackPane mazoPane = new StackPane();
         pane.setRight(mazoPane);
         new MazoVista(jugador.obtenerMazo(),mazoPane);
+
+        ImageView logo = GeneradorDeImagenes.obtenerLogo();
+        logo.setFitHeight(70);
+        logo.setPreserveRatio(true);
+        pane.setCenter(logo);
     }
 }

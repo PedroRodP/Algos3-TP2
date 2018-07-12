@@ -1,4 +1,4 @@
-package main.java.vistas;
+package main.java.vistas.contenedores;
 
 import javafx.concurrent.Task;
 import javafx.geometry.Pos;
@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import main.java.general.Jugador;
+import main.java.vistas.JugadorVista;
 
 import java.util.ArrayList;
 import java.util.HashMap;

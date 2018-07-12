@@ -1,10 +1,11 @@
-package main.java.vistas;
+package main.java.vistas.zonas;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import main.java.cartas.ZonaMagicasYTrampas;
 import main.java.cartas.magica.Magica;
 import main.java.cartas.trampa.Trampa;
+import main.java.vistas.cartas.CartaVista;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

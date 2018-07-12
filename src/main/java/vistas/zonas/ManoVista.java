@@ -1,4 +1,4 @@
-package main.java.vistas;
+package main.java.vistas.zonas;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -8,6 +8,8 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import main.java.cartas.Carta;
 import main.java.general.Mano;
+import main.java.vistas.cartas.CartaEnManoVista;
+import main.java.vistas.cartas.CartaVista;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

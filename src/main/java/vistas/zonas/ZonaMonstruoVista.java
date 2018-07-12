@@ -1,4 +1,4 @@
-package main.java.vistas;
+package main.java.vistas.zonas;
 
 import javafx.geometry.HPos;
 import javafx.scene.image.ImageView;
@@ -6,6 +6,8 @@ import javafx.scene.layout.*;
 import main.java.cartas.ZonaMonstruos;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.controlador.GeneradorDeImagenes;
+import main.java.vistas.cartas.CartaVista;
+import main.java.vistas.cartas.MonstruoVista;
 
 import java.util.ArrayList;
 import java.util.Observer;

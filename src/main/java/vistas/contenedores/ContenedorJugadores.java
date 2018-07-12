@@ -1,10 +1,11 @@
-package main.java.vistas;
+package main.java.vistas.contenedores;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import main.java.general.Jugador;
-import main.java.vistas.ContenedorBarraVidas;
+import main.java.vistas.JugadorVista;
+import main.java.vistas.contenedores.ContenedorBarraVidas;
 
 import java.util.ArrayList;
 import java.util.HashMap;

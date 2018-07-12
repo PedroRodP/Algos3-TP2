@@ -1,4 +1,4 @@
-package main.java.vistas;
+package main.java.vistas.cartas;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -9,6 +9,7 @@ import main.java.excepciones.ExcepcionCartaBocaAbajo;
 import main.java.excepciones.ExcepcionFaseIncorrecta;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.excepciones.ExcepcionMonstruoYaAtaco;
+import main.java.vistas.Alerta;
 
 import java.util.LinkedList;
 

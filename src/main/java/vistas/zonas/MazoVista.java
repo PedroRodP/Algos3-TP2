@@ -1,4 +1,4 @@
-package main.java.vistas;
+package main.java.vistas.zonas;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;

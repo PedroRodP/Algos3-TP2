@@ -1,9 +1,10 @@
-package main.java.vistas;
+package main.java.vistas.zonas;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import main.java.cartas.ZonaCampo;
+import main.java.vistas.cartas.CampoVista;
 
 import java.util.Observable;
 import java.util.Observer;

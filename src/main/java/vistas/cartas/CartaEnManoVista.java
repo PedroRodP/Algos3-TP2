@@ -1,4 +1,4 @@
-package main.java.vistas;
+package main.java.vistas.cartas;
 
 
 import javafx.scene.control.Label;
@@ -9,6 +9,7 @@ import main.java.cartas.monstruo.Monstruo;
 import main.java.controlador.GeneradorDeImagenes;
 import main.java.controlador.Main;
 import main.java.excepciones.*;
+import main.java.vistas.Alerta;
 
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
@@ -71,12 +72,12 @@ public class CartaEnManoVista extends CartaVista {
     }
 
     @Override
-    protected ImageView obtenerImagen() throws FileNotFoundException {
+    public ImageView obtenerImagen() throws FileNotFoundException {
         return GeneradorDeImagenes.obtenerImagenDelanteraDeCarta(carta);
     }
 
     @Override
-    protected String obtenerNombre() {
+    public String obtenerNombre() {
         return carta.obtenerNombre();
     }
 

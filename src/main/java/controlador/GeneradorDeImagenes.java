@@ -22,4 +22,16 @@ public class GeneradorDeImagenes {
     public static ImageView obtenerImagenTraseraDeCarta(){
         return new ImageView("main/java/imagenes/cartas/Carta_dada_vuelta.jpg");
     }
+
+    public static Image obtenerImagenDeFondo(){
+        return new Image("main/java/imagenes/otras/fondo5.jpg",0,0,false,true);
+    }
+
+    public static ImageView obtenerLogo(){
+        return new ImageView("main/java/imagenes/otras/logo.png");
+    }
+
+    public static Image obtenerFondoMenu(){
+        return new Image("main/java/imagenes/otras/yugimenu.jpg");
+    }
 }

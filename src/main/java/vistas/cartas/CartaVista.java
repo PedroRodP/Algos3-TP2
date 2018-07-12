@@ -1,4 +1,4 @@
-package main.java.vistas;
+package main.java.vistas.cartas;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
@@ -11,6 +11,7 @@ import javafx.scene.paint.Paint;
 import main.java.cartas.Carta;
 import main.java.controlador.GeneradorDeImagenes;
 import main.java.controlador.Main;
+import main.java.vistas.AccionCartaVista;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -77,13 +78,13 @@ public abstract class CartaVista {
         } catch (FileNotFoundException e) {}
     }
 
-    protected ImageView obtenerImagen() throws FileNotFoundException {
+    public ImageView obtenerImagen() throws FileNotFoundException {
         return (carta.estaBocaArriba())?
             GeneradorDeImagenes.obtenerImagenDelanteraDeCarta(carta):
             GeneradorDeImagenes.obtenerImagenTraseraDeCarta();
     }
 
-    protected String obtenerNombre(){
+    public String obtenerNombre(){
         return (carta.estaBocaArriba()) ? carta.obtenerNombre() : "Oculta";
     }
 
