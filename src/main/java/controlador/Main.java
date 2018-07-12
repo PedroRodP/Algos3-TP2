@@ -49,7 +49,7 @@ public class Main extends Application {
 
         GridPane contenedorPrincipal = new GridPane();
         contenedorPrincipal.setBackground(new Background(new BackgroundImage(
-                new Image("main/java/imagenes/otras/fondo5jpg",0,0,false,true),
+                new Image("main/java/imagenes/otras/fondo5.jpg",0,0,false,true),
                 null, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(0,0,false,
                 false,false,true)
         )));

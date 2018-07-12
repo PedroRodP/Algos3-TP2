@@ -33,7 +33,8 @@ public class CartaEnManoVista extends CartaVista {
 
     private void jugarCarta(boolean bocaArriba){
         try {
-            Main.alGoOh.jugarCartaBocaArriba(carta);
+        	if (bocaArriba) Main.alGoOh.jugarCartaBocaArriba(carta);
+        	else Main.alGoOh.jugarCartaBocaAbajo(carta);
         } catch (ExcepcionSacrificiosInsuficientes e) {
             LinkedList<Monstruo> monstruos= new LinkedList<>();
             for (MonstruoGeneralVista mgv : Main.obtenerMonstruosSeleccionados()){
@@ -46,7 +47,7 @@ public class CartaEnManoVista extends CartaVista {
             Main.desseleccionarMonstruos();
 
             try {
-
+            	
                 if (bocaArriba) Main.alGoOh.jugarSacrificandoBocaArriba(carta,monstruos);
                 else Main.alGoOh.jugarSacrificandoBocaAbajo(carta,monstruos);
 
