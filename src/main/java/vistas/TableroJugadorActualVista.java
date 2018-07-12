@@ -13,7 +13,7 @@ public class TableroJugadorActualVista{
         RowConstraints filaMano = new RowConstraints();
         filaMano.setPercentHeight(25);
         tablero.getRowConstraints().add(filaMano);
-        StackPane mano = new StackPane();
+        GridPane mano = new GridPane();
         new ManoVista(jugador.obtenerMano(),mano);
         tablero.add(mano,0,3);
 

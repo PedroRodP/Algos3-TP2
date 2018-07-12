@@ -22,4 +22,8 @@ public class GeneradorDeImagenes {
     public static ImageView obtenerImagenTraseraDeCarta(){
         return new ImageView("main/java/imagenes/cartas/Carta_dada_vuelta.jpg");
     }
+
+    public static ImageView obtenerImagenDeCartaZonaMonstruo(){
+        return new ImageView("main/java/imagenes/cartas/MonsterCardZone.jpg");
+    }
 }

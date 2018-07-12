@@ -1,10 +1,7 @@
 package main.java.vistas;
 
 import javafx.scene.control.Label;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.*;
 import main.java.general.Jugador;
 
 public class TableroJugadorRivalVista{
@@ -38,8 +35,16 @@ public class TableroJugadorRivalVista{
         RowConstraints filaZonaCampo = new RowConstraints();
         filaZonaCampo.setPercentHeight(25);
         tablero.getRowConstraints().add(filaZonaCampo);
+
+        BorderPane pane = new BorderPane();
+        tablero.add(pane,0,3);
+
         GridPane zonaCampo = new GridPane();
+        pane.setRight(zonaCampo);
         new ZonaCampoVista(jugador.obtenerZonaCampo(),zonaCampo);
-        tablero.add(zonaCampo,0,3);
+
+        StackPane mazoPane = new StackPane();
+        pane.setLeft(mazoPane);
+        new MazoVista(jugador.obtenerMazo(),mazoPane);
     }
 }

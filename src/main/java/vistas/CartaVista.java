@@ -18,6 +18,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 public abstract class CartaVista {
+    public static final int ALTO = 60;
     protected AccionCartaVista accionCartaVista;
     protected Carta carta;
     protected Label nombre;
@@ -69,7 +70,7 @@ public abstract class CartaVista {
         try {
             if (imagen != null) pane.getChildren().remove(imagen); // Quitar anterior si existe
             imagen = obtenerImagen();
-            imagen.setFitHeight(60);
+            imagen.setFitHeight(ALTO);
             imagen.setPreserveRatio(true);
             GridPane.setHalignment(imagen,HPos.CENTER);
             pane.add(imagen,0,0);

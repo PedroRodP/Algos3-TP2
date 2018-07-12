@@ -1,8 +1,11 @@
 package main.java.vistas;
 
+import javafx.geometry.HPos;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import main.java.cartas.ZonaMonstruos;
 import main.java.cartas.monstruo.Monstruo;
+import main.java.controlador.GeneradorDeImagenes;
 
 import java.util.ArrayList;
 import java.util.Observer;
@@ -42,17 +45,26 @@ public class ZonaMonstruoVista {
     }
 
     private void actualizar(){
-
         for (CartaVista carta : vistas) carta.removerObservador();
         // Quitar las antiguas vistas del pane
         pane.getChildren().clear();
 
         // Agregar las nuevas vistas
         LinkedList<Monstruo> monstruos = zona.obtenerMonstruos();
-        for (int i = 0; i < monstruos.size(); i++){
+        int i;
+        for (i = 0; i < monstruos.size(); i++){
             GridPane gridPane = new GridPane();
             vistas.add(new MonstruoVista(monstruos.get(i),gridPane));
             pane.add(gridPane,i,0);
         }
+
+        for (;i < MAX_CANTIDAD_CARTAS; i++){
+            ImageView imageView = GeneradorDeImagenes.obtenerImagenDeCartaZonaMonstruo();
+            imageView.setFitHeight(CartaVista.ALTO);
+            imageView.setPreserveRatio(true);
+            GridPane.setHalignment(imageView,HPos.CENTER);
+            pane.add(imageView,i,0);
+        }
+
     }
 }
