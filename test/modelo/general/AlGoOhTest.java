@@ -259,7 +259,7 @@ public class AlGoOhTest {
 	}
 	
 	@Test
-	public void test14SeJuegaCartaBocaArribaConSacrificiosYTodasLasSacrificadasVanAlCementerio() throws ExcepcionAlGoOh {
+	public void test15SeJuegaCartaBocaArribaConSacrificiosYTodasLasSacrificadasVanAlCementerio() throws ExcepcionAlGoOh {
 		AlGoOh juego = new AlGoOh();
 		Monstruo monstruoA = new InsectoComeHombres();
 		Monstruo monstruoB = new AgresorOscuro();
@@ -274,5 +274,17 @@ public class AlGoOhTest {
 		
 		assert(monstruoA.estaEnElCementerio());
 		assert(monstruoB.estaEnElCementerio());
+	}
+	
+	@Test
+	public void test16SeJueganDosCartasIgualesBocaAbajoYSiSePoneUnaBocaArribaLaOtraSigueEstandoBocaAbajo() throws ExcepcionAlGoOh {
+		AlGoOh juego = new AlGoOh();
+		Monstruo monstruoA = new AgresorOscuro();
+		Monstruo monstruoB = new AgresorOscuro();
+		juego.jugarCartaBocaAbajo(monstruoA);
+		juego.jugarCartaBocaAbajo(monstruoB);
+		juego.voltearCarta(monstruoA);
+		assert(monstruoA.estaBocaArriba());
+		assert(!monstruoB.estaBocaArriba());
 	}
 }

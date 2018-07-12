@@ -41,34 +41,25 @@ public class Mazo extends Lugar{
 		return cartas.size();
 	}
 	
-	private void obtenerCartaAleatoriaDe(FabricaDeCartas fabrica) {
-		Carta carta = fabrica.obtenerCartaAleatoria();
-		carta.setLugar(this);
-		this.cartas.add(carta); //Asigna carta al mazo
-	}
-	
 	private void generarCartasAleatoriamente() {
 		
 		FabricaDeCartas fabrica = new FabricaDeCartas();
 		
-		fabrica.generarMonstruos();
 		for (int i = 0; i < MAX_MONSTRUOS; i++) {
-			this.obtenerCartaAleatoriaDe(fabrica);
+			cartas.add(fabrica.obtenerMonstruoAleatorio());
+		
 		}
 		
-		fabrica.generarMagicas();
 		for (int i = 0; i < MAX_MAGICAS; i++) {
-			this.obtenerCartaAleatoriaDe(fabrica);
+			cartas.add(fabrica.obtenerMagicaAleatoria());
 		}
 		
-		fabrica.generarTrampas();
 		for (int i = 0; i < MAX_TRAMPAS; i++) {
-			this.obtenerCartaAleatoriaDe(fabrica);
+			cartas.add(fabrica.obtenerTrampaAleatoria());
 		}
 		
-		fabrica.generarCampos();
 		for (int i = 0; i < MAX_CAMPOS; i++) {
-			this.obtenerCartaAleatoriaDe(fabrica);
+			cartas.add(fabrica.obtenerCampoAleatorio());
 		}
 	}
 

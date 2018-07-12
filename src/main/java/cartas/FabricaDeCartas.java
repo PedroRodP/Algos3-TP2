@@ -10,73 +10,61 @@ import main.java.cartas.trampa.trampas.*;
 
 public class FabricaDeCartas {
 	
-	private LinkedList<Carta> cartas;
-	private int i; //Es el indice de la lista y representa la cantidad de cartas en la lista tambien
-	
-	public FabricaDeCartas() {
-		
-		cartas = new LinkedList<Carta>();
+	private Carta cartaRandom(LinkedList<Carta> cartas) {
+	   int rango = (int)(Math.random() * cartas.size());
+	   return cartas.get(rango);
 	}
 	
-	private int numeroRandomEnIntervalo(int min, int max) {
-	   int range = (max - min) + 1;     
-	   return (int)(Math.random() * range) + min;
+	
+	public Carta obtenerMonstruoAleatorio() {
+		LinkedList<Carta> monstruos = new LinkedList<Carta>();
+		monstruos.add(new AbismoReluciente());
+		monstruos.add(new AgresorOscuro());
+		monstruos.add(new AgujaAsesina());
+		monstruos.add(new Aitsu());
+		monstruos.add(new AlcanzadorDeGarra());
+		monstruos.add(new AmanteFeliz());
+		monstruos.add(new Ansatsu());
+		monstruos.add(new AntiguoDeLasProfundidades());
+		monstruos.add(new AraniaLanzadora());
+		monstruos.add(new AsesinoDeLaEspada());
+		monstruos.add(new BestiaAmfibia());
+		monstruos.add(new BestiaDeTalwar());
+		monstruos.add(new BrujaOscura());
+		monstruos.add(new DragonBlancoDeOjosAzules());
+		monstruos.add(new DragonDefinitivoDeOjosAzules());
+		monstruos.add(new Jinzo7());
+		monstruos.add(new InsectoComeHombres());
+		monstruos.add(new BrazoDerechoExodia());
+		monstruos.add(new BrazoIzquierdoExodia());
+		monstruos.add(new CabezaExodia());
+		monstruos.add(new PiernaDerechaExodia());
+		monstruos.add(new PiernaIzquierdaExodia());
+		return cartaRandom(monstruos);
 	}
 	
-	public Carta obtenerCartaAleatoria() {
-		int pos = numeroRandomEnIntervalo(0, i-1);
-		return cartas.get(pos);
+	
+	
+	public Carta obtenerMagicaAleatoria() {
+		LinkedList<Carta> magicas = new LinkedList<Carta>();
+		magicas.add(new AgujeroNegro());
+		magicas.add(new Fisura());
+		magicas.add(new OllaDeLaCodicia());
+		return cartaRandom(magicas);
 	}
 	
-	public void generarMonstruos() {
-		
-		cartas.add(i++, new AbismoReluciente());
-		cartas.add(i++, new AgresorOscuro());
-		cartas.add(i++, new AgujaAsesina());
-		cartas.add(i++, new Aitsu());
-		cartas.add(i++, new AlcanzadorDeGarra());
-		cartas.add(i++, new AmanteFeliz());
-		cartas.add(i++, new Ansatsu());
-		cartas.add(i++, new AntiguoDeLasProfundidades());
-		cartas.add(i++, new AraniaLanzadora());
-		cartas.add(i++, new AsesinoDeLaEspada());
-		cartas.add(i++, new BestiaAmfibia());
-		cartas.add(i++, new BestiaDeTalwar());
-		cartas.add(i++, new BrujaOscura());
-		cartas.add(i++, new DragonBlancoDeOjosAzules());
-		cartas.add(i++, new DragonDefinitivoDeOjosAzules());
-		cartas.add(i++, new Jinzo7());
-		cartas.add(i++, new InsectoComeHombres());
-		cartas.add(i++, new BrazoDerechoExodia());
-		cartas.add(i++, new BrazoIzquierdoExodia());
-		cartas.add(i++, new CabezaExodia());
-		cartas.add(i++, new PiernaDerechaExodia());
-		cartas.add(i++, new PiernaIzquierdaExodia());
+	public Carta obtenerTrampaAleatoria() {
+		LinkedList<Carta> trampas = new LinkedList<Carta>();
+		trampas.add(new CilindroMagico());
+		trampas.add(new Reinforcements());
+		return cartaRandom(trampas);
 	}
 	
-	public void generarMagicas() {
-		
-		i = 0;
-		
-		cartas.add(i++, new AgujeroNegro());
-		cartas.add(i++, new Fisura());
-		cartas.add(i++, new OllaDeLaCodicia());
-	}
-	
-	public void generarTrampas() {
-		
-		i = 0;
-		
-		cartas.add(i++, new CilindroMagico());
-		cartas.add(i++, new Reinforcements());
-	}
-	
-	public void generarCampos() {
-		
-		i = 0;
-		
-		cartas.add(i++, new Wasteland());
-		cartas.add(i++, new Sogen());
+	public Carta obtenerCampoAleatorio() {
+		LinkedList<Carta> campos = new LinkedList<Carta>();
+		campos.add(new Wasteland());
+		campos.add(new Sogen());
+		return cartaRandom(campos);
 	}
 	
 }
