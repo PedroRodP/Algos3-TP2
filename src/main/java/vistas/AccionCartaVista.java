@@ -2,6 +2,8 @@ package main.java.vistas;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,6 +24,8 @@ public class AccionCartaVista {
         buttons = new ArrayList<>();
         this.cartaVista = cartaVista;
 
+        GridPane.setHalignment(pane,HPos.CENTER);
+
     }
 
     public void agregarAccion(String mensaje, EventHandler<ActionEvent> eventHandler){
@@ -33,17 +37,22 @@ public class AccionCartaVista {
     public Node obtenerVista() {
         pane.getChildren().clear();
 
-        pane.add(new Label(cartaVista.obtenerNombre()),0,1);
+        Label nombre = new Label(cartaVista.obtenerNombre());
+        GridPane.setHalignment(nombre,HPos.CENTER);
+        pane.add(nombre,0,1);
 
         try {
             ImageView imagen = cartaVista.obtenerImagen();
             imagen.setFitHeight(200);
             imagen.setFitWidth(160);
+            GridPane.setHalignment(imagen,HPos.CENTER);
             pane.add(imagen,0,0);
         } catch (FileNotFoundException e) {}
 
         for (int i = 0; i < buttons.size();i++){
-            pane.add(buttons.get(i),0,i+3);
+            Button b = buttons.get(i);
+            GridPane.setHalignment(b,HPos.CENTER);
+            pane.add(b,0,i+3);
         }
 
         return pane;
