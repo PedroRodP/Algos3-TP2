@@ -10,17 +10,20 @@ import javafx.scene.layout.VBox;
 import main.java.general.Jugador;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
 public class ContenedorBarraVidas {
-        private  ContenedorJugadores contenedorJugadores;
+        private HashMap<Jugador,JugadorVista> mapJugadores ;
         private ArrayList<Jugador> jugadores;
-        private HBox contenedor;
-    public ContenedorBarraVidas(ContenedorJugadores contenedorJugadores, ArrayList<Jugador> jugadores, Pane pane) {
-        this.contenedorJugadores = contenedorJugadores;
+        private VBox contenedor;
+
+    public ContenedorBarraVidas(HashMap<Jugador,JugadorVista> mapJugadores, ArrayList<Jugador> jugadores, Pane pane) {
+
+        this.mapJugadores = mapJugadores;
         this.jugadores = jugadores;
-        contenedor = new HBox(250);
+        contenedor = new VBox(250);
         contenedor.setAlignment(Pos.CENTER);
         actualizar();
         pane.getChildren().add(contenedor);
@@ -34,7 +37,7 @@ public class ContenedorBarraVidas {
     public void actualizar(){
         contenedor.getChildren().clear();
         for (Jugador jug: jugadores){
-            JugadorVista vistaJug = contenedorJugadores.obtenerJugadorVista(jug);
+            JugadorVista vistaJug = mapJugadores.get(jug);
             VBox vida = new VBox(10);
             HBox barra = new HBox(10);
             barra.getChildren().addAll(porgresBar(jug.obtenerPuntosDeVida()),new Label(jug.obtenerPuntosDeVida()+"/8000"));
@@ -50,7 +53,6 @@ public class ContenedorBarraVidas {
         vidaBarra.progressProperty().unbind();
         vidaBarra.progressProperty().bind(task.progressProperty());
         new Thread(task).start();
-        vidaBarra.setOnMousePressed(event -> Alerta.display("Vida restante",new Label("Vida: "+vida)));
         return vidaBarra;
     }
 

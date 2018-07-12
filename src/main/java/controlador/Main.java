@@ -80,15 +80,8 @@ public class Main extends Application {
         contenedorTableros.cambiarTablero(alGoOh.turnoActual());
         contenedorJugadores.cambiarJugador(alGoOh.turnoActual());
 
-        StackPane paneTop = new StackPane();
-        paneTop.setAlignment(Pos.CENTER);
-        pane.setMinHeight(150);
-        new ContenedorBarraVidas(contenedorJugadores,alGoOh.obtenerJugadores(),paneTop);
 
-        BorderPane juego = new BorderPane();
-        juego.setCenter(contenedorPrincipal);
-        juego.setTop(paneTop);
-        Scene scene = new Scene(juego, ANCHO, ALTO);
+        Scene scene = new Scene(contenedorPrincipal, ANCHO, ALTO);
         stage.setScene(scene);
         stage.show();
     }
