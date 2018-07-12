@@ -6,7 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -62,19 +64,23 @@ public class Alerta {
         LinkedList<String> nombres = new LinkedList<>();
         Stage ventana = new Stage();
         ventana.initModality(Modality.APPLICATION_MODAL);
-        ventana.setTitle("menu principal");
+        ventana.setTitle("Menu principal");
         ventana.setMinWidth(300);
         ventana.setMinHeight(300);
 
 
         VBox layout = new VBox(10);
-        TextField jugador1 = new TextField("nombre jugador 1");
-        TextField jugador2 = new TextField("nombre jugador 2");
+
+        TextField jugador1 = new TextField("Jugador 1");
+        jugador1.setMaxWidth(150);
+        TextField jugador2 = new TextField("Jugador 2");
+        jugador2.setMaxWidth(150);
+
         String nombre1 = jugador1.getText();
         String nombre2 = jugador2.getText();
         nombres.add(nombre1);
         nombres.add(nombre2);
-        Button botonInicio = new Button("iniciar juego");
+        Button botonInicio = new Button("Iniciar juego");
         botonInicio.setOnAction(event -> {
             String nombre10 = jugador1.getText();
             String nombre20 = jugador2.getText();
@@ -85,8 +91,14 @@ public class Alerta {
 
         layout.getChildren().addAll(jugador1,jugador2,botonInicio);
         layout.setAlignment(Pos.CENTER);
-
-        Scene escena = new Scene(layout);
+        StackPane stack = new StackPane();
+        ImageView imagen = new ImageView("main/java/imagenes/otras/yugimenu.jpg");
+        imagen.setFitWidth(300);
+        imagen.setFitHeight(300);
+        stack.getChildren().addAll(imagen,layout);
+        Scene escena = new Scene(stack);
+        ventana.getIcons().clear();
+        ventana.getIcons().add(new Image("main/java/imagenes/cartas/Carta_dada_vuelta.jpg"));
         ventana.setScene(escena);
         ventana.showAndWait();
 
