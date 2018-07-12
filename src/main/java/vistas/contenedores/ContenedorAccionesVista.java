@@ -26,17 +26,17 @@ public class ContenedorAccionesVista {
         pane.getColumnConstraints().add(col);
 
         RowConstraints fila1 = new RowConstraints();
-        fila1.setPercentHeight(55);
+        fila1.setPercentHeight(60);
         pane.getRowConstraints().add(fila1);
 
         RowConstraints fila2 = new RowConstraints();
-        fila2.setPercentHeight(45);
+        fila2.setPercentHeight(40);
         pane.getRowConstraints().add(fila2);
 
         cartaVistaPane = new BorderPane();
         pane.add(cartaVistaPane,0,0);
 
-        VBox accionesJuegoPane = new VBox();
+        VBox accionesJuegoPane = new VBox(10);
         accionesJuegoPane.setAlignment(Pos.CENTER);
         pane.add(accionesJuegoPane,0,1);
 
