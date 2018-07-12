@@ -21,7 +21,7 @@ public class MagicaVista extends CartaVista {
     protected void actualizarAcciones() {
         final Magica magica = (Magica) carta;
 
-        if (Main.estaEnFasePreparacion()) {
+        if (Main.estaEnFasePreparacion() && !magica.estaBocaArriba()) {
             accionCartaVista.agregarAccion("Voltear carta", event -> {
                 try {
                     Main.alGoOh.voltearCarta(magica);

@@ -10,6 +10,8 @@ import main.java.excepciones.ExcepcionFaseIncorrecta;
 import main.java.excepciones.ExcepcionMonstruoNoPuedeAtacar;
 import main.java.excepciones.ExcepcionMonstruoYaAtaco;
 
+import java.util.LinkedList;
+
 
 public class MonstruoVista extends MonstruoGeneralVista  {
 
@@ -57,6 +59,7 @@ public class MonstruoVista extends MonstruoGeneralVista  {
         if (Main.estaEnFaseAtaque()){
             accionCartaVista.agregarAccion("Aplicar efecto",event -> {
                 for (MonstruoGeneralVista m : Main.obtenerMonstruosSeleccionados()){
+                    if (mePertenece(m.obtenerMonstruo())) break;
                     try {
                         Main.alGoOh.aplicarEfectoDeMonstruo(monstruo,m.obtenerMonstruo());
                     } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
@@ -64,12 +67,17 @@ public class MonstruoVista extends MonstruoGeneralVista  {
                     }
                     return;
                 }
-                Alerta.display("Atención",new Label("Debe seleccionar un monstruo."));
+                Alerta.display("Atención",new Label("Debe seleccionar un monstruo rival."));
             });
 
             accionCartaVista.agregarAccion("Atacar", event -> {
                 try {
-                    Main.alGoOh.atacarCon(monstruo,Main.obtenerMonstruosSeleccionados().get(0).obtenerMonstruo());
+                    Monstruo m = Main.obtenerMonstruosSeleccionados().get(0).obtenerMonstruo();
+                    if (mePertenece(m)){
+                        Alerta.display("Atención",new Label("Debe seleccionar un monstruo rival."));
+                        return;
+                    }
+                    Main.alGoOh.atacarCon(monstruo,m);
                     Main.desseleccionarMonstruos();
                 } catch (ExcepcionFaseIncorrecta excepcionFaseIncorrecta) {
                     Alerta.faseIncorrecta();
@@ -82,5 +90,9 @@ public class MonstruoVista extends MonstruoGeneralVista  {
                 }
             });
         }
+    }
+
+    public static boolean mePertenece(Monstruo m){
+        return Main.alGoOh.turnoActual().obtenerZonaMonstruos().obtenerMonstruos().contains(m);
     }
 }
