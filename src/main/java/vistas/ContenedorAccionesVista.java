@@ -1,5 +1,7 @@
 package main.java.vistas;
 
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
@@ -31,6 +33,7 @@ public class ContenedorAccionesVista {
         pane.add(cartaVistaPane,0,0);
 
         VBox accionesJuegoPane = new VBox();
+        accionesJuegoPane.setAlignment(Pos.CENTER);
         pane.add(accionesJuegoPane,0,1);
 
         Button siguienteTurno = new Button("Siguiente turno");

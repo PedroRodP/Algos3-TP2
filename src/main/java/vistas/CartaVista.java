@@ -34,7 +34,6 @@ public abstract class CartaVista {
         RowConstraints filaImagen = new RowConstraints();
         filaImagen.setPercentHeight(80);
         RowConstraints filaNombre = new RowConstraints();
-        //filaNombre.setPercentHeight(10);
         this.pane.getRowConstraints().addAll(filaImagen,filaNombre);
 
         ColumnConstraints col = new ColumnConstraints();
@@ -43,6 +42,8 @@ public abstract class CartaVista {
 
         this.pane.setOnMouseClicked(event -> {
             Main.removerAcciones();
+            accionCartaVista.borrarAcciones();
+            actualizarAcciones();
             Main.agregarAccion(accionCartaVista);
         });
         observer = (o, arg) -> {
@@ -97,5 +98,5 @@ public abstract class CartaVista {
         if (observer != null) carta.deleteObserver(observer);
     }
 
-    //protected abstract void actualizarAcciones();
+    protected abstract void actualizarAcciones();
 }

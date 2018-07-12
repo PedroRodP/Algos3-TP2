@@ -10,7 +10,7 @@ public class FaseMagica extends Fase {
 
 	@Override
 	public String obtenerNombre() {
-		return "Fase mágica";
+		return AlGoOh.FASE_MAGICA;
 	}
 
 	@Override

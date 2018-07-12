@@ -32,6 +32,10 @@ public class AccionCartaVista {
         pane.getColumnConstraints().add(colum);
     }
 
+    public void borrarAcciones(){
+        buttons.clear();
+    }
+
     public void agregarAccion(String mensaje, EventHandler<ActionEvent> eventHandler){
         Button button = new Button(mensaje);
         button.setOnAction(eventHandler);

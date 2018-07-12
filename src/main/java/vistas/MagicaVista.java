@@ -15,7 +15,11 @@ import main.java.excepciones.ExcepcionMazoVacio;
 public class MagicaVista extends CartaVista {
     public MagicaVista(Magica magica, GridPane pane) {
         super(magica,pane);
+    }
 
+    @Override
+    protected void actualizarAcciones() {
+        final Magica magica = (Magica) carta;
         accionCartaVista.agregarAccion("Aplicar Magia",event -> {
             try {
                 Main.alGoOh.aplicarMagica(magica);

@@ -8,4 +8,7 @@ public class MagicaRivalVista extends CartaVista{
     public MagicaRivalVista(Magica magica, GridPane pane) {
         super(magica,pane);
     }
+
+    @Override
+    protected void actualizarAcciones() {}
 }

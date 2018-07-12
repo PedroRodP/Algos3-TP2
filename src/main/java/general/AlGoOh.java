@@ -33,6 +33,10 @@ public class AlGoOh extends Observable {
 		return list;
 	}
 
+	public static final String FASE_PREPARACION = "Fase de preparación";
+	public static final String FASE_ATAQUE = "Fase ataque";
+	public static final String FASE_MAGICA = "Fase mágica";
+
 	private Jugador jugadorA;
 	private Jugador jugadorB;
 	private EstadoDeJuego estado;

@@ -17,6 +17,11 @@ public class CartaEnManoVista extends CartaVista {
 
     public CartaEnManoVista(Carta carta, GridPane pane) {
         super(carta,pane);
+    }
+
+    @Override
+    protected void actualizarAcciones() {
+        if (!Main.estaEnFasePreparacion()) return;
 
         accionCartaVista.agregarAccion("Jugar carta boca arriba", event -> {
             try {
@@ -78,7 +83,6 @@ public class CartaEnManoVista extends CartaVista {
                 throw new RuntimeException();
             }
         });
-
     }
 
     @Override
