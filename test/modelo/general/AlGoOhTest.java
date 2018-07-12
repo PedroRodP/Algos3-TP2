@@ -2,6 +2,8 @@ package modelo.general;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.LinkedList;
+
 import org.junit.Test;
 
 import main.java.cartas.Carta;
@@ -14,9 +16,11 @@ import main.java.cartas.monstruo.Monstruo;
 import main.java.cartas.monstruo.monstruos.AgresorOscuro;
 import main.java.cartas.monstruo.monstruos.AgujaAsesina;
 import main.java.cartas.monstruo.monstruos.AmanteFeliz;
+import main.java.cartas.monstruo.monstruos.AraniaLanzadora;
 import main.java.cartas.monstruo.monstruos.BrazoDerechoExodia;
 import main.java.cartas.monstruo.monstruos.BrazoIzquierdoExodia;
 import main.java.cartas.monstruo.monstruos.CabezaExodia;
+import main.java.cartas.monstruo.monstruos.InsectoComeHombres;
 import main.java.cartas.monstruo.monstruos.PiernaDerechaExodia;
 import main.java.cartas.monstruo.monstruos.PiernaIzquierdaExodia;
 import main.java.excepciones.ExcepcionAlGoOh;
@@ -68,7 +72,7 @@ public class AlGoOhTest {
 	
 	@Test
 	(expected = ExcepcionFaseIncorrecta.class)
-	public void test03JugadorPuedeJugarCartaBocaArribaEnLaSegundaFasePeroNoAtacarEnLaMismaFase() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta, ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionMonstruoYaAtaco {
+	public void test03JugadorPuedeJugarCartaBocaArribaEnLaSegundaFasePeroNoAtacarEnLaMismaFase() throws ExcepcionAlGoOh {
 		
 		AlGoOh juego = new AlGoOh();
 		Jugador jugador = juego.turnoActual();
@@ -83,7 +87,7 @@ public class AlGoOhTest {
 	}
 	
 	@Test
-	public void test04JugadorAtacaEnLaTerceraFaseYGanaPorEfectoDeCampo() throws ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado, ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta, ExcepcionFaseIncorrecta, ExcepcionMonstruoNoPuedeAtacar, ExcepcionCartaBocaAbajo, ExcepcionMonstruoYaAtaco {
+	public void test04JugadorAtacaEnLaTerceraFaseYGanaPorEfectoDeCampo() throws ExcepcionAlGoOh {
 		
 		AlGoOh juego = new AlGoOh();
 		Jugador jugador = juego.turnoActual();
@@ -105,7 +109,7 @@ public class AlGoOhTest {
 	}
 	
 	@Test
-	public void test05JugadorAplicaMagicaEnLaCuartaFaseYDestruyeMonstruoOponente() throws ExcepcionZonaCompleta, ExcepcionSacrificiosInsuficientes, ExcepcionZonaIncorrecta, ExcepcionFaseIncorrecta, ExcepcionTurnoFinalizo, ExcepcionJuegoTerminado, ExcepcionCartaBocaAbajo, ExcepcionMazoVacio {
+	public void test05JugadorAplicaMagicaEnLaCuartaFaseYDestruyeMonstruoOponente() throws ExcepcionAlGoOh {
 		
 		AlGoOh juego = new AlGoOh();
 		Jugador jugador = juego.turnoActual();
@@ -187,5 +191,88 @@ public class AlGoOhTest {
 		
 		juego.atacarCon(atacante, atacado);
 		juego.atacarCon(atacante, atacado);
+	}
+	
+	@Test
+	public void test11SeVolteaCartaEnFasePreparacionYCartaPasaAEstarBocaArriba() throws ExcepcionAlGoOh {
+		
+		AlGoOh juego = new AlGoOh();
+		
+		Monstruo m = new AgresorOscuro();
+		juego.jugarCartaBocaAbajo(m);
+		juego.voltearCarta(m);
+		
+		assert(m.estaBocaArriba());
+	}
+	
+	@Test
+	(expected = ExcepcionFaseIncorrecta.class)
+	public void test12SeIntentaVoltearCartaEnFaseDistintaAPreparacionYSeLanzaExcepcionFaseIncorrecta() throws ExcepcionAlGoOh {
+		
+		AlGoOh juego = new AlGoOh();
+		
+		Monstruo m = new AgresorOscuro();
+		juego.jugarCartaBocaAbajo(m);
+		
+		juego.pasarASiguienteFase();
+		juego.voltearCarta(m);
+	
+	}
+	
+	@Test
+	public void test13SeJuegaInsectoComeHombresBocaAbajoYCuandoSeAplicaSuEfectoSeVolteaYMandaAlCementerioAlMonstruoElegido() throws ExcepcionAlGoOh {
+		
+		AlGoOh juego = new AlGoOh();
+		
+		Monstruo insecto = new InsectoComeHombres();
+		Monstruo m = new AgresorOscuro();
+		juego.jugarCartaBocaAbajo(insecto);
+		
+		juego.siguienteTurno();
+		juego.jugarCartaBocaArriba(m);  //El rival juega boca arriba un monstruo
+		
+		juego.siguienteTurno();
+		juego.pasarASiguienteFase(); //Vamos a fase ataque para poder aplicar efectos de monstruo 
+		
+		juego.aplicarEfectoDeMonstruo(insecto, m);
+		
+		assert(insecto.estaBocaArriba());
+		assert(m.estaEnElCementerio());
+	}
+	
+	@Test
+	public void test14SeJuegaCartaBocaAbajoConSacrificiosYTodasLasSacrificadasVanAlCementerio() throws ExcepcionAlGoOh {
+		AlGoOh juego = new AlGoOh();
+		Monstruo monstruoA = new InsectoComeHombres();
+		Monstruo monstruoB = new AgresorOscuro();
+		juego.jugarCartaBocaAbajo(monstruoA);
+		juego.jugarCartaBocaAbajo(monstruoB);
+		
+		LinkedList<Monstruo> sacrificados = new LinkedList<Monstruo>();
+		sacrificados.add(monstruoA);
+		sacrificados.add(monstruoB);
+		
+		juego.jugarSacrificandoBocaAbajo(new AraniaLanzadora(), sacrificados);
+		
+		assert(monstruoA.estaEnElCementerio());
+		assert(monstruoB.estaEnElCementerio());
+	}
+	
+	@Test
+	public void test14SeJuegaCartaBocaArribaConSacrificiosYTodasLasSacrificadasVanAlCementerio() throws ExcepcionAlGoOh {
+		AlGoOh juego = new AlGoOh();
+		Monstruo monstruoA = new InsectoComeHombres();
+		Monstruo monstruoB = new AgresorOscuro();
+		juego.jugarCartaBocaAbajo(monstruoA);
+		juego.jugarCartaBocaAbajo(monstruoB);
+		
+		LinkedList<Monstruo> sacrificados = new LinkedList<Monstruo>();
+		sacrificados.add(monstruoA);
+		sacrificados.add(monstruoB);
+		
+		juego.jugarSacrificandoBocaArriba(new AraniaLanzadora(), sacrificados);
+		
+		assert(monstruoA.estaEnElCementerio());
+		assert(monstruoB.estaEnElCementerio());
 	}
 }
