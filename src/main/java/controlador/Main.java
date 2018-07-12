@@ -48,10 +48,10 @@ public class Main extends Application {
         contenedorAcciones = new ContenedorAccionesVista(contAciones);
 
         GridPane contenedorPrincipal = new GridPane();
-        /*contenedorPrincipal.setBackground(new Background(new BackgroundImage(
-                new Image("main/java/imagenes/otras/yugi2.jpg",ANCHO,ALTO,false,true),
+        contenedorPrincipal.setBackground(new Background(new BackgroundImage(
+                new Image("main/java/imagenes/otras/fondo4.jpg",ANCHO,ALTO,false,true),
                 BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT
-        )));*/
+        )));
         setRowAndColumnConstraints(contenedorPrincipal);
 
         Pane pane = new Pane();
