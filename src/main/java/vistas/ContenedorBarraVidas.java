@@ -36,7 +36,9 @@ public class ContenedorBarraVidas {
         for (Jugador jug: jugadores){
             JugadorVista vistaJug = contenedorJugadores.obtenerJugadorVista(jug);
             VBox vida = new VBox(10);
-            vida.getChildren().addAll(new Label("Vida "+vistaJug.obtenerNombre()+" :"),porgresBar(jug.obtenerPuntosDeVida()));
+            HBox barra = new HBox(10);
+            barra.getChildren().addAll(porgresBar(jug.obtenerPuntosDeVida()),new Label(jug.obtenerPuntosDeVida()+"/8000"));
+            vida.getChildren().addAll(new Label("Vida "+vistaJug.obtenerNombre()+" :"),barra);
             contenedor.getChildren().add(vida);
         }
     }
