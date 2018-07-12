@@ -2,6 +2,7 @@ package main.java.vistas;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import main.java.cartas.Carta;
 import main.java.cartas.monstruo.Monstruo;
 import main.java.controlador.Main;
 import main.java.excepciones.ExcepcionCartaBocaAbajo;
@@ -15,7 +16,11 @@ public class MonstruoVista extends MonstruoGeneralVista  {
 
     public MonstruoVista(Monstruo monstruo,GridPane pane) {
         super(monstruo,pane);
+    }
 
+    @Override
+    protected void actualizarAcciones() {
+        Monstruo monstruo = (Monstruo) carta;
         accionCartaVista.agregarAccion("Seleccionar", event -> {
             altenarSeleccionar();
         });
@@ -71,5 +76,4 @@ public class MonstruoVista extends MonstruoGeneralVista  {
             }
         });
     }
-
 }

@@ -131,5 +131,15 @@ public class Main extends Application {
     public static ArrayList<MonstruoGeneralVista> obtenerMonstruosSeleccionados(){
         return monstruoVistaSeleccionados;
     }
+
+    public static boolean estaEnFasePreparacion(){
+        return alGoOh.obtenerNombreDeFase().equals(AlGoOh.FASE_PREPARACION);
+    }
+    public static boolean estaEnFaseAtaque(){
+        return alGoOh.obtenerNombreDeFase().equals(AlGoOh.FASE_ATAQUE);
+    }
+    public static boolean estaEnFaseMagica(){
+        return alGoOh.obtenerNombreDeFase().equals(AlGoOh.FASE_MAGICA);
+    }
 }
 

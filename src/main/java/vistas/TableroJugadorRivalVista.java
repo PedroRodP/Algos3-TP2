@@ -32,7 +32,7 @@ public class TableroJugadorRivalVista{
         filaZonaMagica.setPercentHeight(25);
         tablero.getRowConstraints().add(filaZonaMagica);
         GridPane zonaMagica = new GridPane();
-        new ZonaMagicaVista(jugador.obtenerZonaMagicaYTrampa(),zonaMagica);
+        new ZonaMagicaRivalVista(jugador.obtenerZonaMagicaYTrampa(),zonaMagica);
         tablero.add(zonaMagica,0,2);
 
         RowConstraints filaZonaCampo = new RowConstraints();

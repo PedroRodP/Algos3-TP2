@@ -14,11 +14,15 @@ public class MonstruoRivalVista extends MonstruoGeneralVista {
 
     public MonstruoRivalVista(Monstruo monstruo,GridPane pane) {
         super(monstruo, pane);
+    }
 
+    @Override
+    protected void actualizarAcciones() {
         accionCartaVista.agregarAccion("seleccionar", event -> {
-            Main.desseleccionarMonstruos();
+            if (!seleccionado) {
+                Main.desseleccionarMonstruos();
+            }
             altenarSeleccionar();
         });
     }
-
 }

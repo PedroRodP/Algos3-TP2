@@ -13,7 +13,7 @@ public class FasePreparacion extends Fase {
 
 	@Override
 	public String obtenerNombre() {
-		return "Fase de preparación";
+		return AlGoOh.FASE_PREPARACION;
 	}
 
 	@Override

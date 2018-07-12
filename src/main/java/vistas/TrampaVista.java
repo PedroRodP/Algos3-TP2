@@ -10,4 +10,7 @@ public class TrampaVista extends CartaVista{
     public TrampaVista(Trampa trampa, GridPane pane) {
         super(trampa,pane);
     }
+
+    @Override
+    protected void actualizarAcciones() {}
 }

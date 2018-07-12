@@ -11,7 +11,7 @@ public class FaseAtaque extends Fase {
 
 	@Override
 	public String obtenerNombre() {
-		return "Fase de ataque";
+		return AlGoOh.FASE_ATAQUE;
 	}
 
 	LinkedList<Monstruo> atacantes = new LinkedList<>();
