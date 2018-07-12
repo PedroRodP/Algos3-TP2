@@ -41,6 +41,5 @@ public class MagicaVista extends CartaVista {
                 Alerta.faseIncorrecta();
             }
         });
-
     }
 }

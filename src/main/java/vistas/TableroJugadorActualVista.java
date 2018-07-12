@@ -28,7 +28,7 @@ public class TableroJugadorActualVista{
         filaZonaMagica.setPercentHeight(25);
         tablero.getRowConstraints().add(filaZonaMagica);
         GridPane zonaMagica = new GridPane();
-        new ZonaMagicaVista(jugador.obtenerZonaMagicaYTrampa(),zonaMagica);
+        new ZonaMagicaPropiaVista(jugador.obtenerZonaMagicaYTrampa(),zonaMagica);
         tablero.add(zonaMagica,0,1);
 
 

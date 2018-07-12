@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
 
-public class ZonaMagicaVista {
+public abstract class ZonaMagicaVista {
 
     private final int CANTIDAD_CARTAS = 5;
     private ZonaMagicasYTrampas zona;
@@ -19,7 +19,7 @@ public class ZonaMagicaVista {
     private GridPane pane;
     private ArrayList<CartaVista> vistas = new ArrayList<>();
 
-    public ZonaMagicaVista(ZonaMagicasYTrampas zona, GridPane pane) {
+    protected ZonaMagicaVista(ZonaMagicasYTrampas zona, GridPane pane) {
         this.zona = zona;
         this.pane = pane;
 
@@ -51,14 +51,18 @@ public class ZonaMagicaVista {
         LinkedList<Magica> magicas = zona.obtenerMagicas();
         for (int i = 0; i < magicas.size(); i++){
             GridPane gridPane = new GridPane();
-            vistas.add(new MagicaVista(magicas.get(i),gridPane));
+            vistas.add(obtenerCartaVistaMagica(magicas.get(i),gridPane));
             pane.add(gridPane,i,0);
         }
         LinkedList<Trampa> trampas=zona.obtenerTrampas();
         for (int i = magicas.size(); i < trampas.size()+magicas.size(); i++){
             GridPane gridPane = new GridPane();
-            vistas.add(new TrampaVista(trampas.get(i-magicas.size()),gridPane));
+            vistas.add(obtenerCartaVistaTrampa(trampas.get(i-magicas.size()),gridPane));
             pane.add(gridPane,i,0);
         }
     }
+
+    protected abstract CartaVista obtenerCartaVistaMagica(Magica magica, GridPane gridPane);
+
+    protected abstract CartaVista obtenerCartaVistaTrampa(Trampa trampa, GridPane gridPane);
 }

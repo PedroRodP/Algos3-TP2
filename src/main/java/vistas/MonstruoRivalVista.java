@@ -16,7 +16,7 @@ public class MonstruoRivalVista extends MonstruoGeneralVista {
         super(monstruo, pane);
 
         accionCartaVista.agregarAccion("seleccionar", event -> {
-            Main.desseleccionarMonstruos();
+            if (!seleccionado) Main.desseleccionarMonstruos();
             altenarSeleccionar();
         });
     }

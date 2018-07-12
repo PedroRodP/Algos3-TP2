@@ -96,4 +96,6 @@ public abstract class CartaVista {
     public void removerObservador(){
         if (observer != null) carta.deleteObserver(observer);
     }
+
+    //protected abstract void actualizarAcciones();
 }
